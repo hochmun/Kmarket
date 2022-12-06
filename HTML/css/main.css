@@ -244,7 +244,33 @@ main > aside > .best > ol > li > a .org_price > del::after {content: '원';}
 main > aside > .best > ol > li > a .org_price > ins::after {content: '원';}
 main > aside > .best > ol > li > a .org_price > del {font-size: 10px; color: #aaa;}
 main > aside > .best > ol > li > a .org_price > span {color: #eb000a; font-size: 10px;}
-main > aside > .best > ol > li > a .org_price > span::after {}
-main > aside > .best > ol > li > a .org_price > ins {}
-main > aside > .best > ol > li > a .org_price > ins::after {}
-main > aside > .best > ol > li > a .org_price > span {}
+main > aside > .best > ol > li > a .org_price > span::after {content: '↓';}
+main > aside > .best > ol > li > a .dis_price {}
+main > aside > .best > ol > li > a .dis_price > ins {font-size: 14px; text-decoration: none;}
+main > aside > .best > ol > li > a .dis_price > span {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: text-bottom;
+    width: 55px;
+    height: 13px;
+    background: url('../img/ico_freeshipping.gif') no-repeat;
+}
+
+/* 메인 => 슬라이더 영역 */
+main > section {}
+main > section > section {}
+main > section > section > article {}
+main > section > section > h3 > span {}
+main > section > section > article > a {}
+main > section > section > article .thumb {}
+main > section > section > article h2 {}
+main > section > section > article p {}
+main > section > section > article > a:hover > p {}
+main > section > section > article del::after {}
+main > section > section > article ins::after {}
+main > section > section > article .org_price > del {}
+main > section > section > article .org_price > span {}
+main > section > section > article .org_price > span::after {}
+main > section > section > article .org_price {}
+main > section > section > article .org_price > ins {}
+main > section > section > article .org_price > .free {}
