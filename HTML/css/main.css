@@ -213,7 +213,7 @@ main > aside > .best > ol > li > a > .thumb > i {
     position: absolute;
     left: 0;
     top: 0;
-    display: inline;
+    display: inline-block;
     width: 16px;
     height: 20px;
     font-size: 14px;
