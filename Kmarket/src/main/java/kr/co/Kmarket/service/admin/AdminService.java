@@ -123,6 +123,10 @@ public enum AdminService {
 	}
 	
 	// create
+	/**
+	 * 2022/12/09 상품등록
+	 * @author 심규영
+	 * @param ProductVO
 	public void insertProduct(ProductVO vo) {
 		dao.insertProduct(vo);
 	}

@@ -11,7 +11,7 @@ let isThumb2Ok = false;
 let isThumb3Ok = false;
 let isDetailOk = false;
 
-const maxSize = 1024 * 1024; // 이미지 각각 업로드시 최대 크기 1MB
+const maxSize = 1024 * 1000; // 이미지 각각 업로드시 최대 크기 1MB
 
 $(()=>{
 	// 카테고리1값 변경시
