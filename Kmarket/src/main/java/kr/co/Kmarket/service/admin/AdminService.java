@@ -59,10 +59,10 @@ public enum AdminService {
 		vo.setOrigin(mr.getParameter("origin"));
 		
 		// 파일 이름 변경 작업
-		String thumb1 = fileReName(mr.getFilesystemName("thumb1"), vo.getSeller(), "thumb1", saveDirectory);
-		String thumb2 = fileReName(mr.getFilesystemName("thumb2"), vo.getSeller(), "thumb2", saveDirectory);
-		String thumb3 = fileReName(mr.getFilesystemName("thumb3"), vo.getSeller(), "thumb3", saveDirectory);
-		String detail = fileReName(mr.getFilesystemName("detail"), vo.getSeller(), "detail", saveDirectory);
+		String thumb1 = fileReName(mr.getFilesystemName("thumb1"), vo, "thumb1", saveDirectory);
+		String thumb2 = fileReName(mr.getFilesystemName("thumb2"), vo, "thumb2", saveDirectory);
+		String thumb3 = fileReName(mr.getFilesystemName("thumb3"), vo, "thumb3", saveDirectory);
+		String detail = fileReName(mr.getFilesystemName("detail"), vo, "detail", saveDirectory);
 		
 		vo.setThumb1(thumb1);
 		vo.setThumb2(thumb2);
@@ -109,10 +109,10 @@ public enum AdminService {
 	 * @param saveDirectory
 	 * @return String 새로운 파일 이름
 	 */
-	public String fileReName(String fileName, String seller, String fileValue, String saveDirectory) {
+	public String fileReName(String fileName, ProductVO vo, String fileValue, String saveDirectory) {
 		String now = new SimpleDateFormat("yyyyMMddHHmmss_").format(new Date());
 		String ext = fileName.substring(fileName.lastIndexOf("."));
-		String newFileName = fileValue+now+seller+ext;
+		String newFileName = fileValue+"_"+vo.getProdCate1()+"_"+vo.getProdCate2()+"_"+now+"_"+vo.getSeller()+ext;
 		
 		File oldFile = new File(saveDirectory + File.separator + fileName);
 		File newFile = new File(saveDirectory + File.separator + newFileName);
