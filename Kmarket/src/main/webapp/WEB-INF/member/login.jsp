@@ -3,9 +3,9 @@
         <main id="member">
             <div class="login">
                 <nav>
-                    <h1>ë¡ê·¸ì¸</h1>
+                    <h1>로그인</h1>
                     <p>
-                        HOME > <strong>ë¡ê·¸ì¸</strong>
+                        HOME > <strong>로그인</strong>
                     </p>
                 </nav>
 
@@ -13,22 +13,22 @@
                     
                     <table border="0">
                         <tr>
-                            <td>ìì´ë</td>
-                            <td><input type="text" name="uid" placeholder="ìì´ë ìë ¥"></td>
+                            <td>아이디</td>
+                            <td><input type="text" name="uid" placeholder="아이디 입력"></td>
                         </tr>
                         <tr>
-                            <td>ë¹ë°ë²í¸</td>
-                            <td><input type="password" name="pass" placeholder="ë¹ë°ë²í¸ ìë ¥"></td>
+                            <td>비밀번호</td>
+                            <td><input type="password" name="pass" placeholder="비밀번호 입력"></td>
                         </tr>
                     </table>
-                    <input type="submit" value="ë¡ê·¸ì¸"/>
+                    <input type="submit" value="로그인"/>
                     <span>
-                        <label><input type="checkbox" name="auto"/>ìë ë¡ê·¸ì¸</label>
-                        <a href="#">ìì´ëì°¾ê¸°</a>
-                        <a href="#">ë¹ë°ë²í¸ì°¾ê¸°</a>
-                        <a href="#">íìê°ì</a>
+                        <label><input type="checkbox" name="auto"/>자동 로그인</label>
+                        <a href="#">아이디찾기</a>
+                        <a href="#">비밀번호찾기</a>
+                        <a href="#">회원가입</a>
                     </span>
-                    <a href="#" class="banner"><img src="./img/member_login_banner.jpg" alt="1ë§ì í ì¸ ì¿ í° ë°ê¸°"></a>
+                    <a href="#" class="banner"><img src="./img/member_login_banner.jpg" alt="1만원 할인 쿠폰 받기"></a>
                 </form>
                 <img src="./img/member_certifi_logo.gif" alt="banner">
             </div>

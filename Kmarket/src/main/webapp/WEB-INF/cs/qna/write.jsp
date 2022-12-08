@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>ì¼ì´ë§ì¼ ê³ ê°ì¼í°</title>
+    <title>케이마켓 고객센터</title>
     <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
     <link rel="stylesheet" href="../css/cs.css">
 </head>
@@ -13,17 +13,17 @@
             <div class="top">
                 <div>
                     <p>
-                        <a href="../../member/login.html">ë¡ê·¸ì¸</a>
-                        <a href="#">íìê°ì</a>
-                        <a href="#">ë§ì´íì´ì§</a>
+                        <a href="../../member/login.html">로그인</a>
+                        <a href="#">회원가입</a>
+                        <a href="#">마이페이지</a>
                         <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i
-                        >&nbsp;ì¥ë°êµ¬ë</a>
+                        >&nbsp;장바구니</a>
                     </p>
                 </div>
             </div>
             <div class="logo">
                 <div>
-                    <a href="#"><img src="../img/logo.png" alt="ë¡ê³ ">ê³ ê°ì¼í°</a>
+                    <a href="#"><img src="../img/logo.png" alt="로고">고객센터</a>
                 </div>
             </div>
         </header>
@@ -32,53 +32,53 @@
             <div class="qna">
                 <nav>
                     <div>
-                        <p>í<span>></span>ë¬¸ìíê¸°</p>
+                        <p>홈<span>></span>문의하기</p>
                     </div>
                 </nav>
                 <section class="write">
                     <aside>
-                        <h2>ë¬¸ìíê¸°</h2>
+                        <h2>문의하기</h2>
                         <ul>
-                            <li class="on"><a href="#">íì</a></li>
-                            <li><a href="#">ì¿ í°/ì´ë²¤í¸</a></li>
-                            <li><a href="#">ì£¼ë¬¸/ê²°ì </a></li>
-                            <li><a href="#">ë°°ì¡</a></li>
-                            <li><a href="#">ì·¨ì/ë°í/êµí</a></li>
-                            <li><a href="#">ì¬í/ìë°/í­ê³µ</a></li>
-                            <li><a href="#">ìì ê±°ë</a></li>
+                            <li class="on"><a href="#">회원</a></li>
+                            <li><a href="#">쿠폰/이벤트</a></li>
+                            <li><a href="#">주문/결제</a></li>
+                            <li><a href="#">배송</a></li>
+                            <li><a href="#">취소/반품/교환</a></li>
+                            <li><a href="#">여행/숙박/항공</a></li>
+                            <li><a href="#">안전거래</a></li>
                         </ul>
                     </aside>
                     <article>
                         <form action="#">
                             <table>
                                 <tr>
-                                    <td>ë¬¸ìì í</td>
+                                    <td>문의유형</td>
                                     <td>
                                         <select name="type">
-                                            <option value="0">ì í</option>
-                                            <option value="">ê°ì</option>
-                                            <option value="">íí´</option>
-                                            <option value="">íìì ë³´</option>
-                                            <option value="">ë¡ê·¸ì¸</option>
+                                            <option value="0">선택</option>
+                                            <option value="">가입</option>
+                                            <option value="">탈퇴</option>
+                                            <option value="">회원정보</option>
+                                            <option value="">로그인</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>ë¬¸ìì ëª©</td>
+                                    <td>문의제목</td>
                                     <td>
-                                        <input type="text" name="title" placeholder="ì ëª©ì ìë ¥íì¸ì.">
+                                        <input type="text" name="title" placeholder="제목을 입력하세요.">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>ë¬¸ìë´ì©</td>
+                                    <td>문의내용</td>
                                     <td>
-                                        <textarea name="content" placeholder="ë´ì©ì ìë ¥íì¸ì."></textarea>
+                                        <textarea name="content" placeholder="내용을 입력하세요."></textarea>
                                     </td>
                                 </tr>
                             </table>
                             <div>
-                                <a href="./list.html" class="btnList">ì·¨ìíê¸°</a>
-                                <input type="submit" class="btnSubmit" value="ë±ë¡íê¸°">
+                                <a href="./list.html" class="btnList">취소하기</a>
+                                <input type="submit" class="btnSubmit" value="등록하기">
                             </div>
                         </form>
                     </article>
@@ -88,25 +88,25 @@
 
         <footer>
             <ul>
-                <li><a href="#">íì¬ìê°</a></li>
-                <li><a href="#">ìë¹ì¤ì´ì©ì½ê´</a></li>
-                <li><a href="#">ê°ì¸ì ë³´ì²ë¦¬ë°©ì¹¨</a></li>
-                <li><a href="#">ì ìê¸ìµê±°ëì½ê´</a></li>
+                <li><a href="#">회사소개</a></li>
+                <li><a href="#">서비스이용약관</a></li>
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">전자금융거래약관</a></li>
             </ul>
             <div>
-                <p><img src="../../img/footer_logo.png" alt="ë¡ê³ "></p>
+                <p><img src="../../img/footer_logo.png" alt="로고"></p>
                 <p>
-                    <strong>(ì£¼)KMARKET</strong><br/>
-                    ë¶ì°ì ê°ë¨êµ¬ íí¤ëë¡ 152 (ì­ì¼ë ê°ë¨íì´ë¸ì¤ì¼í°)<br/>
-                    ëíì´ì¬ : íê¸¸ë<br/>
-                    ì¬ììë±ë¡ë²í¸ : 220-81-83676 ì¬ììì ë³´íì¸<br/>
-                    íµì íë§¤ìì ê³  : ê°ë¨ 10630í¸ Fax : 02-589-8842
+                    <strong>(주)KMARKET</strong><br/>
+                    부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br/>
+                    대표이사 : 홍길동<br/>
+                    사업자등록번호 : 220-81-83676 사업자정보확인<br/>
+                    통신판매업신고 : 강남 10630호 Fax : 02-589-8842
                 </p>
                 <p>
-                    <strong>ê³ ê°ì¼í°</strong><br/>
-                    Tel : 1234-5678 (íì¼ 09:00 ~ 18:00)<br/>
-                    ì¤ë§ì¼í´ë½/SVIP ì ì© : 1522-5700 (365ì¼ 09:00 ~ 18:00)<br/>
-                    ê²½ê¸°ë ë¶ì²ì ìë¯¸êµ¬ ë¶ì¼ë¡ 223(ìë) í¬ëë¹ë© 6ì¸µ<br/>
+                    <strong>고객센터</strong><br/>
+                    Tel : 1234-5678 (평일 09:00 ~ 18:00)<br/>
+                    스마일클럽/SVIP 전용 : 1522-5700 (365일 09:00 ~ 18:00)<br/>
+                    경기도 부천시 원미구 부일로 223(상동) 투나빌딩 6층<br/>
                     Fax : 051-123-4567 | Mail : kmarket@kmarket.co.kr<br/>
                 </p>
             </div>
