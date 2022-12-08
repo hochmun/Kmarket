@@ -18,8 +18,9 @@ public enum AdminService {
 	
 	// read 
 	/**
-	 * 카테고리 종류 불러오기
-	 * @return
+	 * 2022/12/08 - 카테고리 종류 불러오기
+	 * @author 심규영
+	 * @return c1vos, c2vos - 카테고리1, 카테고리2
 	 */
 	public Map<String, Object> selectcate() {
 		return dao.selectcate();
