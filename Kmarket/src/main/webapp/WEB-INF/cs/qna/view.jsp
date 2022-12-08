@@ -4,40 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>ì¼ì´ë§ì¼ ê³ ê°ì¼í°</title>
-    <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=7006"></script>
-    <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="../css/cs.css">
 </head>
 <body>
-    <div class="wrapper">
+    <div id="wrapper">
         <header>
             <div class="top">
                 <div>
                     <p>
-                        <a href="./member/login.html">ë¡ê·¸ì¸</a>
+                        <a href="../../member/login.html">ë¡ê·¸ì¸</a>
                         <a href="#">íìê°ì</a>
                         <a href="#">ë§ì´íì´ì§</a>
-                        <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;ì¥ë°êµ¬ë</a>
+                        <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                        >&nbsp;ì¥ë°êµ¬ë</a>
                     </p>
                 </div>
             </div>
             <div class="logo">
                 <div>
-                    <a href="../index.html"><img src="../images/logo.png" alt="ë¡ê³ "/>ê³ ê°ì¼í°</a>
+                    <a href="#"><img src="../img/logo.png" alt="ë¡ê³ ">ê³ ê°ì¼í°</a>
                 </div>
             </div>
         </header>
-
         <section id="cs">
-            <div class="faq">
+            <div class="qna">
                 <nav>
                     <div>
-                        <p>í<span>></span>ìì£¼ë¬»ë ì§ë¬¸</p>
+                        <p>í<span>></span>ë¬¸ìíê¸°</p>
                     </div>
                 </nav>
                 <section class="view">
                     <aside>
-                        <h2>ìì£¼ë¬»ë ì§ë¬¸</h2>
+                        <h2>ë¬¸ìíê¸°</h2>
                         <ul>
                             <li class="on"><a href="#">íì</a></li>
                             <li><a href="#">ì¿ í°/ì´ë²¤í¸</a></li>
@@ -50,7 +49,11 @@
                     </aside>
                     <article>
                         <nav>
-                            <h2 class="title"><span>Q.</span>ê°ì¸íìê³¼ ë²ì¸íìì ì°¨ì´ê° ìëì?</a></h2>
+                            <h2 class="title">[ê°ì] ê°ì ë¬¸ìë´ì©</h2>
+                            <p>
+                                <span>chh***</span>
+                                <span>2022-11-21</span>
+                            </p>
                         </nav>
 
                         <div class="content">
@@ -63,7 +66,7 @@
                                 http://cyberbureau.police.go.kr<br />
                                 â¶ KISA ì¸í°ë·ì¹¨í´ëìì¼í° (êµ­ë²ìì´)118 :
                                 http://www.krcert.or.kr<br />
-                                ê°ì¬í©ëë¤.<br /> 
+                                ê°ì¬í©ëë¤.<br />
                             </p>
                         </div>
                         <a href="./list.html" class="btnList">ëª©ë¡ë³´ê¸°</a>
@@ -80,20 +83,20 @@
                 <li><a href="#">ì ìê¸ìµê±°ëì½ê´</a></li>
             </ul>
             <div>
-                <p><img src="../imges/footer_logo.png" alt="ë¡ê³ "/></p>
+                <p><img src="../../img/footer_logo.png" alt="ë¡ê³ "></p>
                 <p>
-                    <strong>(ì£¼)KMARKET</strong><br />
-                    ë¶ì°ì ê°ë¨êµ¬ íí¤ëë¡ 152 (ì­ì¼ë ê°ë¨íì´ë¸ì¤ì¼í°)<br />
-                    ëíì´ì¬ : íê¸¸ë<br />
-                    ì¬ììë±ë¡ë²í¸ : 220-81-83676 ì¬ììì ë³´íì¸<br />
+                    <strong>(ì£¼)KMARKET</strong><br/>
+                    ë¶ì°ì ê°ë¨êµ¬ íí¤ëë¡ 152 (ì­ì¼ë ê°ë¨íì´ë¸ì¤ì¼í°)<br/>
+                    ëíì´ì¬ : íê¸¸ë<br/>
+                    ì¬ììë±ë¡ë²í¸ : 220-81-83676 ì¬ììì ë³´íì¸<br/>
                     íµì íë§¤ìì ê³  : ê°ë¨ 10630í¸ Fax : 02-589-8842
                 </p>
                 <p>
-                    <strong>ê³ ê°ì¼í°</strong><br />
-                    Tel : 1234-5678 (íì¼ 09:00~18:00)<br />
-                    ì¤ë§ì¼í´ë½/SVIP ì ì© : 1522-5700 (365ì¼ 09:00~18:00)<br />
-                    ê²½ê¸°ë ë¶ì²ì ìë¯¸êµ¬ ë¶ì¼ë¡ 223(ìë) í¬ëë¹ë© 6ì¸µ<br />
-                    Fax : 051-123-4567 | Mail : kmarket@kmarket.co.kr<br />
+                    <strong>ê³ ê°ì¼í°</strong><br/>
+                    Tel : 1234-5678 (íì¼ 09:00 ~ 18:00)<br/>
+                    ì¤ë§ì¼í´ë½/SVIP ì ì© : 1522-5700 (365ì¼ 09:00 ~ 18:00)<br/>
+                    ê²½ê¸°ë ë¶ì²ì ìë¯¸êµ¬ ë¶ì¼ë¡ 223(ìë) í¬ëë¹ë© 6ì¸µ<br/>
+                    Fax : 051-123-4567 | Mail : kmarket@kmarket.co.kr<br/>
                 </p>
             </div>
         </footer>
