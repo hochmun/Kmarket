@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 업로드 디렉터리의 물리적 경로 확인
-		String saveDirectory = req.getServletContext().getRealPath("/thumb/"+req.getParameter("category1")+"/"+req.getParameter("category2"));
+		String saveDirectory = req.getServletContext().getRealPath("/thumb");
 		
 		// 디렉토리 생성
 		service.dirCreate(saveDirectory);
