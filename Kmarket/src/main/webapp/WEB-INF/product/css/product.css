@@ -1067,7 +1067,7 @@ text-decoration: none;
 }
 #product.search > .group > form > input[type=text] {
     height: 30px;
-    border: 1ps solid#bbb;
+    border: 1ps solid #bbb;
     padding: 0 10px;
 }
 #product.search > .group > form > input[type=submit] {
