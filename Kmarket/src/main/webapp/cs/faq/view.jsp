@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="./_header.jsp"/>
             <article>
                 <nav>
                     <h2 class="title"><span>Q.</span>개인회원과 법인회원에 차이가 있나요?</a></h2>
@@ -22,3 +23,4 @@
         </section>
     </div>
 </section>
+<jsp:include page="./_footer.jsp"/>
