@@ -7,6 +7,8 @@ import java.util.Map;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
+import kr.co.Kmarket.vo.Cate1VO;
+import kr.co.Kmarket.vo.Cate2VO;
 
 public class ProductDAO extends DBCP {
 	// create 
