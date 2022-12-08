@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<jsp:include page="./_header.jsp"/>
             <article>
                 <nav>
                     <h2 class="title">[가입] 가입 문의내용</h2>
@@ -26,3 +27,4 @@
         </section>
     </div>
 </section>
+<jsp:include page="./_footer.jsp"/>
