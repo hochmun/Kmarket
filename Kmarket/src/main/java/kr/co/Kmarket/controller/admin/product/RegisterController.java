@@ -22,7 +22,7 @@ public class RegisterController extends HttpServlet {
 		Map<String, Object> voss = service.selectcate();
 		req.setAttribute("c1vos", voss.get("c1vos"));
 		req.setAttribute("c2vos", voss.get("c2vos"));
-		req.getRequestDispatcher("/WEB-INF/admin/product/register.jsp").forward(req, resp);
+		req.getRequestDispatcher("/admin/product/register.jsp").forward(req, resp);
 	}
 	
 	@Override
