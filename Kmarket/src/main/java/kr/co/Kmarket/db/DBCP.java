@@ -25,7 +25,7 @@ public class DBCP {
 	public static Connection getConnection() throws NamingException, SQLException {
 		if (ds == null) {
 			ds = (DataSource) new InitialContext()
-					.lookup("java:comp/env/dbcp_java2_board");
+					.lookup("java:comp/env/mydb");
 		}
 		return ds.getConnection();
 	}
