@@ -36,7 +36,7 @@ public enum AdminService {
 	 */
 	public ProductVO insertProductVO(HttpServletRequest req, MultipartRequest mr, String saveDirectory) {
 		ProductVO vo = new ProductVO();
-		int discount =  1 - Integer.parseInt(mr.getParameter("discount"))/100;
+		int discount =  1 - (Integer.parseInt(mr.getParameter("discount"))/100);
 		int point = (Integer.parseInt(mr.getParameter("price")) * discount)/100;
 		
 		vo.setSeller(mr.getParameter("seller"));
