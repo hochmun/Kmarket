@@ -4,10 +4,10 @@ public class ProductVO {
 	private int prodNo;
 	private int prodCate1;
 	private int prodCate2;
-	private int prodName;
-	private int descript;
-	private int company;
-	private int seller;
+	private String prodName;
+	private String descript;
+	private String company;
+	private String seller;
 	private int price;
 	private int discount;
 	private int point;
@@ -17,22 +17,22 @@ public class ProductVO {
 	private int hit;
 	private int score;
 	private int review;
-	private int thumb1;
-	private int thumb2;
-	private int thumb3;
-	private int detail;
-	private int status;
-	private int duty;
-	private int receipt;
-	private int bizType;
-	private int origin;
-	private int ip;
-	private int rdate;
+	private String thumb1;
+	private String thumb2;
+	private String thumb3;
+	private String detail;
+	private String status;
+	private String duty;
+	private String receipt;
+	private String bizType;
+	private String origin;
+	private String ip;
+	private String rdate;
 	private int etc1;
 	private int etc2;
-	private int etc3;
-	private int etc4;
-	private int etc5;
+	private String etc3;
+	private String etc4;
+	private String etc5;
 	
 	public int getProdNo() {
 		return prodNo;
@@ -46,34 +46,40 @@ public class ProductVO {
 	public void setProdCate1(int prodCate1) {
 		this.prodCate1 = prodCate1;
 	}
+	public void setProdCate1(String prodCate1) {
+		this.prodCate1 = Integer.parseInt(prodCate1);
+	}
 	public int getProdCate2() {
 		return prodCate2;
 	}
 	public void setProdCate2(int prodCate2) {
 		this.prodCate2 = prodCate2;
 	}
-	public int getProdName() {
+	public void setProdCate2(String prodCate2) {
+		this.prodCate2 = Integer.parseInt(prodCate2);
+	}
+	public String getProdName() {
 		return prodName;
 	}
-	public void setProdName(int prodName) {
+	public void setProdName(String prodName) {
 		this.prodName = prodName;
 	}
-	public int getDescript() {
+	public String getDescript() {
 		return descript;
 	}
-	public void setDescript(int descript) {
+	public void setDescript(String descript) {
 		this.descript = descript;
 	}
-	public int getCompany() {
+	public String getCompany() {
 		return company;
 	}
-	public void setCompany(int company) {
+	public void setCompany(String company) {
 		this.company = company;
 	}
-	public int getSeller() {
+	public String getSeller() {
 		return seller;
 	}
-	public void setSeller(int seller) {
+	public void setSeller(String seller) {
 		this.seller = seller;
 	}
 	public int getPrice() {
@@ -82,11 +88,17 @@ public class ProductVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
+	public void setPrice(String price) {
+		this.price = Integer.parseInt(price);
+	}
 	public int getDiscount() {
 		return discount;
 	}
 	public void setDiscount(int discount) {
 		this.discount = discount;
+	}
+	public void setDiscount(String discount) {
+		this.discount = Integer.parseInt(discount);
 	}
 	public int getPoint() {
 		return point;
@@ -94,11 +106,17 @@ public class ProductVO {
 	public void setPoint(int point) {
 		this.point = point;
 	}
+	public void setPoint(String point) {
+		this.point = Integer.parseInt(point);
+	}
 	public int getStock() {
 		return stock;
 	}
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+	public void setStock(String stock) {
+		this.stock = Integer.parseInt(stock);
 	}
 	public int getSold() {
 		return sold;
@@ -111,6 +129,9 @@ public class ProductVO {
 	}
 	public void setDelivery(int delivery) {
 		this.delivery = delivery;
+	}
+	public void setDelivery(String delivery) {
+		this.delivery = Integer.parseInt(delivery);
 	}
 	public int getHit() {
 		return hit;
@@ -130,70 +151,70 @@ public class ProductVO {
 	public void setReview(int review) {
 		this.review = review;
 	}
-	public int getThumb1() {
+	public String getThumb1() {
 		return thumb1;
 	}
-	public void setThumb1(int thumb1) {
+	public void setThumb1(String thumb1) {
 		this.thumb1 = thumb1;
 	}
-	public int getThumb2() {
+	public String getThumb2() {
 		return thumb2;
 	}
-	public void setThumb2(int thumb2) {
+	public void setThumb2(String thumb2) {
 		this.thumb2 = thumb2;
 	}
-	public int getThumb3() {
+	public String getThumb3() {
 		return thumb3;
 	}
-	public void setThumb3(int thumb3) {
+	public void setThumb3(String thumb3) {
 		this.thumb3 = thumb3;
 	}
-	public int getDetail() {
+	public String getDetail() {
 		return detail;
 	}
-	public void setDetail(int detail) {
+	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getDuty() {
+	public String getDuty() {
 		return duty;
 	}
-	public void setDuty(int duty) {
+	public void setDuty(String duty) {
 		this.duty = duty;
 	}
-	public int getReceipt() {
+	public String getReceipt() {
 		return receipt;
 	}
-	public void setReceipt(int receipt) {
+	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
-	public int getBizType() {
+	public String getBizType() {
 		return bizType;
 	}
-	public void setBizType(int bizType) {
+	public void setBizType(String bizType) {
 		this.bizType = bizType;
 	}
-	public int getOrigin() {
+	public String getOrigin() {
 		return origin;
 	}
-	public void setOrigin(int origin) {
+	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	public int getIp() {
+	public String getIp() {
 		return ip;
 	}
-	public void setIp(int ip) {
+	public void setIp(String ip) {
 		this.ip = ip;
 	}
-	public int getRdate() {
+	public String getRdate() {
 		return rdate;
 	}
-	public void setRdate(int rdate) {
+	public void setRdate(String rdate) {
 		this.rdate = rdate;
 	}
 	public int getEtc1() {
@@ -208,23 +229,22 @@ public class ProductVO {
 	public void setEtc2(int etc2) {
 		this.etc2 = etc2;
 	}
-	public int getEtc3() {
+	public String getEtc3() {
 		return etc3;
 	}
-	public void setEtc3(int etc3) {
+	public void setEtc3(String etc3) {
 		this.etc3 = etc3;
 	}
-	public int getEtc4() {
+	public String getEtc4() {
 		return etc4;
 	}
-	public void setEtc4(int etc4) {
+	public void setEtc4(String etc4) {
 		this.etc4 = etc4;
 	}
-	public int getEtc5() {
+	public String getEtc5() {
 		return etc5;
 	}
-	public void setEtc5(int etc5) {
+	public void setEtc5(String etc5) {
 		this.etc5 = etc5;
 	}
-	
 }
