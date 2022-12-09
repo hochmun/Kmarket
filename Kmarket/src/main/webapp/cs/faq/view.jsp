@@ -18,7 +18,7 @@
                         감사합니다.<br /> 
                     </p>
                 </div>
-                <a href="./list.html" class="btnList">목록보기</a>
+                <a href="/Kmarket/cs/faq/list.do" class="btnList">목록보기</a>
             </article>
         </section>
     </div>

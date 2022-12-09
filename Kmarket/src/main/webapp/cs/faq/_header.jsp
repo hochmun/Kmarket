@@ -15,10 +15,10 @@
             <div class="top">
                 <div>
                     <p>
-                        <a href="../../member/login.html">로그인</a>
-                        <a href="#">회원가입</a>
+                        <a href="/Kmarket/member/login.do">로그인</a>
+                        <a href="/Kmarket/member/signup.do">회원가입</a>
                         <a href="#">마이페이지</a>
-                        <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                        <a href="/Kmarket/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
                         >&nbsp;장바구니</a>
                     </p>
                 </div>

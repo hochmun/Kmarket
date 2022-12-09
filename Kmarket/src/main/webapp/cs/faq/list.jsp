@@ -9,7 +9,7 @@
                 <div>
                     <h3>가입</h3>
                     <ul>
-                        <li><a href="./view.html"><span>Q.</span>개인회원가 법인회원에 차이가 있나요?</a></li>
+                        <li><a href="/Kmarket/cs/faq/view.do"><span>Q.</span>개인회원가 법인회원에 차이가 있나요?</a></li>
                         <li><a href="#">Q.</a>개인회원과 법인회원에 차이가 있나요>?</li>
                         <li><a href="#">Q.</a>개인회원과 법인회원에 차이가 있나요>?</li>
                         <li><a href="#">Q.</a>개인회원과 법인회원에 차이가 있나요>?</li>

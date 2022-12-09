@@ -10,20 +10,20 @@
     <script src="../js/gnb.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css">
 </head>
 <body>
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="../index.html" class="logo">
+                <a href="/Kmarket/admin/index.do" class="logo">
                     <img src="../img/admin_logo.png" alt="admin_logo">
                 </a>
                 <p>
-                    <span>홍길돌님 반갑습니다.</span>
-                    <a href="#">HOME |</a>
+                    <span>홍길동님 반갑습니다.</span>
+                    <a href="/Kmarket/index.do">HOME |</a>
                     <a href="#">로그아웃 |</a>
-                    <a href="#">고객센터</a>
+                    <a href="/Kmarket/cs/index.do">고객센터</a>
                 </p>
             </div>
         </header>
@@ -57,8 +57,8 @@
                     <li>
                         <a href="#"><i class="fa fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="#">상품현황</a></li>
-                            <li><a href="#">상품등록</a></li>
+                            <li><a href="/Kmarket/admin/product/list.do">상품현황</a></li>
+                            <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>
                     </li>
