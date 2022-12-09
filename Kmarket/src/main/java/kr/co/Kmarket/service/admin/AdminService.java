@@ -1,8 +1,6 @@
 package kr.co.Kmarket.service.admin;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -38,7 +36,8 @@ public enum AdminService {
 	 */
 	public ProductVO insertProductVO(HttpServletRequest req, MultipartRequest mr, String saveDirectory) {
 		ProductVO vo = new ProductVO();
-		int point = Integer.parseInt(mr.getParameter("price"))/100;
+		int discount =  1 - Integer.parseInt(mr.getParameter("discount"))/100;
+		int point = (Integer.parseInt(mr.getParameter("price")) * discount)/100;
 		
 		vo.setSeller(mr.getParameter("seller"));
 		
