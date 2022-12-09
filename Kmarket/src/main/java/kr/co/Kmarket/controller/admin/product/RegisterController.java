@@ -36,7 +36,7 @@ public class RegisterController extends HttpServlet {
 		service.dirCreate(saveDirectory);
 		
 		// 첨부 파일 최대 용량 설정 - 1MB
-		int maxPostSize = 1024*1000;
+		int maxPostSize = 1024*1024;
 		
 		// 파일 업로드
 		MultipartRequest mr = service.uploadFile(req, saveDirectory, maxPostSize);
