@@ -3,7 +3,6 @@ const reNum = /^[0-9]+$/; // 숫자만 허용
 
 let isPriceOk = false; // 기본 null
 let isDiscountOk = true; // 기본 0
-let isPointOk = true;
 let isStockOk = true;
 let isDeliveryOk = true;
 let isThumb1Ok = false; // 이미지 체크
@@ -52,18 +51,6 @@ $(()=>{
 		} else {
 			isDiscountOk = false;
 			$('.discountResult').css('color','red').text('숫자만 입력할 수 있습니다.');
-		}
-	})
-	
-	// 포인트 유효성 검사
-	$('input[name=point]').change(function(){
-		const point = $(this).val();
-		if(point.match(reNum)) {
-			isPointOk = true;
-			$('.pointResult').text('');
-		} else {
-			isPointOk = false;
-			$('.pointResult').css('color','red').text('숫자만 입력할 수 있습니다.');
 		}
 	})
 	
@@ -283,15 +270,6 @@ $(()=>{
 			return false;
 		} else if (!isDiscountOk) {
 			alert('상품 할인율 입력이 유효하지 않습니다.');
-			return false;
-		}
-		// 포인트
-		const point = $('input[name=point]').val();
-		if(point == null || point == '') {
-			alert('상품의 포인트를 입력하시오.');
-			return false;
-		} else if (!isPointOk) {
-			alert('상품 포인트의 입력이 유효하지 않습니다.');
 			return false;
 		}
 		// 재고수량

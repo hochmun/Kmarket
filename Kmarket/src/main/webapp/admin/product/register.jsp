@@ -77,16 +77,8 @@
                             <td>할인율</td>
                             <td>
                                 <span>0을 입력하면 할인율 없음</span>
-                                <input type="text" name="discount" value="0">원
+                                <input type="text" name="discount" value="0">%
                                 &nbsp;&nbsp;<span class="discountResult"></span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>포인트</td>
-                            <td>
-                                <span>0을 입력하면 포인트 없음</span>
-                                <input type="text" name="point" value="0">점
-                                &nbsp;&nbsp;<span class="pointResult"></span>
                             </td>
                         </tr>
                         <tr>
