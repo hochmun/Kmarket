@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -37,6 +38,7 @@ public enum AdminService {
 	 */
 	public ProductVO insertProductVO(HttpServletRequest req, MultipartRequest mr, String saveDirectory) {
 		ProductVO vo = new ProductVO();
+		int point = Integer.parseInt(mr.getParameter("price"))/100;
 		
 		vo.setSeller(mr.getParameter("seller"));
 		
@@ -47,7 +49,7 @@ public enum AdminService {
 		vo.setCompany(mr.getParameter("company"));
 		vo.setPrice(mr.getParameter("price"));
 		vo.setDiscount(mr.getParameter("discount"));
-		vo.setPoint(mr.getParameter("point"));
+		vo.setPoint(point);
 		vo.setStock(mr.getParameter("stock"));
 		vo.setDelivery(mr.getParameter("delivery"));
 		vo.setIp(req.getRemoteAddr());
@@ -110,9 +112,9 @@ public enum AdminService {
 	 * @return String 새로운 파일 이름
 	 */
 	public String fileReName(String fileName, ProductVO vo, String fileValue, String saveDirectory) {
-		String now = new SimpleDateFormat("yyyyMMddHHmmss_").format(new Date());
+		String now = UUID.randomUUID().toString();
 		String ext = fileName.substring(fileName.lastIndexOf("."));
-		String newFileName = fileValue+"_"+vo.getProdCate1()+"_"+vo.getProdCate2()+"_"+now+"_"+vo.getSeller()+ext;
+		String newFileName = fileValue+"_"+vo.getProdCate1()+"_"+vo.getProdCate2()+"_"+now+ext;
 		
 		File oldFile = new File(saveDirectory + File.separator + fileName);
 		File newFile = new File(saveDirectory + File.separator + newFileName);

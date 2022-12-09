@@ -82,14 +82,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>포인트</td>
-                            <td>
-                                <span>0을 입력하면 포인트 없음</span>
-                                <input type="text" name="point" value="0">점
-                                &nbsp;&nbsp;<span class="pointResult"></span>
-                            </td>
-                        </tr>
-                        <tr>
                             <td>재고수량</td>
                             <td>
                                 <input type="text" name="stock" value="0">개
