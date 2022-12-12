@@ -16,9 +16,10 @@ public class MemberVO {
 	private String company;
 	private String ceo;
 	private String bizRegNum;
+	private String comRegNum;
 	private String tel;
 	private String manager;
-	private String managerHP;
+	private String managerHp;
 	private String fax;
 	private String regip;
 	private String wdate;
@@ -119,6 +120,12 @@ public class MemberVO {
 	public void setBizRegNum(String bizRegNum) {
 		this.bizRegNum = bizRegNum;
 	}
+	public String getComRegNum() {
+		return comRegNum;
+	}
+	public void setComRegNum(String comRegNum) {
+		this.comRegNum = comRegNum;
+	}
 	public String getTel() {
 		return tel;
 	}
@@ -131,11 +138,11 @@ public class MemberVO {
 	public void setManager(String manager) {
 		this.manager = manager;
 	}
-	public String getManagerHP() {
-		return managerHP;
+	public String getManagerHp() {
+		return managerHp;
 	}
-	public void setManagerHP(String managerHP) {
-		this.managerHP = managerHP;
+	public void setManagerHp(String managerHp) {
+		this.managerHp = managerHp;
 	}
 	public String getFax() {
 		return fax;

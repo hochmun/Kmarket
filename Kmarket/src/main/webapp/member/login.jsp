@@ -9,9 +9,9 @@
             </p>
         </nav>
 
-        <form action="#">
+        <form action="${pageContext.request.contextPath}/member/login.do" method="post">
             
-            <table border="0">
+            <table>
                 <tr>
                     <td>아이디</td>
                     <td><input type="text" name="uid" placeholder="아이디 입력"></td>
@@ -26,7 +26,7 @@
                 <label><input type="checkbox" name="auto"/>자동 로그인</label>
                 <a href="#">아이디찾기</a>
                 <a href="#">비밀번호찾기</a>
-                <a href="#">회원가입</a>
+                <a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
             </span>
             <a href="#" class="banner"><img src="./img/member_login_banner.jpg" alt="1만원 할인 쿠폰 받기"></a>
         </form>

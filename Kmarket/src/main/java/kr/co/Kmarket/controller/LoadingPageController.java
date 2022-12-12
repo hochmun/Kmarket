@@ -37,6 +37,9 @@ public class LoadingPageController extends HttpServlet {
 			if(success.equals("200")) service.loginFail(out); // 로그인 실패
 			if(success.equals("201")) service.logout(out); // 로그아웃
 			if(success.equals("202")) service.insertUser(out); // 회원가입 성공
+			
+			if(success.equals("500")) service.typeError(out); // 타입정보 오류
+			if(success.equals("501")) service.connectingError(out); // 비정상적인 접근
 		}
 		
 	}

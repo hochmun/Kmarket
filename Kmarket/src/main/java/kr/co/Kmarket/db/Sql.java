@@ -2,6 +2,12 @@ package kr.co.Kmarket.db;
 
 public class Sql {
 	// member
+	
+	public static final String SELECT_USER = 
+			"SELECT * FROM `km_member` WHERE `uid`=? AND `pass`=SHA2(?,256)";
+	public static final String SELECT_MEMBER_TERMS = 
+			"SELECT * FROM `km_member_terms`";
+	
 	/**일반회원*/
 	public static final String INSERT_MEMBER_TYPE1 = "INSERT INTO `km_member` SET "
 			+ "`uid`=?, "
@@ -18,6 +24,7 @@ public class Sql {
 			+ "`addr2`=?, "
 			+ "`regip`=?, "
 			+ "`rdate`=NOW()";
+
 	// product
 	public static final String INSERT_PRODUCT = 
 			"INSERT INTO `km_product` SET "

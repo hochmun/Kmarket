@@ -17,7 +17,7 @@ public enum LoadingService {
 	 */
 	public void loginFail(Writer out) throws IOException {
 		out.write("<script>alert('로그인에 실패하였습니다.\\n아이디와 비밀번호를 다시 확인하여 주십시오.');"
-				+ "location.href='${pageContext.request.contextPath}/member/login.do';</script>");
+				+ "location.href='/Kmarket/member/login.do';</script>");
 	}
 	
 	/**
@@ -38,7 +38,26 @@ public enum LoadingService {
 	 * @throws IOException
 	 */
 	public void insertUser(Writer out) throws IOException {
-		out.write("<script>alert('회원 가입이 완료되었습니다.');location.href='${pageContext.request.contextPath}/member/login.do';</script>");
+		out.write("<script>alert('회원 가입이 완료되었습니다.');location.href='/Kmarket/member/login.do';</script>");
+	}
+	
+	/**
+	 * 2022/12/12 - success-500 회원정보 type 오류
+	 * @author 심규영
+	 * @param out
+	 * @throws IOException
+	 */
+	public void typeError(Writer out) throws IOException {
+		out.write("<script>alert('회원정보 오류입니다 관리자에게 문의 하십시오.');location.href='/Kmarket/member/login.do';</script>");
+	}
+	
+	/**
+	 * 2022/12/12 - success=501 비정상적인 페이지 접근
+	 * @param out
+	 * @throws IOException
+	 */
+	public void connectingError(Writer out) throws IOException {
+		out.write("<script>alert('비정상적인 페이지 호출입니다.');</script>");
 	}
 	
 	// create
