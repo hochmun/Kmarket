@@ -2,6 +2,22 @@ package kr.co.Kmarket.db;
 
 public class Sql {
 	// member
+	public static final String INSERT_MEMBER = "INSERT INTO `km_member` SET "
+			+ "`uid`=?, "
+			+ "`pass`=SHA2(?, 256), "
+			+ "`name`=?, "
+			+ "`gender`=?, "
+			+ "`hp`=?, "
+			+ "`email`=?, "
+			+ "`type`=?, "
+			+ "`point`=?, "
+			+ "`level`=?, "
+			+ "`zip`=?, "
+			+ "`addr1`=?, "
+			+ "`addr2`=?, "
+			+ "`regip`=?, "
+			+ "`rdate`=NOW()";
+	
 	
 	// product
 	public static final String INSERT_PRODUCT = 

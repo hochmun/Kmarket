@@ -12,7 +12,7 @@
 <body>
     <div id="wrapper">
         <header>
-            <div class="top">
+            <div class="top"> 
                 <div>
                     <p>
                         <a href="/Kmarket/member/login.do">로그인</a>
