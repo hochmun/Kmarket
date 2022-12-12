@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -43,10 +44,17 @@
         <header>
             <div class="top">
                 <div>
-                    <a href="./member/login.html">로그인</a>
-                    <a href="#">회원가입</a>
+                	<c:choose>
+                		<c:when test="${ sessUser.uid eq null }">
+                    		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+                    		<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<a href="#">로그아웃</a>
+                    	</c:otherwise>
+                    </c:choose>
                     <a href="#">마이페이지</a>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/product/cart.do">
                         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         &nbsp;장바구니
                     </a>
@@ -54,7 +62,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="#">
+                    <a href="${pageContext.request.contextPath}/index.do">
                         <img src="./img/header_logo.png" alt="로고">
                     </a>
                     <form action="#">
