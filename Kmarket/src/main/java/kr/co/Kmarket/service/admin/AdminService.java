@@ -1,10 +1,13 @@
 package kr.co.Kmarket.service.admin;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,16 +62,10 @@ public enum AdminService {
 		vo.setBizType(mr.getParameter("bizType"));
 		vo.setOrigin(mr.getParameter("origin"));
 		
-		// 파일 이름 변경 작업
-		String thumb1 = fileReName(mr.getFilesystemName("thumb1"), vo, "thumb1", saveDirectory);
-		String thumb2 = fileReName(mr.getFilesystemName("thumb2"), vo, "thumb2", saveDirectory);
-		String thumb3 = fileReName(mr.getFilesystemName("thumb3"), vo, "thumb3", saveDirectory);
-		String detail = fileReName(mr.getFilesystemName("detail"), vo, "detail", saveDirectory);
-		
-		vo.setThumb1(thumb1);
-		vo.setThumb2(thumb2);
-		vo.setThumb3(thumb3);
-		vo.setDetail(detail);
+		//vo.setThumb1(thumb1);
+		//vo.setThumb2(thumb2);
+		//vo.setThumb3(thumb3);
+		//vo.setDetail(detail);
 		
 		return vo;
 	}
@@ -102,6 +99,55 @@ public enum AdminService {
 	}
 	
 	/**
+	 * 2022/12/12 - 서블릿 형태의 파일 업로드 기능
+	 * @param req
+	 * @param path
+	 */
+	public void uploadFile2(HttpServletRequest req, String path) {
+		try {
+			logger.info("AdminService uploadFile2...");
+			Part thumb1 = req.getPart("thumb1");
+			Part thumb2 = req.getPart("thumb2");
+			Part thumb3 = req.getPart("thumb3");
+			Part detail = req.getPart("detail");
+			
+			String thumb1FileName = fileReName(getFileName(thumb1));
+			String thumb2FileName = fileReName(getFileName(thumb2));
+			String thumb3FileName = fileReName(getFileName(thumb3));
+			String detailFileName = fileReName(getFileName(detail));
+			
+			fileOutPut(thumb1FileName, thumb1, path);
+			fileOutPut(thumb2FileName, thumb2, path);
+			fileOutPut(thumb3FileName, thumb3, path);
+			fileOutPut(detailFileName, detail, path);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	public void fileOutPut(String fileName, Part filePart, String path) {
+		try {
+			logger.info("adminService fileoutput....");
+			File file = new File(path+fileName);
+			InputStream is = filePart.getInputStream();
+			FileOutputStream fos = null;
+			
+			fos = new FileOutputStream(file);
+			
+			int temp = -1;
+			while((temp = is.read()) != -1) {
+				fos.write(temp);
+			}
+			
+			is.close();
+			fos.close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	/**
 	 * 2022/12/09 업로드된 파일 이름 변경 작업
 	 * @author 심규영
 	 * @param fileName
@@ -110,18 +156,28 @@ public enum AdminService {
 	 * @param saveDirectory
 	 * @return String 새로운 파일 이름
 	 */
-	public String fileReName(String fileName, ProductVO vo, String fileValue, String saveDirectory) {
+	public String fileReName(String fileName) {
 		String now = UUID.randomUUID().toString();
 		String ext = fileName.substring(fileName.lastIndexOf("."));
-		String newFileName = fileValue+"_"+vo.getProdCate1()+"_"+vo.getProdCate2()+"_"+now+ext;
-		
-		File oldFile = new File(saveDirectory + File.separator + fileName);
-		File newFile = new File(saveDirectory + File.separator + newFileName);
-		
-		oldFile.renameTo(newFile);
+		String newFileName = now+ext;
 		
 		return newFileName;
 	}
+	
+	/**
+	 * 2022/12/12 - part 에서 이름 가져오기
+	 * @param filePart
+	 * @return String 파일 이름
+	 */
+	 public String getFileName(Part filePart) {
+        for(String filePartData : filePart.getHeader("Content-Disposition").split(";")) {
+            if(filePartData.trim().startsWith("filename")) {
+                return filePartData.substring(filePartData.indexOf("=") + 1).trim().replace("\"", "");
+            }
+        }
+        
+        return null;
+	 }
 	
 	// create
 	/**

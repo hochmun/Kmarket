@@ -3,6 +3,7 @@ package kr.co.Kmarket.controller.admin.product;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,10 @@ import kr.co.Kmarket.service.admin.AdminService;
 import kr.co.Kmarket.vo.ProductVO;
 
 @WebServlet("/admin/product/register.do")
+@MultipartConfig(
+		maxFileSize = 1024 * 1024 * 2,
+		maxRequestSize = 1024 * 1024 * 4
+		)
 public class RegisterController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -29,20 +34,25 @@ public class RegisterController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		
 		// 업로드 디렉터리의 물리적 경로 확인
-		String saveDirectory = req.getServletContext().getRealPath("/thumb");
+		String cate1 = req.getParameter("category1");
+		String cate2 = req.getParameter("category2");
+		String saveDirectory = "/home/kmarket/thumb/"+cate1+"/"+cate2+"/";
 		
 		// 디렉토리 생성
 		service.dirCreate(saveDirectory);
 		
 		// 첨부 파일 최대 용량 설정 - 1MB
-		int maxPostSize = 1024*1024;
+		//int maxPostSize = 1024*1024;
 		
 		// 파일 업로드
-		MultipartRequest mr = service.uploadFile(req, saveDirectory, maxPostSize);
+		//MultipartRequest mr = service.uploadFile(req, saveDirectory, maxPostSize);
+		service.uploadFile2(req, saveDirectory);
 		
 		// 폼값을 vo에 저장
-		ProductVO vo = service.insertProductVO(req, mr, saveDirectory);
+		ProductVO vo = service.insertProductVO(req, saveDirectory);
 		
 		// 데이터 베이스 처리
 		service.insertProduct(vo);
