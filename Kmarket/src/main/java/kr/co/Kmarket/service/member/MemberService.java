@@ -33,15 +33,15 @@ public enum MemberService {
 	public MemberVO inputMemberVO(HttpServletRequest req) {
 		logger.info("inputMemberVO...");
 		MemberVO mvo = new MemberVO();
-		mvo.setUid(req.getParameter("uid"));
-		mvo.setPass(req.getParameter("pass2"));
-		mvo.setName(req.getParameter("name"));
-		mvo.setGender(Integer.parseInt(req.getParameter("gender")));
-		mvo.setHp(req.getParameter("hp"));
-		mvo.setEmail(req.getParameter("email"));
-		mvo.setZip(req.getParameter("zip"));
-		mvo.setAddr1(req.getParameter("addr1"));
-		mvo.setAddr2(req.getParameter("addr2"));
+		mvo.setUid(req.getParameter("km_uid"));
+		mvo.setPass(req.getParameter("km_pass2"));
+		mvo.setName(req.getParameter("km_name"));
+		mvo.setGender(Integer.parseInt(req.getParameter("km_gender")));
+		mvo.setHp(req.getParameter("km_hp"));
+		mvo.setEmail(req.getParameter("km_email"));
+		mvo.setZip(req.getParameter("km_zip"));
+		mvo.setAddr1(req.getParameter("km_addr1"));
+		mvo.setAddr2(req.getParameter("km_addr2"));
 		mvo.setRegip(req.getRemoteAddr());
 		return mvo;
 	}
