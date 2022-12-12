@@ -3,6 +3,11 @@ package kr.co.Kmarket.db;
 public class Sql {
 	// member
 	
+	public static final String SELECT_USER = 
+			"SELECT * FROM `km_member` WHERE `uid`=? AND `pass`=SHA2(?,256)";
+	public static final String SELECT_MEMBER_TERMS = 
+			"SELECT * FROM `km_member_terms`";
+	
 	// product
 	public static final String INSERT_PRODUCT = 
 			"INSERT INTO `km_product` SET "
