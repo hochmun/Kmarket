@@ -106,6 +106,29 @@ public class MemberDAO extends DBCP {
 		return vo;
 	}
 	
+	/**
+	 * 2022/12/12 ID 중복검사
+	 * @author 김재준
+	 */
+	public int selectCountUid(String uid) {
+		int result = 0;
+		try {
+			logger.info("selectCountUid... Overlap Checking..");
+			logger.info("uid"+uid);
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				result = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
 	// upload
 	
 	// delete

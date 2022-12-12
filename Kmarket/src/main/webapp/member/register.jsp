@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="./_header.jsp"/>
+<script src="./js/member.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./js/zipcode.js"></script>
 <main id="member">
     <div class="register">
         <nav>
@@ -31,7 +34,8 @@
                     <caption>기본 정보입력</caption>
                     <tr>
                         <th><span class="essential">*</span>이름</th>
-                        <td><input type="text" name="km_name" placeholder="이름을 입력" required></td>
+                        <td><input type="text" name="km_name" placeholder="이름을 입력" required>
+                        <span class="msgName"></span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>성별</th>
@@ -43,19 +47,19 @@
                     <tr>
                         <th><span class="essential">*</span>EMAIL</th>
                         <td><input type="email" name="km_email" placeholder="이메일 입력"
-                            required></td>
+                            required><span class="msgEmail"></span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>휴대폰</th>
                         <td><input type="text" name="km_hp" maxlength="13" 
                             placeholder="휴대폰번호 입력" required
-                            ><span class="msgHp">- 포합 13자리를 입력하세요.</span></td>
+                            ><span class="msgHp">- 포함 13자리를 입력하세요.</span></td>
                     </tr>
                     <tr class="addr">
                         <th>주소</th>
                         <td>
                             <div>
-                                <input type="text" name="km_zip" id="zip" placeholder="우편번호 입력 클릭" readonly>
+                                <input type="text" name="km_zip" id="zip" placeholder="우편번호 입력 클릭" readonly onclick="zipcode()">
                             </div>
                             <div>
                                 <input type="text" name="km_addr1" id="addr1" size="50"

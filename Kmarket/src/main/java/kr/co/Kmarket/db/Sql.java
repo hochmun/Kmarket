@@ -24,6 +24,8 @@ public class Sql {
 			+ "`addr2`=?, "
 			+ "`regip`=?, "
 			+ "`rdate`=NOW()";
+	
+	public static final String SELECT_COUNT_UID = "SELECT COUNT(`uid`) FROM `km_member` WHERE `uid`=?";
 
 	// product
 	public static final String INSERT_PRODUCT = 
