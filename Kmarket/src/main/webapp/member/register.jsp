@@ -5,7 +5,7 @@
         <nav>
             <h1>일반 회원가입</h1>
         </nav>
-        <form action="#" method="post">
+        <form action="/Kmarket/member/register.do" method="post">
             <section>
                 <table>
                     <caption>필수 정보입력</caption>
