@@ -8,6 +8,23 @@ public class Sql {
 	public static final String SELECT_MEMBER_TERMS = 
 			"SELECT * FROM `km_member_terms`";
 	
+	/**일반회원*/
+	public static final String INSERT_MEMBER_TYPE1 = "INSERT INTO `km_member` SET "
+			+ "`uid`=?, "
+			+ "`pass`=SHA2(?, 256), "
+			+ "`name`=?, "
+			+ "`gender`=?, "
+			+ "`hp`=?, "
+			+ "`email`=?, "
+			+ "`type`=1, "
+			+ "`point`=0, "
+			+ "`level`=1, "
+			+ "`zip`=?, "
+			+ "`addr1`=?, "
+			+ "`addr2`=?, "
+			+ "`regip`=?, "
+			+ "`rdate`=NOW()";
+
 	// product
 	public static final String INSERT_PRODUCT = 
 			"INSERT INTO `km_product` SET "
