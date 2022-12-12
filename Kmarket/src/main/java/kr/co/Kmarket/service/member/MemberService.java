@@ -80,6 +80,17 @@ public enum MemberService {
 		return dao.selectMemberTerms();
 	}
 	
+	
+	/**
+	 * 2022/12/12 ID 중복체크
+	 * @author 김재준
+	 * @param uid
+	 */
+	public int checkUid(String uid) {
+		logger.info("checkUid...");
+		return dao.selectCountUid(uid);
+	}
+	
 	// upload
 	
 	// delete
