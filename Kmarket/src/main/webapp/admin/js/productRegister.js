@@ -12,6 +12,12 @@ let isDetailOk = false;
 
 const maxSize = 1024 * 1000; // 이미지 각각 업로드시 최대 크기 1MB
 
+function handleOnInput(el, maxlength) {
+	if(el.value.length > maxlength) {
+		el.value = el.value.substr(0, maxlength);
+	}
+}
+
 $(()=>{
 	// 카테고리1값 변경시
 	$('select[name=category1]').change(()=>{
@@ -92,6 +98,7 @@ $(()=>{
 	    var fileSize = this.files[0].size;
 	    if(fileSize > maxSize) {
 	        alert("파일용량을 초과하였습니다.");
+	        $("input[name=thumb1]").val("");
 	        isThumb1Ok = false;
 	        return;
 	    }
@@ -128,6 +135,7 @@ $(()=>{
 	    var fileSize = this.files[0].size;
 	    if(fileSize > maxSize) {
 	        alert("파일용량을 초과하였습니다.");
+	        $("input[name=thumb2]").val("");
 	        isThumb2Ok = false;
 	        return;
 	    }
@@ -164,6 +172,7 @@ $(()=>{
 	    var fileSize = this.files[0].size;
 	    if(fileSize > maxSize) {
 	        alert("파일용량을 초과하였습니다.");
+	        $("input[name=thumb3]").val("");
 	        isThumb3Ok = false;
 	        return;
 	    }
@@ -200,6 +209,7 @@ $(()=>{
 	    var fileSize = this.files[0].size;
 	    if(fileSize > maxSize) {
 	        alert("파일용량을 초과하였습니다.");
+	        $("input[name=detail]").val("");
 	        isDetailOk = false;
 	        return;
 	    }

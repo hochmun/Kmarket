@@ -17,7 +17,7 @@ import kr.co.Kmarket.vo.ProductVO;
 @WebServlet("/admin/product/register.do")
 @MultipartConfig(
 		maxFileSize = 1024 * 1024 * 2,
-		maxRequestSize = 1024 * 1024 * 4
+		maxRequestSize = 1024 * 1024 * 5
 		)
 public class RegisterController extends HttpServlet {
 
@@ -47,18 +47,21 @@ public class RegisterController extends HttpServlet {
 		// 첨부 파일 최대 용량 설정 - 1MB
 		//int maxPostSize = 1024*1024;
 		
+		// 폼값을 vo에 저장
+		ProductVO vo = service.insertProductVO(req);
+		
 		// 파일 업로드
 		//MultipartRequest mr = service.uploadFile(req, saveDirectory, maxPostSize);
-		service.uploadFile2(req, saveDirectory);
-		
-		// 폼값을 vo에 저장
-		ProductVO vo = service.insertProductVO(req, saveDirectory);
+		vo = service.uploadFile2(req, saveDirectory, vo);
 		
 		// 데이터 베이스 처리
-		service.insertProduct(vo);
+		int result = service.insertProduct(vo);
 		
 		// TODO - 나중에 이동 페이지 수정할것
 		// 이동
-		resp.sendRedirect("/Kmarket/admin/product/register.do");
+		if (result == 0) req.getSession().setAttribute("success", "600"); // 실패시
+		else req.getSession().setAttribute("success", "601"); // 성공시
+		
+		resp.sendRedirect("/Kmarket/loadingPage.do");
 	}
 }

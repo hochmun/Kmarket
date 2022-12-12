@@ -51,25 +51,25 @@
                     <table>
                         <tr>
                             <td>상품명</td>
-                            <td><input type="text" name="prodName"></td>
+                            <td><input type="text" name="prodName" oninput="handleOnInput(this, 100)"></td>
                         </tr>
                         <tr>
                             <td>기본설명</td>
                             <td>
                                 <span>상품명 하단에 상품에 대한 추가적인 설명이 필요한 경우에 입력</span>
-                                <input type="text" name="descript">
+                                <input type="text" name="descript" oninput="handleOnInput(this, 100)">
                             </td>
                         </tr>
                         <tr>
                             <td>제조사</td>
                             <td>
-                                <input type="text" name="company">
+                                <input type="text" name="company" oninput="handleOnInput(this, 100)">
                             </td>
                         </tr>
                         <tr>
                             <td>판매가격</td>
                             <td>
-                                <input type="text" name="price">원
+                                <input type="text" name="price" oninput="handleOnInput(this, 11)">원
                                 &nbsp;&nbsp;<span class="priceResult"></span>
                             </td>
                         </tr>
@@ -77,14 +77,14 @@
                             <td>할인율</td>
                             <td>
                                 <span>0을 입력하면 할인율 없음</span>
-                                <input type="text" name="discount" value="0">%
+                                <input type="text" name="discount" value="0" oninput="handleOnInput(this, 2)">%
                                 &nbsp;&nbsp;<span class="discountResult"></span>
                             </td>
                         </tr>
                         <tr>
                             <td>재고수량</td>
                             <td>
-                                <input type="text" name="stock" value="0">개
+                                <input type="text" name="stock" value="0" oninput="handleOnInput(this, 11)">개
                                 &nbsp;&nbsp;<span class="stockResult"></span>
                             </td>
                         </tr>
@@ -92,7 +92,7 @@
                             <td>배송비</td>
                             <td>
                                 <span>0을 입력하면 배송비 무료</span>
-                                <input type="text" name="delivery" value="0">원
+                                <input type="text" name="delivery" value="0" oninput="handleOnInput(this, 11)">원
                                 &nbsp;&nbsp;<span class="deliveryResult"></span>
                             </td>
                         </tr>
@@ -128,23 +128,23 @@
                     <table>
                         <tr>
                             <td>상품상태</td>
-                            <td><input type="text" name="status" value="새상품"></td>
+                            <td><input type="text" name="status" value="새상품" oninput="handleOnInput(this, 20)"></td>
                         </tr>
                         <tr>
                             <td>부가세 면세여부</td>
-                            <td><input type="text" name="duty" value="과세상품"></td>
+                            <td><input type="text" name="duty" value="과세상품" oninput="handleOnInput(this, 20)"></td>
                         </tr>
                         <tr>
                             <td>영수증발행</td>
-                            <td><input type="text" name="receipt" value="발행가능 - 신용카드 전표, 온라인 현금영수증"></td>
+                            <td><input type="text" name="receipt" value="발행가능 - 신용카드 전표, 온라인 현금영수증" oninput="handleOnInput(this, 50)"></td>
                         </tr>
                         <tr>
                             <td>사업자구분</td>
-                            <td><input type="text" name="bizType" value="사업자 판매자"></td>
+                            <td><input type="text" name="bizType" value="사업자 판매자" oninput="handleOnInput(this, 20)"></td>
                         </tr>
                         <tr>
                             <td>원산지</td>
-                            <td><input type="text" name="origin" value="국내산"></td>
+                            <td><input type="text" name="origin" value="국내산" oninput="handleOnInput(this, 20)"></td>
                         </tr>
                     </table>
                 </section>

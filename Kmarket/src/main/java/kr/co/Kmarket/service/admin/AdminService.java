@@ -37,30 +37,30 @@ public enum AdminService {
 	 * @param saveDirectory
 	 * @return {@link ProductVO}
 	 */
-	public ProductVO insertProductVO(HttpServletRequest req, MultipartRequest mr, String saveDirectory) {
+	public ProductVO insertProductVO(HttpServletRequest req) {
 		ProductVO vo = new ProductVO();
-		int discount =  1 - (Integer.parseInt(mr.getParameter("discount"))/100);
-		int point = (Integer.parseInt(mr.getParameter("price")) * discount)/100;
+		double discount =  Integer.parseInt(req.getParameter("discount"));
+		int point = (int)(Integer.parseInt(req.getParameter("price")) * (1 - (discount / 100)))/100;
 		
-		vo.setSeller(mr.getParameter("seller"));
+		vo.setSeller(req.getParameter("seller"));
 		
-		vo.setProdName(mr.getParameter("prodName"));
-		vo.setProdCate1(mr.getParameter("category1"));
-		vo.setProdCate2(mr.getParameter("category2"));
-		vo.setDescript(mr.getParameter("descript"));
-		vo.setCompany(mr.getParameter("company"));
-		vo.setPrice(mr.getParameter("price"));
-		vo.setDiscount(mr.getParameter("discount"));
+		vo.setProdName(req.getParameter("prodName"));
+		vo.setProdCate1(req.getParameter("category1"));
+		vo.setProdCate2(req.getParameter("category2"));
+		vo.setDescript(req.getParameter("descript"));
+		vo.setCompany(req.getParameter("company"));
+		vo.setPrice(req.getParameter("price"));
+		vo.setDiscount(req.getParameter("discount"));
 		vo.setPoint(point);
-		vo.setStock(mr.getParameter("stock"));
-		vo.setDelivery(mr.getParameter("delivery"));
+		vo.setStock(req.getParameter("stock"));
+		vo.setDelivery(req.getParameter("delivery"));
 		vo.setIp(req.getRemoteAddr());
 		
-		vo.setStatus(mr.getParameter("status"));
-		vo.setDuty(mr.getParameter("duty"));
-		vo.setReceipt(mr.getParameter("receipt"));
-		vo.setBizType(mr.getParameter("bizType"));
-		vo.setOrigin(mr.getParameter("origin"));
+		vo.setStatus(req.getParameter("status"));
+		vo.setDuty(req.getParameter("duty"));
+		vo.setReceipt(req.getParameter("receipt"));
+		vo.setBizType(req.getParameter("bizType"));
+		vo.setOrigin(req.getParameter("origin"));
 		
 		//vo.setThumb1(thumb1);
 		//vo.setThumb2(thumb2);
@@ -103,43 +103,68 @@ public enum AdminService {
 	 * @param req
 	 * @param path
 	 */
-	public void uploadFile2(HttpServletRequest req, String path) {
+	public ProductVO uploadFile2(HttpServletRequest req, String path, ProductVO vo) {
 		try {
 			logger.info("AdminService uploadFile2...");
+			
+			// 이미지 파일 불러오기
 			Part thumb1 = req.getPart("thumb1");
 			Part thumb2 = req.getPart("thumb2");
 			Part thumb3 = req.getPart("thumb3");
 			Part detail = req.getPart("detail");
 			
+			// 이미지 파일 이름 변경
 			String thumb1FileName = fileReName(getFileName(thumb1));
 			String thumb2FileName = fileReName(getFileName(thumb2));
 			String thumb3FileName = fileReName(getFileName(thumb3));
 			String detailFileName = fileReName(getFileName(detail));
 			
+			// 이미지 파일 출력(저장)
 			fileOutPut(thumb1FileName, thumb1, path);
 			fileOutPut(thumb2FileName, thumb2, path);
 			fileOutPut(thumb3FileName, thumb3, path);
 			fileOutPut(detailFileName, detail, path);
 			
+			// vo에 저장
+			vo.setThumb1(thumb1FileName);
+			vo.setThumb2(thumb2FileName);
+			vo.setThumb3(thumb3FileName);
+			vo.setDetail(detailFileName);
+			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		
+		return vo;
 	}
 	
+	/**
+	 * 2022/12/12 - 이미지 파일 출력
+	 * @param fileName
+	 * @param filePart
+	 * @param path
+	 */
 	public void fileOutPut(String fileName, Part filePart, String path) {
 		try {
 			logger.info("adminService fileoutput....");
+			// 파일 이름 및 경로 설정
 			File file = new File(path+fileName);
+			// 해당 이미지의 내용을 inputStream으로 가져옴
 			InputStream is = filePart.getInputStream();
+			// 파일 출력 준비
 			FileOutputStream fos = null;
 			
 			fos = new FileOutputStream(file);
 			
 			int temp = -1;
+			// inputStream으로 가져온 이미지를 byte 단위로 읽음
+			// 더이상 읽을 byte가 없을 경우 -1을 반환
 			while((temp = is.read()) != -1) {
+				// 읽은 byte를 출력
 				fos.write(temp);
 			}
 			
+			// 종료
 			is.close();
 			fos.close();
 		} catch (Exception e) {
@@ -157,6 +182,7 @@ public enum AdminService {
 	 * @return String 새로운 파일 이름
 	 */
 	public String fileReName(String fileName) {
+		// 난수 생성
 		String now = UUID.randomUUID().toString();
 		String ext = fileName.substring(fileName.lastIndexOf("."));
 		String newFileName = now+ext;
@@ -185,8 +211,8 @@ public enum AdminService {
 	 * @author 심규영
 	 * @param vo
 	 */
-	public void insertProduct(ProductVO vo) {
-		dao.insertProduct(vo);
+	public int insertProduct(ProductVO vo) {
+		return dao.insertProduct(vo);
 	}
 	
 	/**
