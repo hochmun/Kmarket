@@ -25,6 +25,25 @@ public class Sql {
 			+ "`regip`=?, "
 			+ "`rdate`=NOW()";
 	
+	/**판매자회원*/
+	public static final String INSERT_MEMBER_TYPE2 = "INSERT INTO `kms_member` SET "
+			+ "`uid`=?, "
+			+ "`pass`=SHA2(?, 256), "
+			+ "`company`=?, "
+			+ "`ceo`=?, "
+			+ "`bizRegNum`=?, "
+			+ "`comRegNum`=?, "
+			+ "`Tel`=?, "
+			+ "`fax`=?, "
+			+ "`email`=?, "
+			+ "`zip`=?, "
+			+ "`addr1`=?, "
+			+ "`addr2`=?, "
+			+ "`name`=?, "
+			+ "`hp`=?, "
+			+ "`regip`=?, "
+			+ "`rdate`=NOW()";
+	
 	public static final String SELECT_COUNT_UID = "SELECT COUNT(`uid`) FROM `km_member` WHERE `uid`=?";
 
 	// product
