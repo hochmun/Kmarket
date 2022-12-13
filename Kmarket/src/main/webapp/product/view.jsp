@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
  <main id="product">
             <aside>
@@ -73,16 +74,16 @@
                         	<c:choose>
                         		<c:when test="${ vo.discount gt 0 }">
                         			<div class="org_price">
-		                                <del>${ vo.price }</del>
+		                                <del><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></del>
 		                                <span>${ vo.discount }%</span>
 		                            </div>
 		                            <div class="dis_price">
-		                                <ins>${ disprice }</ins>
+		                                <ins><fmt:formatNumber value="${ disprice }" pattern="#,###"/></ins>
 		                            </div>
                         		</c:when>
                         		<c:otherwise>
                         			<div class="dis_price">
-		                                <ins>${ vo.price }</ins>
+		                                <ins><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></ins>
 		                            </div>
                         		</c:otherwise>
                         	</c:choose>
@@ -93,7 +94,7 @@
                         <nav>
 	                        <c:choose>
 	                        	<c:when test="${ vo.delivery gt 0 }">
-	                        		<span class="delivery">배송비 ${ vo.delivery }원</span>
+	                        		<span class="delivery">배송비 <fmt:formatNumber value="${ vo.delivery }" pattern="#,###"/>원</span>
 	                        	</c:when>
 	                        	<c:otherwise>
 	                        		<span class="delivery">무료배송</span>
@@ -122,24 +123,25 @@
                         </nav>
                         <img src="../img/vip_plcc_banner.png" alt="100원만 결제해도 1만원 적립!" class="banner"/>
                         <div class="count">
-                            <button class="decrease" id="decrease" >-</button>
-                            <input type="text" name="num" value="1" readonly/>
-                            <button class="increase" id="increase">+</button>
+                            <button class="decrease" id="decrease" onclick="count('minus')">-</button>
+                            <input type="text" name="num" id="num" value="1" readonly/>
+                            <button class="increase" id="increase" onclick="count('plus')">+</button>
                         </div>
 
                         <div class="total">
-                            <span>35,000</span>
+                            <span id="totalprice"><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></span>
                             <em>총 상품금액</em>
                         </div>
                         
                         <!-- 주문 갯수 스크립트 -->
                         <script>
-                        	function(type) {
+                        	function count(type) {
                         		// 변화하는 값
-                        		const num = document.getElementsByName("num");
+                        		const num = document.getElementById("num");
                         		
                         		// 현재 표시된 값
-                        		let number = num.innerText;
+                        		let number = num.value;
+                        		console.log(number);
                         		
                         		// 더하기 빼기
                         		if(type === 'plus') {
@@ -149,7 +151,16 @@
                         		}
                         		
                         		// 결과 출력
-                        		num.innerText = number;
+                        		num.value = number;
+                        		
+                        		// 총 상품금액 변경
+                        		
+                        		let price = "${ vo.price }";
+                        		const totalprice = parseInt(price) * number;
+                        		const formatter = new Intl.NumberFormat('ko');
+                        		
+                        		document.getElementById('totalprice').innerText = formatter.format(totalprice);
+                        		
                         	}
                         </script>
                         
