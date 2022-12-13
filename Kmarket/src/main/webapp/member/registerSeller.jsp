@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<script src="./js/member.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="./js/memberSeller.js"></script>
 <script src="./js/zipcode.js"></script>
 <jsp:include page="./_header.jsp"/>
 <main id="member">
@@ -7,7 +8,7 @@
         <nav>
             <h1>판매자 회원가입</h1>
         </nav>
-        <form action="#" method="post">
+        <form action="/Kmarket/member/registerSeller.do" method="post">
             <section>
                 <table>
                     <caption>필수 정보입력</caption>
