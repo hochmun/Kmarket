@@ -34,12 +34,22 @@ public class LoadingPageController extends HttpServlet {
 		// success 값이 없을 경우 메인 페이지로 이동
 		if (success == null || success == "") resp.sendRedirect("/");
 		else {
+			// member
 			if(success.equals("200")) service.loginFail(out); // 로그인 실패
 			if(success.equals("201")) service.logout(out); // 로그아웃
 			if(success.equals("202")) service.insertUser(out); // 회원가입 성공
 			
+			// product
+			
+			// 고객센터
+			
+			// error
 			if(success.equals("500")) service.typeError(out); // 타입정보 오류
 			if(success.equals("501")) service.connectingError(out); // 비정상적인 접근
+			
+			// 관리자
+			if(success.equals("600")) service.insertProductFail(out); // 상품등록 실패
+			if(success.equals("601")) service.insertProduct(out); // 상품등록 성공
 		}
 		
 	}

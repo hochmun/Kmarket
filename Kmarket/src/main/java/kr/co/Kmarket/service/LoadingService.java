@@ -60,6 +60,26 @@ public enum LoadingService {
 		out.write("<script>alert('비정상적인 페이지 호출입니다.');</script>");
 	}
 	
+	/**
+	 * 2022/12/13 - success=600 상품등록 실패
+	 * @param out
+	 * @throws IOException
+	 */
+	public void insertProductFail(Writer out) throws IOException {
+		out.write("<script>alert('상품 등록에 실패하였습니다. 관리자에게 문의 하십시오.');"
+				+ "location.href='/Kmarket/admin/index.do';</script>");
+	}
+	
+	/**
+	 * 2022/12/13 - success=601 상품등록 성공
+	 * @param out
+	 * @throws IOException
+	 */
+	public void insertProduct(Writer out) throws IOException {
+		out.write("<script>alert('상품이 등록 되었습니다.');"
+				+ "location.href='/Kmarket/admin/index.do';</script>");
+	}
+	
 	// create
 	
 	// read

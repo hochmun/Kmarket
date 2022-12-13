@@ -16,7 +16,8 @@ public class ProductDAO extends DBCP {
 	 * @author 심규영
 	 * @param vo
 	 */
-	public void insertProduct(ProductVO vo) {
+	public int insertProduct(ProductVO vo) {
+		int result = 0;
 		try {
 			logger.info("insertProduct... 상품 등록");
 			conn = getConnection();
@@ -42,11 +43,12 @@ public class ProductDAO extends DBCP {
 			psmt.setString(19, vo.getBizType());
 			psmt.setString(20, vo.getOrigin());
 			psmt.setString(21, vo.getIp());
-			psmt.executeUpdate();
+			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		return result;
 	}
 	
 	// read
