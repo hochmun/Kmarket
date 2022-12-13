@@ -110,15 +110,17 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductSold(ProductVO pv){
+	public List<ProductVO> SelectProductSold(ProductVO pv, String prodNO){
 		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductSold...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
+			psmt.setString(1, prodNO);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				pv = new ProductVO();
+				pv.setProdNo(rs.getInt("prodno"));
 				pv.setProdName(rs.getString("prodname"));
 				pv.setDescript(rs.getString("descript"));
 				pv.setSeller(rs.getString("seller"));
@@ -142,15 +144,17 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductLow(ProductVO pv){
+	public List<ProductVO> SelectProductLow(ProductVO pv, String prodNO){
 		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductLow...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
+			psmt.setString(1, prodNO);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				pv = new ProductVO();
+				pv.setProdNo(rs.getInt("prodno"));
 				pv.setProdName(rs.getString("prodname"));
 				pv.setDescript(rs.getString("descript"));
 				pv.setSeller(rs.getString("seller"));
@@ -174,15 +178,17 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductHigh(ProductVO pv){
+	public List<ProductVO> SelectProductHigh(ProductVO pv, String prodNO){
 		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductHigh...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
+			psmt.setString(1, prodNO);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				pv = new ProductVO();
+				pv.setProdNo(rs.getInt("prodno"));
 				pv.setProdName(rs.getString("prodname"));
 				pv.setDescript(rs.getString("descript"));
 				pv.setSeller(rs.getString("seller"));
@@ -206,15 +212,17 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductHstar(ProductVO pv){
+	public List<ProductVO> SelectProductHstar(ProductVO pv, String prodNO){
 		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductHstar...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
+			psmt.setString(1, prodNO);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				pv = new ProductVO();
+				pv.setProdNo(rs.getInt("prodno"));
 				pv.setProdName(rs.getString("prodname"));
 				pv.setDescript(rs.getString("descript"));
 				pv.setSeller(rs.getString("seller"));
@@ -289,12 +297,13 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductReview(ProductVO pv){
+	public List<ProductVO> SelectProductReview(ProductVO pv, String prodName){
 		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductReview...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
+			psmt.setString(1, prodName);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				pv = new ProductVO();
