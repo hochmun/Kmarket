@@ -59,6 +59,10 @@ public enum MemberService {
 	public void insertMemberType1(MemberVO vo) {
 		dao.insertMemberType1(vo);
 	}
+	
+	public void insertMemberType2(MemberVO vo) {
+		dao.insertMemberType1(vo);
+	}
 	// read
 	/**
 	 * 2022/12/12 아이디와 비밀번호가 동일한 유저정보 불러오기
@@ -113,5 +117,31 @@ public enum MemberService {
 		mvo.setAddr2(req.getParameter("km_addr2"));
 		mvo.setRegip(req.getRemoteAddr());
 		return mvo;
+	
+	}
+	
+	
+	/**
+	 * 2022/12/12 판매자회원 정보 
+	 * @author 라성준
+	 */	
+	public MemberVO inputMemberSellerVO(HttpServletRequest req) {
+		logger.info("inputMemberSellerVO...");
+		MemberVO msvo = new MemberVO();
+		msvo.setUid(req.getParameter("km_uid"));
+		msvo.setPass(req.getParameter("km_pass2"));
+		msvo.setCompany(req.getParameter("kms_company"));
+		msvo.setCeo(req.getParameter("kms_ceo"));
+		msvo.setBizRegNum("kms_corp_reg");
+		msvo.setComRegNum("kms_online_reg");
+		msvo.setTel("kms_tel");
+		msvo.setFax("kms_fax");
+		msvo.setEmail("kms_email");
+		msvo.setZip("kms_zip");
+		msvo.setAddr1("kms_add1");
+		msvo.setAddr2("kms_addr2");
+		msvo.setName("km_name");
+		msvo.setHp("km_hp");
+		return msvo;
 	}
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<script src="./js/member.js"></script>
+<script src="./js/zipcode.js"></script>
 <jsp:include page="./_header.jsp"/>
 <main id="member">
     <div class="registerSeller">
