@@ -50,37 +50,67 @@
                 <nav>
                     <h1>상품보기</h1>
                     <p>
-                      HOME &gt; <span>패션·의류·뷰티</span> &gt; <strong>남성의류</strong>
+                      HOME &gt; <span>${ cate1 }</span> &gt; <strong>${ cate2 }</strong>
                   </p>
                 </nav>
 
                 <!-- 상품 전체 정보 내용 -->
                 <article class="info">
                     <div class="image">
-                        <img src="https://via.placeholder.com/460x460" alt="상품이미지"/>
+                        <img src="/home/kmarket/thumb/${ vo.prodCate1 }/${ vo.prodCate2 }/${ vo.thumb3 }" alt="상품이미지"/>
                     </div>
                     <div class="summary">
                         <nav>
-                            <h1>(주)판매자명</h1>
-                            <h2>상품번호&nbsp;:&nbsp;<span>10010118412</span></h2>
+                            <h1>${ vo.seller }</h1>
+                            <h2>상품번호&nbsp;:&nbsp;<span>${ vo.prodNo }</span></h2>
                         </nav>
                         <nav>
-                            <h3>상품명</h3>
-                            <p>상품설명 출력</p>
+                            <h3>${ vo.prodName }</h3>
+                            <p>${ vo.descript }</p>
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav>
-                            <div class="org_price">
-                                <del>30,000</del>
-                                <span>10%</span>
-                            </div>
-                            <div class="dis_price">
-                                <ins>27,000</ins>
-                            </div>
+                        	<c:choose>
+                        		<c:when test="${ vo.discount gt 0 }">
+                        			<div class="org_price">
+		                                <del>${ vo.price }</del>
+		                                <span>${ vo.discount }%</span>
+		                            </div>
+		                            <div class="dis_price">
+		                                <ins>${ disprice }</ins>
+		                            </div>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<div class="dis_price">
+		                                <ins>${ vo.price }</ins>
+		                            </div>
+                        		</c:otherwise>
+                        	</c:choose>
+                        	
+                        
+                            
                         </nav>
                         <nav>
-                            <span class="delivery">무료배송</span>
-                            <span class="arrival">모레(금) 7/8 도착예정</span>
+	                        <c:choose>
+	                        	<c:when test="${ vo.delivery gt 0 }">
+	                        		<span class="delivery">배송비 ${ vo.delivery }원</span>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<span class="delivery">무료배송</span>
+	                        	</c:otherwise>
+	                        </c:choose>
+                            <span class="arrival" id="arrival"></span>
+                            <script>
+                            	// 배송 도착일자 3일후 설정
+	                        	var now = new Date();
+	                        	const after = new Date(now.setDate(now.getDate()+3));
+	                        	const arrival = after.toLocaleDateString('ko', {
+	                        		weekday: 'short',
+	                        		month: 'short',
+	                        		day: 'numeric'
+	                        	});
+	                        	document.getElementById("arrival").innerText=arrival+" 도착예정";
+	                        </script>
                             <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                         </nav>
                         <nav>
@@ -88,19 +118,40 @@
                             <span class="card cardadd"><i>아이콘</i>카드추가혜택</span>
                         </nav>
                         <nav>
-                            <span class="origin">원산지-상세설명 참조</span>
+                            <span class="origin">${ vo.origin }</span>
                         </nav>
                         <img src="../img/vip_plcc_banner.png" alt="100원만 결제해도 1만원 적립!" class="banner"/>
                         <div class="count">
-                            <button class="decrease">-</button>
+                            <button class="decrease" id="decrease" >-</button>
                             <input type="text" name="num" value="1" readonly/>
-                            <button class="increase">+</button>
+                            <button class="increase" id="increase">+</button>
                         </div>
 
                         <div class="total">
                             <span>35,000</span>
                             <em>총 상품금액</em>
                         </div>
+                        
+                        <!-- 주문 갯수 스크립트 -->
+                        <script>
+                        	function(type) {
+                        		// 변화하는 값
+                        		const num = document.getElementsByName("num");
+                        		
+                        		// 현재 표시된 값
+                        		let number = num.innerText;
+                        		
+                        		// 더하기 빼기
+                        		if(type === 'plus') {
+                        			number = parseInt(number)+1;
+                        		} else if(type === 'minus' && parseInt(number) > 1) {
+                        			number = parseInt(number)-1;
+                        		}
+                        		
+                        		// 결과 출력
+                        		num.innerText = number;
+                        	}
+                        </script>
                         
                         <div class="button">
                             <input type="button" class="cart" value="장바구니"/>
@@ -115,9 +166,7 @@
                         <h1>상품정보</h1>
                     </nav>
                     <!-- 상품상세페이지 이미지 -->
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지1">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지2">
-                    <img src="https://via.placeholder.com/860x460" alt="상세페이지3">
+                    <img src="/home/kmarket/thumb/${ vo.prodCate1 }/${ vo.prodCate2 }/${ vo.detail }" alt="상세페이지">
                 </article>
 
                 <!-- 상품 정보 제공 고시 내용 -->
@@ -126,40 +175,40 @@
                         <h1>상품 정보 제공 고시</h1>
                         <p>[전자상거래에 관한 상품정보 제공에 관한 고시] 항목에 의거 등록된 정보입니다.</p>
                     </nav>
-                    <table border="0">
+                    <table>
                         <tr>
                             <td>상품번호</td>
-                            <td>10110125435</td>
+                            <td>${ vo.prodNo }</td>
                         </tr>
                         <tr>
                             <td>상품상태</td>
-                            <td>새상품</td>
+                            <td>${ vo.status }</td>
                         </tr>
                         <tr>
                             <td>부가세 면세여부</td>
-                            <td>과세상품</td>
+                            <td>${ vo.duty }</td>
                         </tr>
                         <tr>
                             <td>영수증발행</td>
-                            <td>발행가능 - 신용카드 전표, 온라인 현금영수증</td>
+                            <td>${ vo.receipt }</td>
                         </tr>
                         <tr>
                             <td>사업자구분</td>
-                            <td>사업자 판매자</td>
+                            <td>${ vo.bizType }</td>
                         </tr>
                         <tr>
                             <td>브랜드</td>
-                            <td>블루포스</td>
+                            <td>${ vo.company }</td>
                         </tr>
                         <tr>
                             <td>원산지</td>
-                            <td>국내생산</td>
+                            <td>${ vo.origin }</td>
                         </tr>
                     </table>
-                    <table border="0">
+                    <table>
                         <tr>
                             <td>제품소개</td>
-                            <td>상세정보 직접입력</td>
+                            <td>${ vo.descript }</td>
                         </tr>
                         <tr>
                             <td>색상</td>
@@ -171,11 +220,11 @@
                         </tr>
                         <tr>
                             <td>제조자/수입국</td>
-                            <td>상세정보 직접입력</td>
+                            <td>${ vo.company }/${ vo.origin }</td>
                         </tr>
                         <tr>
                             <td>제조국</td>
-                            <td>상세정보 직접입력</td>
+                            <td>${ vo.origin }</td>
                         </tr>
                         <tr>
                             <td>취급시 주의사항</td>
@@ -190,12 +239,13 @@
                             <td>상세정보 직접입력</td>
                         </tr>
                         <tr>
+                        	<!-- seller로 데이터베이스에서 판매자계정 검색? 후 담당자 번호 입력 -->
                             <td>A/S 책임자와 전화번호</td>
                             <td>상세정보 직접입력</td>
                         </tr>
                         <tr>
                             <td>주문후 예상 배송기간</td>
-                            <td>상세정보 직접입력</td>
+                            <td>약 3일</td>
                         </tr>
                         <tr>
                             <td colspan="2">구매, 교환, 반품, 배송, 설치 등과 관련하여 추가비용, 제한조건 등의 특이사항이 있는 경우</td>
