@@ -141,7 +141,6 @@
                         		
                         		// 현재 표시된 값
                         		let number = num.value;
-                        		console.log(number);
                         		
                         		// 더하기 빼기
                         		if(type === 'plus') {
