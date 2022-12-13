@@ -105,6 +105,224 @@ public class ProductDAO extends DBCP {
 		return vos;
 	}
 	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (판매많은순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductSold(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductSold...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (낮은가격순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductLow(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductLow...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (높은가격순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductHigh(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductHigh...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (평점높은순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductHstar(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductHstar...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (후기많은순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductReview(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductReview...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}	
+	
+	/**
+	 * 2022/12/13 - 상품목록 보기 (최근등록순)
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> SelectProductLatest(ProductVO pv){
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("SelectProductLatest...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LATEST);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				pv = new ProductVO();
+				pv.setProdName(rs.getString("prodname"));
+				pv.setDescript(rs.getString("descript"));
+				pv.setSeller(rs.getString("seller"));
+				pv.setPrice(rs.getString("price"));
+				pv.setDiscount(rs.getString("discount"));
+				pv.setDelivery(rs.getString("delivery"));
+				pv.setScore(rs.getInt("score"));
+				pv.setThumb1(rs.getString("thumb1"));
+				
+				vos.add(pv);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
+	/**
+	 * 카테고리별 전체 게시물 갯수 + 검색기능
+	 * @return
+	 */
+	public int selectCountProducts(String search, String prodName) {
+		int total = 0;
+		String word = "";
+		if (search != null) word = "%"+search+"%";
+		else word = "%%";
+		try {
+			logger.info("selectCountProducts...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_PRODUCTS);
+			psmt.setString(1, prodName);
+			psmt.setString(2, word);
+			psmt.setString(3, word);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
 	// upload
 	
 	// delete
