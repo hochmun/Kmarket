@@ -61,7 +61,7 @@ public enum MemberService {
 	}
 	
 	public void insertMemberType2(MemberVO vo) {
-		dao.insertMemberType1(vo);
+		dao.insertMemberType2(vo);
 	}
 	// read
 	/**
@@ -132,16 +132,17 @@ public enum MemberService {
 		msvo.setPass(req.getParameter("km_pass2"));
 		msvo.setCompany(req.getParameter("kms_company"));
 		msvo.setCeo(req.getParameter("kms_ceo"));
-		msvo.setBizRegNum("kms_corp_reg");
-		msvo.setComRegNum("kms_online_reg");
-		msvo.setTel("kms_tel");
-		msvo.setFax("kms_fax");
-		msvo.setEmail("kms_email");
-		msvo.setZip("kms_zip");
-		msvo.setAddr1("kms_add1");
-		msvo.setAddr2("kms_addr2");
-		msvo.setName("km_name");
-		msvo.setHp("km_hp");
+		msvo.setBizRegNum(req.getParameter("kms_corp_reg"));
+		msvo.setComRegNum(req.getParameter("kms_online_reg"));
+		msvo.setTel(req.getParameter("kms_tel"));
+		msvo.setFax(req.getParameter("kms_fax"));
+		msvo.setEmail(req.getParameter("kms_email"));
+		msvo.setZip(req.getParameter("kms_zip"));
+		msvo.setAddr1(req.getParameter("kms_add1"));
+		msvo.setAddr2(req.getParameter("kms_addr2"));
+		msvo.setManager(req.getParameter("kms_manger"));
+		msvo.setManagerHp(req.getParameter("kms_mangerhp"));
+		msvo.setRegip(req.getRemoteAddr());
 		return msvo;
 	}
 }
