@@ -29,7 +29,37 @@ public class MemberDAO extends DBCP {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+		
 	}
+	
+	public void insertMemberType2(MemberVO vo) {
+		try {
+			logger.info("insertMember...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.INSERT_MEMBER_TYPE2);
+			psmt.setString(1, vo.getUid());
+			psmt.setString(2, vo.getPass());
+			psmt.setString(3, vo.getCompany());
+			psmt.setString(4, vo.getCeo());
+			psmt.setString(5, vo.getBizRegNum());
+			psmt.setString(6, vo.getComRegNum());
+			psmt.setString(7, vo.getTel());
+			psmt.setString(8, vo.getFax());
+			psmt.setString(9, vo.getEmail());
+			psmt.setString(10, vo.getZip());
+			psmt.setString(11, vo.getAddr1());
+			psmt.setString(12, vo.getAddr2());
+			psmt.setString(13, vo.getManager());
+			psmt.setString(14, vo.getManagerHp());
+			psmt.setString(15, vo.getRegip());
+			psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
   
 	// read
 	/**

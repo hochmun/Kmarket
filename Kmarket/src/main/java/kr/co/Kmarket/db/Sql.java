@@ -26,7 +26,7 @@ public class Sql {
 			+ "`rdate`=NOW()";
 	
 	/**판매자회원*/
-	public static final String INSERT_MEMBER_TYPE2 = "INSERT INTO `kms_member` SET "
+	public static final String INSERT_MEMBER_TYPE2 = "INSERT INTO `km_member` SET "
 			+ "`uid`=?, "
 			+ "`pass`=SHA2(?, 256), "
 			+ "`company`=?, "
@@ -36,6 +36,8 @@ public class Sql {
 			+ "`Tel`=?, "
 			+ "`fax`=?, "
 			+ "`email`=?, "
+			+ "`type`=2, "
+			+ "`level`=1, "
 			+ "`zip`=?, "
 			+ "`addr1`=?, "
 			+ "`addr2`=?, "

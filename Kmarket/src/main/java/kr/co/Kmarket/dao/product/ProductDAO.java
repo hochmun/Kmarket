@@ -233,15 +233,16 @@ public class ProductDAO extends DBCP {
 				pv.setThumb1(rs.getString("thumb1"));
 				
 				vos.add(pv);
-        }
+			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-    return vos;
+		return vos;
 	}
 
-	 /** 2022/12/13 상품정보 가져오기
+	/**
+	 * 2022/12/13 상품정보 가져오기
 	 * @author 심규영
 	 * @param prodNo
 	 * @return {@link ProductVO} 상품정보
