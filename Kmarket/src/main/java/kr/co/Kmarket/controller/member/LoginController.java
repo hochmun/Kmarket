@@ -33,10 +33,13 @@ public class LoginController extends HttpServlet {
 			// 일반 회원인지 판매자 회원인지 확인
 			if(vo.getType() == 1) {
 				// 일반회원일 경우 메인페이지로 이동
-				// service.CookieCreate(req, resp, vo);
+				// 세션에 회원 정보 저장
+				req.getSession().setAttribute("sessUser", vo);
 				resp.sendRedirect("/Kmarket/index.do");
 			} else if(vo.getType() == 2) {
 				// 판매자 회원일 경우 관리자 페이지로 이동
+				// 세션에 회원 정보 저장
+				req.getSession().setAttribute("sessUser", vo);
 				resp.sendRedirect("/Kmarket/admin/index.do");
 			} else {
 				// 타입값이 이상할 경우

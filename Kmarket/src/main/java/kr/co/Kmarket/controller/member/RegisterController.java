@@ -24,6 +24,8 @@ public class RegisterController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		service.insertMemberType1(service.inputMemberVO(req));
-		resp.sendRedirect("/Kmarket/member/login.do");
+		// 처리페이지 이동
+		req.getSession().setAttribute("success", "202");
+		resp.sendRedirect("/Kmarket/loadingPage.do");
 	}
 }
