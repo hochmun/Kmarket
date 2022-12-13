@@ -72,6 +72,57 @@ public class Sql {
 			+ "`ip`=?, "
 			+ "`rdate`=NOW()";
 	
+	/** 상품목록*/
+	public static final String SELECT_PRODUCT_LIST_SOLD = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+														+ "`score`,`thumb1` FROM `km_product` AS a "
+														+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+														+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+														+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+														+ "ORDER BY a.sold DESC";
+	
+	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+														+ "`score`,`thumb1` FROM `km_product` AS a "
+														+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+														+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+														+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+														+ "ORDER BY a.price ASC";
+	
+	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+														+ "`score`,`thumb1` FROM `km_product` AS a "
+														+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+														+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+														+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+														+ "ORDER BY a.price DESC";
+	
+	public static final String SELECT_PRODUCT_LIST_HSTAR = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+															+ "`score`,`thumb1` FROM `km_product` AS a "
+															+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+															+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+															+ "ORDER BY a.score desc";
+	
+	public static final String SELECT_PRODUCT_LIST_REVIEW = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+															+ "`score`,`thumb1` FROM `km_product` AS a "
+															+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+															+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+															+ "ORDER BY a.review desc";
+	
+	public static final String SELECT_PRODUCT_LIST_LATEST = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
+															+ "`score`,`thumb1` FROM `km_product` AS a "
+															+ "JOIN `km_product_cate1` AS b ON a.prodcate1 = b.cate1 "
+															+ "JOIN `km_product_cate2` AS c ON a.prodcate2 = c.cate2 "
+															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+															+ "ORDER BY a.prodNo asc";
+	
+	public static final String SELECT_COUNT_PRODUCTS = "SELECT COUNT(a.`prodNo`) FROM `km_product` AS a "
+														+ "JOIN `km_product_cate1` AS b ON a.`prodcate1` = b.`cate1` "
+														+ "JOIN `km_product_cate2` AS c ON a.`prodcate2` = c.`cate2` "
+														+ "WHERE b.`cate1`=? AND c.cate2 = ? "
+														+ "AND (a.`prodName` LIKE '?' "
+														+ "OR a.`descript` LIKE '?')";
+	
+	
 	public static final String SELECT_CATE1 = 
 			"SELECT * FROM `km_product_cate1`";
 	public static final String SELECT_CATE2 = 
