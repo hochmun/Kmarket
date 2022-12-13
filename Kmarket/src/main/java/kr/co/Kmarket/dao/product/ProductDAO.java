@@ -225,14 +225,64 @@ public class ProductDAO extends DBCP {
 				pv.setThumb1(rs.getString("thumb1"));
 				
 				vos.add(pv);
+        }
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+    return vos;
+	}
+
+	 * 2022/12/13 상품정보 가져오기
+	 * @author 심규영
+	 * @param prodNo
+	 * @return {@link ProductVO} 상품정보
+	 */
+	public ProductVO selectProductWithProdNo(String prodNo) {
+		ProductVO vo = new ProductVO();
+		try {
+			logger.info("productDAO selectProductWithProdNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_WITH_PRODNO);
+			psmt.setString(1, prodNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getInt(2));
+				vo.setProdCate2(rs.getInt(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getInt(8));
+				vo.setDiscount(rs.getInt(9));
+				vo.setPoint(rs.getInt(10));
+				vo.setStock(rs.getInt(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getInt(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return vos;
+    return vo;
 	}
-	
+
+
 	/**
 	 * 2022/12/13 - 상품목록 보기 (후기많은순)
 	 * @author 김재준
@@ -289,12 +339,37 @@ public class ProductDAO extends DBCP {
 				pv.setThumb1(rs.getString("thumb1"));
 				
 				vos.add(pv);
+        }
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+    return vos;
+	}
+
+
+	/**
+	 * 2022/12/13 카테고리1 이름 받아오기
+	 * @author 심규영
+	 * @param cate1
+	 * @return String cate1Name
+	 */
+	public String formatCate1Name(int cate1) {
+		String cate1Name = "";
+		try {
+			logger.info("productDAO formatCate1Name...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_CATE1_NAME);
+			psmt.setInt(1, cate1);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cate1Name = rs.getString("c1Name");
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return vos;
+    return cate1Name;
 	}
 	
 	/**
@@ -316,13 +391,40 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				total = rs.getInt(1);
+        }
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+    return total;
+	}
+	
+	/**
+	 * 2022/12/13 카테고리2 이름 가져오기
+	 * @author 심규영
+	 * @param cate1
+	 * @param cate2
+	 * @return {@link String} 카테고리2 이름
+	 */
+	public String formatCate2Name(int cate1, int cate2) {
+		String cate2Name = "";
+		try {
+			logger.info("productDAO formatCate2Name...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_CATE2_NAME);
+			psmt.setInt(1, cate1);
+			psmt.setInt(2, cate2);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cate2Name = rs.getString("c2Name");
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return total;
+		return cate2Name;
 	}
+	
 	// upload
 	
 	// delete

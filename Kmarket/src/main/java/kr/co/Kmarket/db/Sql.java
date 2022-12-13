@@ -127,4 +127,12 @@ public class Sql {
 			"SELECT * FROM `km_product_cate1`";
 	public static final String SELECT_CATE2 = 
 			"SELECT * FROM `km_product_cate2` WHERE `cate1`=?";
+	public static final String SELECT_CATE1_NAME = 
+			"SELECT `c1Name` FROM `km_product_cate1` WHERE `cate1`=?";
+	public static final String SELECT_CATE2_NAME = 
+			"SELECT `c2Name` FROM `km_product_cate2` WHERE `cate1`=? AND `cate2`=?";
+	public static final String SELECT_PRODUCT_WITH_PRODNO = 
+			"SELECT * FROM `km_product` WHERE `prodNo`=?";
+
+	
 }
