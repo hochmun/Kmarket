@@ -4,6 +4,11 @@ public class Cate1VO {
 	private int cate1;
 	private String c1Name;
 	
+	// 추가
+	private int cate2; 
+	private String c2Name; 
+	
+	
 	public int getCate1() {
 		return cate1;
 	}
@@ -17,5 +22,18 @@ public class Cate1VO {
 		this.c1Name = c1Name;
 	}
 	
+	// 추가 get, set
+	public int getCate2() {
+		return cate2;
+	}
+	public void setCate2(int cate2) {
+		this.cate2 = cate2;
+	}
+	public String getC2Name() {
+		return c2Name;
+	}
+	public void setC2Name(String c2Name) {
+		this.c2Name = c2Name;
+	}
 	
 }

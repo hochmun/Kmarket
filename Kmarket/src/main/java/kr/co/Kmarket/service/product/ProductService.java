@@ -1,5 +1,6 @@
 package kr.co.Kmarket.service.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,50 +77,86 @@ public enum ProductService {
 		return dao.selectcate2(cate1);
 	}
 	
+	
+	
+	/**
+	 * 2022/12/13 product 불러오기
+	 * @author 김재준
+	 * 
+	 */
+	public List<ProductVO> selectProducts(String pordCate1, String prodCate2){
+		List<ProductVO> pvos = dao.selectProducts(prodCate2, prodCate2);
+		return pvos;
+	}
+	public ProductVO selectProduct(String prodNo) {
+		return dao.selectProduct(prodNo);
+	}
+	
+	/**
+	 *  2022/12/13 Cate1,2VO 전체 불러오기
+	 * @author 김재준
+	 * @param prodCate1
+	 * @param prodCate2
+	 * @return
+	 */
+	public Cate1VO selectProdCates(String prodCate1, String prodCate2) {
+		return dao.selectProdCates(prodCate1, prodCate2);
+	}
+	
 	/**
 	 * 2022/12/13 product 조건별 불러오기
 	 * 
 	 * 판매량 높은순
 	 */
-	public List<ProductVO> SelectProductSold(ProductVO pv, String prodNO){
-		List<ProductVO> vos = dao.SelectProductSold(pv, prodNO);
-		return vos;
+	public List<ProductVO> SelectProductSold(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductSold(prodCate1, prodCate2);
+		return prods;
 	}
 	// 낮은가격
-	public List<ProductVO> SelectProductLow(ProductVO pv, String prodNO){
-		List<ProductVO> vos = dao.SelectProductLow(pv, prodNO);
-		return vos;
+	public List<ProductVO> SelectProductLow(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductLow(prodCate1, prodCate2);
+		return prods;
 	}
 	/**
 	 * 높은가격
 	 */
-	public List<ProductVO> SelectProductHigh(ProductVO pv, String prodNO){
-		List<ProductVO> vos = dao.SelectProductHigh(pv, prodNO);
-		return vos;
+	public List<ProductVO> SelectProductHigh(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductHigh(prodCate1, prodCate2);
+		return prods;
 	}
 	/**
 	 * 별점순
 	 */
-	public List<ProductVO> SelectProductHstar(ProductVO pv, String prodNO){
-		List<ProductVO> vos = dao.SelectProductHstar(pv, prodNO);
-		return vos;
+	public List<ProductVO> SelectProductHstar(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductHstar(prodCate1, prodCate2);
+		return prods;
 	}
 	/**
 	 *  리뷰순
 	 * @param pv
 	 * @return
 	 */
-	public List<ProductVO> SelectProductReview(ProductVO pv, String prodNO){
-		List<ProductVO> vos = dao.SelectProductReview(pv, prodNO);
-		return vos;
+	public List<ProductVO> SelectProductReview(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductReview(prodCate1, prodCate2);
+		return prods;
 	}
+	/**
+	 *  최근순
+	 * @param pv
+	 * @return
+	 */
+	public List<ProductVO> SelectProductLatest(String prodCate1, String prodCate2){
+		List<ProductVO> prods = dao.SelectProductLatest(prodCate1, prodCate2);
+		return prods;
+	}
+	
 	
 	/**
 	 * 카테고리별 총 게시물 갯수
 	 * @return
 	 */
-	public int selectCountProducts(String search, String prodName) {
-		return dao.selectCountProducts(search, prodName);
+	public int selectCountProducts(String prodCate1, String prodCate2, String prodName, String descript) {
+		return dao.selectCountProducts(prodCate1, prodCate2, prodName, descript);
 	}
 	
 	// upload
@@ -130,11 +167,11 @@ public enum ProductService {
 		/**
 		 * 게시물 페이징
 		 */
-		public int boardPaging(HttpServletRequest req, String titName, String search) {
+		public int boardPaging(HttpServletRequest req, String prodCate1, String prodCate2, String prodName, String descript) {
 			String pg = req.getParameter("pg");
 			
 			int currentPage = 1; // 현재 페이지
-			int total = selectCountProducts(search, titName); // 총 게시물 갯수
+			int total = selectCountProducts(prodCate1, prodCate2, prodName, descript); // 총 게시물 갯수
 			int lastPageNum = 0; // 마지막 페이지 번호
 			
 			// 페이지 마지막 번호 계산
@@ -167,94 +204,93 @@ public enum ProductService {
 		
 		/**
 		 * 카테고리 변환
-		 */
-		public String cateNameFormat(String cate1, String cate2) {
-			String cate1Name = "";
-			String cate2Name = "";
+		 
+		public String cateNameFormat(int cate1, int cate2) {
+			String titName = "";
 			logger.debug("cate1 : "+cate1+", cate2 : "+cate2);
 			switch(cate1) {
-				case "1":
-					cate1Name = "cloth";
+				case 1:
+					titName = "cloth";
 					switch(cate2) {
-					case "1":
-						cate2Name = "man";
+					case 1:
+						titName = "man";
 						break;
-					case "2":
-						cate2Name = "woman";
+					case 2:
+						titName = "woman";
 						break;
-					case "3":
-						cate2Name = "goods";
+					case 3:
+						titName = "goods";
 						break;
-					case "4":
-						cate2Name = "beauty";
+					case 4:
+						titName = "beauty";
 						break;
 					default:
-						cate2Name = "-1";
+						titName = "-1";
 					}
 					break;
-				case "2":
-					cate1Name = "furniture";
+				case 2:
+					titName = "furniture";
 					switch(cate2) {
-					case "1":
-						cate2Name = "pc";
+					case 1:
+						titName = "pc";
 						break;
-					case "2":
-						cate2Name = "furniture";
+					case 2:
+						titName = "furniture";
 						break;
-					case "3":
-						cate2Name = "phone";
+					case 3:
+						titName = "phone";
 						break;
-					case "4":
-						cate2Name = "other";
+					case 4:
+						titName = "other";
 						break;
 					default:
-						cate2Name = "-1";
+						titName = "-1";
 					}
 					break;
-				case "3":
-					cate1Name = "food";
+				case 3:
+					titName = "food";
 					switch(cate2) {
-					case "1":
-						cate2Name = "fresh";
+					case 1:
+						titName = "fresh";
 						break;
-					case "2":
-						cate2Name = "processed";
+					case 2:
+						titName = "processed";
 						break;
-					case "3":
-						cate2Name = "health";
+					case 3:
+						titName = "health";
 						break;
-					case "4":
-						cate2Name = "necess";
+					case 4:
+						titName = "necess";
 						break;
 					default:
-						cate2Name = "-1";
+						titName = "-1";
 					}
 					break;
-				case "4":
-					cate1Name = "home";
+				case 4:
+					titName = "home";
 					switch(cate2) {
-					case "1":
-						cate2Name = "DIY";
+					case 1:
+						titName = "DIY";
 						break;
-					case "2":
-						cate2Name = "bed";
+					case 2:
+						titName = "bed";
 						break;
-					case "3":
-						cate2Name = "living";
+					case 3:
+						titName = "living";
 						break;
-					case "4":
-						cate2Name = "office";
+					case 4:
+						titName = "office";
 						break;
 					default:
-						cate2Name = "-1";
+						titName = "-1";
 						break;
 					}
 					break;
 				default:
-					cate1Name = "-1";
+					titName = "-1";
 					break;
 			}
-			logger.debug("cate2 : "+cate2Name);
-			return cate2Name;
-		}
+			logger.debug("cate2 : "+titName);
+			return titName;
+		}*/
 }
