@@ -114,7 +114,7 @@ public class ProductDAO extends DBCP {
 	 * @return 
 	 */
 	public ProductVO selectProduct(String prodNo) {
-		ProductVO pvo = null;
+		ProductVO pvo = new ProductVO();
 		try {
 			logger.info("selectProduct..");
 			conn = getConnection();
@@ -123,7 +123,6 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				pvo = new ProductVO();
 				pvo.setProdNo(rs.getInt(1));
 				pvo.setProdCate1(rs.getString(2));
 				pvo.setProdCate2(rs.getString(3));
@@ -373,15 +372,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt("prodno"));
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
 			}
@@ -408,15 +430,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt("prodno"));
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
 			}
@@ -443,15 +488,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt("prodno"));
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
 			}
@@ -478,15 +546,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt("prodno"));
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
 			}
@@ -513,14 +604,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
 			}
@@ -547,14 +662,38 @@ public class ProductDAO extends DBCP {
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				ProductVO pv = new ProductVO();
-				pv.setProdName(rs.getString("prodname"));
-				pv.setDescript(rs.getString("descript"));
-				pv.setSeller(rs.getString("seller"));
-				pv.setPrice(rs.getString("price"));
-				pv.setDiscount(rs.getString("discount"));
-				pv.setDelivery(rs.getString("delivery"));
-				pv.setScore(rs.getInt("score"));
-				pv.setThumb1(rs.getString("thumb1"));
+				pv.setProdNo(rs.getInt(1));
+				pv.setProdCate1(rs.getString(2));
+				pv.setProdCate2(rs.getString(3));
+				pv.setProdName(rs.getString(4));
+				pv.setDescript(rs.getString(5));
+				pv.setCompany(rs.getString(6));
+				pv.setSeller(rs.getString(7));
+				pv.setPrice(rs.getString(8));
+				pv.setDiscount(rs.getString(9));
+				pv.setPoint(rs.getString(10));
+				pv.setStock(rs.getString(11));
+				pv.setSold(rs.getInt(12));
+				pv.setDelivery(rs.getString(13));
+				pv.setHit(rs.getInt(14));
+				pv.setScore(rs.getInt(15));
+				pv.setReview(rs.getInt(16));
+				pv.setThumb1(rs.getString(17));
+				pv.setThumb2(rs.getString(18));
+				pv.setThumb3(rs.getString(19));
+				pv.setDetail(rs.getString(20));
+				pv.setStatus(rs.getString(21));
+				pv.setDuty(rs.getString(22));
+				pv.setReceipt(rs.getString(23));
+				pv.setBizType(rs.getString(24));
+				pv.setOrigin(rs.getString(25));
+				pv.setIp(rs.getString(26));
+				pv.setRdate(rs.getString(27));
+				pv.setEtc1(rs.getInt(28));
+				pv.setEtc2(rs.getInt(29));
+				pv.setEtc3(rs.getString(30));
+				pv.setEtc4(rs.getString(31));
+				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
         }
