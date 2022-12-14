@@ -28,11 +28,13 @@ public class ProductListController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String prodCate1 = req.getParameter("cate1");
 		String prodCate2 = req.getParameter("cate2");
+		String prodName = req.getParameter("prodName");
+		String descript = req.getParameter("descript");
 		
 		String pg = req.getParameter("pg");
 		
 		/*페이징*/		
-		int boardPaging = service.selectCountProducts(prodCate1, prodCate2);
+		int boardPaging = service.selectCountProducts(prodCate1, prodCate2, prodName, descript);
 					
 		
 		/*product list 가져오기*/
@@ -40,7 +42,7 @@ public class ProductListController extends HttpServlet{
 		/*prodCate 가져오기*/
 		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
 		/*카테고리별 전체 상품 갯수 + 검색기능(beta) */
-		int total = service.selectCountProducts(prodCate1, prodCate2);
+		int total = service.selectCountProducts(prodCate1, prodCate2, prodName, descript);
 		
 		/*판매 분류*/
 		List<ProductVO> prods1 = service.SelectProductSold(prodCate1, prodCate2);
@@ -68,6 +70,7 @@ public class ProductListController extends HttpServlet{
 		writer.print(jsonData);
 		
 		req.setAttribute("cvo", cvo); // selectProducts 
+		req.setAttribute("boardPaging", boardPaging); 
 		req.setAttribute("total", total); 
 		req.setAttribute("prods", prods); 
 		req.setAttribute("pg", pg); 

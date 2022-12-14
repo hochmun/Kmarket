@@ -332,21 +332,20 @@ public class ProductDAO extends DBCP {
 	}
 	
 	/**
-	 * 카테고리별 전체 게시물 갯수 + 검색기능
+	 * 카테고리별 전체 게시물 갯수
 	 * @author 김재준
 	 * @return
 	 */
-	public int selectCountProducts(String prodCate1, String prodCate2) {
+	public int selectCountProducts(String prodCate1, String prodCate2, String prodName, String descript) {
 		int total = 0;
-		String word = "";
-		if (prodCate2 != null) word = "%"+prodCate2+"%";
-		else word = "%%";
 		try {
-			logger.info("selectCountArticles...");
+			logger.info("selectCountProducts...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_COUNT_PRODUCTS);
 			psmt.setString(1, prodCate1);
 			psmt.setString(2, prodCate2);
+			psmt.setString(3, prodName);
+			psmt.setString(4, descript);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				total = rs.getInt(1);
