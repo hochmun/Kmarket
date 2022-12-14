@@ -1,7 +1,9 @@
 package kr.co.Kmarket.dao.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
@@ -590,6 +592,42 @@ public class ProductDAO extends DBCP {
 			logger.error(e.getMessage());
 		}
 		return cate2Name;
+	}
+	
+	/**
+	 * 2022/12/14 카테고리1 카테고리2 정보 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public Map<String, Object> selectCate1Cate2() {
+		Map<String, Object> voss = new HashMap<>();
+		List<Cate1VO> vos1 = new ArrayList<>();
+		List<Cate2VO> vos2 = new ArrayList<>();
+		try {
+			logger.info("ProductDAO selectCate1Cate2...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_CATE1_CATE2);
+			while(rs.next()) {
+				Cate1VO vo1 = new Cate1VO();
+				Cate2VO vo2 = new Cate2VO();
+				
+				vo1.setCate1(rs.getInt("cate1"));
+				vo1.setC1Name(rs.getString("c1Name"));
+				vo2.setCate2(rs.getInt("cate2"));
+				vo2.setC2Name(rs.getString("c2Name"));
+				
+				vos1.add(vo1);
+				vos2.add(vo2);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		voss.put("vos1", vos1);
+		voss.put("vos2", vos2);
+		return voss;
 	}
 	
 	// upload

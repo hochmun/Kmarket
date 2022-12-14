@@ -27,7 +27,6 @@ public enum ProductCartService {
 	public ProductCartVO insertProductCartVO(ServletRequest req) {
 		ProductCartVO vo = new ProductCartVO();
 		
-		vo.setCartNo(Integer.parseInt(req.getParameter("cartNo")));
 		vo.setUid(req.getParameter("uid"));
 		vo.setProdNo(Integer.parseInt(req.getParameter("prodNo")));
 		vo.setCount(Integer.parseInt(req.getParameter("count")));
@@ -39,7 +38,7 @@ public enum ProductCartService {
 		
 		return vo;
 	}
-	
+
 	// create
 	
 	/**

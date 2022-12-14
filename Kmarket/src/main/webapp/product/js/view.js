@@ -50,6 +50,10 @@ function count(type) {
 // 주문하기 스크립트
 function orderProduct(type){
 	
+	const Ok = confirm('상품을 장바구니에 넣으시겠습니까?');
+	
+	if (Ok == false) return false;
+	
 	if(sessUserUid == "" || sessUserUid == null || sessUserUid == undefined) {
 		alert('회원 로그인을 해 주십시오.');
 		return false;
@@ -82,5 +86,5 @@ function orderProduct(type){
 			}
 				
 		}
-	})
+	});
 }

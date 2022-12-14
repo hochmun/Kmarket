@@ -128,6 +128,14 @@ public class Sql {
 			"SELECT `c2Name` FROM `km_product_cate2` WHERE `cate1`=? AND `cate2`=?";
 	public static final String SELECT_PRODUCT_WITH_PRODNO = 
 			"SELECT * FROM `km_product` WHERE `prodNo`=?";
+	public static final String SELECT_CATE1_CATE2 = 
+			"SELECT "
+			+ "	a.`cate1`, "
+			+ "	a.cate2, "
+			+ "	a.c2Name, "
+			+ "	b.c1Name "
+			+ "FROM `km_product_cate2` AS a "
+			+ "LEFT JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1";
 	
 	public static final String SELECT_PROD_CATE = "SELECT * FROM `km_product_cate1` as a "
 												+ "JOIN `km_product_cate2` AS b ON a.cate1 = b.cate1 "
@@ -137,7 +145,6 @@ public class Sql {
 	
 	public static final String INSERT_PRODUCT_CART = 
 			"INSERT INTO `km_product_cart` SET "
-			+ "`cartNo`=?, "
 			+ "`uid`=?, "
 			+ "`prodNo`=?, "
 			+ "`count`=?, "
@@ -147,4 +154,5 @@ public class Sql {
 			+ "`delivery`=?, "
 			+ "`total`=?, "
 			+ "`rdate`=NOW()";
+
 }
