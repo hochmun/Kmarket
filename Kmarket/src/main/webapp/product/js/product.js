@@ -1,0 +1,348 @@
+$(function(){
+		
+var sold = document.getElementById('sold'); 	// 판매량
+var low = document.getElementById('low');		// 낮은가격
+var high = document.getElementById('high');		// 높은가격
+var hstar = document.getElementById('hstar');	// 높은별점
+var review = document.getElementById('review');	// 리뷰순
+var latest = document.getElementById('latest');	// 최근게시
+
+$(document).on('click', '#sold', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			$('.productList').empty();
+			
+			sold.classList.add('on');
+			low.classList.remove('on');
+			high.classList.remove('on');
+			hstar.classList.remove('on');
+			review.classList.remove('on');
+			latest.classList.remove('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+
+$(document).on('click', '#low', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			$('.productList').empty();
+			
+			sold.classList.remove('on');
+			low.classList.add('on')
+			high.classList.remove('on');
+			hstar.classList.remove('on');
+			review.classList.remove('on');
+			latest.classList.remove('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+$(document).on('click', '#high', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			$('.productList').empty();
+			
+			sold.classList.remove('on');
+			low.classList.remove('on')
+			high.classList.add('on');
+			hstar.classList.remove('on');
+			review.classList.remove('on');
+			latest.classList.remove('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+$(document).on('click', '#hstar', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			$('.productList').empty();
+			
+			sold.classList.remove('on');
+			low.classList.remove('on')
+			high.classList.remove('on');
+			hstar.classList.add('on');
+			review.classList.remove('on');
+			latest.classList.remove('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+$(document).on('click', '#review', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			console.log('here4');
+			$('.productList').empty();
+			
+			sold.classList.remove('on');
+			low.classList.remove('on')
+			high.classList.remove('on');
+			hstar.classList.remove('on');
+			review.classList.add('on');
+			latest.classList.remove('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+$(document).on('click', '#latest', function(e){
+	e.preventDefault();
+	
+	let cate1 = $(this).attr('prodcate1');
+	let cate2 = $(this).attr('prodcate2');
+	
+	let jsonData = {"cate1":cate1, "cate2":cate2};
+	
+	$.ajax({
+		url:'/Kmarket/product/list.do',
+		method:'GET',
+		data:jsonData,
+		dataType:'json',
+		success:function(data){
+			$('.productList').empty();
+			
+			sold.classList.remove('on');
+			low.classList.remove('on')
+			high.classList.remove('on');
+			hstar.classList.remove('on');
+			review.classList.remove('on');
+			latest.classList.add('on');
+			
+			for(let product of data){
+				let price = product.price * (100-product.discount) * 0.01;
+				
+				let table  = "<tr>";
+					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td>"
+					table += "<h3 class='name'>"+product.prodName+"</h3>";
+					table += "<a href='#' class='desc'>"+product.descript+"</a>";
+					table += "</td>";
+					table += "<td>";
+					table += "<ul>";
+					if(product.discount > 0){
+						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
+						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+					}else{
+						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+					}
+					if(product.delivery == 0){
+						table += "<li><span class='free-delivery'>무료배송</span></li>";	
+					}else{
+						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+					}
+					table += "</ul>";
+					table += "</td>";
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "</tr>"
+			
+				$('.productList').append(table);
+			}
+			
+		}
+	});
+});
+});
