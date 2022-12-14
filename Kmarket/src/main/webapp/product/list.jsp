@@ -7,9 +7,9 @@
                 <ul class="category">
                     <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
                     <li>
-                        <a href="#"><i class="fas fa-tshirt"></i>패션·의류·뷰티</a>
+                        <a href="/home/Kmarket/product/list.do?cate1=10"><i class="fas fa-tshirt"></i>패션·의류·뷰티</a>
                         <ol>
-                            <li><a href="#">남성의류</a></li>
+                            <li><a href="/home/Kmarket/product/list.do?cate1=10&cate2=10">남성의류</a></li>
                             <li><a href="#">여성의류</a></li>
                             <li><a href="#">잡화</a></li>
                             <li><a href="#">뷰티</a></li>
