@@ -20,9 +20,16 @@
         <header>
             <div class="top">
                 <div>
-                    <a href="#">로그인</a>
-                    <a href="#">회원가입</a>
-                    <a href="#">마이페이지</a>
+                    <c:choose>
+                		<c:when test="${ sessUser.uid eq null }">
+                    		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+                    		<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+                    		<a href="#">마이페이지</a>
+                    	</c:otherwise>
+                    </c:choose>
                     <a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니</a>
                 </div>
             </div>

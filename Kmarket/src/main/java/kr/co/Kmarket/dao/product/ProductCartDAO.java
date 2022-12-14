@@ -20,15 +20,14 @@ public class ProductCartDAO extends DBCP {
 			logger.info("ProductCartDAO insertProductCart...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.INSERT_PRODUCT_CART);
-			psmt.setInt(1, vo.getCartNo());
-			psmt.setString(2, vo.getUid());
-			psmt.setInt(3, vo.getProdNo());
-			psmt.setInt(4, vo.getCount());
-			psmt.setInt(5, vo.getPrice());
-			psmt.setInt(6, vo.getDiscount());
-			psmt.setInt(7, vo.getPoint());
-			psmt.setInt(8, vo.getDelivery());
-			psmt.setInt(9, vo.getTotal());
+			psmt.setString(1, vo.getUid());
+			psmt.setInt(2, vo.getProdNo());
+			psmt.setInt(3, vo.getCount());
+			psmt.setInt(4, vo.getPrice());
+			psmt.setInt(5, vo.getDiscount());
+			psmt.setInt(6, vo.getPoint());
+			psmt.setInt(7, vo.getDelivery());
+			psmt.setInt(8, vo.getTotal());
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {

@@ -2,6 +2,7 @@ package kr.co.Kmarket.service.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +80,14 @@ public enum ProductService {
 		return dao.selectcate2(cate1);
 	}
 	
-	
+	/**
+	 * 2022/12/14 카테고리1 카테고리2 불러오기
+	 * @author 심규영
+	 * @return
+	 */
+	public Map<String, Object> selectCate1Cate2() {
+		return dao.selectCate1Cate2();
+	}
 	
 	/**
 	 * 2022/12/13 product 불러오기
