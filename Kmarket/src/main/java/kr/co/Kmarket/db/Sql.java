@@ -113,10 +113,10 @@ public class Sql {
 	
 	/** 제목, 상품설명 키워드 검색*/
 	public static final String SELECT_COUNT_PRODUCTS = "SELECT COUNT(`prodNo`) FROM `km_product` "
-														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
+														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
 														+ "AND (`prodName` REGEXP ? "
 														+ "OR `descript` REGEXP ?)";
-	
+
 	
 	public static final String SELECT_CATE1 = 
 			"SELECT * FROM `km_product_cate1`";
