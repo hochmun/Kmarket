@@ -9,20 +9,20 @@ var latest = document.getElementById('latest');	// 최근게시
 
 $(document).on('click', '#sold', function(e){
 	e.preventDefault();
-	
+	console.log('first error');
 	let cate1 = $(this).attr('prodcate1');
 	let cate2 = $(this).attr('prodcate2');
-	
+	console.log('pre ajax error');
 	let jsonData = {"cate1":cate1, "cate2":cate2};
-	
+	console.log('ajax error');
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/product/ProductCate1.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
 		success:function(data){
+			console.log('after ajax error');
 			$('.productList').empty();
-			
 			sold.classList.add('on');
 			low.classList.remove('on');
 			high.classList.remove('on');
@@ -73,7 +73,7 @@ $(document).on('click', '#low', function(e){
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/Kmarket/product/ProductCate2.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
@@ -129,7 +129,7 @@ $(document).on('click', '#high', function(e){
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/Kmarket/product/ProductCate3.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
@@ -185,7 +185,7 @@ $(document).on('click', '#hstar', function(e){
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/Kmarket/product/ProductCate4.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
@@ -241,7 +241,7 @@ $(document).on('click', '#review', function(e){
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/Kmarket/product/ProductCate5.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
@@ -298,7 +298,7 @@ $(document).on('click', '#latest', function(e){
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	
 	$.ajax({
-		url:'/Kmarket/product/list.do',
+		url:'/Kmarket/product/ProductCate6.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',

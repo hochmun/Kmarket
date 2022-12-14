@@ -94,8 +94,8 @@ public enum ProductService {
 	 * @author 김재준
 	 * 
 	 */
-	public List<ProductVO> selectProducts(String pordCate1, String prodCate2){
-		List<ProductVO> pvos = dao.selectProducts(prodCate2, prodCate2);
+	public List<ProductVO> selectProducts(String prodCate1, String prodCate2){
+		List<ProductVO> pvos = dao.selectProducts(prodCate1, prodCate2);
 		return pvos;
 	}
 	public ProductVO selectProduct(String prodNo) {

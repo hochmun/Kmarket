@@ -81,33 +81,27 @@ public class Sql {
 	
 	
 	/** 상품목록 판매량순*/
-	public static final String SELECT_PRODUCT_LIST_SOLD = "SELECT DISTINCT `prodName`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-														+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_SOLD = "SELECT * FROM `km_product` "
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 														+ "ORDER BY `sold` DESC";
 	/** 상품목록 낮은가격순*/
-	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-														+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT * FROM `km_product` "
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 														+ "ORDER BY `price` ASC";
 	/** 상품목록 높은가격순*/
-	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-														+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT * FROM `km_product` "
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 														+ "ORDER BY `price` DESC";
 	/** 상품목록 높은별점순*/
-	public static final String SELECT_PRODUCT_LIST_HSTAR = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-															+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_HSTAR = "SELECT * FROM `km_product` "
 															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 															+ "ORDER BY `score` desc";
 	/** 상품목록 리뷰많은순*/
-	public static final String SELECT_PRODUCT_LIST_REVIEW = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-															+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_REVIEW = "SELECT * FROM `km_product` "
 															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 															+ "ORDER BY `review` desc";
 	/** 상품목록 최근등록순*/
-	public static final String SELECT_PRODUCT_LIST_LATEST = "SELECT DISTINCT `prodname`,`descript`,`seller`,`price`,`discount`,`delivery`, "
-															+ "`score`,`thumb1` FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_LATEST = "SELECT * FROM `km_product` "
 															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 															+ "ORDER BY `prodNo` asc";
 	
