@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-
 import kr.co.Kmarket.service.admin.AdminService;
 import kr.co.Kmarket.vo.ProductVO;
 
