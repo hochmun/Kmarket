@@ -2,6 +2,60 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
+<script>
+	// 주문 갯수 스크립트
+	function count(type) {
+		// 변화하는 값
+		const num = document.getElementById("num");
+		
+		// 현재 표시된 값
+		let number = num.value;
+		
+		// 더하기 빼기
+		if(type === 'plus') {
+			number = parseInt(number)+1;
+		} else if(type === 'minus' && parseInt(number) > 1) {
+			number = parseInt(number)-1;
+		}
+		
+		// 결과 출력
+		num.value = number;
+		
+		// 총 상품금액 변경
+		
+		const discount = "${ vo.discount }"; // 할인율
+		const price = "${ vo.price }"; // 가격
+		const formatter = new Intl.NumberFormat('ko'); // 포맷
+		let totalprice = 0;
+		
+		if (discount > 0) {
+			const disprice = (price * (1 - (discount / 100)));
+			totalprice = disprice * number;
+		} else {
+			totalprice = parseInt(price) * number;
+		}
+		
+		document.getElementById('totalprice').innerText = formatter.format(totalprice);
+		
+	}
+	
+	// TODO - 나중에 수정하기 => js에 el문을 사용하면 js 분리시 오류가 남
+	// 주문하기 스크립트
+	function orderProduct(){
+		const uid = "${ sessUser.uid }";
+		const prodNo = "${ vo.prodNo }";
+		const count = document.getElementById('num').value;
+		const price = "${ vo.price }";
+		const discount = "${ vo.discount }";
+		const point = "${ vo.point }";
+		const delivery = "${ vo.delivery }";
+		const total = price * ( 1 - discount / 100 ) * count;
+		
+		// post 전송
+		$.post();
+	}
+	
+</script>
  <main id="product">
             <aside>
                 <ul class="category">
@@ -62,15 +116,20 @@
                     </div>
                     <div class="summary">
                         <nav>
+                        	<!-- 판매자 -->
                             <h1>${ vo.seller }</h1>
                             <h2>상품번호&nbsp;:&nbsp;<span>${ vo.prodNo }</span></h2>
                         </nav>
                         <nav>
+                        	<!-- 상품 이름, 상세 설명 -->
                             <h3>${ vo.prodName }</h3>
                             <p>${ vo.descript }</p>
                             <h5 class="rating star4"><a href="#">상품평보기</a></h5>
                         </nav>
                         <nav>
+                        
+                        	<!-- 할인율 있을경우와 없을 경우 -->
+                        
                         	<c:choose>
                         		<c:when test="${ vo.discount gt 0 }">
                         			<div class="org_price">
@@ -88,10 +147,12 @@
                         		</c:otherwise>
                         	</c:choose>
                         	
-                        
-                            
                         </nav>
+                        
                         <nav>
+                        
+                        	<!-- 배송비 있을 경우 배송비 출력, 없을 경우 무료배송 출력 -->
+                        	
 	                        <c:choose>
 	                        	<c:when test="${ vo.delivery gt 0 }">
 	                        		<span class="delivery">배송비 <fmt:formatNumber value="${ vo.delivery }" pattern="#,###"/>원</span>
@@ -100,7 +161,11 @@
 	                        		<span class="delivery">무료배송</span>
 	                        	</c:otherwise>
 	                        </c:choose>
+	                        
+	                        <!-- 배송 날짜 -->
                             <span class="arrival" id="arrival"></span>
+                            
+                            <!-- 배송 날짜 계산 스크립트 -->
                             <script>
                             	// 배송 도착일자 3일후 설정
 	                        	var now = new Date();
@@ -112,16 +177,25 @@
 	                        	});
 	                        	document.getElementById("arrival").innerText=arrival+" 도착예정";
 	                        </script>
+	                        
                             <span class="desc">본 상품은 국내배송만 가능합니다.</span>
                         </nav>
                         <nav>
                             <span class="card cardfree"><i>아이콘</i>무이자할부</span>&nbsp;&nbsp;
                             <span class="card cardadd"><i>아이콘</i>카드추가혜택</span>
                         </nav>
+                        
+                        <!-- 원산지 -->
+                        
                         <nav>
                             <span class="origin">${ vo.origin }</span>
                         </nav>
+                        
+                        
                         <img src="../img/vip_plcc_banner.png" alt="100원만 결제해도 1만원 적립!" class="banner"/>
+                        
+                        <!-- 주문 갯수, 총 상품 금액 -->
+                        
                         <div class="count">
                             <button class="decrease" id="decrease" onclick="count('minus')">-</button>
                             <input type="text" name="num" id="num" value="1" readonly/>
@@ -129,45 +203,29 @@
                         </div>
 
                         <div class="total">
-                            <span id="totalprice"><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></span>
+                        
+                        	<c:choose>
+                        		<c:when test="${ vo.discount gt 0 }">
+                        			<span id="totalprice"><fmt:formatNumber value="${ disprice }" pattern="#,###"/></span>
+                        		</c:when>
+                        		<c:otherwise>
+                        			<span id="totalprice"><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></span>
+                        		</c:otherwise>
+                        	</c:choose>
+                        	
                             <em>총 상품금액</em>
+                            
                         </div>
                         
-                        <!-- 주문 갯수 스크립트 -->
-                        <script>
-                        	function count(type) {
-                        		// 변화하는 값
-                        		const num = document.getElementById("num");
-                        		
-                        		// 현재 표시된 값
-                        		let number = num.value;
-                        		
-                        		// 더하기 빼기
-                        		if(type === 'plus') {
-                        			number = parseInt(number)+1;
-                        		} else if(type === 'minus' && parseInt(number) > 1) {
-                        			number = parseInt(number)-1;
-                        		}
-                        		
-                        		// 결과 출력
-                        		num.value = number;
-                        		
-                        		// 총 상품금액 변경
-                        		
-                        		let price = "${ vo.price }";
-                        		const totalprice = parseInt(price) * number;
-                        		const formatter = new Intl.NumberFormat('ko');
-                        		
-                        		document.getElementById('totalprice').innerText = formatter.format(totalprice);
-                        		
-                        	}
-                        </script>
+                        <!-- 주문하기 -->
                         
                         <div class="button">
                             <input type="button" class="cart" value="장바구니"/>
                             <input type="button" class="order" value="구매하기"/>
                         </div>
+                        
                     </div>
+                    
                 </article>
 
                 <!-- 상품 정보 내용 -->
@@ -272,6 +330,7 @@
                 </article>
 
                 <!-- 상품 리뷰 내용 -->
+                
                 <article class="review">
                     <nav>
                         <h1>상품리뷰</h1>
@@ -338,9 +397,12 @@
                             </p>
                         </li>
                     </ul>
+                    
+                    <!-- 페이징 처리 -->
+                    
                     <div class="paging">
                         <span class="prev">
-                            <a href="#"><&nbsp;이전</a>
+                            <a href="#">&nbsp;이전</a>
                         </span>
                         <span class="num">
                             <a href="#" class="on">1</a>
@@ -355,6 +417,8 @@
                             <a href="#">다음&nbsp;</a>
                         </span>
                     </div>
+                    
+                    
                 </article>
 
             </section>
