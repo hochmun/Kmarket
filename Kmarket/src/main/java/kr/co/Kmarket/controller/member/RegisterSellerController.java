@@ -27,7 +27,8 @@ public class RegisterSellerController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		service.insertMemberType2(service.inputMemberSellerVO(req));
-		resp.sendRedirect("/Kmarket/member/login.do");
+		req.getSession().setAttribute("success", "202");
+		resp.sendRedirect("/Kmarket/loadingPage.do");
 	}
 
 }
