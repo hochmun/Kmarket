@@ -50,7 +50,7 @@
                     		<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
                     	</c:when>
                     	<c:otherwise>
-                    		<a href="#">로그아웃</a>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
                     	</c:otherwise>
                     </c:choose>

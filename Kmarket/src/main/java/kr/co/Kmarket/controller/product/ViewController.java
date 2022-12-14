@@ -8,7 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonObject;
+
+import kr.co.Kmarket.service.product.ProductCartService;
 import kr.co.Kmarket.service.product.ProductService;
+import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 @WebServlet("/product/view.do")
@@ -16,6 +20,7 @@ public class ViewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private ProductService service = ProductService.INSTANCE;
+	private ProductCartService service2 = ProductCartService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,6 +49,17 @@ public class ViewController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 카트에 등록할 상품 정보 vo에 저장
+		ProductCartVO vo = service2.insertProductCartVO(req);
 		
+		// 데이터 베이스에 저장
+		int result = service2.insertProductCart(vo);
+		
+		// json 저장
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		// 출력
+		resp.getWriter().write(json.toString());
 	}
 }

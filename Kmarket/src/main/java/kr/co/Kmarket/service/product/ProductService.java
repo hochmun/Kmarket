@@ -3,6 +3,7 @@ package kr.co.Kmarket.service.product;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.Kmarket.dao.product.ProductDAO;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public enum ProductService {
