@@ -14,6 +14,49 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="./css/product.css"/>
+    <script>
+ // 각 탭 클릭시 데이터 받기
+ 	$.get('/Kmarket/getLatests.do',(data)=>{
+			for(let latest of data) {
+				let url = "/Farmstory3/board/view.do?cate=5&tit=1&pg=1&no="+latest.no;
+				$('#tabs-1 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
+			}
+		});
+ 
+	$(document).one('click', '#tabs-1-click', function(){
+		$.get('/Kmarket/getLatests.do?cate=qna',(data)=>{
+			for(let latest of data) {
+				let url = "/Kmarket/view.do?cate=5&tit=1&pg=1&no="+latest.no;
+				$('#tabs-2 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
+			}
+		});
+	});
+	$(document).one('click', '#tabs-2-click', function(){
+		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
+			for(let latest of data) {
+				let url = "/Kmarket/view.do?cate=5&tit=2&pg=1&no="+latest.no;
+				$('#tabs-3 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
+			}
+		});
+	});
+	$(document).one('click', '#tabs-2-click', function(){
+		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
+			for(let latest of data) {
+				let url = "/Kmarket/view.do?cate=5&tit=3&pg=1&no="+latest.no;
+				$('#tabs-4 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
+			}
+		});
+	});
+	$(document).one('click', '#tabs-2-click', function(){
+		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
+			for(let latest of data) {
+				let url = "/Kmarket/view.do?cate=5&tit=4&pg=1&no="+latest.no;
+				$('#tabs-5 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
+			}
+		});
+	});
+	
+    </script>
 </head>
 <body>
     <div id="wrapper">
