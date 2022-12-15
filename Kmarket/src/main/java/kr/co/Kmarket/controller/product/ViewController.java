@@ -27,6 +27,9 @@ public class ViewController extends HttpServlet {
 		// 상품 정보 가져오기
 		ProductVO vo = service.selectProductWithProdNo(req.getParameter("prodNo"));
 		
+		// 상품 정보 방문시 방문 횟수 늘리기
+		service.updateProductHitCount(vo.getProdNo());
+		
 		// 카테고리 이름 불러오기
 		String cate1 = service.formatCate1Name(vo.getProdCate1());
 		String cate2 = service.formatCate2Name(vo.getProdCate1(), vo.getProdCate2());

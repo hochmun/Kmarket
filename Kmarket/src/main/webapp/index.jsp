@@ -13,64 +13,29 @@
             
             <c:forEach var="cate1" items="${ vos1 }">
             	<li>
-	                <a href="">
-	                    <i class="fas fa-tshirt"></i>
-	                    패션·의류·뷰티
+	                <a href="${pageContext.request.contextPath}/product/list.do?cate1=+${ cate1.cate1 }">
+	                	<c:if test="${ cate1.cate1 eq 10 }"><i class="fas fa-shopping-bag"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 11 }"><i class="fas fa-tshirt"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 12 }"><i class="fas fa-baby-carriage"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 13 }"><i class="fas fa-utensils"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 14 }"><i class="fas fa-home"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 15 }"><i class="fas fa-tv"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 16 }"><i class="fas fa-running"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 17 }"><i class="fas fa-car"></i></c:if>
+	                	<c:if test="${ cate1.cate1 eq 18 }"><i class="fas fa-book"></i></c:if>
+	                    ${ cate1.c1Name }
 	                    <i class="fas fa-angle-right"></i>
 	                </a>
 	                <ol>
-	                	
-	                    <li><a href="#">남성의류</a></li>
-	                    <li><a href="#">여성의류</a></li>
-	                    <li><a href="#">잡화</a></li>
-	                    <li><a href="#">뷰티</a></li>
-	                    
-	                    
+	                	<c:forEach var="cate2" items="${ vos2 }">
+	                		<c:if test="${ cate2.cate1 eq cate1.cate1 }">
+	                			<li><a href="${pageContext.request.contextPath}/product/list.do?cate1=${ cate1.cate1 }&cate2=${ cate2.cate2 }">${ cate2.c2Name }</a></li>
+	                		</c:if>
+	                	</c:forEach>
 	                </ol>
 	            </li>
             </c:forEach>
             
-            
-            
-            <li>
-                <a href="#">
-                    <i class="fas fa-laptop"></i>
-                    가전·디지털
-                    <i class="fas fa-angle-right"></i>
-                </a>
-                <ol>
-                    <li><a href="#">노트북/PC</a></li>
-                    <li><a href="#">가전</a></li>
-                    <li><a href="#">휴대폰</a></li>
-                    <li><a href="#">기타</a></li>
-                </ol>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-utensils"></i>
-                    식품·생필품
-                    <i class="fas fa-angle-right"></i>
-                </a>
-                <ol>
-                    <li><a href="#">신성식품</a></li>
-                    <li><a href="#">가공식품</a> </li>
-                    <li><a href="#">건강식품</a></li>
-                    <li><a href="#">생필품</a></li>
-                </ol>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-home"></i>
-                    홈·문구·취미
-                    <i class="fas fa-angle-right"></i>
-                </a>
-                <ol>
-                    <li><a href="#">가구</a></li>
-                    <li><a href="#">침구·커튼</a> </li>
-                    <li><a href="#">생활용품</a></li>
-                    <li><a href="#">사무용품</a></li>
-                </ol>
-            </li>
         </ul>
         <!-- 베스트상품 배너 -->
         <article class="best">
