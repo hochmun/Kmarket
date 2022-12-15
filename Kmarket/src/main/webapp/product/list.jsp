@@ -23,7 +23,7 @@
         <table border="0" class="productList">
         <c:forEach var="product" items="${pvos}">
          <tr>
-             <td><a href="/Kmarket/product/view.do?prodNo=${product.prodNo}" class="thumb"><img src="https://via.placeholder.com/120x120" alt="상품이미지"></a></td>
+             <td><a href="/Kmarket/product/view.do?prodNo=${product.prodNo}" class="thumb"><img src="/thumb/${ product.prodCate1 }/${ product.prodCate2 }/${ product.thumb1 }" alt="상품이미지"></a></td>
              <td>
                  <h3 class="name">${product.prodName}</h3>
                  <a href="#" class="desc">${product.descript}</a>
@@ -48,7 +48,7 @@
                      <li><span class="free-delivery">무료배송</span></li>
                      </c:when>
                      <c:otherwise>
-                     <li><span>${product.delivery}</span></li>
+                     <li><span>배송비 ${product.delivery}</span></li>
                      </c:otherwise>
                      </c:choose>
                  </ul>
@@ -95,19 +95,19 @@
 
         <!-- 상품목록 페이지번호 -->
         <div class="paging">
-        <c:if test="${pageGroupStart gt 1}">
+        <c:if test="${paging.pageGroupStart gt 1}">
             <span class="prev">
-                <a href="/Kmarket/product/list.do?pg=${pageGroupStart - 1}"><&nbsp;이전</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${paging.pageGroupStart - 1}"><&nbsp;이전</a>
             </span>
             </c:if>
             <span class="num">
-            <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}">
-                <a href="/Kmarket/product/list.do?pg=${i}" class="${currentPage eq i?'on':'off'}">${i}</a>
+            <c:forEach var="i" begin="${paging.pageGroupStart}" end="${paging.pageGroupEnd}">
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${paging.currentPage eq i?'on':'off'}">${i}</a>
             </c:forEach>
             </span>
-            <c:if test="${pageGroupEnd lt lastPageNum}">
+            <c:if test="${paging.pageGroupEnd lt paging.lastPageNum}">
             <span class="next">
-                <a href="/Kmarket/product/list.do?pg=${pageGroupEnd + 1}">다음&nbsp;></a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${paging.pageGroupEnd + 1}">다음&nbsp;></a>
             </span>
             </c:if>
         </div>

@@ -13,12 +13,11 @@ $(document).on('click', '#sold', function(e){
 	let cate2 = $(this).attr('prodcate2');
 	let jsonData = {"cate1":cate1, "cate2":cate2};
 	$.ajax({
-		url:'/product/ProductCate1.do',
+		url:'/Kmarket/product/ProductCate1.do',
 		method:'GET',
 		data:jsonData,
 		dataType:'json',
 		success:function(data){
-			console.log('after ajax error');
 			$('.productList').empty();
 			sold.classList.add('on');
 			low.classList.remove('on');
@@ -40,7 +39,8 @@ $(document).on('click', '#sold', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}
@@ -51,7 +51,39 @@ $(document).on('click', '#sold', function(e){
 					}
 					table += "</ul>";
 					table += "</td>";
-					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5>"
+					switch(product.score){
+						case 1:
+							table += "<h6 class='rating star1'>상품평</h6>";
+							break;
+						case 2:
+							table += "<h6 class='rating star2'>상품평</h6>";
+							break;
+						case 3:
+							table += "<h6 class='rating star3'>상품평</h6>";
+							break;
+						case 4:
+							table += "<h6 class='rating star4'>상품평</h6>";
+							break;
+						case 5:
+							table += "<h6 class='rating star5'>상품평</h6>";
+							break;
+						case 6:
+							table += "<h6 class='rating star6'>상품평</h6>";
+							break;
+						case 7:
+							table += "<h6 class='rating star7'>상품평</h6>";
+							break;
+						case 8:
+							table += "<h6 class='rating star8'>상품평</h6>";
+							break;
+						case 9:
+							table += "<h6 class='rating star9'>상품평</h6>";
+							break;
+						default :
+							table += "<h6 class='rating star10'>상품평</h6>";
+					}
+					table += "</td>"
 					table += "</tr>"
 			
 				$('.productList').append(table);
@@ -186,7 +218,8 @@ $(document).on('click', '#high', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}
@@ -197,7 +230,39 @@ $(document).on('click', '#high', function(e){
 					}
 					table += "</ul>";
 					table += "</td>";
-					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5>"
+					switch(product.score){
+						case 1:
+							table += "<h6 class='rating star1'>상품평</h6>";
+							break;
+						case 2:
+							table += "<h6 class='rating star2'>상품평</h6>";
+							break;
+						case 3:
+							table += "<h6 class='rating star3'>상품평</h6>";
+							break;
+						case 4:
+							table += "<h6 class='rating star4'>상품평</h6>";
+							break;
+						case 5:
+							table += "<h6 class='rating star5'>상품평</h6>";
+							break;
+						case 6:
+							table += "<h6 class='rating star6'>상품평</h6>";
+							break;
+						case 7:
+							table += "<h6 class='rating star7'>상품평</h6>";
+							break;
+						case 8:
+							table += "<h6 class='rating star8'>상품평</h6>";
+							break;
+						case 9:
+							table += "<h6 class='rating star9'>상품평</h6>";
+							break;
+						default :
+							table += "<h6 class='rating star10'>상품평</h6>";
+					}
+					table += "</td>"
 					table += "</tr>"
 			
 				$('.productList').append(table);
@@ -242,7 +307,8 @@ $(document).on('click', '#hstar', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}
@@ -253,7 +319,39 @@ $(document).on('click', '#hstar', function(e){
 					}
 					table += "</ul>";
 					table += "</td>";
-					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5>"
+					switch(product.score){
+						case 1:
+							table += "<h6 class='rating star1'>상품평</h6>";
+							break;
+						case 2:
+							table += "<h6 class='rating star2'>상품평</h6>";
+							break;
+						case 3:
+							table += "<h6 class='rating star3'>상품평</h6>";
+							break;
+						case 4:
+							table += "<h6 class='rating star4'>상품평</h6>";
+							break;
+						case 5:
+							table += "<h6 class='rating star5'>상품평</h6>";
+							break;
+						case 6:
+							table += "<h6 class='rating star6'>상품평</h6>";
+							break;
+						case 7:
+							table += "<h6 class='rating star7'>상품평</h6>";
+							break;
+						case 8:
+							table += "<h6 class='rating star8'>상품평</h6>";
+							break;
+						case 9:
+							table += "<h6 class='rating star9'>상품평</h6>";
+							break;
+						default :
+							table += "<h6 class='rating star10'>상품평</h6>";
+					}
+					table += "</td>"
 					table += "</tr>"
 			
 				$('.productList').append(table);
@@ -299,7 +397,8 @@ $(document).on('click', '#review', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}
@@ -310,7 +409,39 @@ $(document).on('click', '#review', function(e){
 					}
 					table += "</ul>";
 					table += "</td>";
-					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5>"
+					switch(product.score){
+						case 1:
+							table += "<h6 class='rating star1'>상품평</h6>";
+							break;
+						case 2:
+							table += "<h6 class='rating star2'>상품평</h6>";
+							break;
+						case 3:
+							table += "<h6 class='rating star3'>상품평</h6>";
+							break;
+						case 4:
+							table += "<h6 class='rating star4'>상품평</h6>";
+							break;
+						case 5:
+							table += "<h6 class='rating star5'>상품평</h6>";
+							break;
+						case 6:
+							table += "<h6 class='rating star6'>상품평</h6>";
+							break;
+						case 7:
+							table += "<h6 class='rating star7'>상품평</h6>";
+							break;
+						case 8:
+							table += "<h6 class='rating star8'>상품평</h6>";
+							break;
+						case 9:
+							table += "<h6 class='rating star9'>상품평</h6>";
+							break;
+						default :
+							table += "<h6 class='rating star10'>상품평</h6>";
+					}
+					table += "</td>"
 					table += "</tr>"
 			
 				$('.productList').append(table);
@@ -355,7 +486,8 @@ $(document).on('click', '#latest', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}
@@ -366,7 +498,39 @@ $(document).on('click', '#latest', function(e){
 					}
 					table += "</ul>";
 					table += "</td>";
-					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5><h6 class='rating star1'>상품평</h6></td>"
+					table += "<td><h4 class='seller'><i class='fas fa-home'></i>&nbsp;"+product.seller+"</h4><h5 class='badge power'>판매자등급</h5>"
+					switch(product.score){
+						case 1:
+							table += "<h6 class='rating star1'>상품평</h6>";
+							break;
+						case 2:
+							table += "<h6 class='rating star2'>상품평</h6>";
+							break;
+						case 3:
+							table += "<h6 class='rating star3'>상품평</h6>";
+							break;
+						case 4:
+							table += "<h6 class='rating star4'>상품평</h6>";
+							break;
+						case 5:
+							table += "<h6 class='rating star5'>상품평</h6>";
+							break;
+						case 6:
+							table += "<h6 class='rating star6'>상품평</h6>";
+							break;
+						case 7:
+							table += "<h6 class='rating star7'>상품평</h6>";
+							break;
+						case 8:
+							table += "<h6 class='rating star8'>상품평</h6>";
+							break;
+						case 9:
+							table += "<h6 class='rating star9'>상품평</h6>";
+							break;
+						default :
+							table += "<h6 class='rating star10'>상품평</h6>";
+					}
+					table += "</td>"
 					table += "</tr>"
 			
 				$('.productList').append(table);
