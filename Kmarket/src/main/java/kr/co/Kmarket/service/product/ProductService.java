@@ -165,8 +165,8 @@ public enum ProductService {
 	 * 카테고리별 총 게시물 갯수
 	 * @return
 	 */
-	public int selectCountProducts(String prodCate1, String prodCate2, String prodName, String descript) {
-		return dao.selectCountProducts(prodCate1, prodCate2, prodName, descript);
+	public int selectCountProducts(String prodNo, String prodCate1, String prodCate2, String prodName, String descript) {
+		return dao.selectCountProducts(prodNo, prodCate1, prodCate2, prodName, descript);
 	}
 	
 	// upload
@@ -177,11 +177,11 @@ public enum ProductService {
 		/**
 		 * 게시물 페이징
 		 */
-		public int boardPaging(HttpServletRequest req, String prodCate1, String prodCate2, String prodName, String descript) {
+		public int boardPaging(HttpServletRequest req, String prodNo, String prodCate1, String prodCate2, String prodName, String descript) {
 			String pg = req.getParameter("pg");
 			
 			int currentPage = 1; // 현재 페이지
-			int total = selectCountProducts(prodCate1, prodCate2, prodName, descript); // 총 게시물 갯수
+			int total = selectCountProducts(prodNo, prodCate1, prodCate2, prodName, descript); // 총 게시물 갯수
 			int lastPageNum = 0; // 마지막 페이지 번호
 			
 			// 페이지 마지막 번호 계산

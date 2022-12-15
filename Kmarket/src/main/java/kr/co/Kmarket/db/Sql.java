@@ -131,8 +131,8 @@ public class Sql {
 			+ "FROM `km_product_cate2` AS a "
 			+ "LEFT JOIN `km_product_cate1` AS b ON a.cate1 = b.cate1";
 	
-	public static final String SELECT_PROD_CATE = "SELECT * FROM `km_product_cate1` as a "
-												+ "JOIN `km_product_cate2` AS b ON a.cate1 = b.cate1 "
+	public static final String SELECT_PROD_CATE = "SELECT a.*, b.cate2, b.c2Name FROM `km_product_cate1` as a "
+												+ "LEFT JOIN `km_product_cate2` AS b ON a.cate1 = b.cate1 "
 												+ "WHERE a.cate1 = ? AND b.cate2 = ?";
 
 	// product_cart
