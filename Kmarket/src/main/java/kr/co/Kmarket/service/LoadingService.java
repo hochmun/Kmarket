@@ -28,7 +28,7 @@ public enum LoadingService {
 	 */
 	public void logout(Writer out) throws IOException {
 		// document.referrer => 이전페이지로 새로고침
-		out.write("<script>alert('로그아웃 하였습니다.');location.href = document.referrer;</script>");
+		out.write("<script>alert('로그아웃 하였습니다.');location.href = '/Kmarket/index.do';</script>");
 	}
 	
 	/**

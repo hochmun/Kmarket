@@ -49,6 +49,11 @@
                     		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
                     		<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
                     	</c:when>
+                    	<c:when test="${ sessUser.type ne 1 }">
+                    		<a href="${pageContext.request.contextPath}/admin/index.do">관리자</a>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+                    		<a href="#">마이페이지</a>
+                    	</c:when>
                     	<c:otherwise>
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
@@ -76,11 +81,11 @@
             <div class="menu">
                 <div>
                     <ul>
-                        <li><a href="#">히트상품</a></li>
-                        <li><a href="#">추천상품</a></li>
-                        <li><a href="#">최신상품</a></li>
+                        <li><a href="#hit">히트상품</a></li>
+                        <li><a href="#recommend">추천상품</a></li>
+                        <li><a href="#new">최신상품</a></li>
                         <li><a href="#">인기상품</a></li>
-                        <li><a href="#">할인상품</a></li>
+                        <li><a href="#discount">할인상품</a></li>
                     </ul>
                     <ul>
                         <li><a href="#">공지사항</a></li>

@@ -165,6 +165,77 @@ public class ProductDAO extends DBCP {
 		return pvo;
 	}
 	
+	/**
+	 * 2022/12/15 - 메인 페이지 => 베스트 상품 정보 불러오기
+	 * @author 심규영
+	 * @return 판매량 많은 순 
+	 */
+	public List<ProductVO> selectProductBest() {
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductDAO selectProductBest...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_PRODUCT_BEST);
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt("prodNo"));
+				vo.setProdName(rs.getString("prodName"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setDiscount(rs.getInt("discount"));
+				vo.setThumb1(rs.getString("thumb1"));
+				vo.setThumb2(rs.getString("thumb2"));
+				vo.setProdCate1(rs.getInt("prodCate1"));
+				vo.setProdCate2(rs.getInt("prodCate2"));
+				vos.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+
+	/**
+	 * 2022/12/15 메인 페이지 - hit, score, discount 많은 순서, 8개 불러오기
+	 * @author 심규영
+	 * @param mode
+	 * @return
+	 */
+	public List<ProductVO> selectProductListMode3(int mode) {
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductDAO selectProductListMode3...");
+			conn = getConnection();
+			
+			stmt = conn.createStatement();
+			
+			if(mode == 1) rs = stmt.executeQuery(Sql.SELECT_PRODUCT_HIT);
+			else if(mode == 2) rs = stmt.executeQuery(Sql.SELECT_PRODUCT_SCORE);
+			else if(mode == 3) rs = stmt.executeQuery(Sql.SELECT_PRODUCT_DISCOUNT);
+			else if(mode == 4) rs = stmt.executeQuery(Sql.SELECT_PRODUCT_DATE);
+			else return null;
+			
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt("prodNo"));
+				vo.setProdCate1(rs.getInt("prodCate1"));
+				vo.setProdCate2(rs.getInt("prodCate2"));
+				vo.setProdName(rs.getString("prodName"));
+				vo.setDescript(rs.getString("descript"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setDiscount(rs.getInt("discount"));
+				vo.setDelivery(rs.getInt("delivery"));
+				vo.setThumb2(rs.getString("thumb2"));
+				vos.add(vo);
+			}
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
 	
 	/**
 	 * 2022/12/13 - prodCate 가져오기

@@ -41,6 +41,24 @@ public enum ProductService {
 	}
 	
 	/**
+	 * 2022/12/15 메인 페이지 - 베스트 상품 정보 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<ProductVO> selectProductBest() {
+		return dao.selectProductBest();
+	}
+	
+	/**
+	 * 2022/12/15 메인 페이지 - hit, score, discount 많은 순서, 상품정보 8개 불러오기
+	 * @param mode
+	 * @return
+	 */
+	public List<ProductVO> selectProductListMode3(int mode) {
+		return dao.selectProductListMode3(mode);
+	}
+	
+	/**
 	 * 2022/12/13 카테고리1 이름 가져오기
 	 * @author 심규영
 	 * @param cate1

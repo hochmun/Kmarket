@@ -84,6 +84,14 @@ public enum MemberService {
 		return dao.selectMemberTerms();
 	}
 	
+	/**
+	 * 2022/12/15 주문하기 - 유저 정보 최신으로 갱신하기
+	 * @param memberUid
+	 * @return
+	 */
+	public MemberVO selectMemberInfo(String memberUid) {
+		return dao.selectMemberInfo(memberUid);
+	}
 	
 	/**
 	 * 2022/12/12 ID 중복체크
