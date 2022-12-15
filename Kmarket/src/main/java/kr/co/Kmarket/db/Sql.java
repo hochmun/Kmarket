@@ -79,6 +79,81 @@ public class Sql {
 	/** 상품목록 불러오기*/
 	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ? limit 10";
 	
+	/** 메인 페이지 - 베스트 상품 불러오기 => 판매량 많은 순 */
+	public static final String SELECT_PRODUCT_BEST = 
+			"SELECT "
+			+ "	`prodNo`,"
+			+ " `prodCate1`,"
+			+ " `prodCate2`,"
+			+ "	`prodName`,"
+			+ "	`price`,"
+			+ "	`discount`,"
+			+ "	`thumb1`,"
+			+ "	`thumb2` "
+			+ "FROM `km_product` ORDER BY `sold` DESC LIMIT 5";
+	
+	/** 메인 페이지 - hit, score, discount 많은 순서, 8개 불러오기 */
+	public static final String SELECT_PRODUCT_HIT = 
+			"SELECT "
+			+ "	`prodNo`,"
+			+ " `prodCate1`,"
+			+ " `prodCate2`,"
+			+ "	`prodName`,"
+			+ " `descript`,"
+			+ "	`price`,"
+			+ "	`discount`,"
+			+ " `delivery`,"
+			+ "	`thumb2` "
+			+ "FROM `km_product` ORDER BY `hit` DESC LIMIT 8";
+	public static final String SELECT_PRODUCT_SCORE = 
+			"SELECT "
+			+ "	`prodNo`,"
+			+ " `prodCate1`,"
+			+ " `prodCate2`,"
+			+ "	`prodName`,"
+			+ " `descript`,"
+			+ "	`price`,"
+			+ "	`discount`,"
+			+ " `delivery`,"
+			+ "	`thumb2` "
+			+ "FROM `km_product` ORDER BY `score` DESC LIMIT 8";
+	public static final String SELECT_PRODUCT_DISCOUNT = 
+			"SELECT "
+			+ "	`prodNo`,"
+			+ " `prodCate1`,"
+			+ " `prodCate2`,"
+			+ "	`prodName`,"
+			+ " `descript`,"
+			+ "	`price`,"
+			+ "	`discount`,"
+			+ " `delivery`,"
+			+ "	`thumb2` "
+			+ "FROM `km_product` ORDER BY `discount` DESC LIMIT 8";
+	public static final String SELECT_PRODUCT_DATE = 
+			"SELECT "
+					+ "	`prodNo`,"
+					+ " `prodCate1`,"
+					+ " `prodCate2`,"
+					+ "	`prodName`,"
+					+ " `descript`,"
+					+ "	`price`,"
+					+ "	`discount`,"
+					+ " `delivery`,"
+					+ "	`thumb2` "
+					+ "FROM `km_product` ORDER BY `rdate` DESC LIMIT 8";
+	/*
+	public String SELECT_PRODUCT_LIST_MODE3(int mode) {
+		String query = "SELECT * FROM `km_product` ORDER BY ";
+		
+		if(mode == 1) query += " `hit` ";
+		if(mode == 2) query += " `score` ";
+		if(mode == 3) query += " `discount` ";
+		
+		query += " DESC LIMIT 8 ";
+		
+		return query;
+	}
+	*/
 	
 	/** 상품목록 판매량순*/
 	public static final String SELECT_PRODUCT_LIST_SOLD = "SELECT * FROM `km_product` "
