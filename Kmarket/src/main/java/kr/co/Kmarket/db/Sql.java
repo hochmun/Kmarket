@@ -160,13 +160,13 @@ public class Sql {
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
 														+ "ORDER BY `sold` DESC";
 	/** 상품목록 낮은가격순*/
-	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT * FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT *, `price`*(100-`discount`)*0.01 AS `dprice` FROM `km_product` "
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-														+ "ORDER BY `price` ASC";
+														+ "ORDER BY `dprice` ASC";
 	/** 상품목록 높은가격순*/
-	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT * FROM `km_product` "
+	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT *, `price`*(100-`discount`)*0.01 AS `dprice` FROM `km_product` "
 														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-														+ "ORDER BY `price` DESC";
+														+ "ORDER BY `dprice` DESC";
 	/** 상품목록 높은별점순*/
 	public static final String SELECT_PRODUCT_LIST_HSTAR = "SELECT * FROM `km_product` "
 															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
@@ -182,9 +182,10 @@ public class Sql {
 	
 	/** 제목, 상품설명 키워드 검색*/
 	public static final String SELECT_COUNT_PRODUCTS = "SELECT COUNT(`prodNo`) FROM `km_product` "
-														+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
-														+ "AND (`prodName` REGEXP ? "
-														+ "OR `descript` REGEXP ?)";
+														+ "WHERE `prodCate1` = ? AND `prodCate2` = ?";
+	
+														/**+ "AND (`prodName` REGEXP ? "
+														+ "OR `descript` REGEXP ?)";  검색기능 추가시 해당 쿼리 고려*/
 
 	
 	public static final String SELECT_CATE1 = 

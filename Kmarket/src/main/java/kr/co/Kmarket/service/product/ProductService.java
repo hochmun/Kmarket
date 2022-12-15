@@ -1,10 +1,8 @@
 package kr.co.Kmarket.service.product;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -13,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import kr.co.Kmarket.dao.product.ProductDAO;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
-import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public enum ProductService {
@@ -183,8 +180,8 @@ public enum ProductService {
 	 * 카테고리별 총 게시물 갯수
 	 * @return
 	 */
-	public int selectCountProducts(String prodNo, String prodCate1, String prodCate2, String prodName, String descript) {
-		return dao.selectCountProducts(prodNo, prodCate1, prodCate2, prodName, descript);
+	public int selectCountProducts(String prodCate1, String prodCate2) {
+		return dao.selectCountProducts(prodCate1, prodCate2);
 	}
 	
 	// upload
@@ -202,132 +199,59 @@ public enum ProductService {
 	
 	// service
 		/**
-		 * 게시물 페이징
+		 * 2022/12/15 게시물 페이징
+		 * @author 김재준
 		 */
-		public int boardPaging(HttpServletRequest req, String prodNo, String prodCate1, String prodCate2, String prodName, String descript) {
-			String pg = req.getParameter("pg");
-			
-			int currentPage = 1; // 현재 페이지
-			int total = selectCountProducts(prodNo, prodCate1, prodCate2, prodName, descript); // 총 게시물 갯수
-			int lastPageNum = 0; // 마지막 페이지 번호
-			
-			// 페이지 마지막 번호 계산
-			if(total % 10 != 0) lastPageNum = (total/10)+1;
-			else lastPageNum = (total/10);
-			
-			// 전체 페이지 게시물 limit 시작값 계산
-			if(pg != null) currentPage = Integer.parseInt(pg);
-			int limitStart = (currentPage - 1) * 10;
-			
-			// 페이지 그룹 계산
-			int pageGroupCurrent = (int)Math.ceil(currentPage/10.0);
-			int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
-			int pageGroupEnd = pageGroupCurrent * 10;
-			
-			if (pageGroupEnd > lastPageNum) pageGroupEnd = lastPageNum;
-			
-			// 페이지 시작 번호 계산
-			int pageStartNum = total - limitStart;
-			
-			req.setAttribute("lastPageNum", lastPageNum);
-			req.setAttribute("currentPage", currentPage);
-			req.setAttribute("pageGroupCurrent", pageGroupCurrent);
-			req.setAttribute("pageGroupStart", pageGroupStart);
-			req.setAttribute("pageGroupEnd", pageGroupEnd);
-			req.setAttribute("pageStartNum", pageStartNum);
-			
-			return limitStart;
-		}
+	
+	
+	public int getLastPageNum(int total) {
+		int lastPageNum = 0;
 		
-		/**
-		 * 카테고리 변환
-		 
-		public String cateNameFormat(int cate1, int cate2) {
-			String titName = "";
-			logger.debug("cate1 : "+cate1+", cate2 : "+cate2);
-			switch(cate1) {
-				case 1:
-					titName = "cloth";
-					switch(cate2) {
-					case 1:
-						titName = "man";
-						break;
-					case 2:
-						titName = "woman";
-						break;
-					case 3:
-						titName = "goods";
-						break;
-					case 4:
-						titName = "beauty";
-						break;
-					default:
-						titName = "-1";
-					}
-					break;
-				case 2:
-					titName = "furniture";
-					switch(cate2) {
-					case 1:
-						titName = "pc";
-						break;
-					case 2:
-						titName = "furniture";
-						break;
-					case 3:
-						titName = "phone";
-						break;
-					case 4:
-						titName = "other";
-						break;
-					default:
-						titName = "-1";
-					}
-					break;
-				case 3:
-					titName = "food";
-					switch(cate2) {
-					case 1:
-						titName = "fresh";
-						break;
-					case 2:
-						titName = "processed";
-						break;
-					case 3:
-						titName = "health";
-						break;
-					case 4:
-						titName = "necess";
-						break;
-					default:
-						titName = "-1";
-					}
-					break;
-				case 4:
-					titName = "home";
-					switch(cate2) {
-					case 1:
-						titName = "DIY";
-						break;
-					case 2:
-						titName = "bed";
-						break;
-					case 3:
-						titName = "living";
-						break;
-					case 4:
-						titName = "office";
-						break;
-					default:
-						titName = "-1";
-						break;
-					}
-					break;
-				default:
-					titName = "-1";
-					break;
-			}
-			logger.debug("cate2 : "+titName);
-			return titName;
-		}*/
+		if(total % 10 == 0) {
+			lastPageNum = total / 10;
+		}else {
+			lastPageNum = total / 10 + 1;
+		}
+		return lastPageNum;
+		
+	}
+	
+	public int getCurrentPage(String pg) {
+		int currentPage = 1;
+		
+		if(pg != null) {
+			currentPage = Integer.parseInt(pg);
+		}
+		return currentPage;
+	}
+	
+	public int getLimitStart(int currentPage) {
+		int limitStart = 0;
+		limitStart = (currentPage - 1) * 10;
+		return limitStart;
+	}
+	
+	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		int pageGroupCurrent = (int)Math.ceil(currentPage / 10.0);
+		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
+		int pageGroupEnd = pageGroupCurrent * 10;
+		
+		if(pageGroupEnd > lastPageNum)	pageGroupEnd = lastPageNum;
+		
+		
+		int[] result = {pageGroupStart, pageGroupEnd};
+		return result;
+	}
+	
+	public int getPageStartNum(int total, int limitStart) {
+		int pageStartNum = 0;
+		pageStartNum = total - limitStart;
+		
+		return pageStartNum;
+	}
+	
+	public int getStartNum(int currentPage) {
+		return (currentPage - 1) * 10;
+	}
+	
 }
