@@ -97,8 +97,8 @@ $(document).on('click', '#low', function(e){
 					table += "<ul>";
 					if(product.discount > 0){
 						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del><span class='discount'>"+product.discount+"</span></li>";	
-						table += "<span class='discount'>"+product.discount+"%</span>";	
+						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
 						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
 					}

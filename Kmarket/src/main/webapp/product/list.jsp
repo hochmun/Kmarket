@@ -32,8 +32,8 @@
                  <ul>
                  <c:choose>
                  <c:when test="${product.discount gt 0}">
-                 		<li><ins class="dis-price"><fmt:formatNumber value="${ product.price * (100-product.discount) * 0.01}" pattern="#,###"/></ins>
-                         <del class="org-price"><fmt:formatNumber value="${ product.price }" pattern="#,###"/></del>
+                 		<li><ins class="dis-price"><fmt:formatNumber value="${ product.price * (100-product.discount) * 0.01}" pattern="#,###"/></ins></li>
+                         <li><del class="org-price"><fmt:formatNumber value="${ product.price }" pattern="#,###"/></del>
                          <span class="discount">${product.discount}%</span>
                      	</li>
                     </c:when>
