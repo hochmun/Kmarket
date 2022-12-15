@@ -18,7 +18,7 @@
  // 각 탭 클릭시 데이터 받기
  	$.get('/Kmarket/getLatests.do',(data)=>{
 			for(let latest of data) {
-				let url = "/Farmstory3/board/view.do?cate=5&tit=1&pg=1&no="+latest.no;
+				let url = "/Kmarket/product/list.do?pg=&cate1=11&cate2="+latest.no;
 				$('#tabs-1 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
 			}
 		});
