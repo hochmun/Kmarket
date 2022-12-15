@@ -30,7 +30,7 @@ $(document).on('click', '#sold', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -120,7 +120,7 @@ $(document).on('click', '#low', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -209,7 +209,7 @@ $(document).on('click', '#high', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -298,7 +298,7 @@ $(document).on('click', '#hstar', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -388,7 +388,7 @@ $(document).on('click', '#review', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -477,7 +477,7 @@ $(document).on('click', '#latest', function(e){
 				let price = product.price * (100-product.discount) * 0.01;
 				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
