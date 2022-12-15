@@ -1,5 +1,5 @@
 /**
- * 날짜 : 2022/10/21
+ * 날짜 : 2022/12/15
    이름 : 라성준
    내용 : 사용자 회원가입 유효성 검사 
  */
@@ -9,7 +9,6 @@ const rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,25
 const reCompany = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
 const reCeo = /^[ㄱ-힣]+$/;
 const reTel = /^\d{2,3}-\d{3,4}-\d{4}$/;
-const reFax =  /^\d{2,3}-\d{3,4}-\d{4}$/;
 const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const reName = /^[ㄱ-힣]+$/;
 const reHp = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
@@ -20,9 +19,8 @@ let isUidOk 	= false;
 let isPassOk 	= false;
 let isCompanyOk = false;
 let isCeoOk 	= false;
-let isTelOk = false;
-let isFaxOk = false;
-let isEmailOk = false;
+let isTelOk 	= false;
+let isEmailOk 	= false;
 
 function handleOnInput(el, maxlength) {
 	if(el.value.length > maxlength) {
@@ -133,19 +131,6 @@ $(function(){
 		}
 	});
 	
-	// 팩스번호 검사하기
-	$('input[name=kms_fax]').focusout(function(){
-		const fax = $(this).val();
-		
-		if (fax.match(reFax)) {
-			isFaxOk = true;
-			$('.msgFax').text('');
-		} else {
-			isFaxOk = false;
-			$('.msgFax').css('color','red').text('유효한 팩스번호가 아닙니다.');
-		}
-	});
-	
 	// 이메일 검사하기
 	$('input[name=kms_email]').focusout(function(){
 		const email = $(this).val();
@@ -187,7 +172,7 @@ $(function(){
 	});
 	
 	// 최종 폼 전송할 때
-	$('.register > form').submit(function(){
+	$('.registerSeller > form').submit(function(){
 		// ID 검증
 		if(!isUidOk) {
 			alert('아이디가 유효하지 않습니다.');
@@ -210,11 +195,6 @@ $(function(){
 		}
 		// 전화번호 검증
 		if(!isTelOk) {
-			alert('전화번호가 유효하지 않습니다.');
-			return false;
-		}
-		// 팩스번호 검증
-		if(!isFaxOk) {
 			alert('전화번호가 유효하지 않습니다.');
 			return false;
 		}

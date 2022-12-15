@@ -40,7 +40,7 @@
                     <tr>
                         <th><span class="essential">*</span>대표자</th>
                         <td><input type="text" name="kms_ceo" placeholder="대표자 입력" required
-                            ></td>
+                            ><span class="msgCeo"></span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>사업자등록번호</th>
