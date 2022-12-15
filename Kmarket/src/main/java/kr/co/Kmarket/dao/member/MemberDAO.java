@@ -34,7 +34,7 @@ public class MemberDAO extends DBCP {
 	
 	public void insertMemberType2(MemberVO vo) {
 		try {
-			logger.info("insertMember...");
+			logger.info("insertMemberSeller...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.INSERT_MEMBER_TYPE2);
 			psmt.setString(1, vo.getUid());

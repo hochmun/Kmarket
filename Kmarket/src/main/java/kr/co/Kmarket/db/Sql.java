@@ -33,7 +33,7 @@ public class Sql {
 			+ "`ceo`=?, "
 			+ "`bizRegNum`=?, "
 			+ "`comRegNum`=?, "
-			+ "`Tel`=?, "
+			+ "`tel`=?, "
 			+ "`fax`=?, "
 			+ "`email`=?, "
 			+ "`type`=2, "
@@ -41,8 +41,8 @@ public class Sql {
 			+ "`zip`=?, "
 			+ "`addr1`=?, "
 			+ "`addr2`=?, "
-			+ "`name`=?, "
-			+ "`hp`=?, "
+			+ "`manager`=?, "
+			+ "`managerHp`=?, "
 			+ "`regip`=?, "
 			+ "`rdate`=NOW()";
 	
