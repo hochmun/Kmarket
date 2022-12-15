@@ -17,11 +17,11 @@
     <div id="admin-wrapper">
         <header>
             <div>
-                <a href="/Kmarket/admin/index.do" class="logo"><img src="./img/admin logo.png" alt="admin_logo"></a>
+                <a href="${pageContext.request.contextPath}/admin/index.do" class="logo"><img src="./img/admin logo.png" alt="admin_logo"></a>
                 <p>
                     <span>홍길동님 반갑습니다</span>
-                    <a href="/Kmarket/admin/index.do">HOME |</a>
-                    <a href="#">로그아웃 |</a>
+                    <a href="${pageContext.request.contextPath}/index.do">HOME |</a>
+                    <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃 |</a>
                     <a href="#">고객센터</a>
                 </p>
             </div>

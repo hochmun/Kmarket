@@ -23,4 +23,6 @@ public class Cate2VO {
 	public void setC2Name(String c2Name) {
 		this.c2Name = c2Name;
 	}
+	
+	
 }
