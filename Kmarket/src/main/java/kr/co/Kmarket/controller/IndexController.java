@@ -21,9 +21,10 @@ public class IndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<Cate1VO> vos1 = service.selectcate1();
 		Map<String, Object> voss = service.selectCate1Cate2();
 		
-		req.setAttribute("vos1", voss.get("vos1"));
+		req.setAttribute("vos1", vos1);
 		req.setAttribute("vos2", voss.get("vos2"));
 		
 		// 페이지 포워드

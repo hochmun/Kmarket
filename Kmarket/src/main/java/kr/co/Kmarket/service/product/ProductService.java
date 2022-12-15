@@ -171,6 +171,15 @@ public enum ProductService {
 	
 	// upload
 	
+	/**
+	 * 2022/12/15 상품 조회수 증가
+	 * @author 심규영
+	 * @param prodNo
+	 */
+	public void updateProductHitCount(int prodNo) {
+		dao.updateProductHitCount(prodNo);
+	}
+	
 	// delete
 	
 	// service

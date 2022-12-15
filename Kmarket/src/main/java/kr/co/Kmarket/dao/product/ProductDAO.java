@@ -751,7 +751,7 @@ public class ProductDAO extends DBCP {
 				Cate1VO vo1 = new Cate1VO();
 				Cate2VO vo2 = new Cate2VO();
 				
-				vo1.setCate1(rs.getInt("cate1"));
+				vo2.setCate1(rs.getInt("cate1"));
 				vo1.setC1Name(rs.getString("c1Name"));
 				vo2.setCate2(rs.getInt("cate2"));
 				vo2.setC2Name(rs.getString("c2Name"));
@@ -770,6 +770,24 @@ public class ProductDAO extends DBCP {
 	}
 	
 	// upload
+	
+	/**
+	 * 2022/12/15 상품 조회수 증가
+	 * @author 심규영
+	 * @param prodNo
+	 */
+	public void updateProductHitCount(int prodNo) {
+		try {
+			logger.info("ProductDAO updateProductHitCount...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_HIT);
+			psmt.setInt(1, prodNo);
+			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	// delete
 }

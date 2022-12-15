@@ -135,6 +135,8 @@ public class Sql {
 												+ "JOIN `km_product_cate2` AS b ON a.cate1 = b.cate1 "
 												+ "WHERE a.cate1 = ? AND b.cate2 = ?";
 
+	public static final String UPDATE_PRODUCT_HIT = "UPDATE `km_product` SET `hit`=`hit`+1 WHERE `prodNo`=?";
+	
 	// product_cart
 	
 	public static final String INSERT_PRODUCT_CART = 

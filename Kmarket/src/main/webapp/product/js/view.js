@@ -59,22 +59,17 @@ function orderProduct(type){
 		return false;
 	}
 	
-	// const sessUserUid
-	// const prodNo
 	const countNum = document.getElementById('num').value;
-	// const price
-	// const discount
-	// const point
-	// const delivery
 	const totalStr = document.getElementById('totalprice').innerText;
 	const total = totalStr.replace(/,/g, "");
+	const points = point * countNum;
 	
 	// post 전송
 	$.ajax({
 		url: '/Kmarket/product/view.do',
 		type: 'POST',
 		data: {"uid":sessUserUid,"prodNo":prodNo,"count":countNum,"price":price,
-		"discount":discount,"point":point,"delivery":delivery,"total":total},
+		"discount":discount,"point":points,"delivery":delivery,"total":total},
 		dataType: 'json',
 		success: (data)=>{
 			if(data.result > 0) {
