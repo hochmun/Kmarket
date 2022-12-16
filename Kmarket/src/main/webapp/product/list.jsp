@@ -48,7 +48,7 @@
                      <li><span class="free-delivery">무료배송</span></li>
                      </c:when>
                      <c:otherwise>
-                     <li><span>배송비 ${product.delivery}</span></li>
+                     <li><span>배송비 <fmt:formatNumber value="${product.delivery}" pattern="#,###"/></span></li>
                      </c:otherwise>
                      </c:choose>
                  </ul>
@@ -97,17 +97,17 @@
         <div class="paging">
         <c:if test="${paging.pageGroupStart gt 1}">
             <span class="prev">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${paging.pageGroupStart - 1}"><&nbsp;이전</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupStart - 1}"><&nbsp;이전</a>
             </span>
             </c:if>
+            <c:forEach var="i" begin="${paging.pageGroupStart}" end="${paging.pageGroupEnd}" step="1">
             <span class="num">
-            <c:forEach var="i" begin="${paging.pageGroupStart}" end="${paging.pageGroupEnd}">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${paging.currentPage eq i?'on':'off'}">${i}</a>
-            </c:forEach>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${currentPage eq i?'on':'off'}">${i}</a>
             </span>
+            </c:forEach>
             <c:if test="${paging.pageGroupEnd lt paging.lastPageNum}">
             <span class="next">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${paging.pageGroupEnd + 1}">다음&nbsp;></a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupEnd + 1}">다음&nbsp;></a>
             </span>
             </c:if>
         </div>
