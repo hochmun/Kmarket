@@ -7,6 +7,8 @@ public class Sql {
 			"SELECT * FROM `km_member` WHERE `uid`=? AND `pass`=SHA2(?,256)";
 	public static final String SELECT_MEMBER_TERMS = 
 			"SELECT * FROM `km_member_terms`";
+	public static final String SELECT_MEMBER_WITH_UID = 
+			"SELECT * FROM `km_member` WHERE `uid`=?";
 	
 	/**일반회원*/
 	public static final String INSERT_MEMBER_TYPE1 = "INSERT INTO `km_member` SET "
@@ -227,4 +229,7 @@ public class Sql {
 			+ "`total`=?, "
 			+ "`rdate`=NOW()";
 
+	public static final String SELECT_PRODUCT_CART_WITH_UID = 
+			"SELECT * FROM `km_product_cart` WHERE `uid`=?";
+	
 }

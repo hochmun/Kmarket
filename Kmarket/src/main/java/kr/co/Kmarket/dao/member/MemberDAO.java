@@ -159,6 +159,52 @@ public class MemberDAO extends DBCP {
 		return result;
 	}
 	
+	/**
+	 * 2022/12/16 주문하기 - 유저 정보 갱신 하기
+	 * @author 심규영
+	 * @param memberUid
+	 * @return
+	 */
+	public MemberVO selectMemberInfo(String memberUid) {
+		MemberVO vo = new MemberVO();
+		try {
+			logger.info("memberDAO selectMemberInfo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_MEMBER_WITH_UID);
+			psmt.setString(1, memberUid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setUid(rs.getString(1));
+				vo.setPass(rs.getString(2));
+				vo.setName(rs.getString(3));
+				vo.setGender(rs.getInt(4));
+				vo.setHp(rs.getString(5));
+				vo.setEmail(rs.getString(6));
+				vo.setType(rs.getInt(7));
+				vo.setPoint(rs.getInt(8));
+				vo.setLevel(rs.getInt(9));
+				vo.setZip(rs.getString(10));
+				vo.setAddr1(rs.getString(11));
+				vo.setAddr2(rs.getString(12));
+				vo.setCompany(rs.getString(13));
+				vo.setCeo(rs.getString(14));
+				vo.setBizRegNum(rs.getString(15));
+				vo.setComRegNum(rs.getString(16));
+				vo.setTel(rs.getString(17));
+				vo.setManager(rs.getString(18));
+				vo.setManagerHp(rs.getString(19));
+				vo.setFax(rs.getString(20));
+				vo.setRegip(rs.getString(21));
+				vo.setWdate(rs.getString(22));
+				vo.setRdate(rs.getString(23));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
+	}
+	
 	// upload
 	
 	// delete
