@@ -51,7 +51,7 @@ function usedPoint() {
 		return false;
 	}
 	
-	if (value2 > havingPoint) {
+	if (parseInt(value2) > parseInt(havingPoint)) {
 		alert('소유하고 있는 포인트 보다 높은 값을 사용 할 수 없습니다.');
 		return false;
 	}
