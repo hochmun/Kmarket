@@ -29,8 +29,12 @@ $(document).on('click', '#sold', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -38,16 +42,16 @@ $(document).on('click', '#sold', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";
@@ -119,8 +123,12 @@ $(document).on('click', '#low', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -128,16 +136,16 @@ $(document).on('click', '#low', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";
@@ -208,8 +216,12 @@ $(document).on('click', '#high', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -217,16 +229,16 @@ $(document).on('click', '#high', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";
@@ -297,8 +309,12 @@ $(document).on('click', '#hstar', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -306,16 +322,16 @@ $(document).on('click', '#hstar', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";
@@ -387,8 +403,12 @@ $(document).on('click', '#review', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -396,16 +416,16 @@ $(document).on('click', '#review', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";
@@ -476,8 +496,12 @@ $(document).on('click', '#latest', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
+				const cn1 = price.toLocaleString('ko-KR');
+				const cn2 = product.price.toLocaleString('ko-KR');
+				const cn3 = product.delivery.toLocaleString('ko-KR');
+				
 				let table  = "<tr>";
-					table += "<td><a href='#' class='thumb'><img src='https://via.placeholder.com/120x120"+product.thumb1+"' alt='상품이미지'></a></td>";
+					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";
 					table += "<td>"
 					table += "<h3 class='name'>"+product.prodName+"</h3>";
 					table += "<a href='#' class='desc'>"+product.descript+"</a>";
@@ -485,16 +509,16 @@ $(document).on('click', '#latest', function(e){
 					table += "<td>";
 					table += "<ul>";
 					if(product.discount > 0){
-						table += "<li><ins class='dis-price'>"+price+"</ins></li>";
-						table += "<li><del class='org-price'>"+product.price+"</del>";	
+						table += "<li><ins class='dis-price'>"+cn1+"</ins></li>";
+						table += "<li><del class='org-price'>"+cn2+"</del>";	
 						table += "<span class='discount'>"+product.discount+"%</span></li>";	
 					}else{
-						table += "<li><del class='dis-price'>"+product.price+"</del></li>";	
+						table += "<li><del class='dis-price'>"+cn2+"</del></li>";	
 					}
 					if(product.delivery == 0){
 						table += "<li><span class='free-delivery'>무료배송</span></li>";	
 					}else{
-						table += "<li><span>배송비 "+product.delivery+"</span></li>";	
+						table += "<li><span>배송비 "+cn3+"</span></li>";	
 					}
 					table += "</ul>";
 					table += "</td>";

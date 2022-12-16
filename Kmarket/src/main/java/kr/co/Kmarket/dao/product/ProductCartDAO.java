@@ -1,5 +1,8 @@
 package kr.co.Kmarket.dao.product;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.ProductCartVO;
@@ -37,6 +40,40 @@ public class ProductCartDAO extends DBCP {
 	}
 	
 	// read
+	
+	/**
+	 * 2022/12/16 product/order - 유저 장바구니 정보 가져오기
+	 * @param uid
+	 * @return
+	 */
+	public List<ProductCartVO> selectProductCartWithUid(String uid) {
+		List<ProductCartVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductCartVO selectProductCartWithUid...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_CART_WITH_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductCartVO vo = new ProductCartVO();
+				vo.setCartNo(rs.getInt("cartNo"));
+				vo.setUid(rs.getString("uid"));
+				vo.setProdNo(rs.getInt("prodNo"));
+				vo.setCount(rs.getInt("count"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setDiscount(rs.getInt("discount"));
+				vo.setPoint(rs.getInt("point"));
+				vo.setDelivery(rs.getInt("delivery"));
+				vo.setTotal(rs.getInt("total"));
+				vo.setRdate(rs.getString("rdate"));
+				vos.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
 	
 	// upload
 	

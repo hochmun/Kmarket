@@ -1,5 +1,7 @@
 package kr.co.Kmarket.service.product;
 
+import java.util.List;
+
 import javax.servlet.ServletRequest;
 
 import org.slf4j.Logger;
@@ -51,6 +53,15 @@ public enum ProductCartService {
 	}
 	
 	// read
+	
+	/**
+	 * 2022/12/16 product/order - 유저 장바구니 불러오기
+	 * @param uid
+	 * @return
+	 */
+	public List<ProductCartVO> selectProductCartWithUid(String uid) {
+		return dao.selectProductCartWithUid(uid);
+	}
 	
 	// upload
 	
