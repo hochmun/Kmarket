@@ -30,7 +30,7 @@ public class ProductCate1 extends HttpServlet{
 		
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(prods);
-		resp.setContentType("application/x-www-form-urlencoded;charset=UTF-8");
+		resp.setContentType("application/json;charset=UTF-8");		
 		
 		PrintWriter writer = resp.getWriter();
 		writer.print(jsonData);
