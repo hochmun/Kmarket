@@ -27,9 +27,9 @@ public class ProductListController extends HttpServlet{
 		String prodCate2 = req.getParameter("cate2");
 		
 		String pg = req.getParameter("pg");
-		if(pg == null || pg.trim().equals("")){
-		pg = "0";
-		}
+//		if(pg == null || pg.trim().equals("")){
+//		pg = "";
+//		}
 		
 		/*product list 가져오기*/
 		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2);

@@ -203,7 +203,7 @@ public enum ProductService {
 		 * @author 김재준
 		 */
 	
-	
+	// 마지막 페이지 번호
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0;
 		
@@ -215,19 +215,19 @@ public enum ProductService {
 		return lastPageNum;
 		
 	}
-	
+	// 현재 페이지
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
 		
-		if(pg != null) {
+		if(pg != null && !pg.equals("")) {
 			currentPage = Integer.parseInt(pg);
+			
 		}
 		return currentPage;
 	}
-	
+	// 전체 페이지 게시물 limit 시작값 계산
 	public int getLimitStart(int currentPage) {
-		int limitStart = 0;
-		limitStart = (currentPage - 1) * 10;
+		int limitStart = (currentPage - 1) * 10;
 		return limitStart;
 	}
 	
@@ -244,8 +244,7 @@ public enum ProductService {
 	}
 	
 	public int getPageStartNum(int total, int limitStart) {
-		int pageStartNum = 0;
-		pageStartNum = total - limitStart;
+		int pageStartNum = total - limitStart;
 		
 		return pageStartNum;
 	}
