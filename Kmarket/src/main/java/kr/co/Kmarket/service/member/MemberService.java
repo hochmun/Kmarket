@@ -89,9 +89,9 @@ public enum MemberService {
 	 * @param memberUid
 	 * @return
 	 */
-	public MemberVO selectMemberInfo(String memberUid) {
-		return dao.selectMemberInfo(memberUid);
-	}
+	//public MemberVO selectMemberInfo(String memberUid) {
+		//return dao.selectMemberInfo(memberUid);
+	//}
 	
 	/**
 	 * 2022/12/12 ID 중복체크
