@@ -95,17 +95,17 @@
 
         <!-- 상품목록 페이지번호 -->
         <div class="paging">
-        <c:if test="${paging.pageGroupStart gt 1}">
+        <c:if test="${pageGroupStart gt 1}">
             <span class="prev">
                 <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupStart - 1}"><&nbsp;이전</a>
             </span>
             </c:if>
-            <c:forEach var="i" begin="${paging.pageGroupStart}" end="${paging.pageGroupEnd}" step="1">
+            <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
             <span class="num">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${currentPage eq i?'on':'off'}">${i}</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${currentPage eq i ? 'on' : 'off'}">${i}</a>
             </span>
             </c:forEach>
-            <c:if test="${paging.pageGroupEnd lt paging.lastPageNum}">
+            <c:if test="${pageGroupEnd lt lastPageNum}">
             <span class="next">
                 <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupEnd + 1}">다음&nbsp;></a>
             </span>

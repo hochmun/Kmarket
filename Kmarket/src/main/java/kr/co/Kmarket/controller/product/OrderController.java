@@ -27,7 +27,7 @@ public class OrderController extends HttpServlet {
 		MemberVO voNo = (MemberVO) req.getSession().getAttribute("sessUser");
 		
 		// 유저 정보 갱신 하기
-		MemberVO mvo = memberService.selectMemberInfo(voNo.getUid());
+		// MemberVO mvo = memberService.selectMemberInfo(voNo.getUid());
 		
 		// 갱신된 유저 정보로 장바구니 정보 가져오기
 		List<ProductCartVO> pcvos = productCartService.selectProductCartWithUid(mvo.getUid());
