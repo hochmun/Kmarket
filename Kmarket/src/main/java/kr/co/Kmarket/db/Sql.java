@@ -81,6 +81,11 @@ public class Sql {
 	/** 상품목록 불러오기*/
 	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ? limit 10";
 	
+	public static final String SELECT_PRODUCTS_CONDITION = "SELECT * FROM `km_product` "
+															+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
+															+ "ORDER BY `prodNo` desc"
+															+ "limit 10";
+	
 	/** 메인 페이지 - 베스트 상품 불러오기 => 판매량 많은 순 */
 	public static final String SELECT_PRODUCT_BEST = 
 			"SELECT "

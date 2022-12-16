@@ -3,7 +3,6 @@ package kr.co.Kmarket.service.product;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -204,53 +203,43 @@ public enum ProductService {
 		 */
 	
 	// 마지막 페이지 번호
-	public int getLastPageNum(int total) {
-		int lastPageNum = 0;
-		
-		if(total % 10 == 0) {
-			lastPageNum = total / 10;
-		}else {
-			lastPageNum = total / 10 + 1;
-		}
-		return lastPageNum;
-		
-	}
-	// 현재 페이지
-	public int getCurrentPage(String pg) {
-		int currentPage = 1;
-		
-		if(pg != null && !pg.equals("")) {
-			currentPage = Integer.parseInt(pg);
+		public int getLastPageNum(int total) {
+			int lastPageNum = (int)Math.ceil(total / 10.0);
+			
+			return lastPageNum;
 			
 		}
-		return currentPage;
-	}
-	// 전체 페이지 게시물 limit 시작값 계산
-	public int getLimitStart(int currentPage) {
-		int limitStart = (currentPage - 1) * 10;
-		return limitStart;
-	}
-	
-	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
-		int pageGroupCurrent = (int)Math.ceil(currentPage / 10.0);
-		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
-		int pageGroupEnd = pageGroupCurrent * 10;
+		// 현재 페이지
+		public int getCurrentPage(String pg) {
+			int currentPage = 1;
+			return currentPage;
+		}
+		// 전체 페이지 게시물 limit 시작값 계산
+		public int getLimitStart(int currentPage) {
+			int limitStart = (currentPage - 1) * 10;
+			return limitStart;
+		}
 		
-		if(pageGroupEnd > lastPageNum)	pageGroupEnd = lastPageNum;
+		public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+			int pageGroupCurrent = (int)Math.ceil(currentPage / 10.0);
+			int pageGroupStart = (int)((pageGroupCurrent - 1) * 10.0 + 1);
+			int pageGroupEnd = (int)(pageGroupCurrent * 10.0);
+			
+			if(pageGroupEnd > lastPageNum)	pageGroupEnd = lastPageNum;
+			
+			
+			int[] result = {pageGroupStart, pageGroupEnd};
+			return result;
+		}
 		
+		public int getPageStartNum(int total, int limitStart) {
+			int pageStartNum = total - limitStart;
+			
+			return pageStartNum;
+		}
 		
-		int[] result = {pageGroupStart, pageGroupEnd};
-		return result;
-	}
-	
-	public int getPageStartNum(int total, int limitStart) {
-		int pageStartNum = total - limitStart;
-		
-		return pageStartNum;
-	}
-	
-	public int getStartNum(int currentPage) {
-		return (currentPage - 1) * 10;
-	}
+		public int getStartNum(int currentPage) {
+			return (currentPage - 1) * 10;
+		}
 	
 }

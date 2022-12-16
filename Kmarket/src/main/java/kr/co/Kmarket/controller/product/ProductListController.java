@@ -31,11 +31,6 @@ public class ProductListController extends HttpServlet{
 //		pg = "";
 //		}
 		
-		/*product list 가져오기*/
-		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2);
-		/*prodCate 가져오기*/
-		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
-		
 		/**
 		 * 페이징
 		 */
@@ -51,6 +46,14 @@ public class ProductListController extends HttpServlet{
 		int pageStartNum = service.getPageStartNum(total, limitStart);
 		int start = service.getStartNum(currentPage);
 		
+		if(req.getParameter("pg") != null && !req.getParameter("pg").equals("")) {
+			currentPage = Integer.parseInt(req.getParameter("pg"));
+		}
+		
+		/*product list 가져오기*/
+		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2);
+		/*prodCate 가져오기*/
+		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
 		
 		req.setAttribute("cvo", cvo); // selectProducts
 		req.setAttribute("pg", pg); 
@@ -59,8 +62,8 @@ public class ProductListController extends HttpServlet{
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("limitStart", limitStart);
-		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageGroupEnd", result[1]);
+		req.setAttribute("pageGroupStart", result[0]);
 		req.setAttribute("pageStartNum", pageStartNum);
 		req.setAttribute("start", start);
 		req.getRequestDispatcher("/product/list.jsp").forward(req, resp);
