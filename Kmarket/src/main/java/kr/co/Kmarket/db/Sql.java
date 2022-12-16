@@ -230,6 +230,15 @@ public class Sql {
 			+ "`rdate`=NOW()";
 
 	public static final String SELECT_PRODUCT_CART_WITH_UID = 
-			"SELECT * FROM `km_product_cart` WHERE `uid`=?";
+			"SELECT "
+				+ "pc.*, "
+				+ "p.thumb1, "
+				+ "p.prodCate1, "
+				+ "p.prodCate2, "
+				+ "p.prodName, "
+				+ "p.descript "
+			+ "FROM `km_product_cart` AS pc "
+			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
+			+ "WHERE pc.`uid`=?";
 	
 }
