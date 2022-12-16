@@ -1,11 +1,14 @@
 package kr.co.Kmarket.dao.product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.ProductCartVO;
+import kr.co.Kmarket.vo.ProductVO;
 
 public class ProductCartDAO extends DBCP {
 	
@@ -44,7 +47,7 @@ public class ProductCartDAO extends DBCP {
 	/**
 	 * 2022/12/16 product/order - 유저 장바구니 정보 가져오기
 	 * @param uid
-	 * @return
+	 * @return Map<String, Object> <= List<ProductCartVO> pcvos, List<ProductVO> pvos
 	 */
 	public List<ProductCartVO> selectProductCartWithUid(String uid) {
 		List<ProductCartVO> vos = new ArrayList<>();
@@ -66,6 +69,13 @@ public class ProductCartDAO extends DBCP {
 				vo.setDelivery(rs.getInt("delivery"));
 				vo.setTotal(rs.getInt("total"));
 				vo.setRdate(rs.getString("rdate"));
+				
+				vo.setThumb1(rs.getString("thumb1"));
+				vo.setProdCate1(rs.getInt("prodCate1"));
+				vo.setProdCate2(rs.getInt("prodCate2"));
+				vo.setProdName(rs.getString("prodName"));
+				vo.setDescript(rs.getString("descript"));
+				
 				vos.add(vo);
 			}
 			close();
