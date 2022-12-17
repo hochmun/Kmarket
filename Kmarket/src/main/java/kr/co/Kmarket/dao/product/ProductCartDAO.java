@@ -88,5 +88,28 @@ public class ProductCartDAO extends DBCP {
 	// upload
 	
 	// delete
+	/**
+	 * 2022/12/18 product/order - 장바구니에 상품 정보 삭제
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void deleteProductCarts(List<ProductCartVO> vos) {
+		try {
+			logger.info("ProductCartDAO deleteProductCartInfo...");
+			conn = getConnection();
+			
+			for(ProductCartVO vo : vos) {
+				psmt = conn.prepareStatement(Sql.DELETE_PRODUCT_CART);
+				
+				psmt.setString(1, vo.getUid());
+				
+				psmt.executeUpdate();
+			}
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 }

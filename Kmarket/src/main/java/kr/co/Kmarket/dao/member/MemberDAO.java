@@ -5,6 +5,7 @@ import kr.co.Kmarket.db.Sql;
 
 import kr.co.Kmarket.vo.MemberTermsVO;
 import kr.co.Kmarket.vo.MemberVO;
+import kr.co.Kmarket.vo.ProductOrderVO;
 
 public class MemberDAO extends DBCP {
 	// create 
@@ -206,6 +207,29 @@ public class MemberDAO extends DBCP {
 	}
 	
 	// upload
+	
+	/**
+	 * 2022/12/17 product/order - 회원 정보의 누적 포인트 수정
+	 * @author 심규영
+	 * @param vo
+	 */
+	public void updateMemberPoint(ProductOrderVO vo) {
+		try {
+			logger.info("MemberDAO updateMemberPoint...");
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(Sql.UPDATE_MEMBER_IN_POINT);
+			psmt.setInt(1, vo.getSavePoint());
+			psmt.setInt(2, vo.getUsedPoint());
+			psmt.setString(3, vo.getOrdUid());
+			
+			psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
 	
 	// delete
 }

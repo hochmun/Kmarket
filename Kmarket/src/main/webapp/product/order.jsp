@@ -80,6 +80,7 @@
 
 			<script>
 				const productTotal2 = "${ productTotal }"; // 전체 결제 금액
+				const savePoint = "${ productPoint }"; // 전체 결제 후 누적 포인트
 			</script>
 
 	        <!-- 최종 결제 정보 -->
@@ -111,7 +112,7 @@
 	                    <td id="totallyTotal"><fmt:formatNumber value="${ productTotal }" pattern="#,###"/></td>
 	                </tr>
 	            </table>
-	            <input type="button" name="" value="결제하기">
+	            <input type="button" name="" value="결제하기" onclick="orderComplete()">
 	        </div>
 
 	        <!-- 배송정보 -->

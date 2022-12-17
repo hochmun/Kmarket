@@ -67,4 +67,13 @@ public enum ProductCartService {
 	// upload
 	
 	// delete
+	/**
+	 * 2022/12/18 product/order - 장바구니에 상품 정보 삭제
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void deleteProductCarts(List<ProductCartVO> vos) {
+		dao.deleteProductCarts(vos);
+	}
+	
 }
