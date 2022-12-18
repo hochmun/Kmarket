@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
-<script src="./js/product2.js"></script>
+<script src="./js/product.js"></script>
     <section class="list">
         <!-- 제목, 페이지 네비게이션 -->
         <nav>
