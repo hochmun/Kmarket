@@ -203,57 +203,6 @@ public enum ProductService {
 		 * @author 김재준
 		 */
 	
-//	// 마지막 페이지 번호
-//	public int getLastPageNum(int total) {
-//		int lastPageNum = 0;
-//		
-//		if(total % 10 == 0) {
-//			lastPageNum = (total / 10);
-//		}else {
-//			lastPageNum = (total / 10) + 1;
-//		}
-//		return lastPageNum;
-//		
-//	}
-//	// 현재 페이지
-//	public int getCurrentPage(String pg) {
-//		int currentPage = 1;
-//		
-//		if(pg != null && !pg.equals("")) {
-//			currentPage = Integer.parseInt(pg);
-//			
-//		}
-//		return currentPage;
-//	}
-//	// 전체 페이지 게시물 limit 시작값 계산
-//	public int getLimitStart(int currentPage) {
-//		int limitStart = 0;
-//		limitStart = (currentPage - 1) * 10;
-//		return limitStart;
-//	}
-//	
-//	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
-//		int pageGroupCurrent = (int)Math.ceil(currentPage / 10.0);
-//		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
-//		int pageGroupEnd = pageGroupCurrent * 10;
-//		
-//		if(pageGroupEnd > lastPageNum)	pageGroupEnd = lastPageNum;
-//		
-//		
-//		int[] result = {pageGroupStart, pageGroupEnd};
-//		return result;
-//	}
-//	
-//	public int getPageStartNum(int total, int limitStart) {
-//		int pageStartNum = total - limitStart;
-//		
-//		return pageStartNum;
-//	}
-//	
-//	public int getStartNum(int currentPage) {
-//		return (currentPage - 1) * 10;
-//	}
-	
 	public int boardPaging(HttpServletRequest req, String prodCate1, String prodCate2) {
 		String pg = req.getParameter("pg");
 		

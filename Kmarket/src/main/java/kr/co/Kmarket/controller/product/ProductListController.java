@@ -37,16 +37,8 @@ public class ProductListController extends HttpServlet{
 		 * 페이징
 		 */
 		
-		/*전체 상품 수 가져오기*/
-//		int total = service.selectCountProducts();
-		
 		/*페이지 처리*/
-//		int lastPageNum = service.getLastPageNum(total);
-//		int currentPage = service.getCurrentPage(pg);
 		int limitStart = service.boardPaging(req, prodCate1, prodCate2);
-//		int[] result = service.getPageGroupNum(currentPage, lastPageNum);
-//		int pageStartNum = service.getPageStartNum(total, limitStart);
-//		int start = service.getStartNum(currentPage);
 		
 		/*product list 가져오기*/
 		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2, limitStart);
@@ -57,13 +49,7 @@ public class ProductListController extends HttpServlet{
 		req.setAttribute("pvos", pvos);
 		req.setAttribute("pvos", service.selectProducts(prodCate1, prodCate2, limitStart));
 		
-//		req.setAttribute("lastPageNum", lastPageNum);
-//		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("limitStart", limitStart);
-//		req.setAttribute("pageGroupStart", result[0]);
-//		req.setAttribute("pageGroupEnd", result[1]);
-//		req.setAttribute("pageStartNum", pageStartNum);
-//		req.setAttribute("start", start);
 		req.getRequestDispatcher("/product/list.jsp").forward(req, resp);
 		}
 	}
