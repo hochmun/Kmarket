@@ -22,6 +22,8 @@ public class GetCate1Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json;charset=UTF-8");
 		
+		// cate1 값이 없으면 cate1 가져오기
+		// cate1 값이 있으면 해당 category의 cate2 가져 오기
 		if(req.getParameter("cate1") == null || req.getParameter("cate1") == "")
 			resp.getWriter().print(new Gson().toJson(service.selectcate1()));
 		else resp.getWriter().print(new Gson().toJson(service.selectcate2(req.getParameter("cate1"))));
