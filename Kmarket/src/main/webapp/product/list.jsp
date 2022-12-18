@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
-<script src="./js/product.js"></script>
+<script src="./js/product2.js"></script>
     <section class="list">
         <!-- 제목, 페이지 네비게이션 -->
         <nav>
@@ -95,17 +95,17 @@
 
         <!-- 상품목록 페이지번호 -->
         <div class="paging">
-        <c:if test="${paging.pageGroupStart gt 1}">
+        <c:if test="${pageGroupStart gt 1}">
             <span class="prev">
                 <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupStart - 1}"><&nbsp;이전</a>
             </span>
             </c:if>
-            <c:forEach var="i" begin="${paging.pageGroupStart}" end="${paging.pageGroupEnd}" step="1">
+            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
             <span class="num">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${currentPage eq i?'on':'off'}">${i}</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
             </span>
             </c:forEach>
-            <c:if test="${paging.pageGroupEnd lt paging.lastPageNum}">
+            <c:if test="${pageGroupEnd lt lastPageNum}">
             <span class="next">
                 <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupEnd + 1}">다음&nbsp;></a>
             </span>
