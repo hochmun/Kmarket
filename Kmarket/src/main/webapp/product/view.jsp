@@ -107,10 +107,10 @@
                 
                 	<c:choose>
                 		<c:when test="${ vo.discount gt 0 }">
-                			<span id="totalprice"><fmt:formatNumber value="${ disprice }" pattern="#,###"/></span>
+                			<span id="totalprice"><fmt:formatNumber value="${ disprice + vo.delivery }" pattern="#,###"/></span>
                 		</c:when>
                 		<c:otherwise>
-                			<span id="totalprice"><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></span>
+                			<span id="totalprice"><fmt:formatNumber value="${ vo.price + vo.delivery }" pattern="#,###"/></span>
                 		</c:otherwise>
                 	</c:choose>
                 	

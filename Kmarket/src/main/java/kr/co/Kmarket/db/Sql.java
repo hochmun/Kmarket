@@ -265,6 +265,18 @@ public class Sql {
 			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
 			+ "WHERE pc.`uid`=?";
 	
+	public static final String SELECT_PRODUCT_CART_WITH_CARTNO = 
+			"SELECT "
+				+ "pc.*, "
+				+ "p.thumb1, "
+				+ "p.prodCate1, "
+				+ "p.prodCate2, "
+				+ "p.prodName, "
+				+ "p.descript "
+			+ "FROM `km_product_cart` AS pc "
+			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
+			+ "WHERE pc.`cartNo`=?";
+	
 	/** product/order - 장바구니에 상품 정보 삭제 */
 	public static final String DELETE_PRODUCT_CART = 
 			"DELETE FROM `km_product_cart` WHERE `cartNo`=?";
@@ -295,9 +307,12 @@ public class Sql {
 	public static final String SELECT_PRODUCT_ORDER_ORDERNO = 
 			"SELECT `ordNo` "
 			+ "FROM `km_product_order` "
-			+ "WHERE `ordUid`=?, "
+			+ "WHERE `ordUid`=? "
 			+ "ORDER BY `ordNo` DESC "
 			+ "LIMIT 1";
+	
+	public static final String SELECT_PRODUCT_ORDER_WITH_ORDNO = 
+			"SELECT * FROM `km_product_order` WHERE `ordNo`=?";
 	
 	// product_order_item
 	
@@ -311,5 +326,17 @@ public class Sql {
  			+ "`point`=?, "
  			+ "`delivery`=?, "
  			+ "`total`=?";
-
+ 	
+  	public static final String SELECT_PRODUCT_LIST_WITH_ORDNO = 
+  			"SELECT "
+  			+ "	oi.*, "
+  			+ "	p.prodCate1, "
+  			+ "	p.prodCate2, "
+  			+ "	p.thumb1, "
+  			+ "	p.prodName, "
+  			+ "	p.descript "
+  			+ "FROM `km_product_order_item` AS oi "
+  			+ "JOIN `km_product` AS p ON oi.prodNo = p.prodNo "
+  			+ "WHERE `ordNo`=?;";
+ 	
 }

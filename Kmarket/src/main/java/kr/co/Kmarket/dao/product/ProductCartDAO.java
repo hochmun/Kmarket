@@ -82,6 +82,52 @@ public class ProductCartDAO extends DBCP {
 		return vos;
 	}
 	
+	/**
+	 * 2022/12/20 - product/order - 장바구니번호로 장바구니 정보 받기
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public List<ProductCartVO> selectProductCartWithCartNo(String[] arrays) {
+		List<ProductCartVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductCartDAO selectProductCartWithCartNo...");
+			conn = getConnection();
+			
+			for (String array : arrays) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_CART_WITH_CARTNO);
+				psmt.setString(1, array);
+				rs = psmt.executeQuery();
+				if(rs.next()) {
+					ProductCartVO vo = new ProductCartVO();
+					vo.setCartNo(rs.getInt("cartNo"));
+					vo.setUid(rs.getString("uid"));
+					vo.setProdNo(rs.getInt("prodNo"));
+					vo.setCount(rs.getInt("count"));
+					vo.setPrice(rs.getInt("price"));
+					vo.setDiscount(rs.getInt("discount"));
+					vo.setPoint(rs.getInt("point"));
+					vo.setDelivery(rs.getInt("delivery"));
+					vo.setTotal(rs.getInt("total"));
+					vo.setRdate(rs.getString("rdate"));
+					
+					vo.setThumb1(rs.getString("thumb1"));
+					vo.setProdCate1(rs.getInt("prodCate1"));
+					vo.setProdCate2(rs.getInt("prodCate2"));
+					vo.setProdName(rs.getString("prodName"));
+					vo.setDescript(rs.getString("descript"));
+					
+					vos.add(vo);
+				}
+			}
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
 	// upload
 	
 	// delete
@@ -98,7 +144,7 @@ public class ProductCartDAO extends DBCP {
 			for(ProductCartVO vo : vos) {
 				psmt = conn.prepareStatement(Sql.DELETE_PRODUCT_CART);
 				
-				psmt.setString(1, vo.getUid());
+				psmt.setInt(1, vo.getCartNo());
 				
 				psmt.executeUpdate();
 			}

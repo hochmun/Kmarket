@@ -147,6 +147,7 @@ function orderComplete() {
 	const usedPoint = document.getElementById('totallyPoint').innerText.replace(/,/g,"");
 	const ordTotPrice = document.getElementById('totallyTotal').innerText.replace(/,/g,"");
 	
+	console.log(productCartNoArray);
 	
 	// 유효성 검사
 	if(orderer == '') {
@@ -176,6 +177,7 @@ function orderComplete() {
 	
 	// 비동기 ajax post 전송 => order.do
 	const jsonData = {
+		"productCartNoArray":productCartNoArray,
 		"ordCount":ordCount,
 		"ordPrice":ordPrice,
 		"ordDiscount":ordDiscount,
@@ -196,10 +198,11 @@ function orderComplete() {
 		type: 'POST',
 		data: jsonData,
 		dataType: 'json',
+		traditional: true,
 		success: (data)=>{
 			if(data.ordNo != '' || data.ordNo != null) {
 				alert('주문을 완료 했습니다.');
-				location.href = '/Kmarket/product/complete.do?o='+data.ordNo;
+				location.href = '/Kmarket/product/complete.do';
 			} else {
 				alert('주문에 실패 했습니다.');
 				return false;

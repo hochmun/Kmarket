@@ -63,6 +63,16 @@ public enum ProductCartService {
 		return dao.selectProductCartWithUid(uid);
 	}
 	
+	/**
+	 * 2022/12/20 product/order - 장바구니 번호로 장바구니 정보 가져오기
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public List<ProductCartVO> selectProductCartWithCartNo(String[] arrays) {
+		return dao.selectProductCartWithCartNo(arrays);
+	}
+	
 	// upload
 	
 	// delete
