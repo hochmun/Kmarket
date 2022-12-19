@@ -50,6 +50,21 @@ public class Sql {
 	
 	public static final String SELECT_COUNT_UID = "SELECT COUNT(`uid`) FROM `km_member` WHERE `uid`=?";
 
+	/** product/order - 유저정보의 누적 포인트 수정 */
+	public static final String UPDATE_MEMBER_IN_POINT = 
+			"UPDATE `km_member` SET "
+			+ "`point` = `point` + ? - ? "
+			+ "WHERE `uid`=?";
+	
+	// member_point
+	
+	public static final String INSERT_MEMBER_POINT = 
+			"INSERT INTO `km_member_point` SET "
+			+ "`uid`=?, "
+			+ "`ordNo`=?, "
+			+ "`point`=?, "
+			+ "`pointDate`=NOW()";
+	
 	// product
 	public static final String INSERT_PRODUCT = 
 			"INSERT INTO `km_product` SET "
@@ -219,6 +234,10 @@ public class Sql {
 												+ "WHERE a.cate1 = ? AND b.cate2 = ?";
 
 	public static final String UPDATE_PRODUCT_HIT = "UPDATE `km_product` SET `hit`=`hit`+1 WHERE `prodNo`=?";
+	public static final String UPDATE_PRODUCT_MINUS_STOCK = 
+			"UPDATE `km_product` SET "
+			+ "`stock` = `stock` - ? "
+			+ "WHERE `prodNo`=?";
 	
 	// product_cart
 	
@@ -246,4 +265,51 @@ public class Sql {
 			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
 			+ "WHERE pc.`uid`=?";
 	
+	/** product/order - 장바구니에 상품 정보 삭제 */
+	public static final String DELETE_PRODUCT_CART = 
+			"DELETE FROM `km_product_cart` WHERE `cartNo`=?";
+	
+	// product_order
+	
+	/** product/order - 주문 등록 */
+	public static final String INSERT_PRODUCT_ORDER = 
+			"INSERT INTO `km_product_order` SET "
+			+ "`ordUid`=?, "
+			+ "`ordCount`=?, "
+			+ "`ordPrice`=?, "
+			+ "`ordDiscount`=?, "
+			+ "`ordDelivery`=?, "
+			+ "`savePoint`=?, "
+			+ "`usedPoint`=?, "
+			+ "`ordTotPrice`=?, "
+			+ "`recipName`=?, "
+			+ "`recipHp`=?, "
+			+ "`recipZip`=?, "
+			+ "`recipAddr1`=?, "
+			+ "`recipAddr2`=?, "
+			+ "`ordPayment`=?, "
+			+ "`ordComplete`=1, "
+			+ "`ordDate`=NOW()";
+	
+	/** product/order - 주문 등록의 주문 번호 반환 */
+	public static final String SELECT_PRODUCT_ORDER_ORDERNO = 
+			"SELECT `ordNo` "
+			+ "FROM `km_product_order` "
+			+ "WHERE `ordUid`=?, "
+			+ "ORDER BY `ordNo` DESC "
+			+ "LIMIT 1";
+	
+	// product_order_item
+	
+ 	public static final String INSERT_PRODUCT_ORDER_ITEM = 
+ 			"INSERT INTO `km_product_order_item` SET "
+ 			+ "`ordNo`=?, "
+ 			+ "`prodNo`=?, "
+ 			+ "`count`=?, "
+ 			+ "`price`=?, "
+ 			+ "`discount`=?, "
+ 			+ "`point`=?, "
+ 			+ "`delivery`=?, "
+ 			+ "`total`=?";
+
 }

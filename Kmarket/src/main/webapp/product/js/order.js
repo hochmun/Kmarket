@@ -46,7 +46,7 @@ function usedPoint() {
 		return false;
 	}
 	
-	if (value2 < 5000) {
+	if (parseInt(value2) < parseInt(5000)) {
 		alert('5,000 포인트 이상 부터 사용 가능 합니다.');
 		return false;
 	}
@@ -117,6 +117,11 @@ function zipcode() {
 
 // 결제 하기 함수
 function orderComplete() {
+	// 결제 하기 전 동의 묻기
+	const orderOk = confirm('상품을 주문 하시겠습니까?');
+	
+	if (orderOk == false) return false;
+	
 	// 전송할 데이터 받기
 	// 주문자 정보
 	const orderer = document.getElementsByName('orderer')[0].value;
@@ -126,7 +131,7 @@ function orderComplete() {
 	const addr2 = document.getElementsByName('addr2')[0].value;
 	
 	// 결제방법 체크 확인
-	let payment = 0;
+	let payment = '0';
 	const paymentCheckList = document.getElementsByName('payment');
 	paymentCheckList.forEach((node)=>{
 		if(node.checked) {
@@ -135,14 +140,70 @@ function orderComplete() {
 	});
 	
 	// 최종결제 정보
-	const ordCountStr = document.getElementById('totallyCount').value;
-	const ordCount = ordCountStr.slice(0, -2);
+	const ordCount = document.getElementById('totallyCount').innerText.slice(0, -2);
+	const ordPrice = document.getElementById('totallyPrice').innerText.replace(/,/g, "");
+	const ordDiscount = document.getElementById('totallyDisprice').innerText.slice(1).replace(/,/g,"");
+	const ordDelivery = document.getElementById('totallyDelivery').innerText.replace(/,/g,"");
+	const usedPoint = document.getElementById('totallyPoint').innerText.replace(/,/g,"");
+	const ordTotPrice = document.getElementById('totallyTotal').innerText.replace(/,/g,"");
+	
 	
 	// 유효성 검사
+	if(orderer == '') {
+		alert('주문자를 입력 하세요.');
+		return false;
+	}
 	if(!isHpOk) {
 		alert('휴대폰 입력을 확인하여 주십시오.');
 		return false;
 	}
+	if(zip == '') {
+		alert('주소를 입력하세요.');
+		return false;
+	}
+	if(addr1 == '') {
+		alert('주소를 입력하세요.');
+		return false;
+	}
+	if(addr2 == '') {
+		alert('상세 주소를 입력하세요.');
+		return false;
+	}
+	if(payment == '0') {
+		alert('결제 방식을 선택하세요');
+		return false;
+	}
 	
 	// 비동기 ajax post 전송 => order.do
+	const jsonData = {
+		"ordCount":ordCount,
+		"ordPrice":ordPrice,
+		"ordDiscount":ordDiscount,
+		"ordDelivery":ordDelivery,
+		"savePoint":savePoint,
+		"usedPoint":usedPoint,
+		"ordTotPrice":ordTotPrice,
+		"recipName":orderer,
+		"recipHp":hp,
+		"recipZip":zip,
+		"recipAddr1":addr1,
+		"recipAddr2":addr2,
+		"ordPayment":payment
+	}
+	
+	$.ajax({
+		url: '/Kmarket/product/order.do',
+		type: 'POST',
+		data: jsonData,
+		dataType: 'json',
+		success: (data)=>{
+			if(data.ordNo != '' || data.ordNo != null) {
+				alert('주문을 완료 했습니다.');
+				location.href = '/Kmarket/product/complete.do?o='+data.ordNo;
+			} else {
+				alert('주문에 실패 했습니다.');
+				return false;
+			}
+		}
+	});
 }

@@ -14,49 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
     <link rel="stylesheet" href="../css/main.css"/>
     <link rel="stylesheet" href="./css/product.css"/>
-    <script>
- // 각 탭 클릭시 데이터 받기
- 	$.get('/Kmarket/getLatests.do',(data)=>{
-			for(let latest of data) {
-				let url = "/Kmarket/product/list.do?pg=&cate1=11&cate2="+latest.no;
-				$('#tabs-1 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
-			}
-		});
- 
-	$(document).one('click', '#tabs-1-click', function(){
-		$.get('/Kmarket/getLatests.do?cate=qna',(data)=>{
-			for(let latest of data) {
-				let url = "/Kmarket/view.do?cate=5&tit=1&pg=1&no="+latest.no;
-				$('#tabs-2 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
-			}
-		});
-	});
-	$(document).one('click', '#tabs-2-click', function(){
-		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
-			for(let latest of data) {
-				let url = "/Kmarket/view.do?cate=5&tit=2&pg=1&no="+latest.no;
-				$('#tabs-3 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
-			}
-		});
-	});
-	$(document).one('click', '#tabs-2-click', function(){
-		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
-			for(let latest of data) {
-				let url = "/Kmarket/view.do?cate=5&tit=3&pg=1&no="+latest.no;
-				$('#tabs-4 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
-			}
-		});
-	});
-	$(document).one('click', '#tabs-2-click', function(){
-		$.get('/Kmarket/getLatests.do?cate=faq',(data)=>{
-			for(let latest of data) {
-				let url = "/Kmarket/view.do?cate=5&tit=4&pg=1&no="+latest.no;
-				$('#tabs-5 > .txt').append("<li><a href='"+url+"'>"+latest.title+"</a></li>");
-			}
-		});
-	});
-	
-    </script>
+    <script src="./js/_header.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -78,7 +36,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="#"><img src="../img/header_logo.png" alt="로고"/></a>
+                    <a href="${pageContext.request.contextPath}/index.do"><img src="../img/header_logo.png" alt="로고"/></a>
                     <form action="#">
                         <input type="text" name="search"/>
                         <button><i class="fa fa-search"></i></button>
@@ -109,41 +67,5 @@
             <aside>
                 <ul class="category">
                     <li><i class="fa fa-bars" aria-hidden="true"></i>카테고리</li>
-                    <li>
-                        <a href="#"><i class="fas fa-tshirt"></i>패션·의류·뷰티</a>
-                        <ol>
-                            <li><a href="/Kmarket/product/list.do?cate1=11&cate2=11&pg=${pg}">남성의류</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=11&cate2=10&pg=${pg}">여성의류</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=11&cate2=14&pg=${pg}">잡화</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=10&cate2=16&pg=${pg}">뷰티</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-laptop"></i>가전·디지털</a>
-                        <ol>
-                            <li><a href="/Kmarket/product/list.do?cate1=15&cate2=10&pg=${pg}">노트북</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=15&cate2=16&pg=${pg}">가전</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=15&cate2=13&pg=${pg}">휴대폰</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=15&cate2=15&pg=${pg}">기타</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-utensils"></i>식품·생필품</a>
-                        <ol>
-                            <li><a href="/Kmarket/product/list.do?cate1=13&cate2=10&pg=${pg}">신선식품</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=13&cate2=11&pg=${pg}">가공식품</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=13&cate2=12&pg=${pg}">건강식품</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=13&cate2=14&pg=${pg}">생필품</a></li>
-                        </ol>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fas fa-home"></i>홈·문구·취미</a>
-                        <ol>
-                            <li><a href="/Kmarket/product/list.do?cate1=14&cate2=10&pg=${pg}">가구/DIY</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=14&cate2=11&pg=${pg}">침구·커튼</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=14&cate2=13&pg=${pg}">생활용품</a></li>
-                            <li><a href="/Kmarket/product/list.do?cate1=14&cate2=15&pg=${pg}">사무용품</a></li>
-                        </ol>
-                    </li>
                 </ul>
             </aside>

@@ -9,6 +9,7 @@ import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public class ProductDAO extends DBCP {
@@ -910,6 +911,31 @@ public class ProductDAO extends DBCP {
 			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_HIT);
 			psmt.setInt(1, prodNo);
 			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 2022/12/17 product/order - 상품 갯수 줄이기
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void updateProductMinusStock(List<ProductCartVO> vos) {
+		try {
+			logger.info("ProductDAO updateProductMinusStock...");
+			conn = getConnection();
+			
+			for (ProductCartVO vo : vos) {
+				psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_MINUS_STOCK);
+				
+				psmt.setInt(1, vo.getCount());
+				psmt.setInt(2, vo.getProdNo());
+				
+				psmt.executeUpdate();
+			}
+			
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

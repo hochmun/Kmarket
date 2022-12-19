@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.Kmarket.vo.MemberVO;
+import kr.co.Kmarket.vo.ProductOrderVO;
 
 public enum MemberService {
 	INSTANCE;
@@ -104,6 +105,15 @@ public enum MemberService {
 	}
 	
 	// upload
+	
+	/**
+	 * 2022/12/17 product/order - 회원 정보의 누적 포인트 수정
+	 * @author 심규영
+	 * @param vo
+	 */
+	public void updateMemberPoint(ProductOrderVO vo) {
+		dao.updateMemberPoint(vo);
+	}
 	
 	// delete
 	
