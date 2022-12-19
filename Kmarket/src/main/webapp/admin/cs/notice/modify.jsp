@@ -39,7 +39,7 @@
                     </table>
                     <div>
                         <a href="./list.html" class="btnList">취소하기</a>
-                        <input type="submit" class="btnSubmit" value="등록하기">
+                        <a href="./list.html" class="btnSubmit">수정하기</a>
                     </div>
 
                    

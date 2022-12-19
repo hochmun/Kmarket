@@ -10,7 +10,7 @@ main > section > nav {
     position: relative;
     width: 100%;
     height: 46px;
-    margin-bottom: 100px;
+    margin-bottom: 70px;
     border-bottom: 1px solid #c0c0c0;
     box-sizing: border-box;
 }
@@ -128,7 +128,9 @@ textarea {
     resize: none;
     font-size: 16px;
     padding: 10px;
-    box-sizing: border-box;    
+    box-sizing: border-box;
+    border: 1px solid #959595;
+    background-color: white;  
 }
 
 /* span {
@@ -346,25 +348,24 @@ button[type=submit] {
 }
 .btnList {
     display: inline-block;
-    width: 200px;
-    height: 60px;
+    width: 150px;
+    height: 50px;
     margin: 40px auto 0;
-    border: 1px solid #ccc;
-    border-radius: 34px;
+    border: 1px solid #ccc; 
     font-size: 16px;
     color: #000;
     line-height: 58px;
     text-align: center;
     box-sizing: border-box;
+    
 }
 
 .btnSubmit {
     display: inline-block;
-    width: 200px;
-    height: 60px;
+    width: 150px;
+    height: 50px;
     background-color: #067dfd;
-    border: 1px solid #0063ce;
-    border-radius: 34px;
+    border: 1px solid #0063ce;  
     font-size: 16px;
     color: #fff;
     text-align: center;
