@@ -29,9 +29,9 @@ $(document).on('click', '#sold', function(e){
 			for(let product of data){
 				let price = product.price * (100-product.discount) * 0.01;
 				
-				const cn1 = price.toLocaleString('ko-KR');
-				const cn2 = product.price.toLocaleString('ko-KR');
-				const cn3 = product.delivery.toLocaleString('ko-KR');
+				const cn1 = (price).toLocaleString('ko-KR');
+				const cn2 = (product.price).toLocaleString('ko-KR');
+				const cn3 = (product.delivery).toLocaleString('ko-KR');
 				
 				let table  = "<tr>";
 					table += "<td><a href='/Kmarket/product/view.do?prodNo="+product.prodNo+"' class='thumb'><img src='/thumb/"+product.prodCate1+"/"+product.prodCate2+"/"+product.thumb1+"' alt='상품이미지'></a></td>";

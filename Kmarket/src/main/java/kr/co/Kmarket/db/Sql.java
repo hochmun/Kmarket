@@ -7,6 +7,8 @@ public class Sql {
 			"SELECT * FROM `km_member` WHERE `uid`=? AND `pass`=SHA2(?,256)";
 	public static final String SELECT_MEMBER_TERMS = 
 			"SELECT * FROM `km_member_terms`";
+	public static final String SELECT_MEMBER_WITH_UID = 
+			"SELECT * FROM `km_member` WHERE `uid`=?";
 	
 	/**일반회원*/
 	public static final String INSERT_MEMBER_TYPE1 = "INSERT INTO `km_member` SET "
@@ -48,6 +50,21 @@ public class Sql {
 	
 	public static final String SELECT_COUNT_UID = "SELECT COUNT(`uid`) FROM `km_member` WHERE `uid`=?";
 
+	/** product/order - 유저정보의 누적 포인트 수정 */
+	public static final String UPDATE_MEMBER_IN_POINT = 
+			"UPDATE `km_member` SET "
+			+ "`point` = `point` + ? - ? "
+			+ "WHERE `uid`=?";
+	
+	// member_point
+	
+	public static final String INSERT_MEMBER_POINT = 
+			"INSERT INTO `km_member_point` SET "
+			+ "`uid`=?, "
+			+ "`ordNo`=?, "
+			+ "`point`=?, "
+			+ "`pointDate`=NOW()";
+	
 	// product
 	public static final String INSERT_PRODUCT = 
 			"INSERT INTO `km_product` SET "
@@ -78,6 +95,11 @@ public class Sql {
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
 	/** 상품목록 불러오기*/
 	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ? limit ?, 10";
+	
+	public static final String SELECT_PRODUCTS_CONDITION = "SELECT * FROM `km_product` "
+															+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
+															+ "ORDER BY `prodNo` desc"
+															+ "limit 10";
 	
 	/** 메인 페이지 - 베스트 상품 불러오기 => 판매량 많은 순 */
 	public static final String SELECT_PRODUCT_BEST = 
@@ -212,6 +234,10 @@ public class Sql {
 												+ "WHERE a.cate1 = ? AND b.cate2 = ?";
 
 	public static final String UPDATE_PRODUCT_HIT = "UPDATE `km_product` SET `hit`=`hit`+1 WHERE `prodNo`=?";
+	public static final String UPDATE_PRODUCT_MINUS_STOCK = 
+			"UPDATE `km_product` SET "
+			+ "`stock` = `stock` - ? "
+			+ "WHERE `prodNo`=?";
 	
 	// product_cart
 	
@@ -226,5 +252,64 @@ public class Sql {
 			+ "`delivery`=?, "
 			+ "`total`=?, "
 			+ "`rdate`=NOW()";
+
+	public static final String SELECT_PRODUCT_CART_WITH_UID = 
+			"SELECT "
+				+ "pc.*, "
+				+ "p.thumb1, "
+				+ "p.prodCate1, "
+				+ "p.prodCate2, "
+				+ "p.prodName, "
+				+ "p.descript "
+			+ "FROM `km_product_cart` AS pc "
+			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
+			+ "WHERE pc.`uid`=?";
+	
+	/** product/order - 장바구니에 상품 정보 삭제 */
+	public static final String DELETE_PRODUCT_CART = 
+			"DELETE FROM `km_product_cart` WHERE `cartNo`=?";
+	
+	// product_order
+	
+	/** product/order - 주문 등록 */
+	public static final String INSERT_PRODUCT_ORDER = 
+			"INSERT INTO `km_product_order` SET "
+			+ "`ordUid`=?, "
+			+ "`ordCount`=?, "
+			+ "`ordPrice`=?, "
+			+ "`ordDiscount`=?, "
+			+ "`ordDelivery`=?, "
+			+ "`savePoint`=?, "
+			+ "`usedPoint`=?, "
+			+ "`ordTotPrice`=?, "
+			+ "`recipName`=?, "
+			+ "`recipHp`=?, "
+			+ "`recipZip`=?, "
+			+ "`recipAddr1`=?, "
+			+ "`recipAddr2`=?, "
+			+ "`ordPayment`=?, "
+			+ "`ordComplete`=1, "
+			+ "`ordDate`=NOW()";
+	
+	/** product/order - 주문 등록의 주문 번호 반환 */
+	public static final String SELECT_PRODUCT_ORDER_ORDERNO = 
+			"SELECT `ordNo` "
+			+ "FROM `km_product_order` "
+			+ "WHERE `ordUid`=?, "
+			+ "ORDER BY `ordNo` DESC "
+			+ "LIMIT 1";
+	
+	// product_order_item
+	
+ 	public static final String INSERT_PRODUCT_ORDER_ITEM = 
+ 			"INSERT INTO `km_product_order_item` SET "
+ 			+ "`ordNo`=?, "
+ 			+ "`prodNo`=?, "
+ 			+ "`count`=?, "
+ 			+ "`price`=?, "
+ 			+ "`discount`=?, "
+ 			+ "`point`=?, "
+ 			+ "`delivery`=?, "
+ 			+ "`total`=?";
 
 }

@@ -1,5 +1,8 @@
 package kr.co.Kmarket.service.product;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletRequest;
 
 import org.slf4j.Logger;
@@ -52,7 +55,25 @@ public enum ProductCartService {
 	
 	// read
 	
+	/**
+	 * 2022/12/16 product/order - 유저 장바구니 불러오기
+	 * @param uid
+	 * @return
+	 */
+	public List<ProductCartVO> selectProductCartWithUid(String uid) {
+		return dao.selectProductCartWithUid(uid);
+	}
+	
 	// upload
 	
 	// delete
+	/**
+	 * 2022/12/18 product/order - 장바구니에 상품 정보 삭제
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void deleteProductCarts(List<ProductCartVO> vos) {
+		dao.deleteProductCarts(vos);
+	}
+	
 }

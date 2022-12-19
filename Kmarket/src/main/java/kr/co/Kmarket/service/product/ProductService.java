@@ -3,7 +3,6 @@ package kr.co.Kmarket.service.product;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import kr.co.Kmarket.dao.product.ProductDAO;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public enum ProductService {
@@ -195,6 +195,15 @@ public enum ProductService {
 		dao.updateProductHitCount(prodNo);
 	}
 	
+	/**
+	 * 2022/12/17 product/order - 상품 갯수 줄이기
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void updateProductMinusStock(List<ProductCartVO> vos) {
+		dao.updateProductMinusStock(vos);
+	}
+	
 	// delete
 	
 	// service
@@ -202,7 +211,6 @@ public enum ProductService {
 		 * 2022/12/15 게시물 페이징
 		 * @author 김재준
 		 */
-	
 	public int boardPaging(HttpServletRequest req, String prodCate1, String prodCate2) {
 		String pg = req.getParameter("pg");
 		
@@ -237,4 +245,5 @@ public enum ProductService {
 		
 		return limitStart;
 	}
+
 }

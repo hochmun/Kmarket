@@ -9,6 +9,7 @@ import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public class ProductDAO extends DBCP {
@@ -328,6 +329,64 @@ public class ProductDAO extends DBCP {
 		return pvos;
 	}
 	
+	/**
+	 * 2022/12/16 - 선택 상품목록 가져오기
+	 * @author 김재준
+	 * @return 
+	 */
+	public List<ProductVO> selectProductsCondition(String prodCate1, String prodCate2) {
+		List<ProductVO> pvos = new ArrayList<>();
+		try {
+			logger.info("selectProducts...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS_CONDITION);
+			psmt.setString(1, prodCate1);
+			psmt.setString(2, prodCate2);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				pvo.setProdNo(rs.getInt(1));
+				pvo.setProdCate1(rs.getString(2));
+				pvo.setProdCate2(rs.getString(3));
+				pvo.setProdName(rs.getString(4));
+				pvo.setDescript(rs.getString(5));
+				pvo.setCompany(rs.getString(6));
+				pvo.setSeller(rs.getString(7));
+				pvo.setPrice(rs.getString(8));
+				pvo.setDiscount(rs.getString(9));
+				pvo.setPoint(rs.getString(10));
+				pvo.setStock(rs.getString(11));
+				pvo.setSold(rs.getInt(12));
+				pvo.setDelivery(rs.getString(13));
+				pvo.setHit(rs.getInt(14));
+				pvo.setScore(rs.getInt(15));
+				pvo.setReview(rs.getInt(16));
+				pvo.setThumb1(rs.getString(17));
+				pvo.setThumb2(rs.getString(18));
+				pvo.setThumb3(rs.getString(19));
+				pvo.setDetail(rs.getString(20));
+				pvo.setStatus(rs.getString(21));
+				pvo.setDuty(rs.getString(22));
+				pvo.setReceipt(rs.getString(23));
+				pvo.setBizType(rs.getString(24));
+				pvo.setOrigin(rs.getString(25));
+				pvo.setIp(rs.getString(26));
+				pvo.setRdate(rs.getString(27));
+				pvo.setEtc1(rs.getInt(28));
+				pvo.setEtc2(rs.getInt(29));
+				pvo.setEtc3(rs.getString(30));
+				pvo.setEtc4(rs.getString(31));
+				pvo.setEtc5(rs.getString(32));
+				
+				pvos.add(pvo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return pvos;
+	}
 
 	/**
 	 * 2022/12/13 상품정보 가져오기
@@ -853,6 +912,31 @@ public class ProductDAO extends DBCP {
 			psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_HIT);
 			psmt.setInt(1, prodNo);
 			psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+	
+	/**
+	 * 2022/12/17 product/order - 상품 갯수 줄이기
+	 * @author 심규영
+	 * @param vos
+	 */
+	public void updateProductMinusStock(List<ProductCartVO> vos) {
+		try {
+			logger.info("ProductDAO updateProductMinusStock...");
+			conn = getConnection();
+			
+			for (ProductCartVO vo : vos) {
+				psmt = conn.prepareStatement(Sql.UPDATE_PRODUCT_MINUS_STOCK);
+				
+				psmt.setInt(1, vo.getCount());
+				psmt.setInt(2, vo.getProdNo());
+				
+				psmt.executeUpdate();
+			}
+			
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

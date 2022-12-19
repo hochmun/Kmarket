@@ -32,7 +32,7 @@ public class ProductListController extends HttpServlet{
 		
 		/*prodCate 가져오기*/
 		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
-		
+
 		/**
 		 * 페이징
 		 */
@@ -43,6 +43,14 @@ public class ProductListController extends HttpServlet{
 		/*product list 가져오기*/
 		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2, limitStart);
 		
+		if(req.getParameter("pg") != null && !req.getParameter("pg").equals("")) {
+			currentPage = Integer.parseInt(req.getParameter("pg"));
+		}
+		
+		/*product list 가져오기*/
+		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2);
+		/*prodCate 가져오기*/
+		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
 		
 		req.setAttribute("cvo", cvo); // selectProducts
 		req.setAttribute("pg", pg); 
@@ -50,6 +58,7 @@ public class ProductListController extends HttpServlet{
 		req.setAttribute("pvos", service.selectProducts(prodCate1, prodCate2, limitStart));
 		
 		req.setAttribute("limitStart", limitStart);
+
 		req.getRequestDispatcher("/product/list.jsp").forward(req, resp);
 		}
 	}
