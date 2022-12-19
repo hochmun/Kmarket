@@ -49,7 +49,7 @@ function overCate1(cate1, newLiTag) {
 			let newLiTag2 = document.createElement('li');
 			let newATag2 = document.createElement('a');
 			
-			newATag2.setAttribute('href', 'Kmarket/product/list.do?cate1='+cate2.cate1+'&cate2='+cate2.cate2);
+			newATag2.setAttribute('href', '/Kmarket/product/list.do?cate1='+cate2.cate1+'&cate2='+cate2.cate2);
 			newATag2.innerHTML += cate2.c2Name;
 			
 			newLiTag2.appendChild(newATag2);
