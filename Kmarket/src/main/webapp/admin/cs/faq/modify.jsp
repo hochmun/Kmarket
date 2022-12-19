@@ -45,18 +45,13 @@
                     </table>
                     <div>
                         <a href="./list.html" class="btnList">취소하기</a>
-                        <input type="submit" class="btnSubmit" value="등록하기">
+                        <a href="./list.html" class="btnSubmit">수정하기</a>
                     </div>
-
-                   
                 </section>         
-
-                
                 <p class="ico info">
                     <strong>Tip!</strong>
                     전자상거래 등에서의 상품 등의 정보제공에 관한 고시에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.
-                </p>
-       
+                </p>      
             </section>
     </div>
 </section>

@@ -15,7 +15,7 @@
                             <td>유형</td>
                             <td>
                                 <select name="type">
-                                    <option value="0">유형선택</option>
+                                    <option value="0">유형 선택</option>
                                     <option value="">가입</option>
                                     <option value="">탈퇴</option>
                                     <option value="">회원정보</option>

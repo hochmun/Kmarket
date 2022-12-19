@@ -2,62 +2,200 @@
 <jsp:include page="../../_header.jsp"/>
     <section id="admin-product-list">
                 <nav>
-                    <h3>자주묻는질문 작성</h3>
+                    <h3>자주묻는질문 목록</h3>
                     <p>
                         HOME > 고객센터 > <strong>자주묻는질문</strong>
                     </p>
                 </nav>
- 	<!-- 상품목록 컨텐츠 시작 -->                                
+                <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
-                   
+                    <div>
+                        <select name="search">
+                            <option value="search1">1차 선택</option>
+                            <option value="search1">상품코드</option>
+                            <option value="search1">제조사</option>
+                            <option value="search1">판매자</option>                                    
+                        </select>
+                        
+                        <input type="text" name="search">
+                    </div>
+                    <div>
+                        <select name="search">
+                            <option value="search1">2차 선택</option>
+                            <option value="search1">상품코드</option>
+                            <option value="search1">제조사</option>
+                            <option value="search1">판매자</option>                                    
+                        </select>
+                    </div>
                     <table>
                         <tr>
-                            <td>유형</td>
-                            <td>
-                                <select name="type">
-                                    <option value="0">1차 선택</option>
-                                    <option value="">가입</option>
-                                    <option value="">탈퇴</option>
-                                    <option value="">회원정보</option>
-                                    <option value="">로그인</option>
-                                </select>
-                                <select name="type">
-                                    <option value="0">2차 선택</option>
-                                    <option value="">가입</option>
-                                    <option value="">탈퇴</option>
-                                    <option value="">회원정보</option>
-                                    <option value="">로그인</option>
-                                </select>
-                            </td>
+                            <th><input type="checkbox" name="all"/></th>
+                            <th>번호</th>
+                            <th>1차유형</th>
+                            <th>2차유형</th>
+                            <th>제목</th>
+                            <th>조회</th>
+                            <th>날짜</th>
+                            <th>관리</th>
                         </tr>
+
                         <tr>
-                            <td>제목</td>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>10</td>
+                            <td>00.00.00</td>
                             <td>
-                                <input type="text" name="title" placeholder="제목을 입력하세요.">
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
                             </td>
                         </tr>
-                        <tr>
-                            <td>내용</td>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>본인인증 시 이미 가입되어 있는 정보라고 나옵니다.</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
                             <td>
-                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
                             </td>
                         </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                             </tr>
+                         <tr>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>10</td>
+                            <td>회원</td>
+                            <td>가입</td>
+                            <td>개인회원과 법인회원에 차이가 있나요?</td>
+                            <td>120</td>
+                            <td>00.00.00</td>
+                            <td>
+                                <a href="#">[삭제]</a>
+                                <a href="#">[수정]</a>
+                            </td>
+                        </tr>
+                        
                     </table>
-                    <div>
-                        <a href="./list.html" class="btnList">취소하기</a>
-                        <input type="submit" class="btnSubmit" value="등록하기">
-                    </div>
 
-                   
-                </section>         
+                    
+                    <input type="button" value="선택삭제" />  
+                     <input type="button" value="작성하기" />                         
 
-                
-                <p class="ico info">
-                    <strong>Tip!</strong>
-                    전자상거래 등에서의 상품 등의 정보제공에 관한 고시에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.
-                </p>
-       
-            </section>
+
+                    <div class="paging">
+                        <span class="prev">
+                            <a href="#"><&nbsp;이전</a>
+                        </span>
+                        <span class="num">
+                            <a href="#" class="on">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#">6</a>
+                            <a href="#">7</a>
+                        </span>
+                        <span class="next">
+                            <a href="#">다음&nbsp;></a>
+                        </span>
+                        </div>
+
+                </section>              
     </div>
 </section>
 <jsp:include page="../../_footer.jsp"/>
