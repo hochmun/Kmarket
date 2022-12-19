@@ -43,15 +43,6 @@ public class ProductListController extends HttpServlet{
 		/*product list 가져오기*/
 		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2, limitStart);
 		
-		if(req.getParameter("pg") != null && !req.getParameter("pg").equals("")) {
-			currentPage = Integer.parseInt(req.getParameter("pg"));
-		}
-		
-		/*product list 가져오기*/
-		List<ProductVO> pvos = service.selectProducts(prodCate1, prodCate2);
-		/*prodCate 가져오기*/
-		Cate1VO cvo = service.selectProdCates(prodCate1, prodCate2);
-		
 		req.setAttribute("cvo", cvo); // selectProducts
 		req.setAttribute("pg", pg); 
 		req.setAttribute("pvos", pvos);
