@@ -7,7 +7,7 @@
         <li><a href="#">전자금융거래약관</a></li>
     </ul>
     <div>
-        <p><img src="../img/footer logo.png" alt="로고"/></p>
+        <p><img src="../../img/footer_logo.png" alt="로고"/></p>
         <p>
             <strong>(주)KMARKET</strong><br/>
             대표이사 : 홍길동<br/>

@@ -6,7 +6,7 @@
     <title>케이마켓 고객센터</title>
     <script type="text/javascript" nonce="XOJ0BVE+zr3qdJZKBBAaLFbFzesxhK/xP1QmLnOdycs=" src="//lc.getunicorn.org?type=base-script&amp;request-id=3942"></script>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
-    <link rel="stylesheet" href="../css/style.css" />    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cs/css/cs.css">
 </head>
 <body>
     <div id="wrapper">
@@ -27,22 +27,3 @@
                 </div>
             </div>
         </header>
-
-<section id="cs">
-    <div class="notice">
-        <nav>
-            <div>
-                <p>홈<span>></span>공지사항</p>
-            </div>
-        </nav>
-        <section class="list">
-            <aside>
-                <h2>공지사항</h2>
-                <ul>
-                    <li class="on"><a href="#">전체</a></li>
-                    <li><a href="#">고객서비스</a></li>
-                    <li><a href="#">안전거래</a></li>
-                    <li><a href="#">위해상품</a></li>
-                    <li><a href="#">이벤트당첨</a></li>
-                </ul>
-            </aside>
