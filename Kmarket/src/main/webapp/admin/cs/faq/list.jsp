@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="./_header.jsp"/>
+<jsp:include page="/_header.jsp"/>
     <section id="admin-product-list">
                 <nav>
                     <h3>자주묻는질문 작성</h3>
@@ -45,7 +45,7 @@
                     </table>
                     <div>
                         <a href="./list.html" class="btnList">취소하기</a>
-                        <input type="submit" class="btnSubmit" value="등록하기">
+                        <a href="./list.html" class="btnSubmit">등록하기</a>
                     </div>
 
                    
@@ -60,4 +60,4 @@
             </section>
     </div>
 </section>
-<jsp:include page="./_footer.jsp"/>
+<jsp:include page="/_footer.jsp"/>

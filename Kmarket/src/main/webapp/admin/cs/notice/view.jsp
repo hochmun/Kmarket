@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<jsp:include page="./_header.jsp"/>
+<jsp:include page="/_header.jsp"/>
             <article>
                 <nav>
                     <h2 class="title">[안내] 해외결제 사칭 문자 주의</h2>
@@ -30,4 +30,4 @@
         </section>
     </div>
 </section>
-<jsp:include page="./_footer.jsp"/>      
+<jsp:include page="/_footer.jsp"/>      
