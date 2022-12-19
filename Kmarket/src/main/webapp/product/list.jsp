@@ -100,9 +100,10 @@
                 <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pageGroupStart - 1}"><&nbsp;이전</a>
             </span>
             </c:if>
-            <c:forEach var="i" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
+
+            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
             <span class="num">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${i}" class="${currentPage eq i ? 'on' : 'off'}">${i}</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
             </span>
             </c:forEach>
             <c:if test="${pageGroupEnd lt lastPageNum}">

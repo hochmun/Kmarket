@@ -274,7 +274,7 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> selectProducts(String prodCate1, String prodCate2) {
+	public List<ProductVO> selectProducts(String prodCate1, String prodCate2, int limitStart) {
 		List<ProductVO> pvos = new ArrayList<>();
 		try {
 			logger.info("selectProducts...");
@@ -282,6 +282,7 @@ public class ProductDAO extends DBCP {
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
 			psmt.setString(1, prodCate1);
 			psmt.setString(2, prodCate2);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
