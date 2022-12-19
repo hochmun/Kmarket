@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>케이마켓 고객센터</title>
     <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico"/>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cs.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/cs/css/cs.css">
 </head>
 <body>
     <div id="wrapper">
