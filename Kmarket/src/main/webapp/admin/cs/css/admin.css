@@ -1,108 +1,3 @@
-
-     /* 초기화 */
-* {
-    margin: 0;
-    padding: 0;
-    font: normal 12px 'ê³ ë”•';
-}
-
-ul, ol {list-style: none;}
-a {text-decoration: none; color: #111;}
-
-#admin-wrapper {
-    width: 100%;
-    height: auto;
-}
-
-/* header*/
-header {
-    width: 100%;
-    height: 120px;
-    background: url('../img/admin_bg_header.jpg') repeat-x;
-}
-
-header > div {
-    width: 1400px;
-    height: 100%;
-    margin: 0 auto;
-}
-header > div > .logo {
-    float: left;
-    margin-top: 46px;
-}
-header > div > p {
-    float: right;
-    color: #fff;
-    margin-top: 46px;
-}
-header > div > p > span {
-    margin-right: 16px;
-}
-header > div > p > a {
-    color: #fff;
-}
-
-/* main */
-main {
-    width: 1400px;
-    height: auto;
-    margin: 0 auto;
-    overflow: hidden;
-}
-main > aside {
-    float: left;
-    width: 270px;
-    height: auto;
-    background: url('../img/admin_bg_aside.jpg') repeat-y;
-    border-left: 1px solid #c0c0c0;
-    box-sizing: border-box;
-}
-
-#gnb {
-    width: 100%;
-    height: auto;
-}
-#gnb > li {
-    width: 100%;
-    min-height: 66px;
-    border-top: 1px solid #c0c0c0;
-    box-sizing: border-box;
-}
-#gnb > li:last-child {border-bottom: 1px solid #c0c0c0;}
-
-#gnb > li > a {
-    display: block;
-    width: 100%;
-    height: 66px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #222;            
-    line-height: 66px;
-    text-indent: 10px;
-}
-#gnb > li > a > i {
-    margin-right: 10px;
-    font-size: 20px;
-}
-
-#gnb ol {
-    display: none;
-    width: 100%;
-    height: auto;
-}
-#gnb ol > li {
-    width: 100%;
-    height: 32px;
-}
-#gnb ol > li > a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-indent: 52px;
-}        
-
-
-
 main > section {
     float: right;
     width: 1130px;
@@ -177,27 +72,6 @@ main table tr > td:nth-child(1) {
 
 main table span {
     display: block;
-}
-
-
-/* footer */
-footer {
-    width: 100%;
-    height: 60px;
-    background: #0d3a46;
-}
-
-footer > div {
-    width: 1400px;
-    height: 100%;
-    margin: 0 auto;
-}
-
-footer > div > p {
-    padding-top: 22px;
-    color: #fff;
-    font-weight: bold;
-    box-sizing: border-box;
 }
 
 /* */
@@ -488,13 +362,11 @@ button[type=submit] {
     display: inline-block;
     width: 200px;
     height: 60px;
-    margin: 40px auto 0;
     background-color: #067dfd;
     border: 1px solid #0063ce;
     border-radius: 34px;
     font-size: 16px;
     color: #fff;
-    line-height: 58px;
     text-align: center;
     box-sizing: border-box;
 }
