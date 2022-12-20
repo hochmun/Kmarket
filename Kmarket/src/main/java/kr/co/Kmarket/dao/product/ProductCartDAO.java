@@ -1,14 +1,11 @@
 package kr.co.Kmarket.dao.product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.ProductCartVO;
-import kr.co.Kmarket.vo.ProductVO;
 
 public class ProductCartDAO extends DBCP {
 	
