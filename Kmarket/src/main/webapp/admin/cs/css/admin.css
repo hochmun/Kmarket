@@ -66,7 +66,7 @@ main table tr > td:nth-child(1) {
     border-top: 1px solid #e6e6e6;
     border-bottom: 1px solid #e6e6e6;
     background: #f6f6f6;
-    padding: 10px;    
+    padding: 4px;    
     text-align: left;
 }
 
@@ -354,7 +354,6 @@ button[type=submit] {
     border: 1px solid #ccc; 
     font-size: 16px;
     color: #000;
-    line-height: 58px;
     text-align: center;
     box-sizing: border-box;
     
