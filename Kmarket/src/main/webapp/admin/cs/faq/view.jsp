@@ -8,7 +8,7 @@
                     </p>
                 </nav>
  	<!-- 상품목록 컨텐츠 시작 -->                                
-                <section>
+                <section class="w-btn-outline w-btn-indigo-outline" >
                    
                     <table>
                         <tr>
@@ -34,9 +34,9 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="#" class="btnList">삭제</a>
-                        <a href="./modify.do" class="btnList">수정</a>
-                        <a href="./list.do" class="btnSubmit">목록</a>
+                        <a href="#" class="w-btn w-btn-indigo">삭제</a>
+                        <a href="./modify.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정</a>
+                        <a href="./list.do" class="w-btn w-btn-indigo">목록</a>
                     </div>
 
                    

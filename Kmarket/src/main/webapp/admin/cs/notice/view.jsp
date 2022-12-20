@@ -37,9 +37,9 @@
                         </tr>
                     </table>
                     <div>
-                        <a href="#" class="btnList">삭제</a>
-                        <a href="/Kmarket/admin/cs/notice/modify.do" class="btnList">수정</a>
-                        <a href="/Kmarket/admin/cs/notice/list.do" class="btnSubmit" class="btnSubmit">목록</a>
+                        <a href="#" class="w-btn w-btn-indigo">삭제</a>
+                        <a href="/Kmarket/admin/cs/notice/modify.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정</a>
+                        <a href="/Kmarket/admin/cs/notice/list.do"  class="w-btn w-btn-indigo">목록</a>
                     </div>
        
                 </section>                
