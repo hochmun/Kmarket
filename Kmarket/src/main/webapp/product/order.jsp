@@ -6,6 +6,7 @@
 <script src="./js/order.js"></script>
 <script>
 	const havingPoint = "${ mvo.point }"; // 유저가 현재 소지중인 포인트
+	let productCartNoArray = [];
 </script>
 <c:set var="productCount" value="0"></c:set> <!-- 상품 갯수 -->
 <c:set var="productPrice" value="0"></c:set> <!-- 상품 총 가격 -->
@@ -42,6 +43,9 @@
 	         </tr>
 	         
 	         <c:forEach var="pcvo" items="${ pcvos }">
+	         	<script>
+	         		productCartNoArray.push("${ pcvo.cartNo }");
+	         	</script>
 	         	<c:set var="productCount" value="${ productCount + 1 }"></c:set>
 	         	<c:set var="productPrice" value="${ productPrice + ( pcvo.price * pcvo.count ) }"></c:set>
 	         	<c:set var="productDisprice" value="${ productDisprice + ( ( pcvo.price * pcvo.count ) - pcvo.total ) }"></c:set>
@@ -132,14 +136,14 @@
 	                <tr>
 	                    <td>우편번호</td>
 	                    <td>
-	                        <input type="text" name="zip" id="zip"/>
+	                        <input type="text" name="zip" id="zip" readonly="readonly"/>
 	                        <input type="button" value="검색" onclick="zipcode()"/>
 	                    </td>
 	                </tr>
 	                <tr>
 	                    <td>기본주소</td>
 	                    <td>
-	                        <input type="text" name="addr1" id="addr1"/>
+	                        <input type="text" name="addr1" id="addr1" readonly="readonly"/>
 	                    </td>
 	                </tr>
 	                <tr>
@@ -159,7 +163,7 @@
 	                <p>현재 포인트 : <span><fmt:formatNumber value="${ mvo.point }" pattern="#,###"/></span>점</p>
 	                
 	                <c:choose>
-	                	<c:when test="${ mvo.point gt 0 }">
+	                	<c:when test="${ mvo.point gt 4999 }">
 	                		<label>
 			                    <input type="text" name="point"/>점
 			                    <input type="button" value="적용" onclick="usedPoint()"></input>

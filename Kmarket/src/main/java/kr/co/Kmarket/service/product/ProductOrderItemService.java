@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.Kmarket.dao.product.ProductOrderItemDAO;
 import kr.co.Kmarket.vo.ProductCartVO;
+import kr.co.Kmarket.vo.ProductOrderItemVO;
 
 public enum ProductOrderItemService {
 	INSTANCE;
@@ -27,6 +28,16 @@ public enum ProductOrderItemService {
 	}
 	
 	// read
+	/**
+	 * 2022/12/20 product/complete - 주문번호로 상품 정보 받기
+	 * @author 심규영
+	 * @param ordNo
+	 * @return
+	 */
+	public List<ProductOrderItemVO> selectProductListWithOrdNo(String ordNo) {
+		return dao.selectProductListWithOrdNo(ordNo);
+	}
+	
 	
 	// upload
 	

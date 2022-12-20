@@ -132,7 +132,7 @@ public class ProductOrderVO {
 		this.ordPayment = ordPayment;
 	}
 	public void setOrdPayment(String ordPayment) {
-		this.ordPayment = Integer.parseInt(ordDate);
+		this.ordPayment = Integer.parseInt(ordPayment);
 	}
 	public int getOrdComplete() {
 		return ordComplete;

@@ -56,6 +56,45 @@ public class ProductOrderDAO extends DBCP {
 	}
 	
 	// read
+	/**
+	 * 2022/12/20 product/complete - 주문 정보 불러오기
+	 * @author 심규영
+	 * @param ordNo
+	 * @return
+	 */
+	public ProductOrderVO selectOrderWithOrdNo(String ordNo) {
+		ProductOrderVO vo = new ProductOrderVO();
+		try {
+			logger.info("ProductOrderDAO selectOrderWithOrdNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_ORDER_WITH_ORDNO);
+			psmt.setString(1, ordNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setOrdNo(rs.getInt("ordNo"));
+				vo.setOrdUid(rs.getString("ordUid"));
+				vo.setOrdCount(rs.getInt("ordCount"));
+				vo.setOrdPrice(rs.getInt("ordPrice"));
+				vo.setOrdDiscount(rs.getInt("ordDiscount"));
+				vo.setOrdDelivery(rs.getInt("ordDelivery"));
+				vo.setSavePoint(rs.getInt("savePoint"));
+				vo.setUsedPoint(rs.getInt("usedPoint"));
+				vo.setOrdTotPrice(rs.getInt("ordTotPrice"));
+				vo.setRecipName(rs.getString("recipName"));
+				vo.setRecipHp(rs.getString("recipHp"));
+				vo.setRecipZip(rs.getString("recipZip"));
+				vo.setRecipAddr1(rs.getString("recipAddr1"));
+				vo.setRecipAddr2(rs.getString("recipAddr2"));
+				vo.setOrdPayment(rs.getInt("ordPayment"));
+				vo.setOrdComplete(rs.getInt("ordComplete"));
+				vo.setOrdDate(rs.getString("ordDate"));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
+	}
 	
 	// upload
 	

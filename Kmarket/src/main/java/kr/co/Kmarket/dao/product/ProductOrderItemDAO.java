@@ -1,10 +1,12 @@
 package kr.co.Kmarket.dao.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.ProductCartVO;
+import kr.co.Kmarket.vo.ProductOrderItemVO;
 
 public class ProductOrderItemDAO extends DBCP {
 	// create
@@ -42,6 +44,43 @@ public class ProductOrderItemDAO extends DBCP {
 	}
 	
 	// read
+	/**
+	 * 2022/12/20 product/complete - 주문번호로 상품 정보 받기
+	 * @author 심규영
+	 * @param ordNo
+	 * @return
+	 */
+	public List<ProductOrderItemVO> selectProductListWithOrdNo(String ordNo) {
+		List<ProductOrderItemVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductOrderItemDAO selectProductListWithOrdNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_WITH_ORDNO);
+			psmt.setString(1, ordNo);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ProductOrderItemVO vo = new ProductOrderItemVO();
+				vo.setOrdNo(rs.getInt("ordNo"));
+				vo.setProdNo(rs.getInt("prodNo"));
+				vo.setCount(rs.getInt("count"));
+				vo.setPrice(rs.getInt("price"));
+				vo.setDiscount(rs.getInt("discount"));
+				vo.setPoint(rs.getInt("point"));
+				vo.setDelivery(rs.getInt("delivery"));
+				vo.setTotal(rs.getInt("total"));
+				vo.setProdCate1(rs.getInt("prodCate1"));
+				vo.setProdCate2(rs.getInt("prodCate2"));
+				vo.setThumb1(rs.getString("thumb1"));
+				vo.setProdName(rs.getString("prodName"));
+				vo.setDescript(rs.getString("descript"));
+				vos.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
 	
 	// upload
 	

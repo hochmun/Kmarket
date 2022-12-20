@@ -39,7 +39,7 @@ function count(type) {
 	
 	const dispriseStr = document.getElementsByClassName('dis_price')[0].innerText;
 	const disprise = dispriseStr.replace(/,/g, "");
-	const totalprice = parseInt(disprise) * number;
+	const totalprice = parseInt(disprise) * number + parseInt(delivery);
 	const formatter = new Intl.NumberFormat('ko'); // 포맷
 	
 	document.getElementById('totalprice').innerText = formatter.format(totalprice);

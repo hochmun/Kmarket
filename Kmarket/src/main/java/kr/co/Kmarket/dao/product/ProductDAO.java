@@ -1,9 +1,13 @@
 package kr.co.Kmarket.dao.product;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
@@ -93,16 +97,20 @@ public class ProductDAO extends DBCP {
 		try {
 			logger.info("selectcate2... 카테고리2 불러오기");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_CATE2);
-			psmt.setString(1, cate1);
-			rs = psmt.executeQuery();
-			while(rs.next()) {
+			PreparedStatement psmt2 = conn.prepareStatement(Sql.SELECT_CATE2);
+			psmt2.setString(1, cate1);
+			ResultSet rs2 = psmt2.executeQuery();
+			
+			while(rs2.next()) {
 				Cate2VO vo = new Cate2VO();
-				vo.setCate1(rs.getInt(1));
-				vo.setCate2(rs.getInt(2));
-				vo.setC2Name(rs.getString(3));
+				vo.setCate1(rs2.getInt(1));
+				vo.setCate2(rs2.getInt(2));
+				vo.setC2Name(rs2.getString(3));
 				vos.add(vo);
 			}
+			
+			rs2.close();
+			psmt2.close();
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

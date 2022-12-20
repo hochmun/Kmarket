@@ -2,6 +2,9 @@ package kr.co.Kmarket.service.product;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.Kmarket.dao.product.ProductOrderDAO;
 import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.ProductOrderVO;
@@ -9,6 +12,7 @@ import kr.co.Kmarket.vo.ProductOrderVO;
 public enum ProductOrderService {
 	INSTANCE;
 	private ProductOrderDAO dao;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private ProductOrderService () {
 		dao = new ProductOrderDAO();
@@ -54,6 +58,15 @@ public enum ProductOrderService {
 	}
 	
 	// read
+	/**
+	 * 2022/12/20 product/complete - 주문 정보 불러오기
+	 * @author 심규영
+	 * @param ordNo
+	 * @return
+	 */
+	public ProductOrderVO selectOrderWithOrdNo(String ordNo) {
+		return dao.selectOrderWithOrdNo(ordNo);
+	}
 	
 	// upload
 	
