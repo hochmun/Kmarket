@@ -2,6 +2,8 @@ package kr.co.Kmarket.service.cs;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,9 +41,14 @@ public enum CsService {
 	 * @param no
 	 * @return
 	 */
-	public CsQnaVO selectQnaArticle(String no) {
-		return dao.selectQnaArticle(no);
+	public CsQnaVO selectQnaArticle(String qnaNo) {
+		return dao.selectQnaArticle(qnaNo);
 	}
+	
+	
+	// service
+	
+	/** 페이징 */ 
 	
 	/**
 	 * 2022/12/19 qna 작성글 목록 불러오기
@@ -88,6 +95,7 @@ public enum CsService {
 	
 	public int getCurrentPage(String pg) {
 		int currentPage = 1;
+		
 		if(pg != null) {
 			currentPage = Integer.parseInt(pg);
 		}
@@ -96,6 +104,7 @@ public enum CsService {
 	
 	public int getLastPageNum(int total) {
 		int lastPageNum = 0;
+		
 		if(total % 10 == 0) {
 			lastPageNum = (total / 10);
 		}else {
@@ -116,36 +125,34 @@ public enum CsService {
 		
 		return pageGroup;
 	}
-	
+
 	public int getStartNum(int currentPage) {
-		
 		return (currentPage -1) * 10;
 	}	
 	
 	public String getC1name(int cate1) {
-		
 		String c1name = null;
 		
 		switch(cate1) {
-		case 1:
+		case 10:
 			c1name = "회원";
 			break;
-		case 2:
+		case 11:
 			c1name = "쿠폰/이벤트";
 			break;
-		case 3:
+		case 12:
 			c1name = "주문/결제";
 			break;
-		case 4:
+		case 13:
 			c1name = "배송";
 			break;
-		case 5:
+		case 14:
 			c1name = "취소/반품/교환";
 			break;
-		case 6:
+		case 15:
 			c1name = "여행/숙박/항공";
 			break;
-		case 7:
+		case 16:
 			c1name = "안전거래";
 			break;
 		}

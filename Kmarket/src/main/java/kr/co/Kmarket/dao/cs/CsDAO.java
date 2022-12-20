@@ -81,14 +81,14 @@ public class CsDAO extends DBCP{
 	 * 2022/12/19 qna 작성글 목록 불러오기
 	 * @author 김재준
 	 */
-	public List<CsQnaVO> selectQnaArticles(int cate1, int start){
+	public List<CsQnaVO> selectQnaArticles(int cate1, int limitStart){
 		List<CsQnaVO> QnaArts = new ArrayList<>();
 		try {
 			logger.info("selectQnaArticles...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_ARTICLES);
 			psmt.setInt(1, cate1);
-			psmt.setInt(2, start);
+			psmt.setInt(2, limitStart);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
