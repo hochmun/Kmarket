@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.Kmarket.dao.cs.CsDAO;
+import kr.co.Kmarket.vo.cs.CsCate1VO;
+import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
 
 public enum CsService {
@@ -50,6 +52,24 @@ public enum CsService {
 	 */
 	public List<CsQnaVO> selectQnaArticles(int cate1, int start){
 		return dao.selectQnaArticles(cate1, start);
+	}
+	
+	/**
+	 * 2022/12/20 카테고리1 정보 가져오기
+	 * @return
+	 */
+	public List<CsCate1VO> selectCsCate1() {
+		return dao.selectCsCate1();
+	}
+	
+	/**
+	 * 2022/12/20 카테고리1 값으로 카테고리 2 정보 가져오기
+	 * @author 심규영
+	 * @param csCate1
+	 * @return
+	 */
+	public List<CsCate2VO> selectCsCate2(String csCate1) {
+		return dao.selectCsCate2(csCate1);
 	}
 	
 	// service

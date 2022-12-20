@@ -10,16 +10,52 @@ function allchecked(selectAll) {
 	});
 };
 
-// 전체 취소 버튼
+// 선택한 제품 장바구니에서 삭제 버튼
 function deleteChecked() {
-	const checkboxes = document.querySelectorAll('input[type="checkbox"]');
 	
-	// 체크박스가 클릭 되어 있을 경우 클릭 이벤트 실행
-	checkboxes.forEach((checkbox)=>{
+	// 실행 전 의사 묻기
+	const deleteIsOk = confirm('장바구니에서 제품을 제거 하시겠습니까?');
+	
+	if(deleteIsOk == false) return false;
+	
+	const checkboxes = document.getElementsByName('productCheck');
+	
+	// 삭제할 제품의 장바구니 번호가 들어갈 배열
+	let cartNos = [];
+	
+	// 체크박스가 클릭 되어 있을 경우 해당 제품 장바구니에서 숨기기
+	checkboxes.forEach((checkbox) =>{
 		if(checkbox.checked == true) {
+			const cartNo = checkbox.value;
+			const tr = checkbox.parentElement.parentElement;
+			
+			cartNos.push(cartNo);
 			checkbox.click();
+			tr.style.display = 'none';
 		}
-	})
+	});
+	
+	// 배열의 길이가 0일 경우
+	if(cartNos.length == 0) {
+		alert('상품을 선택하여 주십시오.');
+		return false;
+	}
+	
+	// 배열을 보내서 장바구니에서 상품 제거
+	$.ajax({
+		url: '/Kmarket/product/deleteProduct.do',
+		type: 'POST',
+		data: {"cartNos":cartNos},
+		dataType: 'json',
+		traditional: true,
+		success: (data)=>{
+			if(data.result > 0) {
+				alert('상품 '+data.result+'개가 장바구니에서 제거 되었습니다.');
+			} else {
+				alert('상품을 장바구니에서 제거하는데 실패하였습니다.<br/>관리자에게 문의 하십시오.');
+			}
+		}
+	});
 }
 
 // 개별 선택 버튼
@@ -87,5 +123,15 @@ function ProductOrder() {
 	// 배열의 길이가 0일 경우 리턴
 	if(checkArray.length == 0) return false;
 	
+	// TODO - 세션에 넣어서 전송하기
+	
+	//sessionStorage.setItem('', checkArray);
+	
 	location.href = '/Kmarket/product/order.do?array='+checkArray;
+}
+
+// 지연함수
+function sleep(ms) {
+  const wakeUpTime = Date.now() + ms;
+  while (Date.now() < wakeUpTime) {}
 }

@@ -79,6 +79,7 @@ public class OrderController extends HttpServlet {
 				pcvos = productCartService.selectProductCartWithCartNo(arrays);
 			} else {
 				// 장바구니에서 들어온 값이 없을때 = view에서 구매하기로 바로 넘어온 경우
+				// TODO - 해당 제품만 구매하기로 변경
 				// 갱신된 유저 정보로 장바구니 정보 가져오기
 				pcvos = productCartService.selectProductCartWithUid(mvo.getUid());
 			}
