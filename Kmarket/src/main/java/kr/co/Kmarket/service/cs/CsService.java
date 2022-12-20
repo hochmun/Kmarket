@@ -38,7 +38,7 @@ public enum CsService {
 	/**
 	 * 2022/12/19 qna 작성글 불러오기
 	 * @author 김재준
-	 * @param no
+	 * @param qnaNo
 	 * @return
 	 */
 	public CsQnaVO selectQnaArticle(String qnaNo) {
@@ -54,11 +54,11 @@ public enum CsService {
 	 * 2022/12/19 qna 작성글 목록 불러오기
 	 * @author 김재준
 	 * @param cate1
-	 * @param start
+	 * @param limitStart
 	 * @return
 	 */
-	public List<CsQnaVO> selectQnaArticles(int cate1, int start){
-		return dao.selectQnaArticles(cate1, start);
+	public List<CsQnaVO> selectQnaArticles(String cate1, int limitStart){
+		return dao.selectQnaArticles(cate1, limitStart);
 	}
 	
 	/**
@@ -79,6 +79,15 @@ public enum CsService {
 		return dao.selectCsCate2(csCate1);
 	}
 	
+	/**
+	 * 2022/12/21 카테고리 이름 불러오기
+	 * @author 김재준
+	 * @param cate1name
+	 * @return
+	 */
+	public CsCate1VO selectCsCate(String cate1name, String cate2name) {
+		return dao.selectCsCate(cate1name, cate2name);
+	}
 	// service
 	
 	/** 페이징 */ 
@@ -89,73 +98,42 @@ public enum CsService {
 	 * @param cate1
 	 * @return
 	 */
-	public int selectCountTotal(int cate1) {
+	public int selectCountTotal(String cate1) {
 		return dao.selectCountTotal(cate1);
 	}
 	
-	public int getCurrentPage(String pg) {
-		int currentPage = 1;
+	public int boardPaging(HttpServletRequest req, String cate1) {
+		String pg = req.getParameter("pg");
 		
-		if(pg != null) {
-			currentPage = Integer.parseInt(pg);
-		}
-		return currentPage;
-	}
-	
-	public int getLastPageNum(int total) {
-		int lastPageNum = 0;
+		int currentPage = 1; // 현재 페이지
+		int total = selectCountTotal(cate1); // 총 게시물 갯수
+		int lastPageNum = 0; // 마지막 페이지 번호
 		
-		if(total % 10 == 0) {
-			lastPageNum = (total / 10);
-		}else {
-			lastPageNum = (total / 10) + 1;
-		}
-		return lastPageNum;
-	}
-	
-	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
+		// 페이지 마지막 번호 계산
+		if(total % 10 != 0) lastPageNum = (total / 10) + 1;
+		else lastPageNum = (total / 10);
+		
+		// 전체 페이지 게시물 limit 시작값 계산
+		if(pg != null) currentPage = Integer.parseInt(pg);
+		int limitStart = (currentPage - 1) * 10;
+		
+		// 페이지 그룹 계산
 		int pageGroupCurrent = (int)Math.ceil(currentPage / 5.0);
-		int pageGroupStart = (pageGroupCurrent -1) * 5 + 1;
+		int pageGroupStart = (pageGroupCurrent - 1) * 5 + 1;
 		int pageGroupEnd = pageGroupCurrent * 5;
 		
-		if(pageGroupEnd > lastPageNum) {
-			pageGroupEnd = lastPageNum;
-		}
-		int[] pageGroup = {pageGroupStart, pageGroupEnd};
+		if (pageGroupEnd > lastPageNum) pageGroupEnd = lastPageNum;
 		
-		return pageGroup;
-	}
-
-	public int getStartNum(int currentPage) {
-		return (currentPage -1) * 10;
-	}	
-	
-	public String getC1name(int cate1) {
-		String c1name = null;
+		// 페이지 시작 번호 계산
+		int pageStartNum = total - limitStart;
 		
-		switch(cate1) {
-		case 10:
-			c1name = "회원";
-			break;
-		case 11:
-			c1name = "쿠폰/이벤트";
-			break;
-		case 12:
-			c1name = "주문/결제";
-			break;
-		case 13:
-			c1name = "배송";
-			break;
-		case 14:
-			c1name = "취소/반품/교환";
-			break;
-		case 15:
-			c1name = "여행/숙박/항공";
-			break;
-		case 16:
-			c1name = "안전거래";
-			break;
-		}
-		return c1name;
+		req.setAttribute("lastPageNum", lastPageNum);
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
+		req.setAttribute("pageGroupStart", pageGroupStart);
+		req.setAttribute("pageGroupEnd", pageGroupEnd);
+		req.setAttribute("pageStartNum", pageStartNum);
+		
+		return limitStart;
 	}
 }
