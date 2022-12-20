@@ -123,6 +123,10 @@ function ProductOrder() {
 	// 배열의 길이가 0일 경우 리턴
 	if(checkArray.length == 0) return false;
 	
+	// TODO - 세션에 넣어서 전송하기
+	
+	//sessionStorage.setItem('', checkArray);
+	
 	location.href = '/Kmarket/product/order.do?array='+checkArray;
 }
 

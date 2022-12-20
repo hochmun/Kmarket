@@ -88,10 +88,10 @@
                         <li><a href="#discount">할인상품</a></li>
                     </ul>
                     <ul>
-                        <li><a href="#">공지사항</a></li>
-                        <li><a href="#">자주묻는질문</a></li>
-                        <li><a href="#">문의하기</a></li>
-                        <li><a href="#">고객센터</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/notice/list.do">공지사항</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/faq/list.do">자주묻는질문</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/qna/list.do">문의하기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/index.do">고객센터</a></li>
                     </ul>
                 </div>
             </div>

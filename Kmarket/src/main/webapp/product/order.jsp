@@ -48,7 +48,7 @@
 	         	</script>
 	         	<c:set var="productCount" value="${ productCount + 1 }"></c:set>
 	         	<c:set var="productPrice" value="${ productPrice + ( pcvo.price * pcvo.count ) }"></c:set>
-	         	<c:set var="productDisprice" value="${ productDisprice + ( ( pcvo.price * pcvo.count ) - pcvo.total ) }"></c:set>
+	         	<c:set var="productDisprice" value="${ productDisprice + ( ( ( pcvo.price * pcvo.count ) + pcvo.delivery ) - pcvo.total ) }"></c:set>
 	         	<c:set var="productDelivery" value="${ productDelivery + pcvo.delivery }"></c:set>
 	         	<c:set var="productPoint" value="${ productPoint + pcvo.point }"></c:set>
 	         	<c:set var="productTotal" value="${ productTotal + pcvo.total }"></c:set>
@@ -101,7 +101,7 @@
 	                </tr>
 	                <tr>
 	                    <td>할인금액</td>
-	                    <td id="totallyDisprice">-<fmt:formatNumber value="${ productDisprice }" pattern="#,###"/></td>
+	                    <td id="totallyDisprice"><fmt:formatNumber value="${ productDisprice }" pattern="#,###"/></td>
 	                </tr>
 	                <tr>
 	                    <td>배송비</td>

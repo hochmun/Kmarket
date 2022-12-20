@@ -8,6 +8,14 @@ public class CsFaqVO {
 	private String faqContent;
 	private String faqRegip;
 	
+	private String cate2Name;
+	
+	public String getCate2Name() {
+		return cate2Name;
+	}
+	public void setCate2Name(String cate2Name) {
+		this.cate2Name = cate2Name;
+	}
 	public int getFaqNo() {
 		return faqNo;
 	}

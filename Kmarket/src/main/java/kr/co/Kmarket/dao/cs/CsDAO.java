@@ -5,6 +5,8 @@ import java.util.List;
 
 import kr.co.Kmarket.db.CsSql;
 import kr.co.Kmarket.db.DBCP;
+import kr.co.Kmarket.vo.cs.CsCate1VO;
+import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
 
 public class CsDAO extends DBCP{
@@ -135,6 +137,65 @@ public class CsDAO extends DBCP{
 		return total;
 	
 	}
+	
+	/**
+	 * 2022/12/20 카테고리1 정보 불러오기
+	 * @return
+	 */
+	public List<CsCate1VO> selectCsCate1() {
+		List<CsCate1VO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsDAO selectCsCate1...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_CS_CATE1);
+			while(rs.next()) {
+				CsCate1VO vo = new CsCate1VO();
+				
+				vo.setCate1(rs.getInt("cate1"));
+				vo.setCate1Name(rs.getString("cate1Name"));
+				
+				vos.add(vo);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/20 카테고리1 값으로 카테고리 2 정보 가져오기
+	 * @author 심규영
+	 * @param csCate1
+	 * @return
+	 */
+	public List<CsCate2VO> selectCsCate2(String csCate1) {
+		List<CsCate2VO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsDAO selectCsCate2...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_CATE2_WITH_CS_CATE1);
+			psmt.setString(1, csCate1);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsCate2VO vo = new CsCate2VO();
+				vo.setCate1(rs.getInt("cate1"));
+				vo.setCate2(rs.getInt("cate2"));
+				vo.setCate2Name(rs.getString("cate2Name"));
+				vos.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
+	
 	
 	// delete
 }
