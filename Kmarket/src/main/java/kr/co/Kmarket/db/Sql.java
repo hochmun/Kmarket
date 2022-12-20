@@ -277,6 +277,9 @@ public class Sql {
 			+ "JOIN `km_product` AS p ON pc.prodNo = p.prodNo "
 			+ "WHERE pc.`cartNo`=?";
 	
+	/** 방금 넣은 상품의 key값 가져오기 */
+	public static final String SELECT_MAX_CARTNO_PRODUCT_CART = "SELECT MAX(`cartNo`) FROM `km_product_cart`";
+	
 	/** product/order - 장바구니에 상품 정보 삭제 */
 	public static final String DELETE_PRODUCT_CART = 
 			"DELETE FROM `km_product_cart` WHERE `cartNo`=?";
