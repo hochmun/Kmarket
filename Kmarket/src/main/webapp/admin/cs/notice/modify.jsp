@@ -14,7 +14,7 @@
                         <tr>
                             <td>유형</td>
                             <td>
-                                <select name="type">
+                                <select name="type" class="w-btn-outline w-btn-indigo-outline">
                                     <option value="0">고객서비스</option>
                                     <option value="">가입</option>
                                     <option value="">탈퇴</option>
@@ -27,25 +27,23 @@
                         <tr>
                             <td>제목</td>
                             <td>
-                                <input type="text" name="title" placeholder="제목을 입력하세요.">
+                                <input type="text" name="title" class="w-btn-outline w-btn-indigo-outline" placeholder="제목을 입력하세요.">
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                                <textarea name="content" class="w-btn-outline w-btn-indigo-outline" placeholder="내용을 입력하세요."></textarea>
                             </td>
                         </tr>
                     </table>
                     <div>
-                        <a href="./list.html" class="btnList">취소하기</a>
-                        <a href="./list.html" class="btnSubmit">수정하기</a>
+                        <a href="./list.do" class="w-btn w-btn-indigo">취소하기</a>
+                        <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정하기</a>
                     </div>
 
-                   
                 </section>         
 
-                
                 <p class="ico info">
                     <strong>Tip!</strong>
                     전자상거래 등에서의 상품 등의 정보제공에 관한 고시에 따라 총 35개 상품군에 대해 상품 특성 등을 양식에 따라 입력할 수 있습니다.

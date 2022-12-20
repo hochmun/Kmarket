@@ -14,7 +14,7 @@
                         <tr>
                             <td>유형</td>
                             <td>
-                                <select name="type">
+                                <select name="type" class="w-btn-outline w-btn-indigo-outline">
                                     <option value="0">유형 선택</option>
                                     <option value="">가입</option>
                                     <option value="">탈퇴</option>
@@ -27,19 +27,19 @@
                         <tr>
                             <td>제목</td>
                             <td>
-                                <input type="text" name="title" placeholder="제목을 입력하세요.">
+                                <input type="text" name="title" class="w-btn-outline w-btn-indigo-outline" placeholder="제목을 입력하세요.">
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                                <textarea name="content" class="w-btn-outline w-btn-indigo-outline" placeholder="내용을 입력하세요."></textarea>
                             </td>
                         </tr>
                     </table>
                     <div>
-                        <a href="./list.html" class="btnList">취소하기</a>
-                        <input type="submit" class="btnSubmit" value="등록하기">
+                        <a href="./list.do" class="w-btn w-btn-indigo">취소하기</a>
+                        <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">등록하기</a>
                     </div>
 
                    

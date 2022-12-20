@@ -1,6 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../../_header.jsp"/>
     <section id="admin-product-list">
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$("#cbx_chkAll").click(function() {
+				if($("#cbx_chkAll").is(":checked")) $("input[name=상품코드]").prop("checked", true);
+				else $("input[name=상품코드]").prop("checked", false);
+			});
+			
+			$("input[name=상품코드]").click(function() {
+				var total = $("input[name=상품코드]").length;
+				var checked = $("input[name=상품코드]:checked").length;
+				
+				if(total != checked) $("#cbx_chkAll").prop("checked", false);
+				else $("#cbx_chkAll").prop("checked", true); 
+			});
+		});
+	</script>
                 <nav>
                     <h3>자주묻는질문 목록</h3>
                     <p>
@@ -10,17 +26,16 @@
                 <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
                     <div>
-                        <select name="search">
+                        <select name="search" class="w-btn-outline w-btn-indigo-outline">
                             <option value="search1">1차 선택</option>
                             <option value="search1">상품코드</option>
                             <option value="search1">제조사</option>
                             <option value="search1">판매자</option>                                    
                         </select>
                         
-                        <input type="text" name="search">
                     </div>
                     <div>
-                        <select name="search">
+                        <select name="search" class="w-btn-outline w-btn-indigo-outline">
                             <option value="search1">2차 선택</option>
                             <option value="search1">상품코드</option>
                             <option value="search1">제조사</option>
@@ -29,7 +44,7 @@
                     </div>
                     <table>
                         <tr>
-                            <th><input type="checkbox" name="all"/></th>
+                            <th><input type="checkbox" id="cbx_chkAll"/></th>
                             <th>번호</th>
                             <th>1차유형</th>
                             <th>2차유형</th>
@@ -49,7 +64,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                          <tr>
@@ -62,7 +77,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                          <tr>
@@ -75,7 +90,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -88,7 +103,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -101,7 +116,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -114,7 +129,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -127,7 +142,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -140,7 +155,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -153,7 +168,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                              </tr>
                          <tr>
@@ -166,15 +181,15 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         
                     </table>
 
                     
-                    <input type="button" value="선택삭제" />  
-                     <input type="button" value="작성하기" />                         
+                    <a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>  
+                    <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정하기</a>              
 
 
                     <div class="paging">
