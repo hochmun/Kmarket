@@ -80,7 +80,7 @@ public class CsDAO extends DBCP{
 	 * @author 김재준
 	 */
 	public List<CsQnaVO> selectQnaArticles(int cate1, int start){
-		List<CsQnaVO> articles = new ArrayList<>();
+		List<CsQnaVO> QnaArts = new ArrayList<>();
 		try {
 			logger.info("selectQnaArticles...");
 			conn = getConnection();
@@ -90,26 +90,26 @@ public class CsDAO extends DBCP{
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
-				CsQnaVO article = new CsQnaVO();
-				article.setQnaNo(rs.getInt(1));
-				article.setQnaCate1(rs.getInt(2));
-				article.setQnaCate2(rs.getInt(3));
-				article.setUid(rs.getString(4));
-				article.setQnaTitle(rs.getString(5));
-				article.setQnaContent(rs.getString(6));
-				article.setQnaAdminContent(rs.getString(7));
-				article.setQnaType(rs.getInt(8));
-				article.setQnaRdate(rs.getString(9));
-				article.setQnaRegip(rs.getString(10));
-				article.setCate2Name(rs.getString(11));
+				CsQnaVO QnaArt = new CsQnaVO();
+				QnaArt.setQnaNo(rs.getInt(1));
+				QnaArt.setQnaCate1(rs.getInt(2));
+				QnaArt.setQnaCate2(rs.getInt(3));
+				QnaArt.setUid(rs.getString(4));
+				QnaArt.setQnaTitle(rs.getString(5));
+				QnaArt.setQnaContent(rs.getString(6));
+				QnaArt.setQnaAdminContent(rs.getString(7));
+				QnaArt.setQnaType(rs.getInt(8));
+				QnaArt.setQnaRdate(rs.getString(9));
+				QnaArt.setQnaRegip(rs.getString(10));
+				QnaArt.setCate2Name(rs.getString(11));
 				
-				articles.add(article);
+				QnaArts.add(QnaArt);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage());
 		}
-		return articles;
+		return QnaArts;
 	}
 	
 	/**
