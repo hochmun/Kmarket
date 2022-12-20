@@ -197,13 +197,13 @@
                             <a href="#"><&nbsp;이전</a>
                         </span>
                         <span class="num">
-                            <a href="#" class="on">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#">7</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#" class="on">1</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">2</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">3</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">4</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">5</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">6</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">7</a>
                         </span>
                         <span class="next">
                             <a href="#">다음&nbsp;></a>

@@ -12,15 +12,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/css/admin.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/admin/cs/css/admin.css">
-	<!--  
 	<script>
-	$("gnb").click(function() {
-		   $(this).next("fa fa-cogs").stop().slideToggle(300);
-		  $(this).toggleClass('on').siblings().removeClass('on');
-		  $(this).next("fa fa-cogs").siblings("fa fa-cogs").slideUp(300); // 1개씩 펼치기
-		});
+	$(document).ready(function(){
+	    var gnb = $('#gnb > li > a');
+
+	    gnb.click(function(e){
+	        e.preventDefault();
+	        
+	        var isOpen = $(this).next().is(':visible');
+
+	        if(isOpen){
+	            $(this).next().slideUp(100);
+	        }else{
+	            $(this).next().slideDown(100);
+	        }
+	    });
+	});
 	</script>
-	-->
+	
 </head>
 <body>
     <div id="admin-wrapper">
@@ -39,7 +48,7 @@
             <aside>
                 <!-- Global Navigation Bar -->
                 <ul id="gnb">
-                    <li>
+                    <li class="on">
                         <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
                         <ol>
                             <li><a href="#">기본환경설정</a></li>

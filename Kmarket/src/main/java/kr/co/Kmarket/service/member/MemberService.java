@@ -148,18 +148,18 @@ public enum MemberService {
 		MemberVO msvo = new MemberVO();
 		msvo.setUid(req.getParameter("km_uid"));
 		msvo.setPass(req.getParameter("km_pass2"));
+		msvo.setEmail(req.getParameter("kms_email"));
+		msvo.setZip(req.getParameter("kms_zip"));
+		msvo.setAddr1(req.getParameter("kms_addr1"));
+		msvo.setAddr2(req.getParameter("kms_addr2"));
 		msvo.setCompany(req.getParameter("kms_company"));
 		msvo.setCeo(req.getParameter("kms_ceo"));
 		msvo.setBizRegNum(req.getParameter("kms_corp_reg"));
 		msvo.setComRegNum(req.getParameter("kms_online_reg"));
 		msvo.setTel(req.getParameter("kms_tel"));
-		msvo.setFax(req.getParameter("kms_fax"));
-		msvo.setEmail(req.getParameter("kms_email"));
-		msvo.setZip(req.getParameter("kms_zip"));
-		msvo.setAddr1(req.getParameter("kms_add1"));
-		msvo.setAddr2(req.getParameter("kms_addr2"));
 		msvo.setManager(req.getParameter("kms_manger"));
 		msvo.setManagerHp(req.getParameter("kms_mangerhp"));
+		msvo.setFax(req.getParameter("kms_fax"));
 		msvo.setRegip(req.getRemoteAddr());
 		return msvo;
 	}

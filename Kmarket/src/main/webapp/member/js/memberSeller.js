@@ -7,7 +7,7 @@
 const reUid = /^[a-z]+[a-z0-9]{5,19}$/g;
 const rePass = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,255}$/;
 const reCompany = /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/;
-const reCeo = /^[ㄱ-힣]+$/;
+const reCeo = /^[ㄱ-ㅎ|가-힣|a-z|A-Z|0-9|]+$/;
 const reTel = /^\d{2,3}-\d{3,4}-\d{4}$/;
 const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 const reName = /^[ㄱ-힣]+$/;
@@ -111,7 +111,7 @@ $(function(){
 		
 		if (ceo.match(reCeo)) {
 			isCeoOk = true;
-			$('.msgTel').text('');
+			$('.msgCeo').text('');
 		} else {
 			isCeoOk = false;
 			$('.msgCeo').css('color','red').text('유효한 대표자명이 아닙니다.');
