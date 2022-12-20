@@ -14,14 +14,14 @@
                         <tr>
                             <td>유형</td>
                             <td>
-                                <select name="type">
+                                <select class="w-btn-outline w-btn-indigo-outline" name="type">
                                     <option value="0">회원</option>
                                     <option value="">가입</option>
                                     <option value="">탈퇴</option>
                                     <option value="">회원정보</option>
                                     <option value="">로그인</option>
                                 </select>
-                                <select name="type">
+                                <select class="w-btn-outline w-btn-indigo-outline" name="type">
                                     <option value="0">가입</option>
                                     <option value="">가입</option>
                                     <option value="">탈퇴</option>
@@ -33,19 +33,19 @@
                         <tr>
                             <td>제목</td>
                             <td>
-                                <input type="text" name="title" placeholder="제목을 입력하세요.">
+                                <input type="text" name="title" class="w-btn-outline w-btn-indigo-outline" placeholder="제목을 입력하세요.">
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                                <textarea name="content" placeholder="내용을 입력하세요."></textarea>
+                                <textarea name="content" class="w-btn-outline w-btn-indigo-outline" placeholder="내용을 입력하세요."></textarea>
                             </td>
                         </tr>
                     </table>
                     <div>
-                        <a href="./list.html" class="btnList">취소하기</a>
-                        <a href="./list.html" class="btnSubmit">수정하기</a>
+                        <a href="./list.do" class="w-btn w-btn-indigo">취소하기</a>
+                        <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정하기</a>
                     </div>
                 </section>         
                 <p class="ico info">

@@ -2,7 +2,21 @@ package kr.co.Kmarket.db;
 
 public class CsSql {
 	/** cate */ 
+	
+	// csCate1 정보 가져오기
+	public static final String SELECT_CS_CATE1 = 
+			"SELECT * FROM `km_cs_cate1`";
+	
+	// Cate1 값으로 csCate2 정보 가져오기
+	public static final String SELECT_CS_CATE2_WITH_CS_CATE1 = 
+			"SELECT * FROM `km_cs_cate2` WHERE `cate1`=?";
+	
 	/** faq */ 
+	
+	// faq 리스트 가져오기 cate1과 cate2 값으로 10개씩
+	public static final String SELECT_CS_FAQ_LIST_WITH_CS_CATE1 = 
+			"SELECT * FROM `km_cs_faq` WHERE `faqCate1`=? AND `faqCate2`=? LIMIT 10";
+	
 	/** notice */ 
 	/** qna */ 
 	

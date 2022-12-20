@@ -57,8 +57,8 @@
                         <li><a href="#">쿠폰존</a></li>
                         <li><a href="#">사용후기</a></li>
                         <li><a href="#">개인결제</a></li>
-                        <li><a href="#">고객센터</a></li>
-                        <li><a href="#">FAQ</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/index.do">고객센터</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/faq/list.do">FAQ</a></li>
                     </ul>
                 </div>
             </div>

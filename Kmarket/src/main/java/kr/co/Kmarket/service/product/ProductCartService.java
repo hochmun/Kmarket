@@ -85,4 +85,14 @@ public enum ProductCartService {
 		dao.deleteProductCarts(vos);
 	}
 	
+	/**
+	 * 2022/12/20 product/cart - 장바구니에 상품 정보 삭제
+	 * @author 심규영
+	 * @param cartNos
+	 * @return
+	 */
+	public int deleteProductCartWithCartNos(String[] cartNos) {
+		return dao.deleteProductCartWithCartNos(cartNos);
+	}
+	
 }

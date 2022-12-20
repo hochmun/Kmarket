@@ -1,6 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../../_header.jsp"/>
     <section id="admin-product-list">
+    <script type="text/javascript">
+		$(document).ready(function() {
+			$("#cbx_chkAll").click(function() {
+				if($("#cbx_chkAll").is(":checked")) $("input[name=상품코드]").prop("checked", true);
+				else $("input[name=상품코드]").prop("checked", false);
+			});
+			
+			$("input[name=상품코드]").click(function() {
+				var total = $("input[name=상품코드]").length;
+				var checked = $("input[name=상품코드]:checked").length;
+				
+				if(total != checked) $("#cbx_chkAll").prop("checked", false);
+				else $("#cbx_chkAll").prop("checked", true); 
+			});
+		});
+	</script>
                 <nav>
                     <h3>공지사항 목록</h3>
                     <p>
@@ -10,7 +26,7 @@
                 <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
                     <div>
-                        <select name="search">
+                        <select name="search" class="w-btn-outline w-btn-indigo-outline" >
                             <option value="search1">유형 선택</option>
                             <option value="search1">상품코드</option>
                             <option value="search1">제조사</option>
@@ -20,7 +36,7 @@
                     </div>
                     <table>
                         <tr>
-                            <th><input type="checkbox" name="all"/></th>
+                            <th><input type="checkbox" id="cbx_chkAll"/></th>
                             <th>번호</th>
                             <th>유형</th>
                             <th>제목</th>
@@ -38,7 +54,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         
@@ -51,7 +67,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -63,7 +79,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -75,7 +91,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -87,7 +103,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -99,7 +115,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -111,7 +127,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -123,7 +139,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -135,7 +151,7 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         <tr>
@@ -147,15 +163,15 @@
                             <td>00.00.00</td>
                             <td>
                                 <a href="#">[삭제]</a>
-                                <a href="#">[수정]</a>
+                                <a href="./modify.do">[수정]</a>
                             </td>
                         </tr>
                         
                     </table>
 
                     
-                    <input type="button" value="선택삭제" />                          
-                    <input type="button" value="작성하기" />                          
+                     <a href="#" class="w-btn w-btn-indigo">선택삭제</a>
+                     <a href="./write.do" class="w-btn w-btn-gra3 w-btn-gra-anim">작성하기</a>                     
 
 
                     <div class="paging">
@@ -163,13 +179,13 @@
                             <a href="#"><&nbsp;이전</a>
                         </span>
                         <span class="num">
-                            <a href="#" class="on">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <a href="#">4</a>
-                            <a href="#">5</a>
-                            <a href="#">6</a>
-                            <a href="#">7</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#" class="on">1</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">2</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">3</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">4</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">5</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">6</a>
+                            <a class="w-btn-outline w-btn-green-outline" href="#">7</a>
                         </span>
                         <span class="next">
                             <a href="#">다음&nbsp;></a>
