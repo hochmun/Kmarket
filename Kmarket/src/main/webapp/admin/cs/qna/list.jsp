@@ -178,9 +178,9 @@
                         
                     </table>
 
-                    
-                     <a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>
-
+                    <div class="btn1ro">
+                    	<a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>
+					</div>
 
                     <div class="paging">
                         <span class="prev">

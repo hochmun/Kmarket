@@ -34,11 +34,23 @@ public class ProductVO {
 	private String etc4;
 	private String etc5;
 	
+	private int cartNo = prodNo;
+	
+	
+	public int getCartNo() {
+		return cartNo;
+	}
+	public void setCartNo(int cartNo) {
+		this.cartNo = cartNo;
+		this.prodNo = cartNo;
+	}
+	
 	public int getProdNo() {
 		return prodNo;
 	}
 	public void setProdNo(int prodNo) {
 		this.prodNo = prodNo;
+		this.cartNo = prodNo;
 	}
 	public int getProdCate1() {
 		return prodCate1;

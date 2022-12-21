@@ -7,9 +7,32 @@ public class CsFaqVO {
 	private String faqTitle;
 	private String faqContent;
 	private String faqRegip;
+	private int faqHit;
+	private String faqRdate;
 	
+	private String cate1Name;
 	private String cate2Name;
 	
+	
+	
+	public String getFaqRdate() {
+		return faqRdate;
+	}
+	public void setFaqRdate(String faqRdate) {
+		this.faqRdate = faqRdate;
+	}
+	public int getFaqHit() {
+		return faqHit;
+	}
+	public void setFaqHit(int faqHit) {
+		this.faqHit = faqHit;
+	}
+	public String getCate1Name() {
+		return cate1Name;
+	}
+	public void setCate1Name(String cate1Name) {
+		this.cate1Name = cate1Name;
+	}
 	public String getCate2Name() {
 		return cate2Name;
 	}

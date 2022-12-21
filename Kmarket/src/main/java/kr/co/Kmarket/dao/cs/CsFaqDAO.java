@@ -48,6 +48,115 @@ public class CsFaqDAO extends DBCP {
 		return vos;
 	}
 	
+	/**
+	 * 2022/12/21 자주묻는 질문 게시물 번호로 게시물 정보 불러오기
+	 * @author 심규영
+	 * @param faqNo
+	 * @return
+	 */
+	public CsFaqVO selectCsFaqWithFaqNo(String faqNo) {
+		CsFaqVO vo = new CsFaqVO();
+		
+		try {
+			logger.info("CsFaqDAO selectCsFaqWithFaqNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_FAQ_WITH_FAQ_NO);
+			psmt.setString(1, faqNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setFaqNo(rs.getInt("faqNo"));
+				vo.setFaqCate1(rs.getInt("faqCate1"));
+				vo.setFaqCate2(rs.getInt("faqCate2"));
+				vo.setFaqTitle(rs.getString("faqTitle"));
+				vo.setFaqContent(rs.getString("faqContent"));
+				vo.setFaqRegip(rs.getString("faqRegip"));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vo;
+	}
+
+	/**
+	 * 2022/12/21 관리자 자주묻는 질문 처음 접근시 게시물 상위 10개 불러오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsFaqVO> selectCsFaqListLimit10() {
+		List<CsFaqVO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsFaqDAO selectCsFaqListLimit10...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_CS_FAQ_LIST_LIMIT10);
+			while(rs.next()) {
+				CsFaqVO vo = new CsFaqVO();
+				vo.setFaqNo(rs.getInt("faqNo"));
+				vo.setFaqCate1(rs.getInt("faqCate1"));
+				vo.setFaqCate2(rs.getInt("faqCate2"));
+				vo.setFaqTitle(rs.getString("faqTitle"));
+				vo.setFaqContent(rs.getString("faqContent"));
+				vo.setFaqRegip(rs.getString("faqRegip"));
+				vo.setFaqHit(rs.getInt("faqHit"));
+				vo.setFaqRdate(rs.getString("faqRdate").substring(2, 10));
+				
+				vo.setCate1Name(rs.getString("cate1Name"));
+				vo.setCate2Name(rs.getString("cate2Name"));
+				
+				vos.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
+	
+	/**
+	 * 2022/12/21 관리자 카테1 과 카테2 값으로 상위 10개 게시물 가져오기
+	 * @author 심규영
+	 * @param cate1
+	 * @param cate2
+	 * @return
+	 */
+	public List<CsFaqVO> selectCsFaqListWithCate1AndCate2(String cate1, String cate2) {
+		List<CsFaqVO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsFaqDAO selectCsFaqListWithCate1AndCate2...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_FAQ_LIST_WITH_CATE1_AND_CATE2);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsFaqVO vo = new CsFaqVO();
+				
+				vo.setFaqNo(rs.getInt("faqNo"));
+				vo.setFaqCate1(rs.getInt("faqCate1"));
+				vo.setFaqCate2(rs.getInt("faqCate2"));
+				vo.setFaqTitle(rs.getString("faqTitle"));
+				vo.setFaqContent(rs.getString("faqContent"));
+				vo.setFaqRegip(rs.getString("faqRegip"));
+				vo.setFaqHit(rs.getInt("faqHit"));
+				vo.setFaqRdate(rs.getString("faqRdate").substring(2, 10));
+				
+				vo.setCate1Name(rs.getString("cate1Name"));
+				vo.setCate2Name(rs.getString("cate2Name"));
+				
+				vos.add(vo);
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
+	
 	// upload
 	
 	// delete

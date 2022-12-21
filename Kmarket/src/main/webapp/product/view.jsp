@@ -6,6 +6,11 @@
 <script>
 	const sessUserUid = "${ sessUser.uid }"; // 유저 uid 정보 입력
 	const prodNo = "${ vo.prodNo }"; // 상품 번호
+	const prodCate1 = "${ vo.prodCate1 }";
+	const prodCate2 = "${ vo.prodCate2 }";
+	const thumb1 = "${ vo.thumb1 }";
+	const prodName = "${ vo.prodName}";
+	const descript = "${ vo.descript }";
 	const price = "${ vo.price }" // 상품 가격
 	const discount = "${ vo.discount }"; // 할인율
 	const point = "${ vo.point }"; // 포인트

@@ -37,7 +37,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div>
+                    <div class="btn2ro">
                         <a href="./list.do" class="w-btn w-btn-indigo">취소하기</a>
                         <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">등록하기</a>
                     </div>

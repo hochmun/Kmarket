@@ -31,6 +31,11 @@ public enum ProductCartService {
 		
 		vo.setUid(req.getParameter("uid"));
 		vo.setProdNo(Integer.parseInt(req.getParameter("prodNo")));
+		vo.setProdCate1(Integer.parseInt(req.getParameter("prodCate1")));
+		vo.setProdCate2(Integer.parseInt(req.getParameter("prodCate2")));
+		vo.setThumb1(req.getParameter("thumb1"));
+		vo.setProdName(req.getParameter("prodName"));
+		vo.setDescript(req.getParameter("descript"));
 		vo.setCount(Integer.parseInt(req.getParameter("count")));
 		vo.setPrice(Integer.parseInt(req.getParameter("price")));
 		vo.setDiscount(Integer.parseInt(req.getParameter("discount")));

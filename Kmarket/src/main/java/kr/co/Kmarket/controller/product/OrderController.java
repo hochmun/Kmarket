@@ -1,7 +1,7 @@
 package kr.co.Kmarket.controller.product;
 
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -65,22 +65,44 @@ public class OrderController extends HttpServlet {
 			// 유저 정보 세션에 갱신
 			sess.setAttribute("sessUser", mvo);
 			
-			// 장바구니 정보를 담을 리스트
-			List<ProductCartVO> pcvos = null;
-			
-			// 세션에서 들어온 값이 있을 경우
-			if(sess.getAttribute("cartNo") != null) {
-				// cartNo 값 불러오기
-				String cartNo = (String) sess.getAttribute("cartNo");
+			// 들어오는 값이 없을 경우
+			if(sess.getAttribute("cartNo") != null || sess.getAttribute("prodNo") != null){
 				
-				// session안의 cartNo 값 제거
-				sess.removeAttribute("cartNo");
+				// session안에 값이 없을때 => 잘못된 접근
+				sess.setAttribute("success", "501");
+				resp.sendRedirect("/Kmarket/loadingPage.do");
 				
-				// 장바구니 번호 배열에 담기
-				String[] arrays = cartNo.split(",");
+			} else {
 				
-				// 넘어온 장바구니 번호로 장바구니 정보 가져오기
-				pcvos = productCartService.selectProductCartWithCartNo(arrays);
+				List<ProductCartVO> pcvos = null;
+				
+				// 세션에서 들어오는 장바구니 번호 값이 있을 경우
+				if(sess.getAttribute("cartNo") != null) {
+					// cartNo 값 불러오기
+					String cartNo = (String) sess.getAttribute("cartNo");
+					
+					// session안의 cartNo 값 제거
+					sess.removeAttribute("cartNo");
+					
+					// 장바구니 번호 배열에 담기
+					String[] arrays = cartNo.split(",");
+					
+					// 넘어온 장바구니 번호로 장바구니 정보 가져오기
+					pcvos = productCartService.selectProductCartWithCartNo(arrays);
+				} 
+				
+				// 세션에서 들어오는 상품 번호 값이 있을 경우
+				if(sess.getAttribute("prodNo") != null) {
+					// prodNo 값 불러오기
+					ProductCartVO prodNo = (ProductCartVO) sess.getAttribute("prodNo");
+					
+					// session안의 prodNo 값 제거
+					sess.removeAttribute("prodNo");
+					
+					// 리스트로 변경
+					pcvos = new ArrayList<>();
+					pcvos.add(prodNo);
+				}
 				
 				// 정보 저장
 				req.setAttribute("mvo", mvo);
@@ -88,13 +110,7 @@ public class OrderController extends HttpServlet {
 				
 				// 포워드
 				req.getRequestDispatcher("/product/order.jsp").forward(req, resp);
-				
-			} else {
-				// session안에 값이 없을때 => 잘못된 접근
-				sess.setAttribute("success", "501");
-				resp.sendRedirect("/Kmarket/loadingPage.do");
 			}
-			
 		}
 	}
 	

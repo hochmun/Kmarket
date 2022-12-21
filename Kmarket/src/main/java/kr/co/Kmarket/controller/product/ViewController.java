@@ -55,14 +55,21 @@ public class ViewController extends HttpServlet {
 		// 카트에 등록할 상품 정보 vo에 저장
 		ProductCartVO vo = service2.insertProductCartVO(req);
 		
-		// 데이터 베이스에 저장 => cartNo 리턴
-		int result = service2.insertProductCart(vo);
-		
-		// type에 따라 order로 이동시 session에 상품 정보 입력 
+		// type에 따라 처리
 		String type = req.getParameter("type");
 		
-		// type이 order일 경우 session에 cartNo 정보 입력
-		if(type.equals("order")) req.getSession().setAttribute("cartNo", result+"");
+		int result = 0;
+		
+		if(type.equals("cart")) {
+			// 데이터 베이스에 저장
+			result = service2.insertProductCart(vo);
+		}
+		
+		if(type.equals("order")) {
+			// 상품 정보를 세션에 저장
+			req.getSession().setAttribute("prodNo", vo);
+			result = vo.getProdNo();
+		}
 		
 		// json 저장
 		JsonObject json = new JsonObject();
