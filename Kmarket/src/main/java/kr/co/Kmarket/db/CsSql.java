@@ -18,6 +18,8 @@ public class CsSql {
 			"SELECT * FROM `km_cs_faq` WHERE `faqCate1`=? AND `faqCate2`=? LIMIT 10";
 	
 	/** notice */ 
+	public static final String SELECT_CS_NOTICE_LIST_WITH_CS_CATE =
+			"SELECT * FROM `km_cs_notice` WHERE `NoticeCate`=? LIMIT 10";
 	/** qna */ 
 	
 	//qna 카테고리별 작성글 count 
