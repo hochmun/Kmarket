@@ -288,10 +288,10 @@ button[type=submit] {
 #admin-product-list > section > table  tr > th:nth-child(1) {width: 2%}
 #admin-product-list > section > table  tr > th:nth-child(2) {width: 2%}
 #admin-product-list > section > table  tr > th:nth-child(3) {width: 5%}
-#admin-product-list > section > table  tr > th:nth-child(4) {width: 5%}
-#admin-product-list > section > table  tr > th:nth-child(5) {width: 5%}
+#admin-product-list > section > table  tr > th:nth-child(4) {width: 7%}
+#admin-product-list > section > table  tr > th:nth-child(5) {}
 #admin-product-list > section > table  tr > th:nth-child(6) {width: 5%}
-#admin-product-list > section > table  tr > th:nth-child(7) {width: 5%}
+#admin-product-list > section > table  tr > th:nth-child(7) {width: 9%}
 #admin-product-list > section > table  tr > th:nth-child(8) {width: 5%}
 
 #admin-product-list > section > table  tr > td {
@@ -300,8 +300,11 @@ button[type=submit] {
     box-sizing: border-box;
     font-size: 15px;
 }
+#admin-product-list > section > table  tr > td > a {
+    font-size: 13px;
+}
 #admin-product-list > section > table  tr > td:nth-child(1) {width: 20px;}
-#admin-product-list > section > table  tr > td:nth-child(2) {width: 80px; text-align:left;}
+#admin-product-list > section > table  tr > td:nth-child(2) {width: 80px; text-align: center;}
 #admin-product-list > section > table  tr > td:nth-child(3) {width: 80px;}
 #admin-product-list > section > table  tr > td:nth-child(4) {width: auto; text-align: center;}
 #admin-product-list > section > table  tr > td:nth-child(5) {width: 80px;}
@@ -418,6 +421,7 @@ button[type=submit] {
 		            margin: 20px;
 		        }
 		        
+		        /*
 		        .w-btn {
 		            position: relative;
 		            border: none;
@@ -430,6 +434,50 @@ button[type=submit] {
 		            font-weight: 600;
 		            transition: 0.25s;
 		            margin-left: 267px;
+		            margin-top: 33px;
+		        }
+		        */
+		        
+		        .btn1ro > .w-btn {
+		            position: relative;
+		            border: none;
+		            display: inline-block;
+		            padding: 15px 30px;
+		            border-radius: 15px;
+		            font-family: "paybooc-Light", sans-serif;
+		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		            text-decoration: none;
+		            font-weight: 600;
+		            transition: 0.25s;
+		            margin-left: 939px;
+		            margin-top: 33px;
+		        }
+		        .btn2ro > .w-btn {
+		            position: relative;
+		            border: none;
+		            display: inline-block;
+		            padding: 15px 30px;
+		            border-radius: 15px;
+		            font-family: "paybooc-Light", sans-serif;
+		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		            text-decoration: none;
+		            font-weight: 600;
+		            transition: 0.25s;
+		            margin-left: 267px;
+		            margin-top: 33px;
+		        }
+		        .btn3ro > .w-btn {
+		            position: relative;
+		            border: none;
+		            display: inline-block;
+		            padding: 15px 30px;
+		            border-radius: 15px;
+		            font-family: "paybooc-Light", sans-serif;
+		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+		            text-decoration: none;
+		            font-weight: 600;
+		            transition: 0.25s;
+		            margin-left: 198px;
 		            margin-top: 33px;
 		        }
 		        

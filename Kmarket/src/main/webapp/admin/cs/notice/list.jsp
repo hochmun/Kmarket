@@ -169,10 +169,10 @@
                         
                     </table>
 
-                    
+					<div class="btn2ro">
                      <a href="#" class="w-btn w-btn-indigo">선택삭제</a>
                      <a href="./write.do" class="w-btn w-btn-green">작성하기</a>                     
-
+					</div>
 
                     <div class="paging">
                         <span class="prev">

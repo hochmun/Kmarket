@@ -1,19 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="./_header.jsp"/>
-<script>
-	function moreView(tag) {
-		event.preventDefault();
-		let text = tag.innerText; 
-		if (text == '더보기') {
-			tag.
-			
-			tag.children[0].innerText = '간단히 보기';
-		} else {
-			tag.children[0].innerText = '더보기';
-		}
-	}
-</script>
+<script src="../js/faqList.js"></script>
 <section id="cs">
           <div class="faq">
               <nav>
@@ -54,10 +42,12 @@
 	                    	<c:set var="count" value="0" ></c:set>
 	                    	
 	                    	<c:forEach var="vo" items="${ vos }">
-	                    	
+	                    		
 	                    		<c:if test="${ vo.faqCate2 eq vo3.cate2 }">
+	                    		
 	                    			<c:set var="count" value="${ count + 1 }" ></c:set>
-	                    			<li><a href="/Kmarket/cs/faq/view.do?faqNo=${ vo.faqNo }"><span>Q.</span>${ vo.faqTitle }</a></li>
+	                    			<li class="${ count gt 3 ? 'hide' : '' }"><a href="/Kmarket/cs/faq/view.do?faqNo=${ vo.faqNo }"><span>Q.</span>${ vo.faqTitle }</a></li>
+	                    			
 	                    		</c:if>
 	                    		
 	                    	</c:forEach>

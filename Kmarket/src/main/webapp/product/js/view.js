@@ -71,8 +71,22 @@ function orderProduct(type){
 	$.ajax({
 		url: '/Kmarket/product/view.do',
 		type: 'POST',
-		data: {"uid":sessUserUid,"prodNo":prodNo,"count":countNum,"price":price,
-		"discount":discount,"point":points,"delivery":delivery,"total":total,"type":type},
+		data: {
+			"uid":sessUserUid,
+			"prodNo":prodNo,
+			"prodCate1":prodCate1,
+			"prodCate2":prodCate2,
+			"thumb1":thumb1,
+			"count":countNum,
+			"price":price,
+			"discount":discount,
+			"point":points,
+			"delivery":delivery,
+			"total":total,
+			"type":type,
+			"prodName":prodName,
+			"descript":descript
+			},
 		dataType: 'json',
 		success: (data)=>{
 			if(data.result > 0) {
