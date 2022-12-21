@@ -9,28 +9,38 @@
             <aside>
                 <h2>문의하기</h2>
                 <ul>
-                    <li class="on"><a href="#">회원</a></li>
-                    <li><a href="#">쿠폰/이벤트</a></li>
-                    <li><a href="#">주문/결제</a></li>
-                    <li><a href="#">배송</a></li>
-                    <li><a href="#">취소/반품/교환</a></li>
-                    <li><a href="#">여행/숙박/항공</a></li>
-                    <li><a href="#">안전거래</a></li>
+                    <li class="${cate1 eq '10' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=10">회원</a></li>
+                    <li class="${cate1 eq '11' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=11">쿠폰/이벤트</a></li>
+                    <li class="${cate1 eq '12' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=12">주문/결제</a></li>
+                    <li class="${cate1 eq '13' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=13">배송</a></li>
+                    <li class="${cate1 eq '14' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=14">취소/반품/교환</a></li>
+                    <li class="${cate1 eq '15' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=15">여행/숙박/항공</a></li>
+                    <li class="${cate1 eq '16' ? 'on' : 'off'}"><a href="/Kmarket/cs/qna/list.do?cate1=16">안전거래</a></li>
                 </ul>
             </aside>
             <article>
                 <nav>
-                    <h2 class="title">[가입] 가입 문의내용</h2>
+                    <h2 class="title">[${article.cate2Name}] ${article.qnaTitle}</h2>
                     <p>
-                        <span>chh***</span>
-                        <span>2022-11-21</span>
+                        <span>${(article.uid).substring(0,4)}***</span>
+                        <span>${article.qnaRdate}</span>
                     </p>
                 </nav>
 
                 <div class="content">
                     <p>
-                        개인회원에서 법인회원(사업자 회원)으로 전환은 불가하므로 법인회원(사업자 회원) 전환은 신규 가입으로 진행을 해야 합니다.
+                        ${article.qnaContent}
                     </p>
+                    	<br/>
+                    	<br/>
+                    	<br/>
+                    	<p>
+                    	[답변] ${article.cate2Name}
+                    	<br/>
+                    	${article.qnaAdminContent}
+                    	<br/>
+                    	<br/>
+                    	</p>
                     <p>
                         ※ 피싱 관련 피해신고<br /><br />
                         ▶ 경찰청 사이버수사국 (국번없이)182 :
@@ -40,7 +50,7 @@
                         감사합니다.<br />
                     </p>
                 </div>
-                <a href="/Kmarket/cs/qna/list.do" class="btnList">목록보기</a>
+                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}" class="btnList">목록보기</a>
             </article>
         </section>
     </div>

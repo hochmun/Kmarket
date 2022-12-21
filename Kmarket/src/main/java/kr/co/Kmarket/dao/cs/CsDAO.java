@@ -81,13 +81,13 @@ public class CsDAO extends DBCP{
 	 * 2022/12/19 qna 작성글 목록 불러오기
 	 * @author 김재준
 	 */
-	public List<CsQnaVO> selectQnaArticles(int cate1, int limitStart){
+	public List<CsQnaVO> selectQnaArticles(String cate1, int limitStart){
 		List<CsQnaVO> QnaArts = new ArrayList<>();
 		try {
 			logger.info("selectQnaArticles...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_ARTICLES);
-			psmt.setInt(1, cate1);
+			psmt.setString(1, cate1);
 			psmt.setInt(2, limitStart);
 			rs = psmt.executeQuery();
 			
@@ -118,13 +118,13 @@ public class CsDAO extends DBCP{
 	 * 2022/12/19 qna 카테고리별 작성글 count
 	 * @author 김재준
 	 */
-	public int selectCountTotal(int cate1) {
+	public int selectCountTotal(String cate1) {
 		int total = 0;
 		try {
 			logger.info("selectCountTotal...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_COUNT_TOTAL);
-			psmt.setInt(1, cate1);
+			psmt.setString(1, cate1);
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
@@ -196,6 +196,29 @@ public class CsDAO extends DBCP{
 		return vos;
 	}
 	
+	public CsCate1VO selectCsCate(String cate1name, String cate2name) {
+		CsCate1VO vos = null;
+		try {
+			logger.info("CsDAO selectCsCate...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_CATE);
+			psmt.setString(1, cate1name);
+			psmt.setString(2, cate2name);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				vos = new CsCate1VO();
+				vos.setCate1(rs.getInt("cate1"));
+				vos.setCate1Name(rs.getString("cate1Name"));
+				vos.setCate2(rs.getInt("cate2"));
+				vos.setCate2Name(rs.getString("cate2Name"));
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
 	
 	// delete
 }

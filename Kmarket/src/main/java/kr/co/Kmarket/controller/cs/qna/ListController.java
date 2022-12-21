@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.co.Kmarket.service.cs.CsService;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
+import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
 
 @WebServlet("/cs/qna/list.do")
@@ -21,30 +22,29 @@ public class ListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int cate1 = Integer.parseInt(req.getParameter("cate1"));
+		String cate1 = req.getParameter("cate1");
+		String cate1name = req.getParameter("cate1name");
+		String cate2name = req.getParameter("cate2name");
 		// 페이징
 		String pg = req.getParameter("pg");
 		if(pg == null || pg.trim().equals("")){
 			pg = "1";
 			}
-		String c1name = service.getC1name(cate1);
-		req.setAttribute("cate1", cate1);
-		req.setAttribute("c1name", c1name);
 		
-		int currentPage = service.getCurrentPage(pg);
+		CsCate1VO vos = service.selectCsCate(cate1name, cate2name);
 		int total = service.selectCountTotal(cate1);
-		int lastPageNum = service.getLastPageNum(total);
-		int[] pageGroup = service.getPageGroupNum(currentPage, lastPageNum);
-		int start = service.getStartNum(currentPage);
+		int limitStart = service.boardPaging(req, cate1);
+		
 		List<CsQnaVO> QnaArts = null;
-		QnaArts = service.selectQnaArticles(cate1, start);
+		QnaArts = service.selectQnaArticles(cate1, limitStart);
 		
+		req.setAttribute("cate1", cate1);
 		req.setAttribute("QnaArts", QnaArts);
-		req.setAttribute("lastPageNum", lastPageNum);
-		req.setAttribute("pageGroupStart", pageGroup[0]);
-		req.setAttribute("pageGroupEnd", pageGroup[1]);
+		req.setAttribute("articles", service.selectQnaArticles(cate1, limitStart));
+		req.setAttribute("pg", pg);
+		req.setAttribute("vos", vos);
 		req.setAttribute("total", total);
-		
+		req.setAttribute("limitStart", limitStart);
 		req.getRequestDispatcher("/cs/qna/list.jsp").forward(req, resp);
 	}
 }
