@@ -19,20 +19,20 @@ public class WriteController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String cate1 = req.getParameter("cate1");
+		String qnaCate1 = req.getParameter("cate1");
 		
-		req.setAttribute("cate1", cate1);
+		req.setAttribute("cate1", qnaCate1);
 		req.getRequestDispatcher("/cs/qna/write.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int qnaCate1 = Integer.parseInt(req.getParameter("qnaCate1"));
-		int qnaCate2 = Integer.parseInt(req.getParameter("qnaCate2"));
-		String qnaTitle = req.getParameter("qnaTitle");
-		String qnaContent = req.getParameter("qnaContent");
+		String qnaCate1 = req.getParameter("cate1");
+		String qnaCate2 = req.getParameter("cate2");
+		String qnaTitle = req.getParameter("title");
+		String qnaContent = req.getParameter("content");
 		String uid = req.getParameter("uid");
-		String qnaRegip = req.getParameter("qnaRegip");
+		String qnaRegip = req.getRemoteAddr();
 		
 		CsQnaVO vo = new CsQnaVO();
 				vo.setQnaCate1(qnaCate1);
@@ -44,7 +44,7 @@ public class WriteController extends HttpServlet {
 				
 				int result = service.insertQnaArticle(vo);
 				if(result > 0) {
-					resp.sendRedirect("/cs/qna/list.do?cate1="+qnaCate1);
+					resp.sendRedirect("/Kmarket/cs/qna/list.do?cate1="+qnaCate1);
 				}
 	}
 }

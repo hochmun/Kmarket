@@ -59,7 +59,7 @@
         </section>
 
         <section class="qna">
-            <h1>문의하기<a href="/Kmarket/cs/qna/list.do">전체보기</a></h1>
+            <h1>문의하기<a href="/Kmarket/cs/qna/list.do?cate1=10">전체보기</a></h1>
             <ul>
                 <li>
                     <a href="/Kmarket/cs/qna/view.do" class="title">[회원] 개인회원과 법인회원에 차이가 있나요?</a>
@@ -97,7 +97,6 @@
                     </p>
                 </li>
             </ul>
-            <a href="/Kmarket/cs/qna/write.do" class="ask">문의글 작성</a>
         </section>
 
         <section class="tel">

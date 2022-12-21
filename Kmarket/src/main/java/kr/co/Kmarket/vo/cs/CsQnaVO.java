@@ -28,11 +28,17 @@ public class CsQnaVO {
 	public void setQnaCate1(int qnaCate1) {
 		this.qnaCate1 = qnaCate1;
 	}
+	public void setQnaCate1(String qnaCate1) {
+		this.qnaCate1 = Integer.parseInt(qnaCate1);
+	}
 	public int getQnaCate2() {
 		return qnaCate2;
 	}
 	public void setQnaCate2(int qnaCate2) {
 		this.qnaCate2 = qnaCate2;
+	}
+	public void setQnaCate2(String qnaCate2) {
+		this.qnaCate2 = Integer.parseInt(qnaCate2);
 	}
 	public String getUid() {
 		return uid;
