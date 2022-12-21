@@ -150,6 +150,7 @@ public class CsFaqDAO extends DBCP {
 				
 				vos.add(vo);
 			}
+			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

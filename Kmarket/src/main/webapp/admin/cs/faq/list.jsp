@@ -44,7 +44,7 @@
 	              
 				<c:forEach var="vo" items="${ vos }">
 	              	
-					<tr name="listTr">
+					<tr>
 						<td><input type="checkbox" name="상품코드"/></td>
 						<td>${ vo.faqNo }</td>
 						<td>${ vo.cate1Name }</td>
@@ -53,8 +53,8 @@
 						<td>${ vo.faqHit }</td>
 						<td>${ vo.faqRdate }</td>
 						<td>
-							<a href="#">[삭제]</a>
-							<a href="./modify.do">[수정]</a>
+							<a href="./delete.do?faqNo=${ vo.faqNo }">[삭제]</a>
+							<a href="./modify.do?faqNo=${ vo.faqNo }">[수정]</a>
 						</td>
 					</tr>
 	              	
@@ -64,7 +64,7 @@
 	
 			<div class="btn2ro">
 				<a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>  
-				<a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">작성하기</a> 
+				<a href="./list.do" class="w-btn w-btn-green">작성하기</a> 
 			</div>
 	
 		</section>
