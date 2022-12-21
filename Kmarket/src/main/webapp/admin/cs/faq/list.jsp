@@ -189,7 +189,7 @@
 
                     
                     <a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>  
-                    <a href="./list.do" class="w-btn w-btn-gra3 w-btn-gra-anim">수정하기</a>              
+                    <a href="./list.do" class="w-btn w-btn-green">수정하기</a>              
 
 
                     <div class="paging">

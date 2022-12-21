@@ -286,10 +286,10 @@ button[type=submit] {
     background: #f6f6f6;
 }
 #admin-product-list > section > table  tr > th:nth-child(1) {width: 2%}
-#admin-product-list > section > table  tr > th:nth-child(2) {width: 5%}
+#admin-product-list > section > table  tr > th:nth-child(2) {width: 2%}
 #admin-product-list > section > table  tr > th:nth-child(3) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(4) {width: 5%}
-#admin-product-list > section > table  tr > th:nth-child(5) {}
+#admin-product-list > section > table  tr > th:nth-child(5) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(6) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(7) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(8) {width: 5%}
@@ -301,9 +301,9 @@ button[type=submit] {
     font-size: 15px;
 }
 #admin-product-list > section > table  tr > td:nth-child(1) {width: 20px;}
-#admin-product-list > section > table  tr > td:nth-child(2) {width: 80px; text-align: left;}
+#admin-product-list > section > table  tr > td:nth-child(2) {width: 80px; text-align:left;}
 #admin-product-list > section > table  tr > td:nth-child(3) {width: 80px;}
-#admin-product-list > section > table  tr > td:nth-child(4) {width: auto; text-align: left;}
+#admin-product-list > section > table  tr > td:nth-child(4) {width: auto; text-align: center;}
 #admin-product-list > section > table  tr > td:nth-child(5) {width: 80px;}
 #admin-product-list > section > table  tr > td:nth-child(6) {width: 80px;}
 #admin-product-list > section > table  tr > td:nth-child(7) {width: 80px;}
