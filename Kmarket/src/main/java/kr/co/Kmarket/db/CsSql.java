@@ -45,6 +45,8 @@ public class CsSql {
 			+ "ORDER BY `faqHit` DESC LIMIT 10";
 	
 	/** notice */ 
+	public static final String SELECT_CS_NOTICE_LIST_WITH_CS_CATE =
+			"SELECT * FROM `km_cs_notice` WHERE `NoticeCate`=? LIMIT 10";
 	/** qna */ 
 	
 	//qna 카테고리별 작성글 count 
@@ -80,7 +82,7 @@ public class CsSql {
 	
 	public static final String SELECT_CS_CATE = "SELECT a.*, b.cate2, b.cate2Name FROM `km_cs_cate1` AS a "
 												+ "LEFT JOIN `km_cs_cate2` AS b ON a.cate1 = b.cate1 "
-												+ "WHERE a.cate1 = ? AND b.cate2 = ?"; 
+												+ "WHERE a.cate1 = ?"; 
 	
 	
 }

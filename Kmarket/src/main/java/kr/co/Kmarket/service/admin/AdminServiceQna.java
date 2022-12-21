@@ -1,4 +1,4 @@
-package kr.co.Kmarket.service.cs;
+package kr.co.Kmarket.service.admin;
 
 import java.util.List;
 
@@ -9,32 +9,21 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.Kmarket.dao.cs.CsDAO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
-import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
 
-public enum CsService {
-	
+public enum AdminServiceQna {
+
 	INSTANCE;
 	private CsDAO dao;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	private CsService() {
+	private AdminServiceQna() {
 		dao = new CsDAO();
 	}
-
+	
 	// create
 	
 	// read
-	/**
-	 * 2022/12/19 qna 글 작성
-	 * @author 김재준
-	 * @param vo
-	 * @return
-	 */
-	public int insertQnaArticle(CsQnaVO vo) {
-		return dao.insertQnaArticle(vo);
-	}
-	
 	/**
 	 * 2022/12/19 qna 작성글 불러오기
 	 * @author 김재준
@@ -45,6 +34,15 @@ public enum CsService {
 		return dao.selectQnaArticle(qnaNo);
 	}
 	
+	/**
+	 * 2022/12/21 카테고리 이름 불러오기
+	 * @author 김재준
+	 * @param cate1name
+	 * @return
+	 */
+	public CsCate1VO selectCsCate(String cate1) {
+		return dao.selectCsCate(cate1);
+	}
 	
 	// service
 	
@@ -61,43 +59,6 @@ public enum CsService {
 		return dao.selectQnaArticles(cate1, limitStart);
 	}
 	
-	/**
-	 * 2022/12/20 카테고리1 정보 가져오기
-	 * @return
-	 */
-	public List<CsCate1VO> selectCsCate1() {
-		return dao.selectCsCate1();
-	}
-	
-	/**
-	 * 2022/12/20 카테고리1 값으로 카테고리 2 정보 가져오기
-	 * @author 심규영
-	 * @param csCate1
-	 * @return
-	 */
-	public List<CsCate2VO> selectCsCate2(String csCate1) {
-		return dao.selectCsCate2(csCate1);
-	}
-	
-	/**
-	 * 2022/12/21 카테고리 이름 불러오기
-	 * @author 김재준
-	 * @param cate1name
-	 * @return
-	 */
-	public CsCate1VO selectCsCate(String cate1) {
-		return dao.selectCsCate(cate1);
-	}
-	// service
-	
-	/** 페이징 */ 
-	
-	/**
-	 * 2022/12/19 qna 카테고리별 작성글 count
-	 * @author 김재준
-	 * @param cate1
-	 * @return
-	 */
 	public int selectCountTotal(String cate1) {
 		return dao.selectCountTotal(cate1);
 	}
@@ -136,4 +97,5 @@ public enum CsService {
 		
 		return limitStart;
 	}
+	
 }

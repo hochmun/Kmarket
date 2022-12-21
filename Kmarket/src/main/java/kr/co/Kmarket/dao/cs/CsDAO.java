@@ -196,14 +196,13 @@ public class CsDAO extends DBCP{
 		return vos;
 	}
 	
-	public CsCate1VO selectCsCate(String cate1name, String cate2name) {
+	public CsCate1VO selectCsCate(String cate1) {
 		CsCate1VO vos = null;
 		try {
 			logger.info("CsDAO selectCsCate...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_CS_CATE);
-			psmt.setString(1, cate1name);
-			psmt.setString(2, cate2name);
+			psmt.setString(1, cate1);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				vos = new CsCate1VO();

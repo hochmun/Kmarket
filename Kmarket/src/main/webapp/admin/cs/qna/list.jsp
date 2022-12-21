@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../../_header.jsp"/>
     <section id="admin-product-list">
     
@@ -27,16 +28,20 @@
                 <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
                     <div>
-                        <select name="search" class="w-btn-outline w-btn-indigo-outline">
-                            <option value="search1" >1차 선택</option>
-                            <option value="search1">상품코드</option>
-                            <option value="search1">제조사</option>
-                            <option value="search1">판매자</option>                                    
+                        <select name="search" id="selectBox">
+                            <option value="0" >1차 선택</option>
+                            <option value="10">회원</option>
+                            <option value="11">쿠폰/이벤트</option>
+                            <option value="12">주문/결제</option>                                    
+                            <option value="13">배송</option>                                    
+                            <option value="14">취소/반품/교환</option>                                    
+                            <option value="15">판매자</option>                                    
+                            <option value="16">안전거래</option>                                    
                         </select>
                         
                     </div>
                     <div>
-                        <select name="search" class="w-btn-outline w-btn-indigo-outline">
+                        <select name="search" id="selectBox2" class="cate2">
                             <option value="search1">2차 선택</option>
                             <option value="search1">상품코드</option>
                             <option value="search1">제조사</option>
@@ -54,128 +59,34 @@
                             <th>작성일</th>
                             <th>상태</th>
                         </tr>
-
+                        <c:forEach var="QnaArt" items="${QnaArts}">
                         <tr>
                             <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>10</td>
-                            <td>00.00.00</td>
+                            <td>${QnaArt.qnaNo}</td>
+                            <td>${vos.cate1Name}</td>
+                            <td>${QnaArt.cate2Name}</td>
+                            <td>${QnaArt.qnaTitle}</td>
+                            <td>${QnaArt.uid}</td>
+                            <td>${QnaArt.qnaRdate}</td>
+                        <c:choose>
+                        <c:when test="${QnaArt.qnaAdminContent eq null}">
                             <td>
                                 <a href="#">검토중</a>
                             </td>
+                        </c:when>
+                        <c:otherwise>
+                        	<td>
+                                <a href="#">검토완료</a>
+                            </td>
+                        </c:otherwise>
+                        </c:choose>
                         </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>본인인증 시 이미 가입되어 있는 정보라고 나옵니다.</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                               <a href="#">검토중</a>
-                            </td>
-                        </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                                <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                               <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                               <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                                <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                               <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                                <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                               <a href="#">답변완료</a>
-                            </td>
-                             </tr>
-                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>10</td>
-                            <td>회원</td>
-                            <td>가입</td>
-                            <td>개인회원과 법인회원에 차이가 있나요?</td>
-                            <td>120</td>
-                            <td>00.00.00</td>
-                            <td>
-                                <a href="#">답변완료</a>
-                            </td>
-                        </tr>
-                        
+                        </c:forEach>
+                        <c:if test="${total eq 0}">
+                        	<tr>
+                        		<td colspan="4" align="center">등록된 문의글이 없습니다.</td>
+                        	</tr>
+                        </c:if>
                     </table>
 
                     <div class="btn1ro">

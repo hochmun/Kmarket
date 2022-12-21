@@ -1,6 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="${pageContext.request.contextPath}/cs/js/cs.js"></script>
 <jsp:include page="./_header.jsp"/>
+<script>
+	const sessUserUid = "${ sessUser.uid }"; // 유저 uid 정보 입력
+</script>
         <nav>
             <div>
                 <p>홈<span>></span>문의하기</p>
@@ -21,15 +25,16 @@
             </aside>
             <article>
                 <nav>
-                    <h1>${cate1Name}</h1>
-                    <h2>${cate1Name} 관련 문의 내용입니다.</h2>
+                    <h1>${vos.cate1Name}</h1>
+                    <br>
+                    <h2>관련 문의 내용입니다.</h2>
                 </nav>
                 <table>
                 <c:forEach var="QnaArt" items="${QnaArts}">
                     <tr>
                         <td><a href="/Kmarket/cs/qna/view.do?cate1=${cate1}&no=${QnaArt.qnaNo}">[${QnaArt.cate2Name}] ${QnaArt.qnaTitle}</a></td>
                         <c:choose>
-                        	<c:when test="${QnaArt.qnaAdminContent eq 1 || QnaArt.qnaAdminContent eq null}">
+                        	<c:when test="${QnaArt.qnaAdminContent eq null}">
                         		<td style="color: #707070;">검토중</td>
                         	</c:when>
                         	<c:otherwise>
@@ -59,9 +64,14 @@
 		                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
 	            </c:if>
                 </div>
-
-                <a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWrite">문의하기</a>
-
+                <c:choose>
+				<c:when test="${total eq 0}">
+                <a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWriteEmp">문의하기</a>
+				</c:when>
+				<c:otherwise>
+				<a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWrite">문의하기</a>
+				</c:otherwise>
+				</c:choose>
             </article>
         </section>
     </div>
