@@ -19,7 +19,7 @@ public class ViewController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String qnaNo = req.getParameter("qnaNo");
+		String qnaNo = req.getParameter("no");
 		String cate1 = req.getParameter("cate1");
 		
 		CsQnaVO article = service.selectQnaArticle(qnaNo);
