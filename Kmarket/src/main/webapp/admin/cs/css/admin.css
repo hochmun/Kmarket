@@ -298,6 +298,7 @@ button[type=submit] {
     background: #fff;
     text-align: center;
     box-sizing: border-box;
+    font-size: 15px;
 }
 #admin-product-list > section > table  tr > td:nth-child(1) {width: 20px;}
 #admin-product-list > section > table  tr > td:nth-child(2) {width: 80px; text-align: left;}
@@ -341,7 +342,7 @@ button[type=submit] {
     min-width: 14px;
     margin: 0 2px;
     padding: 8px 9px;
-    border: 1px solid #c4c4c4;
+    border: 1px solid #f6f6f6;
     background: url() 0 0 repeat-x;
     color: #000;
     font-family: Tahoma;
@@ -428,7 +429,8 @@ button[type=submit] {
 		            text-decoration: none;
 		            font-weight: 600;
 		            transition: 0.25s;
-		            margin-left: 300px;
+		            margin-left: 267px;
+		            margin-top: 33px;
 		        }
 		        
 		        .w-btn-outline {

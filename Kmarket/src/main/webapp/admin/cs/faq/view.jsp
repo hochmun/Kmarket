@@ -8,7 +8,7 @@
                     </p>
                 </nav>
  	<!-- 상품목록 컨텐츠 시작 -->                                
-                <section class="w-btn-outline w-btn-indigo-outline" >
+                <section>
                    
                     <table>
                         <tr>

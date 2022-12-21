@@ -90,12 +90,12 @@
                     <caption>담당자 정보입력</caption>
                     <tr>
                         <th><span class="essential">*</span>이름</th>
-                        <td><input type="text" name="km_name" placeholder="이름을 입력"
+                        <td><input type="text" name="kms_manger" placeholder="이름을 입력"
                             required></td>
                     </tr>
                     <tr>
                         <th><span class="sesential">*</span>휴대폰</th>
-                        <td><input type="text" name="km_hp" maxlength="13"
+                        <td><input type="text" name="kms_mangerhp" maxlength="13"
                             placeholder="휴대폰번호 입력" required><span class="msgHp"
                             >&nbsp;&nbsp;- 포함 13자리를 입력하세요.</span></td>
                     </tr>
