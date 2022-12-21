@@ -85,8 +85,8 @@ public enum CsService {
 	 * @param cate1name
 	 * @return
 	 */
-	public CsCate1VO selectCsCate(String cate1name, String cate2name) {
-		return dao.selectCsCate(cate1name, cate2name);
+	public CsCate1VO selectCsCate(String cate1) {
+		return dao.selectCsCate(cate1);
 	}
 	// service
 	

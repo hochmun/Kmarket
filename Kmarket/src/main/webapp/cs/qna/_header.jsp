@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,17 +16,29 @@
             <div class="top">
                 <div>
                     <p>
-                        <a href="/Kmarket/member/login.do">로그인</a>
-                        <a href="/Kmarket/member/signup.do">회원가입</a>
-                        <a href="#">마이페이지</a>
-                        <a href="/Kmarket/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                    <c:choose>
+               			<c:when test="${ sessUser.uid eq null }">
+                    		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
+                    		<a href="${pageContext.request.contextPath}/member/join.do">회원가입</a>
+                    	</c:when>
+                        <c:when test="${ sessUser.type ne 1 }">
+                    		<a href="${pageContext.request.contextPath}/admin/index.do">관리자</a>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+                    		<a href="#">마이페이지</a>
+                    	</c:when>
+                    	<c:otherwise>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
+                    		<a href="#">마이페이지</a>
+                    	</c:otherwise>
+                    </c:choose>
+                        <a href="${pageContext.request.contextPath}/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
                         >&nbsp;장바구니</a>
                     </p>
                 </div>
             </div>
             <div class="logo">
                 <div>
-                    <a href="Kmarket/cs/index.do"><img src="../img/logo.png" alt="로고">고객센터</a>
+                    <a href="${pageContext.request.contextPath}/cs/index.do"><img src="../img/logo.png" alt="로고">고객센터</a>
                 </div>
             </div>
         </header>

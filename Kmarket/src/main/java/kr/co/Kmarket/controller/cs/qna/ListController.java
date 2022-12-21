@@ -23,15 +23,13 @@ public class ListController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String cate1 = req.getParameter("cate1");
-		String cate1name = req.getParameter("cate1name");
-		String cate2name = req.getParameter("cate2name");
 		// 페이징
 		String pg = req.getParameter("pg");
 		if(pg == null || pg.trim().equals("")){
 			pg = "1";
 			}
 		
-		CsCate1VO vos = service.selectCsCate(cate1name, cate2name);
+		CsCate1VO vos = service.selectCsCate(cate1);
 		int total = service.selectCountTotal(cate1);
 		int limitStart = service.boardPaging(req, cate1);
 		

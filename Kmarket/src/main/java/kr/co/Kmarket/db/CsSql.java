@@ -53,7 +53,7 @@ public class CsSql {
 	
 	public static final String SELECT_CS_CATE = "SELECT a.*, b.cate2, b.cate2Name FROM `km_cs_cate1` AS a "
 												+ "LEFT JOIN `km_cs_cate2` AS b ON a.cate1 = b.cate1 "
-												+ "WHERE a.cate1 = ? AND b.cate2 = ?"; 
+												+ "WHERE a.cate1 = ?"; 
 	
 	
 }
