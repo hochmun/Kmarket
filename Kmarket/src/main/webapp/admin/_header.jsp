@@ -48,7 +48,7 @@
             <aside>
                 <!-- Global Navigation Bar -->
                 <ul id="gnb">
-                    <li class="on">
+                    <li>
                         <a href="#"><i class="fa fa-cogs" aria-hidden="true"></i>환경설정</a>
                         <ol>
                             <li><a href="#">기본환경설정</a></li>
