@@ -123,11 +123,24 @@ function ProductOrder() {
 	// 배열의 길이가 0일 경우 리턴
 	if(checkArray.length == 0) return false;
 	
-	// TODO - 세션에 넣어서 전송하기
+	// cart.do 에 post 로 전송해서 checkArray를 servlet의 session에 집어 넣기
+	$.ajax({
+		url: '/Kmarket/product/cart.do',
+		type: 'POST',
+		data: {"checkArray":checkArray},
+		dataType: 'json',
+		traditional: true,
+		success: (data)=>{
+			if(data.result > 0) {
+				location.href = '/Kmarket/product/order.do';
+			} else {
+				alert('주문에 실패 했습니다.');
+				return false;
+			}
+		}
+	});
 	
-	//sessionStorage.setItem('', checkArray);
 	
-	location.href = '/Kmarket/product/order.do?array='+checkArray;
 }
 
 // 지연함수

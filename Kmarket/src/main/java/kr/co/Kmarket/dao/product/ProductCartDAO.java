@@ -18,7 +18,7 @@ public class ProductCartDAO extends DBCP {
 	 * @return result
 	 */
 	public int insertProductCart(ProductCartVO vo) {
-		int result = 0;
+		int key = 0;
 		try {
 			logger.info("ProductCartDAO insertProductCart...");
 			conn = getConnection();
@@ -31,12 +31,20 @@ public class ProductCartDAO extends DBCP {
 			psmt.setInt(6, vo.getPoint());
 			psmt.setInt(7, vo.getDelivery());
 			psmt.setInt(8, vo.getTotal());
-			result = psmt.executeUpdate();
+			psmt.executeUpdate();
+			
+			// 방금 넣은 상품의 key값 가져오기
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_MAX_CARTNO_PRODUCT_CART);
+			if(rs.next()) {
+				key = rs.getInt(1);
+			}
+			
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return result;
+		return key;
 	}
 	
 	// read

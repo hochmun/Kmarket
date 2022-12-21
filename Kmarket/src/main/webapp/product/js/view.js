@@ -50,7 +50,10 @@ function count(type) {
 // 주문하기 스크립트
 function orderProduct(type){
 	
-	const Ok = confirm('상품을 장바구니에 넣으시겠습니까?');
+	let Ok = null;
+	
+	if(type == 'cart') Ok = confirm('상품을 장바구니에 넣으시겠습니까?');
+	if(type == 'order') Ok = confirm('상품 주문 페이지로 이동하시겠습니까?');
 	
 	if (Ok == false) return false;
 	
@@ -69,11 +72,13 @@ function orderProduct(type){
 		url: '/Kmarket/product/view.do',
 		type: 'POST',
 		data: {"uid":sessUserUid,"prodNo":prodNo,"count":countNum,"price":price,
-		"discount":discount,"point":points,"delivery":delivery,"total":total},
+		"discount":discount,"point":points,"delivery":delivery,"total":total,"type":type},
 		dataType: 'json',
 		success: (data)=>{
 			if(data.result > 0) {
-				alert('장바구니 등록 완료!');
+				if (type == 'cart') alert('장바구니 등록 완료!');
+				if (type == 'order') alert('주문 페이지로 이동합니다.');
+				
 				location.href = '/Kmarket/product/'+type+'.do';
 			} else {
 				alert('장바구니 등록 실패!');
