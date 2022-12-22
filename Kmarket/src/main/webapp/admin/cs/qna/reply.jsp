@@ -1,5 +1,40 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../../_header.jsp"/>
+<script src="../js/qnaReply.js"></script>
+<script>
+$(()=>{
+	$('.w-btn-green').click((e)=>{
+		e.preventDefault();
+		const qnaNo = "${ param.qnaNo }";
+		const qnaAdminContent = $('textarea[name=AdminContent]').val();
+		
+		// 검사
+		
+		if(qnaAdminContent == null || qnaAdminContent == "") {
+			alert('내용을 입력 하십시오.');
+			return false;
+		}
+		
+		// 데이터베이스 전송
+		$.ajax({
+			url: '/Kmarket/admin/cs/qna/reply.do',
+			type: 'POST',
+			data: {"qnaAdminContent":qnaAdminContent,"qnaNo":qnaNo},
+			dataType: 'json',
+			success: (data)=>{
+				if(data.result > 0) {
+					alert('게시물 수정 완료!');
+					location.href = '/Kmarket/admin/cs/qna/list.do';
+				} else {
+					alert('게시물 수정 실패!');
+					return false;
+				}
+			}
+		});
+		
+	});
+});
+</script>
     <section id="admin-product-list">
                 <nav>
                     <h3>문의하기 답변</h3>
@@ -8,43 +43,40 @@
                     </p>
                 </nav>
  	<!-- 상품목록 컨텐츠 시작 -->                                
-                <section>
-                   
+                <section class="AdminContent">
+                <form action="/Kmarket/admin/cs/qna/reply.do" method="post">
                     <table>
                         <tr>
                             <td><strong>유형</strong></td>
                             <td>
-                                회원-가입
+                                ${vo.cate1Name} - ${vo.cate2Name}
                             </td>
                         </tr>
                         <tr>
                             <td>제목</td>
                             <td>
-                               개인회원과 법인회원에 차이가 있나요?
+                               ${vo.qnaTitle}
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                               개인회원하고 법인회원하고 차이를 알고 싶어요.그리고 법인회원으로 가입하면<br/>
-                               혜택이 있나요?<br/>
-                               마지막으로 법인가입 하려면 어떻게 해야 하죠?<br/>
-                               알려주세요.     
+                               ${vo.qnaContent }     
                             </td>
                         </tr>
                         <tr>
                         	<td>답변</td>
                         	<td>
-                                <textarea name="content" placeholder=""></textarea>
+                                <textarea name="AdminContent" placeholder=""></textarea>
                             </td>
                         </tr>
                     </table>
                     <div class="btn3ro">
-                        <a href="#" class="w-btn w-btn-indigo">삭제</a>
-                        <a href="/Kmarket/admin/cs/notice/modify.do" class="w-btn w-btn-gra3 w-btn-gra-anim">답변등록</a>
-                        <a href="/Kmarket/admin/cs/notice/list.do" class="w-btn w-btn-indigo">목록</a>
+                        <a href="./delete.do?qnaNo=${vo.qnaNo}" class="w-btn w-btn-indigo btnDelete" id="delete">삭제</a>
+                        <a href="#" class="w-btn w-btn-green">답변등록</a>
+                        <a href="./list.do" class="w-btn w-btn-indigo btnList">목록</a>
                     </div>
-       
+                     </form>
                 </section>                
                 <p class="ico info">
                     <strong>Tip!</strong>

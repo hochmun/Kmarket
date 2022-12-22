@@ -135,4 +135,71 @@ public class CsQnaDAO extends DBCP{
 		}
 		return vos;
 	}
+	
+	public CsQnaVO selectCsQnaWithQnaNo(String qnaNo) {
+		CsQnaVO vo = new CsQnaVO();
+		try {
+			logger.info("selectCsQnaWithQnaNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_ADMIN_QNA_ARTICLE_NO);
+			psmt.setString(1, qnaNo);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				vo.setQnaNo(rs.getInt("qnaNo"));
+				vo.setQnaCate1(rs.getInt("qnaCate1"));
+				vo.setQnaCate2(rs.getInt("qnaCate2"));
+				vo.setQnaTitle(rs.getString("qnaTitle"));
+				vo.setQnaContent(rs.getString("qnaContent"));
+				vo.setQnaAdminContent(rs.getString("qnaAdminContent"));
+				vo.setQnaType(rs.getInt("qnaType"));
+				vo.setQnaRegip(rs.getString("qnaRegip"));
+				
+				vo.setCate1Name(rs.getString("cate1Name"));
+				vo.setCate2Name(rs.getString("cate2Name"));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
+	}
+	
+	// admin qna 답변
+	public int updateQnaAdminContent(CsQnaVO vo) {
+		int result = 0;
+		try {
+			logger.info("updateAdminContent...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.UPDATE_QNA_ADMIN_CONTENT);
+			psmt.setString(1, vo.getQnaAdminContent());
+			psmt.setInt(2, vo.getQnaType());
+			psmt.executeUpdate();
+			
+			result = psmt.executeUpdate();
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
+	// admin qna 문의글 삭제
+	public int deleteQnaArticle(String[] arrays) {
+		int result = 0;
+		try {
+			logger.info("deleteQnaArticle...");
+			conn = getConnection();
+			for(String qnaNo : arrays) {
+				psmt = conn.prepareStatement(CsSql.DELETE_QNA_ARTICLE);
+				psmt.setString(1, qnaNo);
+				result += psmt.executeUpdate();
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
 }

@@ -2,8 +2,14 @@ package kr.co.Kmarket.service.cs;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.Kmarket.dao.cs.CsQnaDAO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
+import kr.co.Kmarket.vo.cs.CsFaqVO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
 
 public enum CsQnaService {
@@ -11,6 +17,7 @@ public enum CsQnaService {
 	INSTANCE;
 	
 	private CsQnaDAO dao;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private CsQnaService () {
 		dao = new CsQnaDAO();
@@ -30,5 +37,36 @@ public enum CsQnaService {
 	
 	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2){
 		return dao.selectCsQnaListCate(cate1, cate2);
+	}
+	
+	public CsQnaVO selectCsQnaWithQnaNo(String qnaNo) {
+		return dao.selectCsQnaWithQnaNo(qnaNo);
+	}
+	
+	/**
+	 * 2022/12/22 vo에 정보 담기
+	 * @author 김재준
+	 * @param req
+	 * @return
+	 */
+	public CsQnaVO insertCsQnaVO(HttpServletRequest req) {
+		CsQnaVO vo = new CsQnaVO();
+		
+		if(req.getParameter("qnaNo") != null) vo.setQnaNo(req.getParameter("qnaNo"));
+		
+		logger.debug(vo.getQnaNo()+"");
+		
+		vo.setQnaAdminContent(req.getParameter("admincontent"));
+		vo.setQnaRegip(req.getRemoteAddr());
+		
+		return vo;
+	}
+	
+	public int updateQnaAdminContent(CsQnaVO vo) {
+		return dao.updateQnaAdminContent(vo);
+	}
+	
+	public int deleteQnaArticle(String[] arrays) {
+		return dao.deleteQnaArticle(arrays);
 	}
 }

@@ -138,4 +138,20 @@ public class CsSql {
 															+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
 															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
 															+ "ORDER BY `qnaNo` DESC LIMIT 10";
+	
+	public static final String SELECT_ADMIN_QNA_ARTICLE_NO = "SELECT a.*, b.cate1Name, c.cate2Name FROM `km_cs_qna` AS a "
+															+ "JOIN `km_cs_cate1` AS b "
+															+ "ON a.qnaCate1 = b.cate1 "
+															+ "JOIN `km_cs_cate2` AS c "
+															+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
+															+ "WHERE `qnaNo` = ?";
+	
+	// admin qna 답변
+	public static final String UPDATE_QNA_ADMIN_CONTENT = "UPDATE `km_cs_qna` SET "
+														+ "`qnaAdminContent` = ?, "
+														+ "`qnaType` = 2 "
+														+ "WHERE `qnaNo` = ?";
+	
+	// admin qna 문의글 삭제
+	public static final String DELETE_QNA_ARTICLE = "DELETE FROM `km_cs_qna` WHERE `qnaNo` = ?";
 }
