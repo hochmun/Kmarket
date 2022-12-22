@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import kr.co.Kmarket.service.admin.AdminServiceQna;
+import kr.co.Kmarket.service.cs.CsQnaService;
 import kr.co.Kmarket.service.cs.CsService;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
@@ -20,10 +21,14 @@ import kr.co.Kmarket.vo.cs.CsQnaVO;
 public class ViewController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private CsQnaService service = CsQnaService.INSTANCE;
 	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<CsQnaVO> vos = service.selectCsQnaList();
+		req.setAttribute("vos", vos);
+		
 		req.getRequestDispatcher("/admin/cs/qna/view.jsp").forward(req, resp);
 	}
 }

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../../_header.jsp"/>
     <section id="admin-product-list">
                 <nav>
@@ -14,22 +15,19 @@
                         <tr>
                             <td><strong>유형</strong></td>
                             <td>
-                                회원 - 가입
+                                ${vos.cate1Name} - ${vos.cate2Name}
                             </td>
                         </tr>
                         <tr>
                             <td>제목</td>
                             <td>
-                               개인회원과 법인회원에 차이가 있나요?
+                               ${vos.qnaTitle}
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                               개인회원은 본인인증, 법인회원은 사업자등록번호를 기준으로 사업자 인증 후 가입 가능<br/>
-                               합니다.<br/>
-                               개인회원에서 법인회원(사업자 회원)으로 전환은 불가하므로 법인회원(사업자 회원)전환<br/>
-                               은 신규 가입으로 진행을 해야 합니다.
+                               ${vos.qnaContent}
                             </td>
                         </tr>
                     </table>
