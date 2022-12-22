@@ -45,8 +45,28 @@ public class CsSql {
 			+ "ORDER BY `faqHit` DESC LIMIT 10";
 	
 	/** notice */ 
-	public static final String SELECT_CS_NOTICE_LIST_WITH_CS_CATE =
-			"SELECT * FROM `km_cs_notice` WHERE `NoticeCate`=? LIMIT 10";
+	
+	// notice 작성글 가져오기
+		public static final String SELECT_NOTICE_ARTICLE = "SELECT a.*, c.cate2Name FROM `km_cs_notice` AS a "
+													+ "JOIN `km_cs_cate1` AS b "
+													+ "ON a.noticeCate = b.cate1 "
+													+ "JOIN `km_cs_cate2` AS c "
+													+ "ON b.cate1 = c.cate1 AND a.noticeCate2 = c.cate2 "
+													+ "WHERE `noticeNo` = ?";
+		
+		// notice 카테고리 작성글 list 가져오기 
+		public static final String SELECT_NOTICE_ARTICLES = "SELECT a.*, c.cate2Name FROM `km_cs_notice` AS a "
+													+ "JOIN `km_cs_cate1` AS b "
+													+ "ON a.noticeCate1 = b.cate1 "
+													+ "JOIN `km_cs_cate2` AS c "
+													+ "ON b.cate1 = c.cate1 AND a.noticeCate2 = c.cate2 "
+													+ "WHERE b.cate1 = ? "
+													+ "ORDER BY `noticeNo` DESC LIMIT ?, 10";	
+		
+		//notice 카테고리별 작성글 count 
+		public static final String SELECT_NOTICE_COUNT_TOTAL_WITH_CATE = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice` WHERE `noticeCate` = ?";
+		public static final String SELECT_NOTICE_COUNT_TOTAL = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice`";
+		
 	/** qna */ 
 	
 	//qna 카테고리별 작성글 count 
