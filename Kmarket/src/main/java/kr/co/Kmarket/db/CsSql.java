@@ -13,13 +13,29 @@ public class CsSql {
 	
 	/** faq */ 
 	
+	public static final String INSERT_CS_FAQ = 
+			"INSERT INTO `km_cs_faq` SET "
+			+ "`faqCate1`=?, "
+			+ "`faqCate2`=?, "
+			+ "`faqTitle`=?, "
+			+ "`faqContent`=?, "
+			+ "`faqRegip`=?, "
+			+ "`faqRdate`=NOW()";
+	
 	// faq 리스트 가져오기 cate1과 cate2 값으로 10개씩
 	public static final String SELECT_CS_FAQ_LIST_WITH_CS_CATE1 = 
 			"SELECT * FROM `km_cs_faq` WHERE `faqCate1`=? AND `faqCate2`=? LIMIT 10";
 	
 	/** faqNo로 게시물 정보 가져오기 */
 	public static final String SELECT_CS_FAQ_WITH_FAQ_NO = 
-			"SELECT * FROM `km_cs_faq` WHERE `faqNo`=?";
+			"SELECT "
+			+ "	f.*,"
+			+ "	c2.cate2Name,"
+			+ "	c1.cate1Name "
+			+ "FROM `km_cs_faq` AS f "
+			+ "JOIN `km_cs_cate2` AS c2 ON f.faqCate2 = c2.cate2 AND f.faqCate1 = c2.cate1 "
+			+ "JOIN `km_cs_cate1` AS c1 ON f.faqCate1 = c1.cate1 "
+			+ "WHERE `faqNo`=?";
 	
 	/** 관리자 자주묻는 질문 처음 접근시 조회수 상위 10개 가져오기 */
 	public static final String SELECT_CS_FAQ_LIST_LIMIT10 = 
@@ -43,6 +59,19 @@ public class CsSql {
 			+ "JOIN `km_cs_cate1` AS c1 ON f.faqCate1 = c1.cate1 "
 			+ "WHERE f.faqCate1 = ? AND f.faqCate2 = ? "
 			+ "ORDER BY `faqHit` DESC LIMIT 10";
+	
+	public static final String UPDATE_CS_FAQ = 
+			"UPDATE `km_cs_faq` SET "
+			+ "`faqCate1`=?, "
+			+ "`faqCate2`=?, "
+			+ "`faqTitle`=?, "
+			+ "`faqContent`=?, "
+			+ "`faqRegip`=?, "
+			+ "`faqRdate`=NOW() "
+			+ "WHERE `faqNo`=?";
+	
+	public static final String DELETE_CS_FAQ_WITH_FAQNO = 
+			"DELETE FROM `km_cs_faq` WHERE `faqNo`=?";
 	
 	/** notice */ 
 	public static final String SELECT_CS_NOTICE_LIST_WITH_CS_CATE =

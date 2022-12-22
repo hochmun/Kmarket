@@ -287,14 +287,20 @@ button[type=submit] {
 }
 #admin-product-list > section > table  tr > th:nth-child(1) {width: 2%}
 #admin-product-list > section > table  tr > th:nth-child(2) {width: 3%}
-#admin-product-list > section > table  tr > th:nth-child(3) {width: 5%}
-#admin-product-list > section > table  tr > th:nth-child(4) {width: 7%}
+#admin-product-list > section > table  tr > th:nth-child(3) {width: 13%}
+#admin-product-list > section > table  tr > th:nth-child(4) {width: 11%}
 #admin-product-list > section > table  tr > th:nth-child(5) {}
 #admin-product-list > section > table  tr > th:nth-child(6) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(7) {width: 9%}
 #admin-product-list > section > table  tr > th:nth-child(8) {width: 5%}
 
 #admin-product-list > section > table  tr > td {
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+#admin-product-list > section > table  tr > td > pre {
     background: #fff;
     text-align: center;
     box-sizing: border-box;

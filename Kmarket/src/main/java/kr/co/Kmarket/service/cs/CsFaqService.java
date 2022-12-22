@@ -2,6 +2,11 @@ package kr.co.Kmarket.service.cs;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.Kmarket.dao.cs.CsFaqDAO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsFaqVO;
@@ -10,12 +15,22 @@ public enum CsFaqService {
 	INSTANCE;
 	
 	private CsFaqDAO dao;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private CsFaqService () {
 		dao = new CsFaqDAO();
 	}
 	
 	// create
+	/**
+	 * 2022/12/22 자주하는 질문 게시물 작성
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int insertCsFaq(CsFaqVO vo) {
+		return dao.insertCsFaq(vo);
+	}
 	
 	// read
 	/**
@@ -59,8 +74,49 @@ public enum CsFaqService {
 	}
 	
 	// upload
+	/**
+	 * 2022/12/22 자주묻는 질문 게시물 수정
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int updateCsFaq(CsFaqVO vo) {
+		return dao.updateCsFaq(vo);
+	}
 	
 	// delete
+	/**
+	 * 2022/12/22 자주묻는 질문 개별, 전체 통합
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public int deleteCsFaqNoWithFaqNo(String[] arrays) {
+		return dao.deleteCsFaqNoWithFaqNo(arrays);
+	}
+	
 	
 	// service
+	/**
+	 * 2022/12/22 vo에 정보 담기
+	 * @author 심규영
+	 * @param req
+	 * @return
+	 */
+	public CsFaqVO insertCsFaqVO(HttpServletRequest req) {
+		CsFaqVO vo = new CsFaqVO();
+		
+		if(req.getParameter("faqNo") != null) vo.setFaqNo(req.getParameter("faqNo"));
+		
+		logger.debug(vo.getFaqNo()+"");
+		
+		vo.setFaqCate1(req.getParameter("cate1"));
+		vo.setFaqCate2(req.getParameter("cate2"));
+		vo.setFaqTitle(req.getParameter("title"));
+		vo.setFaqContent(req.getParameter("content"));
+		vo.setFaqRegip(req.getRemoteAddr());
+		
+		return vo;
+	}
+	
 }
