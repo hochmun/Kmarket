@@ -1,24 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../../_header.jsp"/>
+<script src="../js/qnaList.js"></script>
     <section id="admin-product-list">
-    
-    <script type="text/javascript">
-		$(document).ready(function() {
-			$("#cbx_chkAll").click(function() {
-				if($("#cbx_chkAll").is(":checked")) $("input[name=chk]").prop("checked", true);
-				else $("input[name=chk]").prop("checked", false);
-			});
-			
-			$("input[name=chk]").click(function() {
-				var total = $("input[name=chk]").length;
-				var checked = $("input[name=chk]:checked").length;
-				
-				if(total != checked) $("#cbx_chkAll").prop("checked", false);
-				else $("#cbx_chkAll").prop("checked", true); 
-			});
-		});
-	</script>
                 <nav>
                     <h3>문의하기 목록</h3>
                     <p>
@@ -28,27 +12,23 @@
                 <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
                     <div>
-                        <select name="search" id="selectBox" class="w-btn-outline w-btn-indigo-outline">
-                            <option value="0" >1차 선택</option>
-                            <option value="10">회원</option>
-                            <option value="11">쿠폰/이벤트</option>
-                            <option value="12">주문/결제</option>                                    
-                            <option value="13">배송</option>                                    
-                            <option value="14">취소/반품/교환</option>                                    
-                            <option value="15">판매자</option>                                    
-                            <option value="16">안전거래</option>                                    
+                        <select name="cate1" class="w-btn-outline w-btn-indigo-outline">
+                            <option value="" >1차 선택</option>
+                            
+                            <c:forEach var="vo2" items="${ vos2 }">
+                            <option value="${ vo2.cate1 }" >${ vo2.cate1Name }</option>
+                            </c:forEach>
+                            
                         </select>
                         
                     </div>
                     <div>
-                        <select name="search" id="selectBox2" class="w-btn-outline w-btn-indigo-outline">
-                            <option value="search1">2차 선택</option>
-                            <option value="search1">상품코드</option>
-                            <option value="search1">제조사</option>
-                            <option value="search1">판매자</option>                                    
+                        <select name="cate2" class="w-btn-outline w-btn-indigo-outline">
+                            <option value="">2차 선택</option>
                         </select>
                     </div>
-                    <table>
+                    
+                    <table id="listTable">
                         <tr>
                             <th><input type="checkbox" id="cbx_chkAll"/></th>
                             <th>번호</th>
@@ -59,25 +39,22 @@
                             <th>작성일</th>
                             <th>상태</th>
                         </tr>
-                        <c:forEach var="QnaArt" items="${QnaArts}">
+                        <c:forEach var="vo" items="${vos}">
                         <tr>
-                            <td><input type="checkbox" name="chk"/></td>
-                            <td>${QnaArt.qnaNo}</td>
-                            <td>${vos.cate1Name}</td>
-                            <td>${QnaArt.cate2Name}</td>
-                            <td>${QnaArt.qnaTitle}</td>
-                            <td>${QnaArt.uid}</td>
-                            <td>${QnaArt.qnaRdate}</td>
+                            <td><input type="checkbox" name="상품코드"/></td>
+                            <td>${vo.qnaNo}</td>
+                            <td>${vo.cate1Name}</td>
+                            <td>${vo.cate2Name}</td>
+                            <td><a href="${pageContext.request.contextPath}/admin/cs/qna/view.do?qnaNo=${ vo.qnaNo }">${ vo.qnaTitle }</a></td>
+                            <td>${vo.uid}</td>
+                            <td>${vo.qnaRdate}</td>
+                            
                         <c:choose>
-                        <c:when test="${QnaArt.qnaAdminContent eq null}">
-                            <td>
-                                <a href="#">검토중</a>
-                            </td>
+                        <c:when test="${vo.qnaType eq 1}">
+                            <td>검토중</td>
                         </c:when>
                         <c:otherwise>
-                        	<td>
-                                <a href="#">검토완료</a>
-                            </td>
+                        	<td>검토완료</td>
                         </c:otherwise>
                         </c:choose>
                         </tr>
@@ -90,25 +67,25 @@
                     </table>
 
                     <div class="btn1ro">
-                    	<a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>
+                    	<a href="./list.do" class="w-btn w-btn-indigo delete">선택삭제</a>
 					</div>
 
                     <div class="paging">
+                    <c:if test="${pageGroupStart gt 1}">
                         <span class="prev">
-                            <a href="#"><&nbsp;이전</a>
+                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupStart - 1}"><&nbsp;이전</a>
                         </span>
+                        </c:if>
+                        <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
                         <span class="num">
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">1</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">2</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">3</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">4</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">5</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">6</a>
-                            <a href="#" class="w-btn-outline w-btn-blue-outline">7</a>
+                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
                         </span>
+                        </c:forEach>
+                        <c:if test="${pageGroupEnd lt lastPageNum}">
                         <span class="next">
-                            <a href="#">다음&nbsp;></a>
+                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupEnd + 1}">다음&nbsp;></a>
                         </span>
+                        </c:if>
                         </div>
 
                 </section>              
