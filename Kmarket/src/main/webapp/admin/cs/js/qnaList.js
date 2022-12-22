@@ -60,7 +60,7 @@ $(document).ready(function() {
 				
 				const td5 = document.createElement('td');
 				const a = document.createElement('a');
-				a.setAttribute('href','./view.do?qnaNo='+vo.qnaNo);
+				a.setAttribute('href','/Kmarket/admin/cs/qna/reply.do?qnaNo='+vo.qnaNo);
 				a.innerText += vo.qnaTitle;
 				td5.appendChild(a);
 				tr.appendChild(td5);

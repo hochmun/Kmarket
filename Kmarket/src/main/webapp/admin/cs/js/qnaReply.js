@@ -1,5 +1,4 @@
 $(function(){
-		
 		// 글 삭제하기
 		$('.btnDelete').click(function(){
 			

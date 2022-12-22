@@ -144,7 +144,7 @@ public class CsQnaDAO extends DBCP{
 			psmt = conn.prepareStatement(CsSql.SELECT_ADMIN_QNA_ARTICLE_NO);
 			psmt.setString(1, qnaNo);
 			rs = psmt.executeQuery();
-			
+
 			if(rs.next()) {
 				vo.setQnaNo(rs.getInt("qnaNo"));
 				vo.setQnaCate1(rs.getInt("qnaCate1"));
@@ -154,7 +154,7 @@ public class CsQnaDAO extends DBCP{
 				vo.setQnaAdminContent(rs.getString("qnaAdminContent"));
 				vo.setQnaType(rs.getInt("qnaType"));
 				vo.setQnaRegip(rs.getString("qnaRegip"));
-				
+
 				vo.setCate1Name(rs.getString("cate1Name"));
 				vo.setCate2Name(rs.getString("cate2Name"));
 			}

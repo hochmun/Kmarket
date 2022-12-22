@@ -56,7 +56,7 @@ public enum CsQnaService {
 		
 		logger.debug(vo.getQnaNo()+"");
 		
-		vo.setQnaAdminContent(req.getParameter("admincontent"));
+		vo.setQnaAdminContent(req.getParameter("qnaAdminContent"));
 		vo.setQnaRegip(req.getRemoteAddr());
 		
 		return vo;

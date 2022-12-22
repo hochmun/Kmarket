@@ -73,7 +73,7 @@ $(()=>{
                     </table>
                     <div class="btn3ro">
                         <a href="./delete.do?qnaNo=${vo.qnaNo}" class="w-btn w-btn-indigo btnDelete" id="delete">삭제</a>
-                        <a href="#" class="w-btn w-btn-green">답변등록</a>
+                        <a href="#" class="w-btn w-btn-green btnSubmit">답변등록</a>
                         <a href="./list.do" class="w-btn w-btn-indigo btnList">목록</a>
                     </div>
                      </form>
