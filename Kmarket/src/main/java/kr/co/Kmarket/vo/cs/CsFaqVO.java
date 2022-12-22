@@ -45,17 +45,26 @@ public class CsFaqVO {
 	public void setFaqNo(int faqNo) {
 		this.faqNo = faqNo;
 	}
+	public void setFaqNo(String faqNo) {
+		this.faqNo = Integer.parseInt(faqNo);
+	}
 	public int getFaqCate1() {
 		return faqCate1;
 	}
 	public void setFaqCate1(int faqCate1) {
 		this.faqCate1 = faqCate1;
 	}
+	public void setFaqCate1(String faqCate1) {
+		this.faqCate1 = Integer.parseInt(faqCate1);
+	}
 	public int getFaqCate2() {
 		return faqCate2;
 	}
 	public void setFaqCate2(int faqCate2) {
 		this.faqCate2 = faqCate2;
+	}
+	public void setFaqCate2(String faqCate2) {
+		this.faqCate2 = Integer.parseInt(faqCate2);
 	}
 	public String getFaqTitle() {
 		return faqTitle;

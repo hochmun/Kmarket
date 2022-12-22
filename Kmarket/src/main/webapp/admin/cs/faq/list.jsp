@@ -53,7 +53,7 @@
 						<td>${ vo.faqHit }</td>
 						<td>${ vo.faqRdate }</td>
 						<td>
-							<a href="./delete.do?faqNo=${ vo.faqNo }">[삭제]</a>
+							<a href="./delete.do?faqNo=${ vo.faqNo }" id="deleteSingle">[삭제]</a>
 							<a href="./modify.do?faqNo=${ vo.faqNo }">[수정]</a>
 						</td>
 					</tr>
@@ -63,8 +63,8 @@
 			</table>
 	
 			<div class="btn2ro">
-				<a href="./list.do" class="w-btn w-btn-indigo">선택삭제</a>  
-				<a href="./list.do" class="w-btn w-btn-green">작성하기</a> 
+				<a href="#" class="w-btn w-btn-indigo deleteAll">선택삭제</a>  
+				<a href="./write.do" class="w-btn w-btn-green">작성하기</a> 
 			</div>
 	
 		</section>

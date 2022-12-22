@@ -77,6 +77,7 @@ $(document).ready(function() {
 				const a2 = document.createElement('a');
 				const a3 = document.createElement('a');
 				a2.setAttribute('href','./delete.do?faqNo='+vo.faqNo);
+				a2.setAttribute('id', 'deleteSingle');
 				a3.setAttribute('href','./modify.do?faqNo='+vo.faqNo);
 				a2.innerText = '[삭제]';
 				a3.innerText = '[수정]';
@@ -85,6 +86,59 @@ $(document).ready(function() {
 				tr.appendChild(td8);
 				
 				table.appendChild(tr);
+			}
+		});
+	});
+	
+	// 개별 삭제 버튼 클릭시
+	$('#deleteSingle').click(()=>{
+		event.preventDefault();
+		const deleteOk = confirm('삭제 하시겠습니까?');
+		if(deleteOk == false) return false;
+	});
+	
+	// 선택 삭제 버튼 클릭시
+	$('.deleteAll').click((e)=>{
+		// 이벤트 취소
+		e.preventDefault();
+		
+		// 삭제 전 확인 의사 묻기
+		const deleteOk = confirm('삭제 하시겠습니까?');
+		if(deleteOk == false) return false;
+		
+		// 선택한 게시물을 받아옴
+		const trs = $('input[name=상품코드]:checked').parent().parent();
+		
+		// 게시물 번호를 받을 문자열
+		let arrayFaqNo = "";
+		
+		// 배열에 게시물 번호를 담음
+		for(tr of trs) {
+			td = tr.children[1].innerText;
+			arrayFaqNo += td
+					   += ", ";
+		}
+		
+		// 값이 없을 경우 리턴
+		if(arrayFaqNo == "") {
+			alert('삭제 할 게시물을 선택 하십시오.');
+			return false;
+		}
+		
+		
+		// ajax 전송
+		$.ajax({
+			url: '/Kmarket/admin/cs/faq/delete.do',
+			type: 'post',
+			data: {'faqNo':arrayFaqNo},
+			dataType: 'json',
+			success: (data)=>{
+				if(data.result > 0) {
+					alert('게시물 삭제에 성공 했습니다.');
+					trs.remove();
+				} else {
+					alert('게시물 삭제에 실패 하였습니다.');
+				}
 			}
 		});
 	});

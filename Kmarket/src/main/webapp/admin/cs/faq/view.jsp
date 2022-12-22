@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <jsp:include page="../../_header.jsp"/>
+<script>
+$(()=>{
+	$('.btnDelete').click(()=>{
+		const deleteOk = confirm('삭제 하시겠습니까?');
+		if(deleteOk == false) return false;
+	});	
+});
+</script>
     <section id="admin-product-list">
                 <nav>
                     <h3>자주묻는질문 보기</h3>
@@ -14,28 +22,25 @@
                         <tr>
                             <td><strong>유형</strong></td>
                             <td>
-                                회원 - 가입
+                                ${ vo.cate1Name } - ${ vo.cate2Name }
                             </td>
                         </tr>
                         <tr>
                             <td>제목</td>
                             <td>
-                               개인회원과 법인회원에 차이가 있나요?
+                               ${ vo.faqTitle }
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                               개인회원은 본인인증, 법인회원은 사업자등록번호를 기준으로 사업자 인증 후 가입 가능<br/>
-                               합니다.<br/>
-                               개인회원에서 법인회원(사업자 회원)으로 전환은 불가하므로 법인회원(사업자 회원)전환<br/>
-                               은 신규 가입으로 진행을 해야 합니다.
+                               <pre>${ vo.faqContent }</pre>
                             </td>
                         </tr>
                     </table>
                     <div class="btn3ro">
-                        <a href="#" class="w-btn w-btn-indigo">삭제</a>
-                        <a href="./modify.do" class="w-btn w-btn-green">수정</a>
+                        <a href="./delete.do?faqNo=${ vo.faqNo }" class="w-btn w-btn-indigo btnDelete">삭제</a>
+                        <a href="./modify.do?faqNo=${ vo.faqNo }" class="w-btn w-btn-green">수정</a>
                         <a href="./list.do" class="w-btn w-btn-indigo">목록</a>
                     </div>
 

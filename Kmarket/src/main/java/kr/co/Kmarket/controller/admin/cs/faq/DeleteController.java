@@ -1,7 +1,6 @@
 package kr.co.Kmarket.controller.admin.cs.faq;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,38 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.JsonObject;
 
 import kr.co.Kmarket.service.cs.CsFaqService;
-import kr.co.Kmarket.service.cs.CsService;
-import kr.co.Kmarket.vo.cs.CsCate1VO;
-import kr.co.Kmarket.vo.cs.CsFaqVO;
 
-@WebServlet("/admin/cs/faq/write.do")
-public class WriteController extends HttpServlet {
+@WebServlet("/admin/cs/faq/delete.do")
+public class DeleteController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private CsFaqService service = CsFaqService.INSTANCE;
-	private CsService service2 = CsService.INSTANCE;
-
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 들어오는 값 없음
-		// 카테고리1 값, 이름 가져오기 => 카테고리2는 동적 처리
-		List<CsCate1VO> vos2 = service2.selectCsCate1();
+		// 받아오는 정보
+		String faqNo = req.getParameter("faqNo");
 		
-		// 전송
-		req.setAttribute("vos2", vos2);
+		// 배열로 변경
+		String[] arrays = faqNo.split(",");
 		
-		req.getRequestDispatcher("/admin/cs/faq/write.jsp").forward(req, resp);
+		// 데이터 베이스에서 삭제
+		service.deleteCsFaqNoWithFaqNo(arrays);
+		
+		// 리스트로 이동
+		resp.sendRedirect("/Kmarket/admin/cs/faq/list.do");
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 들어오는값 받기
-		CsFaqVO vo = service.insertCsFaqVO(req);
+		// 받아오는 정보
+		String faqNo = req.getParameter("faqNo");
 		
-		// 데이터 베이스 등록
-		int result = service.insertCsFaq(vo);
+		// 배열로 변경
+		String[] arrays = faqNo.split(",");
 		
-		// 결과값 리턴
+		// 데이터 베이스에서 삭제
+		int result = service.deleteCsFaqNoWithFaqNo(arrays);
+		
+		// 리턴
 		JsonObject json = new JsonObject();
 		json.addProperty("result", result);
 		resp.getWriter().write(json.toString());
