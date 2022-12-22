@@ -36,13 +36,13 @@
                     </div>
                     <table>
                         <tr>
-                            <th><input type="checkbox" id="cbx_chkAll"/></th>
-                            <th>번호</th>
-                            <th>유형</th>
-                            <th>제목</th>
-                            <th>조회</th>
-                            <th>날짜</th>
-                            <th>관리</th>
+                            <th style="width: 5%;"><input type="checkbox" id="cbx_chkAll"/></th>
+                            <th style="width: 5%;">번호</th>
+                            <th style="width: 11%;">유형</th>
+                            <th style="width: auto;">제목</th>
+                            <th style="width: 5%;">조회</th>
+                            <th style="width: 9%;">날짜</th>
+                            <th style="width: 5%;">관리</th>
                         </tr>
 
                         <tr>
