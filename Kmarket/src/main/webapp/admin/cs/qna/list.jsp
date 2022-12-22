@@ -28,7 +28,7 @@
                 <!-- 상품목록 컨텐츠 시작 -->                                
                 <section>
                     <div>
-                        <select name="search" id="selectBox">
+                        <select name="search" id="selectBox" class="w-btn-outline w-btn-indigo-outline">
                             <option value="0" >1차 선택</option>
                             <option value="10">회원</option>
                             <option value="11">쿠폰/이벤트</option>
@@ -41,7 +41,7 @@
                         
                     </div>
                     <div>
-                        <select name="search" id="selectBox2" class="cate2">
+                        <select name="search" id="selectBox2" class="w-btn-outline w-btn-indigo-outline">
                             <option value="search1">2차 선택</option>
                             <option value="search1">상품코드</option>
                             <option value="search1">제조사</option>

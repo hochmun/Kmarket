@@ -342,4 +342,34 @@ public class Sql {
   			+ "JOIN `km_product` AS p ON oi.prodNo = p.prodNo "
   			+ "WHERE `ordNo`=?;";
  	
+  	/* 판매자 product */
+  	
+  	// 해당 판매자가 등록한 상품 정보 불러오기
+  	public static final String SELECT_ADMIN_PRODS = "SELECT a.* FROM `km_product` AS a "
+										  			+ "JOIN `km_member` AS b "
+										  			+ "ON a.seller = b.uid "
+										  			+ "WHERE `uid` = ? "
+										  			+ "ORDER BY `prodNo` DESC "
+										  			+ "LIMIT ?, 10";
+  	
+  	// 등록된 상품 이름으로 검색
+  	public static final String SELECT_ADMIN_PRODS_BY_PRODNAME = "SELECT a.* FROM `km_product` AS a "
+												  			+ "JOIN `km_member` AS b "
+												  			+ "ON a.seller = b.uid "
+												  			+ "WHERE `uid` = ? AND `prodName` = ? "
+												  			+ "ORDER BY `prodNo` DESC LIMIT ?, 10";
+  	// 등록된 상품 번호로 검색
+  	public static final String SELECT_ADMIN_PRODS_BY_PRODNO = "SELECT a.* FROM `km_product` AS a "
+												  			+ "JOIN `km_member` AS b "
+												  			+ "ON a.seller = b.uid "
+												  			+ "WHERE `uid` = ? AND `prodNo` = ? "
+												  			+ "ORDER BY `prodNo` DESC LIMIT ?, 10";
+  	// 등록된 상품 판매자명으로 검색
+  	public static final String SELECT_ADMIN_PRODS_BY_SELLER = "SELECT a.* FROM `km_product` AS a "
+												  			+ "JOIN `km_member` AS b "
+												  			+ "ON a.seller = b.uid "
+												  			+ "WHERE `uid` = ? AND `seller` = ? "
+												  			+ "ORDER BY `prodNo` DESC LIMIT ?, 10";
+  	
+  	/*ADMIN용 조회*/
 }
