@@ -81,6 +81,7 @@ public class CsSql {
 	//qna 카테고리별 작성글 count 
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `qnaCate1` = ?";
 	
+	
 	// qna 카테고리 작성글 list 가져오기 
 	public static final String SELECT_ARTICLES = "SELECT a.*, c.cate2Name FROM `km_cs_qna` AS a "
 												+ "JOIN `km_cs_cate1` AS b "
@@ -113,5 +114,28 @@ public class CsSql {
 												+ "LEFT JOIN `km_cs_cate2` AS b ON a.cate1 = b.cate1 "
 												+ "WHERE a.cate1 = ?"; 
 	
+	/* ADMIN QNA  */
 	
+	public static final String SELECT_ADMIN_QNA_NO = "SELECT * FROM `km_cs_qna` WHERE `qnaNo` = ?";
+	
+	// admin qna 해당 카테고리 전체 list 가져오기
+	public static final String SELECT_ADMIN_QNA_LIST = "SELECT * FROM `km_cs_qna` "
+														+ "WHERE `qnaCate1` = ? AND `qnaCate2` = ? LIMIT 10";
+	
+	// admin qna 작성글 전체 list 번호순으로 가져오기
+	public static final String SELECT_ADMIN_QNA_LIST_NO = "SELECT a.*, b.cate1Name, c.cate2Name FROM `km_cs_qna` AS a "
+														+ "JOIN `km_cs_cate1` AS b "
+														+ "ON a.qnaCate1 = b.cate1 "
+														+ "JOIN `km_cs_cate2` AS c "
+														+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
+														+ "ORDER BY `qnaNo` DESC LIMIT 10";
+	
+	// admin qna 해당 카테고리 작성글 list 번호순 가져오기 
+	public static final String SELECT_ADMIN_QNA_LIST_CATE = "SELECT a.*, b.cate1Name, c.cate2Name FROM `km_cs_qna` AS a "
+															+ "JOIN `km_cs_cate1` AS b "
+															+ "ON a.qnaCate1 = b.cate1 "
+															+ "JOIN `km_cs_cate2` AS c "
+															+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
+															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+															+ "ORDER BY `qnaNo` DESC LIMIT 10";
 }
