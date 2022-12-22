@@ -12,7 +12,6 @@
         <!-- 상품등록 컨텐츠 시작 -->
         <article>
             <form action="${pageContext.request.contextPath}/admin/product/register.do" method="post" enctype="multipart/form-data">
-            	seller=><input type="text" name="seller" value="admin">-상품데이터 입력 완료후 삭제 할것
             	<!-- 상품분류 -->
                 <section>
                     <h4>상품분류</h4>

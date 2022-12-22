@@ -31,4 +31,13 @@ public enum CsQnaService {
 	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2){
 		return dao.selectCsQnaListCate(cate1, cate2);
 	}
+	
+	/**
+	 * 2022/12/23 관리자/메인 문의사항 최신순 5개 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsQnaVO> selectCsQnaListLimit5() {
+		return dao.selectCsQnaListLimit5();
+	}
 }

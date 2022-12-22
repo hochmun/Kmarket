@@ -55,7 +55,6 @@ public class RegisterController extends HttpServlet {
 		// 데이터 베이스 처리
 		int result = service.insertProduct(vo);
 		
-		// TODO - 나중에 이동 페이지 수정할것
 		// 이동
 		if (result == 0) req.getSession().setAttribute("success", "600"); // 실패시
 		else req.getSession().setAttribute("success", "601"); // 성공시

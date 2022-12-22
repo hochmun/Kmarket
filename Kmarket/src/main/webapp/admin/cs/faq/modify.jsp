@@ -11,8 +11,6 @@ $(()=>{
 		const title = $('input[name=title]').val();
 		const content = $('textarea[name=content]').val();
 		
-		console.log('1');
-		
 		// 검사
 		if(cate1 == null || cate1 == "") {
 			alert('카테고리1을 선택하십시오');
