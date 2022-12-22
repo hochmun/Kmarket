@@ -8,13 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
 import kr.co.Kmarket.service.cs.CsFaqService;
 import kr.co.Kmarket.service.cs.CsService;
-import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsFaqVO;
 

@@ -286,7 +286,7 @@ button[type=submit] {
     background: #f6f6f6;
 }
 #admin-product-list > section > table  tr > th:nth-child(1) {width: 2%}
-#admin-product-list > section > table  tr > th:nth-child(2) {width: 2%}
+#admin-product-list > section > table  tr > th:nth-child(2) {width: 3%}
 #admin-product-list > section > table  tr > th:nth-child(3) {width: 5%}
 #admin-product-list > section > table  tr > th:nth-child(4) {width: 7%}
 #admin-product-list > section > table  tr > th:nth-child(5) {}
@@ -421,7 +421,7 @@ button[type=submit] {
 		            margin: 20px;
 		        }
 		        
-		        /*
+		        
 		        .w-btn {
 		            position: relative;
 		            border: none;
@@ -436,49 +436,16 @@ button[type=submit] {
 		            margin-left: 267px;
 		            margin-top: 33px;
 		        }
-		        */
+		        
 		        
 		        .btn1ro > .w-btn {
-		            position: relative;
-		            border: none;
-		            display: inline-block;
-		            padding: 15px 30px;
-		            border-radius: 15px;
-		            font-family: "paybooc-Light", sans-serif;
-		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-		            text-decoration: none;
-		            font-weight: 600;
-		            transition: 0.25s;
 		            margin-left: 939px;
-		            margin-top: 33px;
 		        }
 		        .btn2ro > .w-btn {
-		            position: relative;
-		            border: none;
-		            display: inline-block;
-		            padding: 15px 30px;
-		            border-radius: 15px;
-		            font-family: "paybooc-Light", sans-serif;
-		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-		            text-decoration: none;
-		            font-weight: 600;
-		            transition: 0.25s;
 		            margin-left: 267px;
-		            margin-top: 33px;
 		        }
 		        .btn3ro > .w-btn {
-		            position: relative;
-		            border: none;
-		            display: inline-block;
-		            padding: 15px 30px;
-		            border-radius: 15px;
-		            font-family: "paybooc-Light", sans-serif;
-		            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-		            text-decoration: none;
-		            font-weight: 600;
-		            transition: 0.25s;
 		            margin-left: 198px;
-		            margin-top: 33px;
 		        }
 		        
 		        .w-btn-outline {
