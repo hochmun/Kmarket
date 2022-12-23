@@ -31,7 +31,7 @@ public class ProductVO {
 	private int etc1;
 	private int etc2;
 	private String etc3;
-	private String etc4;
+	private String uid;
 	private String etc5;
 	
 	private int cartNo = prodNo;
@@ -247,11 +247,11 @@ public class ProductVO {
 	public void setEtc3(String etc3) {
 		this.etc3 = etc3;
 	}
-	public String getEtc4() {
-		return etc4;
+	public String getUid() {
+		return uid;
 	}
-	public void setEtc4(String etc4) {
-		this.etc4 = etc4;
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public String getEtc5() {
 		return etc5;

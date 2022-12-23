@@ -164,7 +164,7 @@ public class ProductDAO extends DBCP {
 				pvo.setEtc1(rs.getInt(28));
 				pvo.setEtc2(rs.getInt(29));
 				pvo.setEtc3(rs.getString(30));
-				pvo.setEtc4(rs.getString(31));
+				pvo.setUid(rs.getString(31));
 				pvo.setEtc5(rs.getString(32));
 			}
 			close();
@@ -325,7 +325,7 @@ public class ProductDAO extends DBCP {
 				pvo.setEtc1(rs.getInt(28));
 				pvo.setEtc2(rs.getInt(29));
 				pvo.setEtc3(rs.getString(30));
-				pvo.setEtc4(rs.getString(31));
+				pvo.setUid(rs.getString(31));
 				pvo.setEtc5(rs.getString(32));
 				
 				pvos.add(pvo);
@@ -384,7 +384,7 @@ public class ProductDAO extends DBCP {
 				pvo.setEtc1(rs.getInt(28));
 				pvo.setEtc2(rs.getInt(29));
 				pvo.setEtc3(rs.getString(30));
-				pvo.setEtc4(rs.getString(31));
+				pvo.setUid(rs.getString(31));
 				pvo.setEtc5(rs.getString(32));
 				
 				pvos.add(pvo);
@@ -541,7 +541,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
@@ -599,7 +599,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
@@ -657,7 +657,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
@@ -715,7 +715,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
@@ -773,7 +773,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
@@ -831,7 +831,7 @@ public class ProductDAO extends DBCP {
 				pv.setEtc1(rs.getInt(28));
 				pv.setEtc2(rs.getInt(29));
 				pv.setEtc3(rs.getString(30));
-				pv.setEtc4(rs.getString(31));
+				pv.setUid(rs.getString(31));
 				pv.setEtc5(rs.getString(32));
 				
 				prods.add(pv);
