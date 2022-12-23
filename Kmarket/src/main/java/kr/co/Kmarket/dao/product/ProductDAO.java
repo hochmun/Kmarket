@@ -13,6 +13,7 @@ import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
@@ -904,6 +905,85 @@ public class ProductDAO extends DBCP {
 		voss.put("vos1", vos1);
 		voss.put("vos2", vos2);
 		return voss;
+	}
+	
+	/**
+	 * 2022/12/23 해당 판매자의 상품 갯수 가져오기
+	 * @author 심규영
+	 * @param uid
+	 * @return
+	 */
+	public int selectCountProductWithUid(String uid) {
+		int total = 0;
+		try {
+			logger.info("ProductDAO selectCountProductWithUid...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_PRODUCT_WITH_UID);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	/**
+	 * 2022/12/23 관리자/상품/리스트 - 최고관리자 전체 상품 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public int selectCountProduct() {
+		int total = 0;
+		try {
+			logger.info("ProductDAO selectCountProduct...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_COUNT_PRODUCT);
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	public List<ProductVO> selectProductPageList(int limitStart, String search, MemberVO vo) {
+		List<ProductVO> vos = new ArrayList<>();
+		try {
+			logger.info("ProductDAO selectProductPageList...");
+			conn = getConnection();
+			
+			if(vo.getType() == 2) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_PAGE_LIST_WHIT_UID);
+				psmt.setString(5, vo.getUid());
+				psmt.setInt(6, limitStart);
+			} else if(vo.getType() == 5) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_PAGE_LIST);
+				psmt.setInt(5, limitStart);
+			}
+			
+			psmt.setString(1, search);
+			psmt.setString(2, search);
+			psmt.setString(3, search);
+			psmt.setString(4, search);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductVO vo = new ProductVO();
+			}
+			
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
 	}
 	
 	// upload

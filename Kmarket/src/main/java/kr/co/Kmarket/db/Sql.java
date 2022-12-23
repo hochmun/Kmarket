@@ -208,7 +208,38 @@ public class Sql {
 	
 														/**+ "AND (`prodName` REGEXP ? "
 														+ "OR `descript` REGEXP ?)";  검색기능 추가시 해당 쿼리 고려*/
-
+	
+	/** 관리자/상품/리스트 - 해당 판매자의 상품 갯수 가져오기 */
+	public static final String SELECT_COUNT_PRODUCT_WITH_UID = 
+			"SELECT COUNT(`prodNo`) FROM `km_product` WHERE `uid` = ?";
+	
+	/** 관리자/상품/리스트 - 최고관리자 전체 상품 갯수 가져오기 */
+	public static final String SELECT_COUNT_PRODUCT = 
+			"SELECT COUNT(`prodNo`) FROM `km_product`";
+	
+	/** 관리자/상품/리스트 - 최고관리자 페이징 상품 갯수 가져오기 */
+	public static final String SELECT_PRODUCT_PAGE_LIST = 
+			"SELECT * FROM `km_product` "
+			+ "WHERE `prodName` LIKE ? "
+			+ "OR `prodNo` LIKE ? "
+			+ "OR `seller` LIKE ? "
+			+ "OR `company` LIKE ? "
+			+ "ORDER BY `prodNo` DESC "
+			+ "LIMIT ?, 10";
+	
+	/** 관리자/상품/리스트 - 판매자 페이징 상품 갯수 가져오기 */
+	public static final String SELECT_PRODUCT_PAGE_LIST_WHIT_UID = 
+			"SELECT * FROM `km_product` "
+			+ "WHERE "
+				+ "("
+					+ "`prodName` LIKE ? "
+					+ "OR `prodNo` LIKE ? "
+					+ "OR `seller` LIKE ? "
+					+ "OR `company` LIKE ? "
+				+ ") "
+				+ "AND `uid` = ? "
+			+ "ORDER BY `prodNo` DESC "
+			+ "LIMIT ?, 10";
 	
 	public static final String SELECT_CATE1 = 
 			"SELECT * FROM `km_product_cate1`";
