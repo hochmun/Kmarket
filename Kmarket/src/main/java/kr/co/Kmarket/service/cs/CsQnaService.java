@@ -27,6 +27,10 @@ public enum CsQnaService {
 		return dao.selectCsQnaNo(qnaNo);
 	}
 	
+	public int selectCountQnaTotal(String qnaCate1, String qnaCate2) {
+		return dao.selectCountQnaTotal(qnaCate1, qnaCate2);
+	}
+	
 	public List<CsQnaVO> selectCsQnaListWithCsCate1(List<CsCate2VO> vos3){
 		return dao.selectCsQnaListWithCsCate1(vos3);
 	}
