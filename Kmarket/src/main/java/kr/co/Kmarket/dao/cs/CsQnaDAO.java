@@ -36,6 +36,31 @@ public class CsQnaDAO extends DBCP{
 		return vo;
 	}
 	
+	/**
+	 * 2022/12/22 qna 카테고리별 작성글 count
+	 * @author 김재준
+	 */
+	public int selectCountQnaTotal(String qnaCate1, String qnaCate2) {
+		int total = 0;
+		try {
+			logger.info("selectCountTotal...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_COUNT_TOTAL_ADMIN);
+			psmt.setString(1, qnaCate1);
+			psmt.setString(2, qnaCate2);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	
+	}
+	
 	public List<CsQnaVO> selectCsQnaListWithCsCate1(List<CsCate2VO> vos3){
 		List<CsQnaVO> vos = new ArrayList<>();
 		try {

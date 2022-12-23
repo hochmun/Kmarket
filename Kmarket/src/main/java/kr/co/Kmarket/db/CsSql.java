@@ -105,6 +105,8 @@ public class CsSql {
 	//qna 카테고리별 작성글 count 
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `qnaCate1` = ?";
 	
+	public static final String SELECT_COUNT_TOTAL_ADMIN = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `qnaCate1` = ? AND `qnaCate2` = ?";
+	
 	
 	// qna 카테고리 작성글 list 가져오기 
 	public static final String SELECT_ARTICLES = "SELECT a.*, c.cate2Name FROM `km_cs_qna` AS a "
