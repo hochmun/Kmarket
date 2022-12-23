@@ -14,8 +14,8 @@
             <aside>
                 <h2>공지사항</h2>
                 <ul>
-                    <li class="on"><a href="./list.do">전체</a></li>
-                    <li><a href="./list.do?c=10">고객서비스</a></li>
+                    <li class="${c eq '10' ? 'on' : 'off'}"><a href="./list.do">전체</a></li>
+                    <li class="${c eq '10' ? 'on' : 'off'}"><a href="./list.do?c=10">고객서비스</a></li>
                     <li><a href="./list.do?c=11">안전거래</a></li>
                     <li><a href="./list.do?c=12">위해상품</a></li>
                     <li><a href="./list.do?c=13">이벤트당첨</a></li>
@@ -23,7 +23,7 @@
             </aside>
             <article>
                 <nav>
-                    <h1>전체</h1>
+                    <h1>${vos.noticeCate}</h1>
                     <h2>공지사항 전체 내용입니다.</h2>
                 </nav>
 
@@ -70,12 +70,17 @@
                     </tr>
                 </table>
 
-                <div class="page">
-                    <a href="#" class="prev">이전</a>
-                    <a href="#" class="num on">1</a>
-                    <a href="#" class="num">2</a>
-                    <a href="#" class="num">3</a>
-                    <a href="#" class="next">다음</a>
+               <div class="page">
+                <c:if test="${pageGroupStart gt 1}">
+		                <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}&pg=${pageGroupStart - 1}" class="prev"><&nbsp;이전</a>
+		            </c:if>
+		
+		            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
+		                <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}" class="num">${pg}</a>
+		            </c:forEach>
+		            <c:if test="${pageGroupEnd lt lastPageNum}">
+		                <a href="/Kmarket/cs/list.do?cate1=${cate1}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
+	            </c:if>
                 </div>
 
             </article>

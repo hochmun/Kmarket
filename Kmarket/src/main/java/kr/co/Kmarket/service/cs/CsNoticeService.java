@@ -29,20 +29,18 @@ public enum CsNoticeService {
 		return dao.selectNoticleArticle(noticeNo);
 	}
 	
-	/**
-	 * 2022/12/23 관리자/메인 => 공지사항 최근 작성순 5개 가져오기
-	 * @author 심규영
-	 * @return
-	 */
-	public List<CsNoticeVO> selectCsNoticeListLimit5() {
-		return dao.selectCsNoticeListLimit5();
-	}
-	
 	// upload
 	
 	// delete
 	
 	// service
+	/**
+	 * 2022/12/23 notice 카테고리별 작성글 count
+	 * @author 라성준
+	 */
+	public int selectCountTotal(String cate1) {
+		return dao.selectNoticeCountTotal(cate1);
+	}
 	
 	/** 페이징 */ 
 	
@@ -76,8 +74,9 @@ public enum CsNoticeService {
 		// 페이지 시작 번호 계산
 		int pageStartNum = total - limitStart;
 		
-		//List<CsNoticeVO> vos = dao.selectNoticeArticles(limitStart, cate1);
+		List<CsNoticeVO> vos = dao.selectNoticeArticles(limitStart, cate1);
 		
+		req.setAttribute("vos", vos);
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
