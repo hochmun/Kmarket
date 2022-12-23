@@ -80,6 +80,17 @@ public enum LoadingService {
 				+ "location.href='/Kmarket/admin/index.do';</script>");
 	}
 	
+	/**
+	 * 2022/12/23 - success=602 게시물 삭제
+	 * @author 심규영
+	 * @param out
+	 * @throws IOException
+	 */
+	public void deleteArticle(Writer out) throws IOException {
+		out.write("<script>alert('게시물이 삭제 되었습니다.');"
+				+ "location.href = document.referrer;</script>");
+	}
+	
 	// create
 	
 	// read

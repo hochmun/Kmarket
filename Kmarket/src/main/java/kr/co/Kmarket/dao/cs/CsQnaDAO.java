@@ -201,5 +201,32 @@ public class CsQnaDAO extends DBCP{
 			logger.error(e.getMessage());
 		}
 		return result;
+    }
+
+	/**
+	 * 2022/12/23 관리자/메인 문의사항 최신순 5개 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsQnaVO> selectCsQnaListLimit5() {
+		List<CsQnaVO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsQnaDAO selectCsQnaListLimit5...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_CS_QNA_LIST_LIMIT5);
+			while(rs.next()) {
+				CsQnaVO vo = new CsQnaVO();
+				vo.setQnaTitle(rs.getString("qnaTitle"));
+				vo.setQnaRdate(rs.getString("qnaRdate").substring(2, 16));
+				vos.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
 	}
 }

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="./_header.jsp"/>
         <section id="admin-index">
             <nav>
@@ -14,15 +16,15 @@
                     <tr>
                         <td>
                             <strong>주문건수(건)</strong>
-                            <span>131</span>
+                            <span><fmt:formatNumber value="${ vo3.countOrdNo }" pattern="#,###"/></span>
                         </td>
                         <td>
                             <strong>주문금액(원)</strong>
-                            <span>1,130,000</span>
+                            <span><fmt:formatNumber value="${ vo3.sumOrdTotPrice }" pattern="#,###"/></span>
                         </td>
                         <td>
                             <strong>회원가입(명)</strong>
-                            <span>1014</span>
+                            <span><fmt:formatNumber value="${ vo3.countMember }" pattern="#,###"/></span>
                         </td>
                         <td>
                             <strong>쇼핑몰 방문(명)</strong>
@@ -30,7 +32,7 @@
                         </td>
                         <td>
                             <strong>신규게시물(건)</strong>
-                            <span>100</span>
+                            <span><fmt:formatNumber value="${ vo3.countProductRdateMonth }" pattern="#,###"/></span>
                         </td>
                     </tr>
                     <tr>
@@ -89,15 +91,43 @@
                         <td>
                             <p>
                                 <span>어제</span>
-                                <span>4</span>
+                                <span><fmt:formatNumber value="${ vo3.countOrdNoDay }" pattern="#,###"/></span>
                             </p>
                             <p>
                                 <span>주간</span>
-                                <span>10</span>
+                                <span><fmt:formatNumber value="${ vo3.countOrdNoWeek }" pattern="#,###"/></span>
                             </p>
                             <p>
                                 <span>월간</span>
-                                <span>30</span>
+                                <span><fmt:formatNumber value="${ vo3.countOrdNoMonth }" pattern="#,###"/></span>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <span>어제</span>
+                                <span><fmt:formatNumber value="${ vo3.sumOrdTotPriceDay }" pattern="#,###"/></span>
+                            </p>
+                            <p>
+                                <span>주간</span>
+                                <span><fmt:formatNumber value="${ vo3.sumOrdTotPriceWeek }" pattern="#,###"/></span>
+                            </p>
+                            <p>
+                                <span>월간</span>
+                                <span><fmt:formatNumber value="${ vo3.sumOrdTotPriceMonth }" pattern="#,###"/></span>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <span>어제</span>
+                                <span><fmt:formatNumber value="${ vo3.countMemberDay }" pattern="#,###"/></span>
+                            </p>
+                            <p>
+                                <span>주간</span>
+                                <span><fmt:formatNumber value="${ vo3.countMemberWeek }" pattern="#,###"/></span>
+                            </p>
+                            <p>
+                                <span>월간</span>
+                                <span><fmt:formatNumber value="${ vo3.countMemberMonth }" pattern="#,###"/></span>
                             </p>
                         </td>
                         <td>
@@ -117,43 +147,15 @@
                         <td>
                             <p>
                                 <span>어제</span>
-                                <span>4</span>
+                                <span><fmt:formatNumber value="${ vo3.countProductRdateDay }" pattern="#,###"/></span>
                             </p>
                             <p>
                                 <span>주간</span>
-                                <span>10</span>
+                                <span><fmt:formatNumber value="${ vo3.countProductRdateWeek }" pattern="#,###"/></span>
                             </p>
                             <p>
                                 <span>월간</span>
-                                <span>30</span>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <span>어제</span>
-                                <span>4</span>
-                            </p>
-                            <p>
-                                <span>주간</span>
-                                <span>10</span>
-                            </p>
-                            <p>
-                                <span>월간</span>
-                                <span>30</span>
-                            </p>
-                        </td>
-                        <td>
-                            <p>
-                                <span>어제</span>
-                                <span>4</span>
-                            </p>
-                            <p>
-                                <span>주간</span>
-                                <span>10</span>
-                            </p>
-                            <p>
-                                <span>월간</span>
-                                <span>30</span>
+                                <span><fmt:formatNumber value="${ vo3.countProductRdateMonth }" pattern="#,###"/></span>
                             </p>
                         </td>
                     </tr>
@@ -192,52 +194,28 @@
                 <div>
                     <h4>공지사항</h4>
                     <article>
-                        <p>
-                            <span>[공지] 케이마켓 판매자님들은 주기적인 비밀번호 변경을 하세요.케이마켓 판매자님들은 주기적인 비밀번호 변경을 하세요.</span>
-                            <span>20-07-08 12:223</span>
-                        </p>
-                        <p>
-                            <span>[공지] 1주년 기념 신규가입 사은품 안내</span>
-                            <span>20-07-08 12:223</span>
-                        </p>
-                        <p>
-                            <span>[공지] 1주년 기념 신규가입 사은품 안내</span>
-                            <span>20-07-08 12:223</span>
-                        </p>
-                        <p>
-                            <span>[공지] 1주년 기념 신규가입 사은품 안내</span>
-                            <span>20-07-08 12:223</span>
-                        </p>
-                        <p>
-                            <span>[공지] 1주년 기념 신규가입 사은품 안내</span>
-                            <span>20-07-08 12:223</span>
-                        </p>
+                    	
+                    	<c:forEach var="vo1" items="${ vos1 }">
+                    		<p>
+	                            <span>${ vo1.noticeTitle }</span>
+	                            <span>${ vo1.noticeRdate }</span>
+	                        </p>
+                    	</c:forEach>
+                    	
                     </article>
                 </div>
             
             <div>
                 <h4>고객문의</h4>
                 <article>
-                    <p>
-                        <span>[문의] 상품이 잘못 왔습니다.</span>
-                        <span>20-07-08 12:23</span>
-                    </p>
-                    <p>
-                        <span>[문의] 안녕하세요. 주문자 입니다. 구매한 상품에 문제가 있어서 이렇게 문의글을 남깁니다.</span>
-                        <span>20-07-08 12:23</span>
-                    </p>
-                    <p>
-                        <span>[문의] 상품이 1개 잘못 왔습니다.</span>
-                        <span>20-07-08 12:23</span>
-                    </p>
-                    <p>
-                        <span>[문의] 상품이 1개 잘못 왔습니다.</span>
-                        <span>20-07-08 12:23</span>
-                    </p>
-                    <p>
-                        <span>[문의] 상품이 1개 잘못 왔습니다.</span>
-                        <span>20-07-08 12:23</span>
-                    </p>                                                                
+                	
+                	<c:forEach var="vo2" items="${ vos2 }">
+                   		<p>
+                            <span>${ vo2.qnaTitle }</span>
+                            <span>${ vo2.qnaRdate }</span>
+                        </p>
+                   	</c:forEach>
+                
                 </article>
             </div>
         </div>

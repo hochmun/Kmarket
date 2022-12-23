@@ -2,9 +2,11 @@
 <jsp:include page="../../_header.jsp"/>
 <script>
 $(()=>{
-	$('.btnDelete').click(()=>{
+	$('.btnDelete').click((e)=>{
+		e.preventDefault();
 		const deleteOk = confirm('삭제 하시겠습니까?');
 		if(deleteOk == false) return false;
+		else $(this).unbind('click').click();
 	});	
 });
 </script>

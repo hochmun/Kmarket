@@ -50,6 +50,8 @@ public class LoadingPageController extends HttpServlet {
 			// 관리자
 			if(success.equals("600")) service.insertProductFail(out); // 상품등록 실패
 			if(success.equals("601")) service.insertProduct(out); // 상품등록 성공
+			
+			if(success.equals("602")) service.deleteArticle(out);
 		}
 		
 	}

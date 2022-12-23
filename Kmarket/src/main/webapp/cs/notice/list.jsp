@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="${pageContext.request.contextPath}/cs/js/cs.js"></script>
 <jsp:include page="./_header.jsp"/>
+
 <section id="cs">
     <div class="notice">
         <nav>
@@ -11,11 +14,11 @@
             <aside>
                 <h2>공지사항</h2>
                 <ul>
-                    <li class="on"><a href="#">전체</a></li>
-                    <li><a href="#">고객서비스</a></li>
-                    <li><a href="#">안전거래</a></li>
-                    <li><a href="#">위해상품</a></li>
-                    <li><a href="#">이벤트당첨</a></li>
+                    <li class="on"><a href="./list.do">전체</a></li>
+                    <li><a href="./list.do?c=10">고객서비스</a></li>
+                    <li><a href="./list.do?c=11">안전거래</a></li>
+                    <li><a href="./list.do?c=12">위해상품</a></li>
+                    <li><a href="./list.do?c=13">이벤트당첨</a></li>
                 </ul>
             </aside>
             <article>

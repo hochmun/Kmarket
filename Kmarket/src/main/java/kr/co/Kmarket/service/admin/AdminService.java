@@ -17,6 +17,7 @@ import com.oreilly.servlet.MultipartRequest;
 import kr.co.Kmarket.dao.product.ProductDAO;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.ProductVO;
 
 public enum AdminService {
@@ -42,7 +43,9 @@ public enum AdminService {
 		double discount =  Integer.parseInt(req.getParameter("discount"));
 		int point = (int)(Integer.parseInt(req.getParameter("price")) * (1 - (discount / 100)))/100;
 		
-		vo.setSeller(req.getParameter("seller"));
+		// 셀러 이름을 회사 로그인한 판매자의 회사 이름에서 가져옴
+		MemberVO vo2 = (MemberVO) req.getSession().getAttribute("sessUser");
+		if(vo2.getCompany() != null) vo.setSeller(vo2.getCompany());
 		
 		vo.setProdName(req.getParameter("prodName"));
 		vo.setProdCate1(req.getParameter("category1"));

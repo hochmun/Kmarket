@@ -74,8 +74,32 @@ public class CsSql {
 			"DELETE FROM `km_cs_faq` WHERE `faqNo`=?";
 	
 	/** notice */ 
-	public static final String SELECT_CS_NOTICE_LIST_WITH_CS_CATE =
-			"SELECT * FROM `km_cs_notice` WHERE `NoticeCate`=? LIMIT 10";
+	
+	// notice 작성글 가져오기
+	public static final String SELECT_NOTICE_ARTICLE = "SELECT a.*, c.cate2Name FROM `km_cs_notice` AS a "
+												+ "JOIN `km_cs_cate1` AS b "
+												+ "ON a.noticeCate = b.cate1 "
+												+ "JOIN `km_cs_cate2` AS c "
+												+ "ON b.cate1 = c.cate1 AND a.noticeCate2 = c.cate2 "
+												+ "WHERE `noticeNo` = ?";
+	
+	// notice 카테고리 작성글 list 가져오기 
+	public static final String SELECT_NOTICE_ARTICLES = "SELECT a.*, c.cate2Name FROM `km_cs_notice` AS a "
+												+ "JOIN `km_cs_cate1` AS b "
+												+ "ON a.noticeCate1 = b.cate1 "
+												+ "JOIN `km_cs_cate2` AS c "
+												+ "ON b.cate1 = c.cate1 AND a.noticeCate2 = c.cate2 "
+												+ "WHERE b.cate1 = ? "
+												+ "ORDER BY `noticeNo` DESC LIMIT ?, 10";	
+	
+	/** admin/index 공지사항 최근 작성 날짜 기준으로 5개 가져오기  */
+	public static final String SELECT_CS_NOTICE_LIST_LIMIT5 = 
+			"SELECT * FROM `km_cs_notice` ORDER BY `noticeRdate` DESC LIMIT 5";
+	
+	//notice 카테고리별 작성글 count 
+	public static final String SELECT_NOTICE_COUNT_TOTAL_WITH_CATE = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice` WHERE `noticeCate` = ?";
+	public static final String SELECT_NOTICE_COUNT_TOTAL = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice`";
+		
 	/** qna */ 
 	
 	//qna 카테고리별 작성글 count 
@@ -113,6 +137,13 @@ public class CsSql {
 	public static final String SELECT_CS_CATE = "SELECT a.*, b.cate2, b.cate2Name FROM `km_cs_cate1` AS a "
 												+ "LEFT JOIN `km_cs_cate2` AS b ON a.cate1 = b.cate1 "
 												+ "WHERE a.cate1 = ?"; 
+	
+	/** 관리자/메인 문의사항 최신순 5개 가져오기 */
+	public static final String SELECT_CS_QNA_LIST_LIMIT5 = 
+			"SELECT "
+			+ "`qnaTitle`, "
+			+ "`qnaRdate`"
+			+ " FROM `km_cs_qna` ORDER BY `qnaRdate` DESC LIMIT 5";
 	
 	/* ADMIN QNA  */
 	
@@ -154,4 +185,37 @@ public class CsSql {
 	
 	// admin qna 문의글 삭제
 	public static final String DELETE_QNA_ARTICLE = "DELETE FROM `km_cs_qna` WHERE `qnaNo` = ?";
+
+	/* 관리자/메인 */
+	/** 관리자 메인 운영현황 불러오기 */
+	public static final String SELECT_ALL_COUNT = 
+			"SELECT "
+			+ "	COUNT(`ordNo`) AS countOrdNo,"
+			+ "	(SELECT COUNT(`ordNo`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 DAY ) AND NOW() ) AS countOrdNoDay,"
+			+ "	(SELECT COUNT(`ordNo`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW() ) AS countOrdNoWeek,"
+			+ "	(SELECT COUNT(`ordNo`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW() ) AS countOrdNoMonth,"
+			+ "	SUM(`ordTotPrice`) AS sumOrdTotPrice,"
+			+ "	(SELECT SUM(`ordTotPrice`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 DAY ) AND NOW() ) AS sumOrdTotPriceDay, "
+			+ "	(SELECT SUM(`ordTotPrice`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW() ) AS sumOrdTotPriceWeek, "
+			+ "	(SELECT SUM(`ordTotPrice`) "
+			+ "		FROM `km_product_order` WHERE `ordDate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW() ) AS sumOrdTotPriceMonth, "
+			+ "	(SELECT COUNT(`pass`) FROM `km_member`) AS countMember,"
+			+ "	(SELECT COUNT(`pass`) "
+			+ "		FROM `km_member` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 DAY ) AND NOW() ) AS countMemberDay, "
+			+ "	(SELECT COUNT(`pass`) "
+			+ "		FROM `km_member` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW() ) AS countMemberWeek, "
+			+ "	(SELECT COUNT(`pass`) "
+			+ "		FROM `km_member` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW() ) AS countMemberMonth, "
+			+ "	(SELECT COUNT(`rdate`) "
+			+ "		FROM `km_product` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 DAY ) AND NOW() ) AS countProductRdateDay, "
+			+ "	(SELECT COUNT(`rdate`) "
+			+ "		FROM `km_product` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW() ) AS countProductRdateWeek, "
+			+ "	(SELECT COUNT(`rdate`) "
+			+ "		FROM `km_product` WHERE `rdate` BETWEEN DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW() ) AS countProductRdateMonth "
+			+ "FROM `km_product_order`";
 }
