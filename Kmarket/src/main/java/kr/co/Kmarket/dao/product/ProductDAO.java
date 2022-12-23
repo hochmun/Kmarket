@@ -13,6 +13,7 @@ import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.ProductCartVO;
 import kr.co.Kmarket.vo.ProductVO;
 
@@ -906,6 +907,120 @@ public class ProductDAO extends DBCP {
 		return voss;
 	}
 	
+	/**
+	 * 2022/12/23 해당 판매자의 상품 갯수 가져오기
+	 * @author 심규영
+	 * @param uid
+	 * @return
+	 */
+	public int selectCountProductWithUid(String uid, String queryMid) {
+		int total = 0;
+		try {
+			logger.info("ProductDAO selectCountProductWithUid...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.SELECT_COUNT_PRODUCT_WITH_UID+queryMid);
+			psmt.setString(1, uid);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	/**
+	 * 2022/12/23 관리자/상품/리스트 - 최고관리자 전체 상품 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public int selectCountProduct(String queryMid) {
+		int total = 0;
+		try {
+			logger.info("ProductDAO selectCountProduct...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(Sql.SELECT_COUNT_PRODUCT+queryMid);
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	/**
+	 * 2022/12/23 관리자/상품/리스트 - 페이징 처리된 상품 리스트 가져오기
+	 * @author 심규영
+	 * @param limitStart
+	 * @param search
+	 * @param vo
+	 * @return
+	 */
+	public List<ProductVO> selectProductPageList(int limitStart, String queryMid, MemberVO vo) {
+		List<ProductVO> vos = new ArrayList<>();
+		String uid = vo.getUid();
+		if(vo.getType() == 5) uid = "%%";
+		try {
+			logger.info("ProductDAO selectProductPageList...");
+			conn = getConnection();
+			
+			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_PAGE_LIST_HEAD + queryMid + Sql.SELECT_PRODUCT_PAGE_LIST_FOOTER);
+			psmt.setString(1, uid);
+			psmt.setInt(2, limitStart);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ProductVO pvo = new ProductVO();
+				
+				pvo.setProdNo(rs.getInt(1));
+				pvo.setProdCate1(rs.getString(2));
+				pvo.setProdCate2(rs.getString(3));
+				pvo.setProdName(rs.getString(4));
+				pvo.setDescript(rs.getString(5));
+				pvo.setCompany(rs.getString(6));
+				pvo.setSeller(rs.getString(7));
+				pvo.setPrice(rs.getString(8));
+				pvo.setDiscount(rs.getString(9));
+				pvo.setPoint(rs.getString(10));
+				pvo.setStock(rs.getString(11));
+				pvo.setSold(rs.getInt(12));
+				pvo.setDelivery(rs.getString(13));
+				pvo.setHit(rs.getInt(14));
+				pvo.setScore(rs.getInt(15));
+				pvo.setReview(rs.getInt(16));
+				pvo.setThumb1(rs.getString(17));
+				pvo.setThumb2(rs.getString(18));
+				pvo.setThumb3(rs.getString(19));
+				pvo.setDetail(rs.getString(20));
+				pvo.setStatus(rs.getString(21));
+				pvo.setDuty(rs.getString(22));
+				pvo.setReceipt(rs.getString(23));
+				pvo.setBizType(rs.getString(24));
+				pvo.setOrigin(rs.getString(25));
+				pvo.setIp(rs.getString(26));
+				pvo.setRdate(rs.getString(27));
+				pvo.setEtc1(rs.getInt(28));
+				pvo.setEtc2(rs.getInt(29));
+				pvo.setEtc3(rs.getString(30));
+				pvo.setUid(rs.getString(31));
+				pvo.setEtc5(rs.getString(32));
+				
+				vos.add(pvo);
+			}
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
+	
 	// upload
 	
 	/**
@@ -952,4 +1067,32 @@ public class ProductDAO extends DBCP {
 	}
 	
 	// delete
+	/**
+	 * 2022/12/23 admin/product/list 상품 삭제 기능
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public int deleteProductWithProdNos(String[] arrays) {
+		int result = 0;
+		try {
+			logger.info("ProductDAO deleteProductWithProdNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(Sql.DELETE_PRODUCT);
+			
+			for (String prodNo : arrays) {
+				psmt.setString(1, prodNo);
+				psmt.addBatch();
+				psmt.clearParameters();
+			}
+			
+			result = psmt.executeBatch().length;
+			
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return result;
+	}
+	
 }

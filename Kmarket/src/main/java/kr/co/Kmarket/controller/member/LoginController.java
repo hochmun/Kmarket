@@ -41,6 +41,10 @@ public class LoginController extends HttpServlet {
 				// 세션에 회원 정보 저장
 				req.getSession().setAttribute("sessUser", vo);
 				resp.sendRedirect("/Kmarket/admin/index.do");
+			} else if(vo.getType() == 5) {
+				// 최고 관리자
+				req.getSession().setAttribute("sessUser", vo);
+				resp.sendRedirect("/Kmarket/admin/index.do");
 			} else {
 				// 타입값이 이상할 경우
 				req.getSession().setAttribute("success", "500");

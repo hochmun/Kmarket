@@ -1,6 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <jsp:include page="../_header.jsp"/>
+<script src="../js/productList.js"></script>
     <section id="admin-product-list">
+    <style>
+    input {
+    	width: 200px;
+		padding: 6px;
+		border: 1px solid #959595;
+		font-size: 13px;
+		background-color: #fefefe;
+		color: #333;
+		vertical-align: middle;
+		box-sizing: border-box;
+    }
+    </style>
         <nav>
             <h3>상품목록</h3>
             <p>
@@ -10,98 +25,87 @@
         <!-- 상품목록 컨텐츠 시작 -->
         <section>
             <div>
-                <select name="search">
-                    <option value="search1">상품명</option>
-                    <option value="search2">상품코드</option>
-                    <option value="search3">제조사</option>
-                    <option value="search4">판매자</option>
+                <select name="searchType">
+                    <option value="prodName">상품명</option>
+                    <option value="prodNo">상품코드</option>
+                    <option value="company">제조사</option>
+                    <option value="seller">판매자</option>
                 </select>
                 <input type="text" name="search">
+                <input type="button" name="btnSearch" value="검색" style="
+	                float: right;
+					text-indent: 0;
+					margin-top: 0;
+					margin-left: 5px;
+				">
             </div>
             <table>
                 <tr>
-                    <th><input type="checkbox" name="all"></th>
-                    <th>이미지</th>
-                    <th>상품코드</th>
-                    <th>상품명</th>
-                    <th>판매가격</th>
-                    <th>할인율</th>
-                    <th>포인트</th>
-                    <th>재고</th>
-                    <th>판매자</th>
-                    <th>조회</th>
-                    <th>관리</th>
+                    <th><input type="checkbox" name="all" id="cbx_chkAll"></th>
+                    <th style="width: auto;">이미지</th>
+                    <th style="width: 8%;">상품코드</th>
+                    <th style="width: auto;">상품명</th>
+                    <th style="width: 5%;">판매가격</th>
+                    <th style="width: 5%;">할인율</th>
+                    <th style="width: 6%;">포인트</th>
+                    <th style="width: 5%;">재고</th>
+                    <th style="width: 10%;">판매자</th>
+                    <th style="width: 5%;">조회</th>
+                    <th style="width: 5%;">관리</th>
                 </tr>
-
-                <tr>
-                    <td><input type="checkbox" name="상품코드"></td>
-                    <td><img src="../img/sample_thumb.jpg" class="thumb"></td>
-                    <td>201603292</td>
-                    <td>FreeMovement BLUEFORCE</td>
-                    <td>36,000</td>
-                    <td>10</td>
-                    <td>360</td>
-                    <td>400</td>
-                    <td>홍길동</td>
-                    <td>126</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="상품코드"></td>
-                    <td><img src="../img/sample_thumb.jpg" class="thumb"></td>
-                    <td>201603292</td>
-                    <td>FreeMovement BLUEFORCE</td>
-                    <td>36,000</td>
-                    <td>10</td>
-                    <td>360</td>
-                    <td>400</td>
-                    <td>홍길동</td>
-                    <td>126</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox" name="상품코드"></td>
-                    <td><img src="../img/sample_thumb.jpg" class="thumb"></td>
-                    <td>201603292</td>
-                    <td>FreeMovement BLUEFORCE</td>
-                    <td>36,000</td>
-                    <td>10</td>
-                    <td>360</td>
-                    <td>400</td>
-                    <td>홍길동</td>
-                    <td>126</td>
-                    <td>
-                        <a href="#">[삭제]</a>
-                        <a href="#">[수정]</a>
-                    </td>
-                </tr>
+                
+                <c:forEach var="vo" items="${ vos }">
+                	<tr>
+	                    <td><input type="checkbox" name="상품코드"></td>
+	                    <td><img src="/thumb/${ vo.prodCate1 }/${ vo.prodCate2 }/${ vo.thumb1 }" class="thumb"></td>
+	                    <td>${ vo.prodNo }</td>
+	                    <td>${ vo.prodName }</td>
+	                    <td><fmt:formatNumber value="${ vo.price }" pattern="#,###"/></td>
+	                    
+	                    <c:choose>
+	                    	<c:when test="${ vo.discount gt 0 }">
+	                    		<td>${ vo.discount }%</td>
+	                    	</c:when>
+	                    	<c:otherwise>
+	                    		<td>-</td>
+	                    	</c:otherwise>
+	                    </c:choose>
+	                    
+	                    <td><fmt:formatNumber value="${ vo.point }" pattern="#,###"/></td>
+	                    <td><fmt:formatNumber value="${ vo.stock }" pattern="#,###"/></td>
+	                    <td>${ vo.seller }</td>
+	                    <td><fmt:formatNumber value="${ vo.hit }" pattern="#,###"/></td>
+	                    <td>
+	                        <a href="#" id="deleteProduct">[삭제]</a>
+	                        <a href="#">[수정]</a>
+	                    </td>
+	                </tr>
+                </c:forEach>
 
             </table>
 
-            <input type="button" value="선택삭제">
+            <input type="button" value="선택삭제" id="deleteAll" style="text-indent: 0;">
 
             <div class="paging">
-                <span class="prev">
-                    <a href="#">&nbsp;이전</a>
+            	
+            	<c:if test="${ pageGroupStart gt 1 }">
+            		<span class="prev">
+	                    <a href="${pageContext.request.contextPath}/admin/product/list.do?pg=${ pageGroupStart - 1 }&s=${ param.s }&st=${ param.st }">&nbsp;이전</a>
+	                </span>
+            	</c:if>
+            	
+            	<span class="num">
+	            	<c:forEach var="i" begin="${ pageGroupStart }" end="${ pageGroupEnd }" step="1">
+	            		<a href="${pageContext.request.contextPath}/admin/product/list.do?pg=${ i }&s=${ param.s }&st=${ param.st }" class="${ currentPage eq i ? 'on' : '' }">${ i }</a>
+	            	</c:forEach>
                 </span>
-                <span class="num">
-                    <a href="#" class="on">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <a href="#">5</a>
-                    <a href="#">6</a>
-                    <a href="#">7</a>
-                </span>
-                <span class="next">
-                    <a href="#">다음&nbsp;</a>
-                </span>
+                
+                <c:if test="${ pageGroupEnd lt lastPageNum }">
+                	<span class="next">
+	                    <a href="${pageContext.request.contextPath}/admin/product/list.do?pg=${ pageGroupEnd+1 }&s=${ param.s }&st=${ param.st }">다음&nbsp;</a>
+	                </span>
+                </c:if>
+                
             </div>
         </section>
 

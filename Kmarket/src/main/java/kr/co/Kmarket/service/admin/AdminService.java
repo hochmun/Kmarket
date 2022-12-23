@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import org.slf4j.Logger;
@@ -208,6 +209,72 @@ public enum AdminService {
         return null;
 	 }
 	
+	 /**
+	  * 2022/12/23 product/list 페이징 처리
+	  * @author 심규영
+	  * @param req
+	  */
+	 public void pagingService(HttpServletRequest req) {
+		 // 들어오는 값
+		 String pg = req.getParameter("pg"); // 현제 페이지 번호
+		 String searchType = req.getParameter("st"); // 검색한 내용 종류
+		 String search = req.getParameter("s"); // 검색한 게시물
+		 MemberVO vo = null;
+		 
+		 // 세션에서 로그인한 유저 정보 가져오기
+		 HttpSession sess = req.getSession();
+		 if(sess.getAttribute("sessUser") != null) vo = (MemberVO)sess.getAttribute("sessUser");
+		 
+		 // pg값이 있을 경우
+		 int currentPage = 1;
+		 if(pg != null) currentPage = Integer.parseInt(pg); // 현제 페이지를 pg로 지정
+		 
+		 // 중간쿼리문
+		 String queryMid = "";
+		 if((search != null && search != "") && (searchType != null && searchType != "")) queryMid = createSql(search, searchType);
+		 
+		 // 총 게시물 번호 => 로그인한 유저가 판매자일 경우 , 최고 관리자일 경우
+		 int total = 0;
+		 if(vo.getType() == 2) total = dao.selectCountProductWithUid(vo.getUid(), queryMid); // 판매자가 올린 상품만 조회
+		 if(vo.getType() == 5) total = dao.selectCountProduct(queryMid); // 전체 상품 조회
+		 
+		 // 마지막 페이지 계산
+		 int lastPageNum = 0;
+		 if(total % 10 != 0) lastPageNum = (total/10)+1;
+		 else lastPageNum = (total/10);
+		 
+		 // limit 시작값 계산
+		 int limitStart = (currentPage - 1) * 10;
+		 
+		// 페이지 그룹 계산
+		int pageGroupCurrent = (int)Math.ceil(currentPage/10.0);
+		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
+		int pageGroupEnd = pageGroupCurrent * 10;
+		if (pageGroupEnd > lastPageNum) pageGroupEnd = lastPageNum;
+		
+		// 페이지 시작 번호 계산
+		int pageStartNum = total - limitStart;
+		
+		// 페이지 불러오기
+		List<ProductVO> vos = dao.selectProductPageList(limitStart, queryMid,vo);
+		
+		req.setAttribute("lastPageNum", lastPageNum);
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
+		req.setAttribute("pageGroupStart", pageGroupStart);
+		req.setAttribute("pageGroupEnd", pageGroupEnd);
+		req.setAttribute("pageStartNum", pageStartNum);
+		req.setAttribute("vos", vos);
+	 }
+	 
+	 public String createSql(String search, String searchType) {
+		 String queryMid = "";
+		 
+		 queryMid = "AND `"+searchType+"` LIKE '%"+search+"%' ";
+		 
+		 return queryMid;
+	 }
+	 
 	// create
 	/**
 	 * 2022/12/09 상품등록
@@ -249,4 +316,14 @@ public enum AdminService {
 	// upload
 	
 	// delete
+ 	/**
+ 	 * 2022/12/23 관리자/상품/리스트 상품 삭제 기능
+ 	 * @author 심규영
+ 	 * @param arrays
+ 	 * @return
+ 	 */
+ 	public int deleteProductWithProdNos(String[] arrays) {
+ 		return dao.deleteProductWithProdNos(arrays);
+ 	}
+
 }
