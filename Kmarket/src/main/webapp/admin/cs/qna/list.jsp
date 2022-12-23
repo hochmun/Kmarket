@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../../_header.jsp"/>
-<script src="../js/qnaList.js"></script>
+<script src="${pageContext.request.contextPath}/admin/cs/js/qnaList.js"></script>
     <section id="admin-product-list">
                 <nav>
                     <h3>문의하기 목록</h3>
@@ -45,7 +45,7 @@
                             <td>${vo.qnaNo}</td>
                             <td>${vo.cate1Name}</td>
                             <td>${vo.cate2Name}</td>
-                            <td><a href="${pageContext.request.contextPath}/admin/cs/qna/view.do?qnaNo=${ vo.qnaNo }">${ vo.qnaTitle }</a></td>
+                            <td><a href="${pageContext.request.contextPath}/admin/cs/qna/reply.do?qnaNo=${vo.qnaNo}">${vo.qnaTitle}</a></td>
                             <td>${vo.uid}</td>
                             <td>${vo.qnaRdate}</td>
                             
@@ -54,7 +54,7 @@
                             <td>검토중</td>
                         </c:when>
                         <c:otherwise>
-                        	<td>검토완료</td>
+                        	<td>답변완료</td>
                         </c:otherwise>
                         </c:choose>
                         </tr>
@@ -67,7 +67,7 @@
                     </table>
 
                     <div class="btn1ro">
-                    	<a href="./list.do" class="w-btn w-btn-indigo delete">선택삭제</a>
+                    	<a href="#" class="w-btn w-btn-indigo deleteAll">선택삭제</a>
 					</div>
 
                     <div class="paging">

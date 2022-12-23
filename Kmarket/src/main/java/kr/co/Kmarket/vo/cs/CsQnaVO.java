@@ -22,6 +22,9 @@ public class CsQnaVO {
 	public void setQnaNo(int qnaNo) {
 		this.qnaNo = qnaNo;
 	}
+	public void setQnaNo(String qnaNo) {
+		this.qnaNo = Integer.parseInt(qnaNo);
+	}
 	public int getQnaCate1() {
 		return qnaCate1;
 	}
