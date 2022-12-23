@@ -26,27 +26,53 @@ public class CsNoticeDAO extends DBCP {
 			rs = psmt.executeQuery();	
 			
 			while(rs.next()) {
-				logger.info("cn1");
 				vo = new CsNoticeVO();
-				logger.info("cn2");
 				vo.setNoticeNo(rs.getInt(1));
-				logger.info("cn3");
 				vo.setNoticeCate(rs.getInt(2));
-				logger.info("cn4");
 				vo.setNoticeTitle(rs.getString(3));
-				logger.info("cn5");
 				vo.setNoticeContent(rs.getString(4));
-				logger.info("cn6");
 				vo.setNoticeRdate(rs.getString(5));
-				logger.info("cn7");
 				vo.setNoticeRegip(rs.getString(6));
 				
-			}		
+			}
 			close();
 		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}
 		return vo;
+	}
+	
+	/**
+	 * 2022/12/23 notice 작성글 목록 불러오기
+	 * @author 라성준
+	 */
+	public List<CsNoticeVO> selectNoticeArticles(int limitStart, String cate1){
+		List<CsNoticeVO> NoticeArts = new ArrayList<>();
+		try {
+			logger.info("selectNoticeArticles...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_ARTICLES);
+			psmt.setString(1, cate1);
+			psmt.setInt(2, limitStart);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				CsNoticeVO NoticeArt = new CsNoticeVO();
+				NoticeArt.setNoticeNo(rs.getInt(1));
+				NoticeArt.setNoticeCate(rs.getInt(2));
+				NoticeArt.setNoticeTitle(rs.getString(3));
+				NoticeArt.setNoticeContent(rs.getString(4));
+				NoticeArt.setNoticeRdate(rs.getString(5));
+				NoticeArt.setNoticeRegip(rs.getString(6));
+			
+				NoticeArts.add(NoticeArt);
+				
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return NoticeArts;
 	}
 
 	public int selectNoticeCountTotal(String cate1) {
@@ -56,19 +82,11 @@ public class CsNoticeDAO extends DBCP {
 			logger.info("CsNoticeDAO selectNoticeCountTotal..");
 			conn = getConnection();
 			
-			if(cate1.equals("0")) {
-				stmt = conn.createStatement();
-				rs = stmt.executeQuery(CsSql.SELECT_NOTICE_COUNT_TOTAL);
-				if(rs.next()) {
-					total = rs.getInt(1);
-				}
-			} else {
-				psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_COUNT_TOTAL_WITH_CATE);
-				psmt.setString(1, cate1);
-				rs = psmt.executeQuery();
-				if(rs.next()) {
-					total = rs.getInt(1);
-				}
+			psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_COUNT_TOTAL_WITH_CATE);
+			psmt.setString(1, cate1);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
 			}
 			
 			close();
@@ -108,6 +126,7 @@ public class CsNoticeDAO extends DBCP {
 		
 		return vos;
 	}
+	
 	
 	// upload
 	
