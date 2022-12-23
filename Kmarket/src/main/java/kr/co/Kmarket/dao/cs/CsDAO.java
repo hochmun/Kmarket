@@ -8,6 +8,7 @@ import javax.swing.text.html.CSS;
 
 import kr.co.Kmarket.db.CsSql;
 import kr.co.Kmarket.db.DBCP;
+import kr.co.Kmarket.vo.AdminVO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
@@ -220,6 +221,42 @@ public class CsDAO extends DBCP{
 		}
 		
 		return vos;
+	}
+	
+	/**
+	 * 2022/12/23 관리자/메인 쇼핑몰 운영 현황
+	 * @author 심규영
+	 * @return
+	 */
+	public AdminVO selectAll() {
+		AdminVO vo = new AdminVO();
+		try {
+			logger.info("CsDAO selectAll...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_ALL_COUNT);
+			if(rs.next()) {
+				vo.setCountOrdNo(rs.getInt("countOrdNo"));
+				vo.setCountOrdNoDay(rs.getInt("countOrdNoDay"));
+				vo.setCountOrdNoWeek(rs.getInt("countOrdNoWeek"));
+				vo.setCountOrdNoMonth(rs.getInt("countOrdNoMonth"));
+				vo.setSumOrdTotPrice(rs.getInt("sumOrdTotPrice"));
+				vo.setSumOrdTotPriceDay(rs.getInt("sumOrdTotPriceDay"));
+				vo.setSumOrdTotPriceWeek(rs.getInt("sumOrdTotPriceWeek"));
+				vo.setSumOrdTotPriceMonth(rs.getInt("sumOrdTotPriceMonth"));
+				vo.setCountMember(rs.getInt("countMember"));
+				vo.setCountMemberDay(rs.getInt("countMemberDay"));
+				vo.setCountMemberWeek(rs.getInt("countMemberWeek"));
+				vo.setCountMemberMonth(rs.getInt("countMemberMonth"));
+				vo.setCountProductRdateDay(rs.getInt("countProductRdateDay"));
+				vo.setCountProductRdateWeek(rs.getInt("countProductRdateWeek"));
+				vo.setCountProductRdateMonth(rs.getInt("countProductRdateMonth"));
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
 	}
 	// delete
 }

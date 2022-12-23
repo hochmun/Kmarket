@@ -1,6 +1,7 @@
 package kr.co.Kmarket.controller.admin;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,15 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.co.Kmarket.service.product.ProductService;
-import kr.co.Kmarket.vo.Cate1VO;
-import kr.co.Kmarket.vo.Cate2VO;
+import kr.co.Kmarket.service.cs.CsNoticeService;
+import kr.co.Kmarket.service.cs.CsQnaService;
+import kr.co.Kmarket.service.cs.CsService;
+import kr.co.Kmarket.vo.AdminVO;
+import kr.co.Kmarket.vo.cs.CsNoticeVO;
+import kr.co.Kmarket.vo.cs.CsQnaVO;
 
 @WebServlet("/admin/index.do")
 public class IndexController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private ProductService service = ProductService.INSTANCE;
+	private CsNoticeService service1 = CsNoticeService.instance;
+	private CsQnaService service2 = CsQnaService.INSTANCE;
+	private CsService service3 = CsService.INSTANCE;
 	
 	@Override
 	public void init() throws ServletException {
@@ -24,8 +30,21 @@ public class IndexController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);
+		// 쇼핑몰 운영현황 가져오기
+		AdminVO vo3 = service3.selectAll();
 		
+		// 공지사항 가져오기
+		List<CsNoticeVO> vos1 = service1.selectCsNoticeListLimit5();
+		
+		// 고객문의 가져오기
+		List<CsQnaVO> vos2 = service2.selectCsQnaListLimit5();
+		
+		// 전송
+		req.setAttribute("vos1", vos1);
+		req.setAttribute("vos2", vos2);
+		req.setAttribute("vo3", vo3);
+		
+		req.getRequestDispatcher("/admin/index.jsp").forward(req, resp);
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

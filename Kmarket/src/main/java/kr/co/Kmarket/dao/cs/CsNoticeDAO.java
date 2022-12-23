@@ -78,6 +78,37 @@ public class CsNoticeDAO extends DBCP {
 		return total;
 	}
 	
+	/**
+	 * 2022/12/23 - 관리자/메인 => 공지사항 최근 작성순 5개 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsNoticeVO> selectCsNoticeListLimit5() {
+		List<CsNoticeVO> vos = new ArrayList<>();
+		
+		try {
+			logger.info("CsNoticeDAO selectCsNoticeListLimit5...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_CS_NOTICE_LIST_LIMIT5);
+			while(rs.next()) {
+				CsNoticeVO vo = new CsNoticeVO();
+				vo.setNoticeNo(rs.getInt("noticeNo"));
+				vo.setNoticeCate(rs.getInt("noticeCate"));
+				vo.setNoticeTitle(rs.getString("noticeTitle"));
+				vo.setNoticeContent(rs.getString("noticeContent"));
+				vo.setNoticeRdate(rs.getString("noticeRdate").substring(2, 16));
+				vo.setNoticeRegip(rs.getString("noticeRegip"));
+				vos.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return vos;
+	}
+	
 	// upload
 	
 	// delete

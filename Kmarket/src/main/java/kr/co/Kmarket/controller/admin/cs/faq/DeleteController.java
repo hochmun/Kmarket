@@ -29,8 +29,9 @@ public class DeleteController extends HttpServlet {
 		// 데이터 베이스에서 삭제
 		service.deleteCsFaqNoWithFaqNo(arrays);
 		
-		// 리스트로 이동
-		resp.sendRedirect("/Kmarket/admin/cs/faq/list.do");
+		// 페이지 이동
+		req.getSession().setAttribute("success", "602");
+		resp.sendRedirect("/Kmarket/loadingPage.do");
 	}
 	
 	@Override

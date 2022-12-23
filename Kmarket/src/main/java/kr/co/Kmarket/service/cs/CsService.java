@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.Kmarket.dao.cs.CsDAO;
+import kr.co.Kmarket.vo.AdminVO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
@@ -45,6 +46,14 @@ public enum CsService {
 		return dao.selectQnaArticle(qnaNo);
 	}
 	
+	/**
+	 * 2022/12/23 관리자/메인 쇼핑몰 운영 현황
+	 * @author 심규영
+	 * @return
+	 */
+	public AdminVO selectAll() {
+		return dao.selectAll();
+	}
 	
 	// service
 	
