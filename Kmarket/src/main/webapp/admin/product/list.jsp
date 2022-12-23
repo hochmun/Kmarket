@@ -76,7 +76,7 @@
 	                    <td>${ vo.seller }</td>
 	                    <td><fmt:formatNumber value="${ vo.hit }" pattern="#,###"/></td>
 	                    <td>
-	                        <a href="#" id="deleteProduct">[삭제]</a>
+	                        <a href="#" class="deleteProduct">[삭제]</a>
 	                        <a href="#">[수정]</a>
 	                    </td>
 	                </tr>

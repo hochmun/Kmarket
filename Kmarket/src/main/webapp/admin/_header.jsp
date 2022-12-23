@@ -74,7 +74,7 @@
                     <li>
                         <a href="#"><i class="fa fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="/Kmarket/admin/product/list.do">상품현황</a></li>
+                            <li><a href="/Kmarket/admin/product/list.do">상품목록</a></li>
                             <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>

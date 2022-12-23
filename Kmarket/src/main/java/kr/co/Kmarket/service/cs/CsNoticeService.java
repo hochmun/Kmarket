@@ -29,6 +29,15 @@ public enum CsNoticeService {
 		return dao.selectNoticleArticle(noticeNo);
 	}
 	
+	/**
+	 * 2022/12/23 관리자/메인 => 공지사항 최근 작성순 5개 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsNoticeVO> selectCsNoticeListLimit5() {
+		return dao.selectCsNoticeListLimit5();
+	}
+	
 	// upload
 	
 	// delete
