@@ -173,7 +173,7 @@ public class CsQnaDAO extends DBCP{
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.UPDATE_QNA_ADMIN_CONTENT);
 			psmt.setString(1, vo.getQnaAdminContent());
-			psmt.setInt(2, vo.getQnaType());
+			psmt.setInt(2, vo.getQnaNo());
 			psmt.executeUpdate();
 			
 			result = psmt.executeUpdate();

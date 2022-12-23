@@ -61,7 +61,7 @@ $(()=>{
                         <tr>
                             <td>내용</td>
                             <td>
-                               ${vo.qnaContent }     
+                               ${vo.qnaContent}     
                             </td>
                         </tr>
                         <tr>

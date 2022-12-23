@@ -74,7 +74,7 @@ $(document).ready(function() {
 				tr.appendChild(td7);
 				
 				const td8 = document.createElement('td');
-				if(vo.qnaAdminContent == null){
+				if(vo.qnaType == 1){
 					td8.innerText = '검토중'
 				}else{
 					td8.innerText = '답변완료'
