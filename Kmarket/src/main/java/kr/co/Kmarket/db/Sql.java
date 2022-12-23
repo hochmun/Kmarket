@@ -215,30 +215,16 @@ public class Sql {
 	
 	/** 관리자/상품/리스트 - 최고관리자 전체 상품 갯수 가져오기 */
 	public static final String SELECT_COUNT_PRODUCT = 
-			"SELECT COUNT(`prodNo`) FROM `km_product`";
+			"SELECT COUNT(`prodNo`) FROM `km_product` WHERE `uid` LIKE '%%'";
 	
-	/** 관리자/상품/리스트 - 최고관리자 페이징 상품 갯수 가져오기 */
-	public static final String SELECT_PRODUCT_PAGE_LIST = 
+	/** 관리자/상품/리스트 - 페이징 상품 갯수 가져오기 머리 */
+	public static final String SELECT_PRODUCT_PAGE_LIST_HEAD = 
 			"SELECT * FROM `km_product` "
-			+ "WHERE `prodName` LIKE ? "
-			+ "OR `prodNo` LIKE ? "
-			+ "OR `seller` LIKE ? "
-			+ "OR `company` LIKE ? "
-			+ "ORDER BY `prodNo` DESC "
-			+ "LIMIT ?, 10";
+			+ " WHERE `uid` LIKE ? ";
 	
-	/** 관리자/상품/리스트 - 판매자 페이징 상품 갯수 가져오기 */
-	public static final String SELECT_PRODUCT_PAGE_LIST_WHIT_UID = 
-			"SELECT * FROM `km_product` "
-			+ "WHERE "
-				+ "("
-					+ "`prodName` LIKE ? "
-					+ "OR `prodNo` LIKE ? "
-					+ "OR `seller` LIKE ? "
-					+ "OR `company` LIKE ? "
-				+ ") "
-				+ "AND `uid` = ? "
-			+ "ORDER BY `prodNo` DESC "
+	/** 관리자/상품/리스트 - 페이징 상품 갯수 가져오기 다리*/
+	public static final String SELECT_PRODUCT_PAGE_LIST_FOOTER = 
+			"ORDER BY `prodNo` DESC "
 			+ "LIMIT ?, 10";
 	
 	public static final String SELECT_CATE1 = 
@@ -403,4 +389,8 @@ public class Sql {
 												  			+ "ORDER BY `prodNo` DESC LIMIT ?, 10";
   	
   	/*ADMIN용 조회*/
+  	
+  	/** 관리자/상품리스트 삭제 기능 */
+  	public static final String DELETE_PRODUCT = 
+  			"DELETE FROM `km_product` WHERE `prodNo`=?";
 }

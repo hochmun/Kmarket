@@ -217,7 +217,8 @@ public enum AdminService {
 	 public void pagingService(HttpServletRequest req) {
 		 // 들어오는 값
 		 String pg = req.getParameter("pg"); // 현제 페이지 번호
-		 String search = req.getParameter("search"); // 검색한 게시물
+		 String searchType = req.getParameter("st"); // 검색한 내용 종류
+		 String search = req.getParameter("s"); // 검색한 게시물
 		 MemberVO vo = null;
 		 
 		 // 세션에서 로그인한 유저 정보 가져오기
@@ -226,15 +227,16 @@ public enum AdminService {
 		 
 		 // pg값이 있을 경우
 		 int currentPage = 1;
-		 if(pg != null || pg != "") currentPage = Integer.parseInt(pg); // 현제 페이지를 pg로 지정
+		 if(pg != null) currentPage = Integer.parseInt(pg); // 현제 페이지를 pg로 지정
 		 
-		 // search 값이 없을 경우
-		 if(search == null || search == "") search = "%%"; // 전체 검색
+		 // 중간쿼리문
+		 String queryMid = "";
+		 if((search != null && search != "") && (searchType != null && searchType != "")) queryMid = createSql(search, searchType);
 		 
 		 // 총 게시물 번호 => 로그인한 유저가 판매자일 경우 , 최고 관리자일 경우
 		 int total = 0;
-		 if(vo.getType() == 2) total = dao.selectCountProductWithUid(vo.getUid()); // 판매자가 올린 상품만 조회
-		 if(vo.getType() == 5) total = dao.selectCountProduct(); // 전체 상품 조회
+		 if(vo.getType() == 2) total = dao.selectCountProductWithUid(vo.getUid(), queryMid); // 판매자가 올린 상품만 조회
+		 if(vo.getType() == 5) total = dao.selectCountProduct(queryMid); // 전체 상품 조회
 		 
 		 // 마지막 페이지 계산
 		 int lastPageNum = 0;
@@ -254,7 +256,7 @@ public enum AdminService {
 		int pageStartNum = total - limitStart;
 		
 		// 페이지 불러오기
-		List<ProductVO> vos = dao.selectProductPageList(limitStart, search, vo);
+		List<ProductVO> vos = dao.selectProductPageList(limitStart, queryMid,vo);
 		
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
@@ -262,8 +264,15 @@ public enum AdminService {
 		req.setAttribute("pageGroupStart", pageGroupStart);
 		req.setAttribute("pageGroupEnd", pageGroupEnd);
 		req.setAttribute("pageStartNum", pageStartNum);
-		
-		
+		req.setAttribute("vos", vos);
+	 }
+	 
+	 public String createSql(String search, String searchType) {
+		 String queryMid = "";
+		 
+		 queryMid = "AND `"+searchType+"` LIKE '%"+search+"%' ";
+		 
+		 return queryMid;
 	 }
 	 
 	// create
@@ -307,4 +316,14 @@ public enum AdminService {
 	// upload
 	
 	// delete
+ 	/**
+ 	 * 2022/12/23 관리자/상품/리스트 상품 삭제 기능
+ 	 * @author 심규영
+ 	 * @param arrays
+ 	 * @return
+ 	 */
+ 	public int deleteProductWithProdNos(String[] arrays) {
+ 		return dao.deleteProductWithProdNos(arrays);
+ 	}
+
 }
