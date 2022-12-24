@@ -22,7 +22,7 @@
                         </select>
                         
                     </div>
-                    <table name="">
+                    <table class="VOStableList">
                         <tr>
                             <th style="width: 5%;"><input type="checkbox" id="cbx_chkAll"/></th>
                             <th style="width: 5%;">번호</th>
@@ -43,12 +43,12 @@
 	                            <c:if test="${ vo.noticeCate eq 12 }"><td>위해상품</td></c:if>
 	                            <c:if test="${ vo.noticeCate eq 13 }"><td>이벤트상품</td></c:if>
 	                            
-	                            <td>${ vo.noticeTitle }</td>
+	                            <td><a href="./view.do?p=${ currentPage }&t=${ vo.noticeCate }&n=${ vo.noticeNo }">${ vo.noticeTitle }</a></td>
 	                            <td>${ vo.noticeHit }</td>
 	                            <td>${ vo.noticeRdate }</td>
 	                            <td>
 	                                <a href="#">[삭제]</a>
-	                                <a href="./modify.do?n=${ vo.noticeNo }">[수정]</a>
+	                                <a href="./modify.do?p=${ currentPage }&t=${ vo.noticeCate }&n=${ vo.noticeNo }">[수정]</a>
 	                            </td>
 	                        </tr>
                         </c:forEach>
