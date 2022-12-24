@@ -15,10 +15,10 @@
                 <h2>공지사항</h2>
                 <ul>
                     <li class="${param.c eq '' ? 'on' : 'off'}"><a href="./list.do">전체</a></li>
-                    <li class="${param.c eq '' ? 'on' : 'off'}"><a href="./list.do?c=10">고객서비스</a></li>
-                    <li class="${param.c eq '' ? 'on' : 'off'}"><a href="./list.do?c=11">안전거래</a></li>
-                    <li class="${param.c eq '' ? 'on' : 'off'}"><a href="./list.do?c=12">위해상품</a></li>
-                    <li class="${param.c eq '' ? 'on' : 'off'}"><a href="./list.do?c=13">이벤트당첨</a></li>
+                    <li class="${param.c eq '10' ? 'on' : 'off'}"><a href="./list.do?c=10">고객서비스</a></li>
+                    <li class="${param.c eq '11' ? 'on' : 'off'}"><a href="./list.do?c=11">안전거래</a></li>
+                    <li class="${param.c eq '12' ? 'on' : 'off'}"><a href="./list.do?c=12">위해상품</a></li>
+                    <li class="${param.c eq '13' ? 'on' : 'off'}"><a href="./list.do?c=13">이벤트당첨</a></li>
                 </ul>
             </aside>
             <article>
@@ -31,10 +31,10 @@
                 </nav>
 
                 <table>
-                   <c:forEach var="vos" items="${vos}">
+                   <c:forEach var="vo" items="${vos}">
                     <tr>
-                        <td><a href="/Kmarket/cs/notice/view.do?cate1=&no=${vos.noticeNo}">[${vos.noticeCate}] ${vos.noticeTitle} ${vos.noticeContent}</a></td>
-                        <td>${vos.noticeRdate}</td>
+                        <td><a href="/Kmarket/cs/notice/view.do?cate1=&no=${vo.noticeNo}">[${vo.noticeCate}] ${vo.noticeTitle}</a></td>
+                        <td>${vo.noticeRdate}</td>
                     </tr>
                 </c:forEach>
                 </table>
