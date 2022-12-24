@@ -59,11 +59,6 @@
                         </c:choose>
                         </tr>
                         </c:forEach>
-                        <c:if test="${total eq 0}">
-                        	<tr>
-                        		<td colspan="4" align="center">등록된 문의글이 없습니다.</td>
-                        	</tr>
-                        </c:if>
                     </table>
 
                     <div class="btn1ro">
@@ -71,21 +66,11 @@
 					</div>
 
                     <div class="paging">
-                    <c:if test="${pageGroupStart gt 1}">
-                        <span class="prev">
-                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupStart - 1}"><&nbsp;이전</a>
-                        </span>
-                        </c:if>
                         <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
                         <span class="num">
                             <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
                         </span>
                         </c:forEach>
-                        <c:if test="${pageGroupEnd lt lastPageNum}">
-                        <span class="next">
-                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupEnd + 1}">다음&nbsp;></a>
-                        </span>
-                        </c:if>
                         </div>
 
                 </section>              

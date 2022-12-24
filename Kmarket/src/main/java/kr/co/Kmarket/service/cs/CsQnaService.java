@@ -31,16 +31,20 @@ public enum CsQnaService {
 		return dao.selectCountQnaTotal(qnaCate1, qnaCate2);
 	}
 	
+	public int selectCountQnaTotalAll() {
+		return dao.selectCountQnaTotalAll();
+	}
+	
 	public List<CsQnaVO> selectCsQnaListWithCsCate1(List<CsCate2VO> vos3){
 		return dao.selectCsQnaListWithCsCate1(vos3);
 	}
 	
-	public List<CsQnaVO> selectCsQnaList(){
-		return dao.selectCsQnaList();
+	public List<CsQnaVO> selectCsQnaList(int limitStart){
+		return dao.selectCsQnaList(limitStart);
 	}
 	
-	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2){
-		return dao.selectCsQnaListCate(cate1, cate2);
+	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2, int limitStart){
+		return dao.selectCsQnaListCate(cate1, cate2, limitStart);
 	}
 	
 	public CsQnaVO selectCsQnaWithQnaNo(String qnaNo) {
@@ -81,5 +85,40 @@ public enum CsQnaService {
 	 */
 	public List<CsQnaVO> selectCsQnaListLimit5() {
 		return dao.selectCsQnaListLimit5();
+	}
+	
+	public int boardPaging(HttpServletRequest req) {
+		String pg = req.getParameter("pg");
+		
+		int currentPage = 1; // 현재 페이지
+		int total = selectCountQnaTotalAll(); // 총 게시물 갯수
+		int lastPageNum = 0; // 마지막 페이지 번호
+		
+		// 페이지 마지막 번호 계산
+		if(total % 10 != 0) lastPageNum = (total/10)+1;
+		else lastPageNum = (total/10);
+		
+		// 전체 페이지 게시물 limit 시작값 계산
+		if(pg != null) currentPage = Integer.parseInt(pg);
+		int limitStart = (currentPage - 1) * 10;
+		
+		// 페이지 그룹 계산
+		int pageGroupCurrent = (int)Math.ceil(currentPage/10.0);
+		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
+		int pageGroupEnd = pageGroupCurrent * 10;
+		
+		if (pageGroupEnd > lastPageNum) pageGroupEnd = lastPageNum;
+		
+		// 페이지 시작 번호 계산
+		int pageStartNum = total - limitStart;
+		
+		req.setAttribute("lastPageNum", lastPageNum);
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
+		req.setAttribute("pageGroupStart", pageGroupStart);
+		req.setAttribute("pageGroupEnd", pageGroupEnd);
+		req.setAttribute("pageStartNum", pageStartNum);
+		
+		return limitStart;
 	}
 }

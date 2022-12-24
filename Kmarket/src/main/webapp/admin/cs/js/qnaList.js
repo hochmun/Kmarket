@@ -33,6 +33,7 @@ $(document).ready(function() {
 		const cate2 = $('select[name=cate2]').val();
 		
 		const table = document.getElementById('listTable');
+		const div = document.getElementsByClassName('paging');
 		
 		$.post('/Kmarket/admin/cs/qna/list.do?cate1='+cate1+'&cate2='+cate2,(data)=>{
 			$('#listTable tr:gt(0)').remove();
@@ -82,6 +83,18 @@ $(document).ready(function() {
 				tr.appendChild(td8);
 				
 				table.appendChild(tr);
+				
+				
+			}
+			$('.paging span:gt(0)').remove();
+			for(const pg of data){
+				const span = document.createElement('span');
+				span.setAttribute('class', 'num');
+				const a = document.createElement('a');
+				a.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+pg);
+				a.setAttribute('class', 'w-btn-outline w-btn-blue-outline '+currentPage == pg ? on : off);
+				span.appendChild(a);
+				div.appendChild(span);
 			}
 		});
 	});
