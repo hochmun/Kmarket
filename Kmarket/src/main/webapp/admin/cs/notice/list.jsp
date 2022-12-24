@@ -22,7 +22,7 @@
                         </select>
                         
                     </div>
-                    <table>
+                    <table name="">
                         <tr>
                             <th style="width: 5%;"><input type="checkbox" id="cbx_chkAll"/></th>
                             <th style="width: 5%;">번호</th>

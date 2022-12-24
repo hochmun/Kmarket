@@ -14,6 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import kr.co.Kmarket.service.cs.CsNoticeService;
@@ -72,6 +73,8 @@ public class ListController extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("application/json;charset=UTF-8");;
+		
 		// 들어오는 값
 		String p = req.getParameter("p"); // 현재 페이지
 		String t = req.getParameter("t"); // 검색 타입
@@ -112,8 +115,12 @@ public class ListController extends HttpServlet {
 		json.addProperty("pageGroupStart", pageGroupStart);
 		json.addProperty("pageGroupEnd", pageGroupEnd);
 		json.addProperty("pageStartNum", pageStartNum);
+		
+		String jsonStr = json.toString();
+		String vosStr = jsonStr.substring(0, jsonStr.length()-1) 
+				+",\"vos\":"+ (new Gson().toJson(vos))+"}";
+		
 		PrintWriter out = resp.getWriter();
-		out.write(json.toString());
-		out.write(new Gson().toJson(vos));
+		out.write(vosStr);
 	}
 }
