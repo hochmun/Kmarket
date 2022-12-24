@@ -95,7 +95,17 @@ public class CsSql {
 	//notice 카테고리별 작성글 count 
 	public static final String SELECT_NOTICE_COUNT_TOTAL_WITH_CATE = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice` WHERE `noticeCate` LIKE ?";
 	public static final String SELECT_NOTICE_COUNT_TOTAL = "SELECT COUNT(`noticeNo`) FROM `km_cs_notice`";
-		
+	
+	public static final String SELECT_NOTICE_LIST_WITH_CATE = 
+			"SELECT "
+			+ "`noticeNo`, "
+			+ "`noticeCate`, "
+			+ "`noticeTitle`, "
+			+ "`noticeRdate`, "
+			+ "`noticeHit` "
+			+ "FROM `km_cs_notice` WHERE `noticeCate` LIKE ? "
+			+ "ORDER BY `noticeNo` DESC LIMIT ?, 10";
+	
 	/** qna */ 
 	
 	//qna 카테고리별 작성글 count 

@@ -127,6 +127,62 @@ public class CsNoticeDAO extends DBCP {
 		return vos;
 	}
 	
+	/**
+	 * 2022/12/24 - 관리자/고객센터/공지사항 리스트 카테고리별 게시물 갯수 가져오기
+	 * @author 심규영
+	 * @param t
+	 * @return
+	 */
+	public int selectCountNoticeWithCate(String t) {
+		int total = 0;
+		String ta = "%"+t+"%";
+		try {
+			logger.info("CsNoticeDAO selectCountNoticeWithCate...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_COUNT_TOTAL_WITH_CATE);
+			psmt.setString(1, ta);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+	
+	/**
+	 * 2022/12/24 - 관리자/고객센터/공지사항 리스트 카테고리별 게시물 10개 가져오기
+	 * @param limitStart
+	 * @param t
+	 * @return
+	 */
+	public List<CsNoticeVO> selectNoticeListWithCate(int limitStart, String t) {
+		List<CsNoticeVO> vos = new ArrayList<>();
+		String ta = "%"+t+"%";
+		try {
+			logger.info("CsNoticeDAO selectNoticeListWithCate...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_LIST_WITH_CATE);
+			psmt.setString(1, ta);
+			psmt.setInt(2, limitStart);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CsNoticeVO vo = new CsNoticeVO();
+				vo.setNoticeNo(rs.getInt("noticeNo"));
+				vo.setNoticeCate(rs.getInt("noticeCate"));
+				vo.setNoticeTitle(rs.getString("noticeTitle"));
+				vo.setNoticeRdate(rs.getString("noticeRdate").substring(2, 10));
+				vo.setNoticeHit(rs.getInt("noticeHit"));
+				vos.add(vo);
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vos;
+	}
 	
 	// upload
 	
