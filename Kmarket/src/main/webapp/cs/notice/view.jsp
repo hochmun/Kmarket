@@ -20,7 +20,7 @@
             </aside>
             <article>
                 <nav>
-                    <h2 class="title">${cv}</h2>
+                    <h2 class="title">${cv.noticeTitle}</h2>
                     <span class="date">2022.11.20</span>
                 </nav>
 
