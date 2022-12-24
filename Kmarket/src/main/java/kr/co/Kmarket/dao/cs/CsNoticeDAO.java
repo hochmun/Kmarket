@@ -62,7 +62,7 @@ public class CsNoticeDAO extends DBCP {
 				NoticeArt.setNoticeCate(rs.getInt(2));
 				NoticeArt.setNoticeTitle(rs.getString(3));
 				NoticeArt.setNoticeContent(rs.getString(4));
-				NoticeArt.setNoticeRdate(rs.getString(5));
+				NoticeArt.setNoticeRdate(rs.getString(5).substring(2,10));
 				NoticeArt.setNoticeRegip(rs.getString(6));
 			
 				NoticeArts.add(NoticeArt);
