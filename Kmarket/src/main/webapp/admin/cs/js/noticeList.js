@@ -17,8 +17,28 @@ $(()=>{
 	// 타입 선택시 동적 처리
 	$('select[name=type]').change(function(){
 		const t = $(this).val();
+		console.log(t);
 		$.ajax({
-			url:'',
+			url:'/Kmarket/admin/cs/notice/list.do',
+			type: 'POST',
+			data: {"t":t},
+			dataType: 'json',
+			success: (data)=>{
+				console.log('2');
+				console.log(data);
+				console.log(data.lastPageNum);
+				console.log(data.currentPage);
+				console.log(data.pageGroupCurrent);
+				console.log(data.pageGroupStart);
+				console.log(data.pageGroupEnd);
+				console.log(data.pageStartNum);
+				for(vo of data){
+					console.log(vo.noticeNo);
+				}
+			},
+			error: ()=>{
+				console.log('3');
+			}
 			
 		});
 	});
