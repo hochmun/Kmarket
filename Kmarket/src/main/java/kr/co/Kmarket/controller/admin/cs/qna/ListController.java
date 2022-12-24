@@ -30,23 +30,33 @@ public class ListController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		List<CsQnaVO> vos = service.selectCsQnaList();
+		String pg = req.getParameter("pg");
+		if(pg == null || pg.trim().equals("")){
+		pg = "1";
+		}
+		int limitStart = service.boardPaging(req);
+		List<CsQnaVO> vos = service.selectCsQnaList(limitStart);
 		List<CsCate1VO> vos2 = service2.selectCsCate1();
 		
 		req.setAttribute("vos", vos);
 		req.setAttribute("vos2", vos2);
+		req.setAttribute("pg", pg); 
+		req.setAttribute("limitStart", limitStart);
 		req.getRequestDispatcher("/admin/cs/qna/list.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json;charset=UTF-8");
-		
+		String pg = req.getParameter("pg");
+		if(pg == null || pg.trim().equals("")){
+		pg = "1";
+		}
+		int limitStart = service.boardPaging(req);
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
 		
-		List<CsQnaVO> vos = service.selectCsQnaListCate(cate1, cate2);
+		List<CsQnaVO> vos = service.selectCsQnaListCate(cate1, cate2, limitStart);
 		
 		resp.getWriter().write(new Gson().toJson(vos));
 	}
