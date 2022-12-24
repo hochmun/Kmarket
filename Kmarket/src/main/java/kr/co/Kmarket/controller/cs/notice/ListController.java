@@ -30,18 +30,9 @@ public class ListController extends HttpServlet {
 		String pg = req.getParameter("pg");
 		if(pg == "" || pg == null) pg = "1";
 		
-		//CsNoticeVO vos = service.selectNoticeArticle(cate1);
-		//int total = service.selectCountTotal(cate1);
-		
-		// 페이징 처리
-		//List<CsNoticeVO> NoticeArts = null;
+		// 페이징 처리	
 		service.paing(req, pg , cate1);
 		
-		//req.setAttribute("cate1", cate1);
-		//req.setAttribute("NoticeArts", NoticeArts);
-		//req.setAttribute("pg", pg);
-		//req.setAttribute("vos", vos);
-		//req.setAttribute("total", total);
 		req.getRequestDispatcher("/cs/notice/list.jsp").forward(req, resp);
 	}
 }
