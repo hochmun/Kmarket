@@ -4,15 +4,17 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.Kmarket.dao.cs.CsNoticeDAO;
-import kr.co.Kmarket.vo.cs.CsCate1VO;
-import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsNoticeVO;
 
 public enum CsNoticeService {
 	instance;
 	
 	private CsNoticeDAO dao;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	private CsNoticeService () {
 		dao = new CsNoticeDAO();
@@ -27,6 +29,15 @@ public enum CsNoticeService {
 	 */
 	public CsNoticeVO selectNoticeArticle(String noticeNo) {
 		return dao.selectNoticleArticle(noticeNo);
+	}
+	
+	/**
+	 * 2022/12/23 관리자/메인 => 공지사항 최근 작성순 5개 가져오기
+	 * @author 심규영
+	 * @return
+	 */
+	public List<CsNoticeVO> selectCsNoticeListLimit5() {
+		return dao.selectCsNoticeListLimit5();
 	}
 	
 	// upload
@@ -84,4 +95,50 @@ public enum CsNoticeService {
 		req.setAttribute("pageGroupEnd", pageGroupEnd);
 		req.setAttribute("pageStartNum", pageStartNum);
 	}
+	
+	/**
+	 * 2022/12/24 관리자/고객센터/공지사항/리스트 현재 페이지 계산
+	 * @param p
+	 * @return
+	 */
+	public int NoticeCurrentPage(String p) {
+		int currentPage = 1;
+		if(p != null) currentPage = Integer.parseInt(p);
+		return currentPage;
+	}
+	
+	/**
+	 * 2022/12/24 관리자/고객센터/공지사항/리스트 카테고리 값에 따른 총 개시물 갯수
+	 * @author 심규영
+	 * @param t
+	 * @return
+	 */
+	public int selectCountNoticeWithCate(String t) {
+		return dao.selectCountNoticeWithCate(t);
+	}
+	
+	/**
+	 * 2022/12/24 관리자/고객센터/공지사항/리스트 - 마지막 페이지 값 리턴
+	 * @author 심규영
+	 * @param total
+	 * @return
+	 */
+	public int NoticelastPageNum(int total) {
+		int lastPageNum = 0;
+		if(total % 10 != 0) lastPageNum = (total/10)+1;
+		else lastPageNum = (total/10);
+		return lastPageNum;
+	}
+	
+	/**
+	 * 2022/12/24 관리자/고객센터/공지사항/리스트 - 페이지 정보 가져오기
+	 * @author 심규영
+	 * @param limitStart
+	 * @param t
+	 * @return
+	 */
+	public List<CsNoticeVO> selectNoticeListWithCate(int limitStart, String t) {
+		return dao.selectNoticeListWithCate(limitStart, t);
+	}
+	
 }

@@ -74,7 +74,7 @@
                     <li>
                         <a href="#"><i class="fa fa-box-open" aria-hidden="true"></i>상품관리</a>
                         <ol>
-                            <li><a href="/Kmarket/admin/product/list.do">상품현황</a></li>
+                            <li><a href="/Kmarket/admin/product/list.do">상품목록</a></li>
                             <li><a href="/Kmarket/admin/product/register.do">상품등록</a></li>
                             <li><a href="#">재고관리</a></li>
                         </ol>
@@ -91,7 +91,7 @@
                     <li>
                         <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
                         <ol>
-                            <li><a href="${pageContext.request.contextPath}/admin/cs/notice/list.do">공지사함</a></li>
+                            <li><a href="${pageContext.request.contextPath}/admin/cs/notice/list.do">공지사항</a></li>
                             <li><a href="${pageContext.request.contextPath}/admin/cs/faq/list.do">자주묻는질문</a></li>
                             <li><a href="${pageContext.request.contextPath}/admin/cs/qna/list.do">문의하기</a></li>
                         </ol>

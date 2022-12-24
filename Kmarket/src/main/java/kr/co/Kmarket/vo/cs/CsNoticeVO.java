@@ -7,7 +7,15 @@ public class CsNoticeVO {
 	private String noticeContent;
 	private String noticeRdate;
 	private String noticeRegip;
+	private int noticeHit;
 	
+	
+	public int getNoticeHit() {
+		return noticeHit;
+	}
+	public void setNoticeHit(int noticeHit) {
+		this.noticeHit = noticeHit;
+	}
 	public int getNoticeNo() {
 		return noticeNo;
 	}

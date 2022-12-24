@@ -30,4 +30,17 @@
   		<role-name>nobody</role-name>
   	</auth-constraint>
   </security-constraint>
+  
+  <!-- 필터 순서 정렬 -->
+  <!--  
+  <filter>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<filter-class>kr.co.Kmarket.filter.LoginCheckFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginCheckFilter</filter-name>
+  	<url-pattern>*.do</url-pattern>
+  </filter-mapping>
+  -->
+  
 </web-app>
