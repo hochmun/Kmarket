@@ -86,16 +86,19 @@ $(document).ready(function() {
 				
 				
 			}
-			$('.paging span:gt(0)').remove();
-			for(const pg of data){
+			$('.paging').children().remove();
+			for(let pg = data.pageGroupStart; pg < data.pageGroupEnd; pg++){
 				const span = document.createElement('span');
 				span.setAttribute('class', 'num');
-				const a = document.createElement('a');
-				a.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+pg);
-				a.setAttribute('class', 'w-btn-outline w-btn-blue-outline '+currentPage == pg ? on : off);
-				span.appendChild(a);
-				div.appendChild(span);
+				const a10 = document.createElement('a');
+				a10.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+pg);
+				if(data.currentPage == pg){
+					a10.setAttribute('class', 'w-btn-outline w-btn-blue-outline on');
+				}
+				a10.textContent = pg;
+				span.appendChild(a10);
 			}
+			div.appendChild(span);
 		});
 	});
 	
