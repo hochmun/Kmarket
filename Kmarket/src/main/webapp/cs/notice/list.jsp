@@ -23,11 +23,11 @@
             </aside>
             <article>
                 <nav>
-                    <c:forEach var="vos" items="${vos}" >
-                		<c:if test="${vos.noticeNo eq noticeCate}">
-                			<h1>${vos.cate1Name}</h1>
-                		</c:if>
-                	</c:forEach>
+            		   <c:if test="${ param.c eq null || param.c eq ''}"><h1>전체</h1></c:if>
+            		   <c:if test="${ param.c eq '10'}"><h1>고객서비스</h1></c:if>
+                       <c:if test="${ param.c eq '11'}"><h1>안전거래</h1></c:if>
+                       <c:if test="${ param.c eq '12'}"><h1>위해상품</h1></c:if>
+                       <c:if test="${ param.c eq '13'}"><h1>이벤트상품</h1></c:if>
                 </nav>
 
                 <table>
@@ -40,16 +40,16 @@
                 </table>
 
                <div class="page">
-                <c:if test="${pageGroupStart gt 1}">
-		                <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}&pg=${pageGroupStart - 1}" class="prev"><&nbsp;이전</a>
+                	<c:if test="${pageGroupStart gt 1}">
+		                <a href="/Kmarket/cs/notice/list.do?c=${param.c}&pg=${pageGroupStart - 1}" class="prev"><&nbsp;이전</a>
 		            </c:if>
 		
 		            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
-		                <a href="/Kmarket/cs/notice/list.do?cate1=${cate1}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}" class="num">${pg}</a>
+		                <a href="/Kmarket/cs/notice/list.do?c=${param.c}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}" class="num">${pg}</a>
 		            </c:forEach>
 		            <c:if test="${pageGroupEnd lt lastPageNum}">
-		                <a href="/Kmarket/cs/list.do?cate1=${cate1}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
-	            </c:if>
+		                <a href="/Kmarket/cs/notice/list.do?c=${param.c}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
+	            	</c:if>
                 </div>
 
             </article>

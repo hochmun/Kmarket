@@ -126,6 +126,7 @@ $(document).ready(function() {
 				span3.appendChild(a12);
 				div.appendChild(span3);
 			}
+      
 		});
 	});
 	
