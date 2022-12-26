@@ -12,7 +12,7 @@
 
         <!-- 정렬 메뉴 -->
         <ul class="sort" id="items">
-            <li><a href="#" id="sold" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">판매많은순</a></li>
+            <li><a href="#" id="sold">판매많은순</a></li>
             <li><a href="#" id="low" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">낮은가격순</a></li>
             <li><a href="#" id="high" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">높은가격순</a></li>
             <li><a href="#" id="hstar" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">평점높은순</a></li>

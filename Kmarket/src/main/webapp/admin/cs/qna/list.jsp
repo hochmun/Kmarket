@@ -66,11 +66,21 @@
 					</div>
 
                     <div class="paging">
+	                    <c:if test="${pageGroupStart gt 1}">
+							<span class="prev">
+							    <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupStart - 1}&cate1=${param.cate1}&cate2=${param.cate2}"><&nbsp;이전</a>
+							</span>
+						</c:if>		
                         <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
 	                        <span class="num">
-	                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
+	                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}&cate1=${param.cate1}&cate2=${param.cate2}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
 	                        </span>
                         </c:forEach>
+						<c:if test="${pageGroupEnd lt lastPageNum}">
+							<span class="next">
+							    <a href="/Kmarket/admin/cs/qna/list.do?pg=${pageGroupEnd + 1}&cate1=${param.cate1}&cate2=${param.cate2}">다음&nbsp;></a>
+							</span>
+						</c:if>
                     </div>
 
                 </section>              
