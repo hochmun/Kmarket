@@ -40,6 +40,16 @@ public enum CsNoticeService {
 		return dao.selectCsNoticeListLimit5();
 	}
 	
+	/**
+	 * 2022/12/26 notice 게시물 번호로 게시물 정보 불러오기
+	 * @author 라성준
+	 * @param noticeNo
+	 * @return
+	 */
+	public CsNoticeVO selectCsNoticeWithNoticeNo(String noticeNo) {
+		return dao.selectCsNoticeWithNoticeNo(noticeNo);
+	}
+	
 	// upload
 	
 	// delete

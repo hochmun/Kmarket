@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import kr.co.Kmarket.dao.cs.CsDAO;
 import kr.co.Kmarket.vo.AdminVO;
+import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
@@ -144,5 +145,13 @@ public enum CsService {
 		req.setAttribute("pageStartNum", pageStartNum);
 		
 		return limitStart;
+	}
+	/**
+	 * 2022/12/26 최고관리자 정보 가져오기
+	 * @author 라성준
+	 * @return
+	 */
+	List<MemberVO> selectTopManager() {
+		return dao.selectTopManager();
 	}
 }
