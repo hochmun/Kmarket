@@ -67,13 +67,13 @@
 
                     <div class="paging">
                         <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
-                        <span class="num">
-                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
-                        </span>
+	                        <span class="num">
+	                            <a href="/Kmarket/admin/cs/qna/list.do?pg=${pg}" class="w-btn-outline w-btn-blue-outline ${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
+	                        </span>
                         </c:forEach>
-                        </div>
+                    </div>
 
                 </section>              
-    </div>
 </section>
+</main>
 <jsp:include page="../../_footer.jsp"/>

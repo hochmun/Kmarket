@@ -80,6 +80,29 @@ public class CsQnaDAO extends DBCP{
 		
 	}
 	
+	public int selectCountQnaTotalCate1AndCate2(String cate1, String cate2) {
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
+		int total = 0;
+		try {
+			logger.info("selectCountTotal...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_COUNT_TOTAL_CATE1_AND_CATE2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				total = rs.getInt(1);
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+		
+	}
+	
 	public List<CsQnaVO> selectCsQnaListWithCsCate1(List<CsCate2VO> vos3){
 		List<CsQnaVO> vos = new ArrayList<>();
 		try {
@@ -113,14 +136,23 @@ public class CsQnaDAO extends DBCP{
 		return vos;
 	}
 	
-	public List<CsQnaVO> selectCsQnaList(int limitStart){
+	public List<CsQnaVO> selectCsQnaList(int limitStart, String cate1, String cate2){
 		List<CsQnaVO> vos = new ArrayList<>();
+		
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
+		
+		logger.debug("cate1t : "+cate1t);
+		logger.debug("cate2t : "+cate2t);
+		
 		
 		try {
 			logger.info("selectCsQnaList...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_ADMIN_QNA_LIST_NO);
-			psmt.setInt(1, limitStart);
+			psmt.setInt(3, limitStart);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				CsQnaVO vo = new CsQnaVO();
@@ -149,12 +181,14 @@ public class CsQnaDAO extends DBCP{
 	
 	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2, int limitStart){
 		List<CsQnaVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("selectCsQnaListCate...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(CsSql.SELECT_ADMIN_QNA_LIST_CATE);
-			psmt.setString(1, cate1);
-			psmt.setString(2, cate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
 			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while (rs.next()) {

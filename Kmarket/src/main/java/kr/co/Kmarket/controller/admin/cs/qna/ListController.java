@@ -1,6 +1,7 @@
 package kr.co.Kmarket.controller.admin.cs.qna;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.co.Kmarket.service.admin.AdminServiceQna;
 import kr.co.Kmarket.service.cs.CsFaqService;
@@ -34,8 +36,15 @@ public class ListController extends HttpServlet {
 		if(pg == null || pg.trim().equals("")){
 		pg = "1";
 		}
-		int limitStart = service.boardPaging(req);
-		List<CsQnaVO> vos = service.selectCsQnaList(limitStart);
+		
+		String cate1 = req.getParameter("cate1");
+		String cate2 = req.getParameter("cate2");
+		
+		if(cate1 == null) cate1 = "";
+		if(cate2 == null) cate2 = "";
+		
+		int limitStart = service.boardPaging(req, pg, cate1, cate2);
+		List<CsQnaVO> vos = service.selectCsQnaList(limitStart, cate1, cate2);
 		List<CsCate1VO> vos2 = service2.selectCsCate1();
 		
 		req.setAttribute("vos", vos);
@@ -52,12 +61,22 @@ public class ListController extends HttpServlet {
 		if(pg == null || pg.trim().equals("")){
 		pg = "1";
 		}
-		int limitStart = service.boardPaging(req);
+		JsonObject json = new JsonObject();
+		
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
 		
+		if(cate1 == null) cate1 = "";
+		if(cate2 == null) cate2 = "";
+		
+		int limitStart = service.boardPaging2(req, pg, json, cate1, cate2);
 		List<CsQnaVO> vos = service.selectCsQnaListCate(cate1, cate2, limitStart);
 		
-		resp.getWriter().write(new Gson().toJson(vos));
+		String jsonStr = json.toString();
+		String vosStr = jsonStr.substring(0, jsonStr.length()-1) 
+				+",\"vos\":"+ (new Gson().toJson(vos))+"}";
+		
+		PrintWriter out = resp.getWriter();
+		out.write(vosStr);
 	}
 }

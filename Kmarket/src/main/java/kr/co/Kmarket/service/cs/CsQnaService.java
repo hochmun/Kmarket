@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonObject;
+
 import kr.co.Kmarket.dao.cs.CsQnaDAO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsFaqVO;
@@ -34,13 +36,16 @@ public enum CsQnaService {
 	public int selectCountQnaTotalAll() {
 		return dao.selectCountQnaTotalAll();
 	}
+	public int selectCountQnaTotalCate1AndCate2(String cate1, String cate2) {
+		return dao.selectCountQnaTotalCate1AndCate2(cate1, cate2);
+	}
 	
 	public List<CsQnaVO> selectCsQnaListWithCsCate1(List<CsCate2VO> vos3){
 		return dao.selectCsQnaListWithCsCate1(vos3);
 	}
 	
-	public List<CsQnaVO> selectCsQnaList(int limitStart){
-		return dao.selectCsQnaList(limitStart);
+	public List<CsQnaVO> selectCsQnaList(int limitStart, String cate1, String cate2){
+		return dao.selectCsQnaList(limitStart,cate1, cate2);
 	}
 	
 	public List<CsQnaVO> selectCsQnaListCate(String cate1, String cate2, int limitStart){
@@ -87,11 +92,9 @@ public enum CsQnaService {
 		return dao.selectCsQnaListLimit5();
 	}
 	
-	public int boardPaging(HttpServletRequest req) {
-		String pg = req.getParameter("pg");
-		
+	public int boardPaging(HttpServletRequest req, String pg, String cate1, String cate2) {
 		int currentPage = 1; // 현재 페이지
-		int total = selectCountQnaTotalAll(); // 총 게시물 갯수
+		int total = selectCountQnaTotalCate1AndCate2(cate1, cate2); // 총 게시물 갯수
 		int lastPageNum = 0; // 마지막 페이지 번호
 		
 		// 페이지 마지막 번호 계산
@@ -118,6 +121,39 @@ public enum CsQnaService {
 		req.setAttribute("pageGroupStart", pageGroupStart);
 		req.setAttribute("pageGroupEnd", pageGroupEnd);
 		req.setAttribute("pageStartNum", pageStartNum);
+		
+		return limitStart;
+	}
+	
+	public int boardPaging2(HttpServletRequest req, String pg, JsonObject json, String cate1, String cate2) {
+		int currentPage = 1; // 현재 페이지
+		int total = selectCountQnaTotalCate1AndCate2(cate1, cate2); // 총 게시물 갯수
+		int lastPageNum = 0; // 마지막 페이지 번호
+		
+		// 페이지 마지막 번호 계산
+		if(total % 10 != 0) lastPageNum = (total/10)+1;
+		else lastPageNum = (total/10);
+		
+		// 전체 페이지 게시물 limit 시작값 계산
+		if(pg != null) currentPage = Integer.parseInt(pg);
+		int limitStart = (currentPage - 1) * 10;
+		
+		// 페이지 그룹 계산
+		int pageGroupCurrent = (int)Math.ceil(currentPage/10.0);
+		int pageGroupStart = (pageGroupCurrent - 1) * 10 + 1;
+		int pageGroupEnd = pageGroupCurrent * 10;
+		
+		if (pageGroupEnd > lastPageNum) pageGroupEnd = lastPageNum;
+		
+		// 페이지 시작 번호 계산
+		int pageStartNum = total - limitStart;
+		
+		json.addProperty("lastPageNum", lastPageNum);
+		json.addProperty("currentPage", currentPage);
+		json.addProperty("pageGroupCurrent", pageGroupCurrent);
+		json.addProperty("pageGroupStart", pageGroupStart);
+		json.addProperty("pageGroupEnd", pageGroupEnd);
+		json.addProperty("pageStartNum", pageStartNum);
 		
 		return limitStart;
 	}
