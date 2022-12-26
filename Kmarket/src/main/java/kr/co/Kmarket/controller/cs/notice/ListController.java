@@ -33,6 +33,8 @@ public class ListController extends HttpServlet {
 		// 페이징 처리	
 		service.paing(req, pg , cate1);
 		
+		req.setAttribute("c", req.getAttribute("c"));
+		
 		req.getRequestDispatcher("/cs/notice/list.jsp").forward(req, resp);
 	}
 }

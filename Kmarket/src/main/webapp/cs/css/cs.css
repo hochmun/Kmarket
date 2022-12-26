@@ -543,12 +543,12 @@
   }
   #cs > .notice > .list > article > .page > .prev {
     font-size: 0;
-    background-image: url('../images/cs_sprites.png');
+    background-image: url('../img/cs_sprites.png');
     background-position: -706px -652px;
   }
   #cs > .notice > .list > article > .page > .next {
     font-size: 0;
-    background-image: url('../images/cs_sprites.png');
+    background-image: url('../img/cs_sprites.png');
     background-position: -628px -652px;
   }
   #cs > .notice > .list > article > .page > .num {}
