@@ -97,7 +97,7 @@ $(document).ready(function() {
 				const span1 = document.createElement('span');
 				span1.setAttribute('class', 'prev');
 				const a10 = document.createElement('a');
-				a10.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?p='+(data.pageGroupStart-1)+'&cate1='+cate1+'&cate2='+cate2);
+				a10.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+(data.pageGroupStart-1)+'&cate1='+cate1+'&cate2='+cate2);
 				a10.textContent = ' 이전';
 				span1.appendChild(a10);
 				div.appendChild(span1);
@@ -108,20 +108,20 @@ $(document).ready(function() {
 			console.log("pageGroupEnd"+data.pageGroupEnd);
 			console.log("pageGroupStart"+data.pageGroupStart);
 			
-			for(let i = data.pageGroupStart; i <= data.pageGroupEnd; i++) {
+			for(let pg = data.pageGroupStart; pg <= data.pageGroupEnd; pg++) {
 				const a11 = document.createElement('a');
-				a11.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?p='+i+'&cate1='+cate1+'&cate2='+cate2);
-				if(data.currentPage == i) a11.setAttribute('class', 'on');
-				a11.textContent = i;
+				a11.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+pg+'&cate1='+cate1+'&cate2='+cate2);
+				if(data.currentPage == pg) a11.setAttribute('class', 'w-btn-outline w-btn-blue-outline on');
+				a11.textContent = pg;
 				span2.appendChild(a11);
+				div.appendChild(span2);
 			}
-			div.appendChild(span2);
 			
 			if(data.pageGroupEnd < data.lastPageNum) {
 				const span3 = document.createElement('span');
 				span3.setAttribute('class', 'next');
 				const a12 = document.createElement('a');
-				a12.setAttribute('href', '/Kmarket/admin/cs/qna/list/do?p='+(data.pageGroupEnd+1)+'&cate1='+cate1+'&cate2='+cate2);
+				a12.setAttribute('href', '/Kmarket/admin/cs/qna/list/do?pg='+(data.pageGroupEnd+1)+'&cate1='+cate1+'&cate2='+cate2);
 				a12.textContent = '다음 ';
 				span3.appendChild(a12);
 				div.appendChild(span3);

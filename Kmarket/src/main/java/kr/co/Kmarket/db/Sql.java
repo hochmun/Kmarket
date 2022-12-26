@@ -94,7 +94,7 @@ public class Sql {
 	/** 상품 불러오기*/
 	public static final String SELECT_PRODUCT = "SELECT * FROM `km_product` WHERE `prodNo` = ?";
 	/** 상품목록 불러오기*/
-	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `prodCate1` = ? AND `prodCate2` = ? limit ?, 10";
+	public static final String SELECT_PRODUCTS = "SELECT * FROM `km_product` WHERE `prodCate1` LIKE ? AND `prodCate2` LIKE ? limit ?, 10";
 	
 	public static final String SELECT_PRODUCTS_CONDITION = "SELECT * FROM `km_product` "
 															+ "WHERE `prodCate1` = ? AND `prodCate2` = ? "
@@ -179,32 +179,32 @@ public class Sql {
 	
 	/** 상품목록 판매량순*/
 	public static final String SELECT_PRODUCT_LIST_SOLD = "SELECT * FROM `km_product` "
-														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-														+ "ORDER BY `sold` DESC limit 10";
+														+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+														+ "ORDER BY `sold` DESC limit ?, 10";
 	/** 상품목록 낮은가격순*/
 	public static final String SELECT_PRODUCT_LIST_LOW = "SELECT *, `price`*(100-`discount`)*0.01 AS `dprice` FROM `km_product` "
-														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-														+ "ORDER BY `dprice` ASC limit 10";
+														+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+														+ "ORDER BY `dprice` ASC limit ?, 10";
 	/** 상품목록 높은가격순*/
 	public static final String SELECT_PRODUCT_LIST_HIGH = "SELECT *, `price`*(100-`discount`)*0.01 AS `dprice` FROM `km_product` "
-														+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-														+ "ORDER BY `dprice` DESC limit 10";
+														+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+														+ "ORDER BY `dprice` DESC limit ?, 10";
 	/** 상품목록 높은별점순*/
 	public static final String SELECT_PRODUCT_LIST_HSTAR = "SELECT * FROM `km_product` "
-															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-															+ "ORDER BY `score` desc limit 10";
+															+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+															+ "ORDER BY `score` desc limit ?, 10";
 	/** 상품목록 리뷰많은순*/
 	public static final String SELECT_PRODUCT_LIST_REVIEW = "SELECT * FROM `km_product` "
-															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-															+ "ORDER BY `review` desc limit 10";
+															+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+															+ "ORDER BY `review` desc limit ?, 10";
 	/** 상품목록 최근등록순*/
 	public static final String SELECT_PRODUCT_LIST_LATEST = "SELECT * FROM `km_product` "
-															+ "WHERE prodCate1 = ? AND prodCate2 = ? "
-															+ "ORDER BY `prodNo` asc limit 10";
+															+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
+															+ "ORDER BY `prodNo` asc limit ?, 10";
 	
 	/** 제목, 상품설명 키워드 검색*/
 	public static final String SELECT_COUNT_PRODUCTS = "SELECT COUNT(`prodNo`) FROM `km_product` "
-														+ "WHERE `prodCate1` = ? AND `prodCate2` = ?";
+														+ "WHERE `prodCate1` LIKE ? AND `prodCate2` LIKE ?";
 	
 														/**+ "AND (`prodName` REGEXP ? "
 														+ "OR `descript` REGEXP ?)";  검색기능 추가시 해당 쿼리 고려*/
