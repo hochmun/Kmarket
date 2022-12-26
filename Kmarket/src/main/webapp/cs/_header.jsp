@@ -36,7 +36,7 @@
             </div>
             <div class="logo">
                 <div>
-                    <a href="${pageContext.request.contextPath}/cs/index.do"><img src="./img/logo.png" alt="로고">고객센터</a>
+                    <a href="${pageContext.request.contextPath}/cs/index.do"><img src="${pageContext.request.contextPath}/cs/img/logo.png" alt="로고">고객센터</a>
                 </div>
             </div>
         </header>
