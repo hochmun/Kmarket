@@ -22,11 +22,17 @@ public class CsNoticeVO {
 	public void setNoticeNo(int noticeNo) {
 		this.noticeNo = noticeNo;
 	}
+	public void setNoticeNo(String noticeNo) {
+		this.noticeNo = Integer.parseInt(noticeNo);
+	}
 	public int getNoticeCate() {
 		return noticeCate;
 	}
 	public void setNoticeCate(int noticeCate) {
 		this.noticeCate = noticeCate;
+	}
+	public void setNoticeCate(String noticeCate) {
+		this.noticeCate = Integer.parseInt(noticeCate);
 	}
 	public String getNoticeTitle() {
 		return noticeTitle;

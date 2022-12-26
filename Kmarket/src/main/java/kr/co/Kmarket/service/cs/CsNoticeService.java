@@ -22,6 +22,16 @@ public enum CsNoticeService {
 	
 	// create
 	
+	/**
+	 * 2022/12/26 관리자/고객센터/공지사항/글쓰기
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int insertCsNotice(CsNoticeVO vo) {
+		return dao.insertCsNotice(vo);
+	}
+	
 	// read
 	/**
 	 * 2022/12/21 - notice 작성글 불러오기
@@ -48,11 +58,41 @@ public enum CsNoticeService {
 	 */
 	public CsNoticeVO selectCsNoticeWithNoticeNo(String noticeNo) {
 		return dao.selectCsNoticeWithNoticeNo(noticeNo);
+   }
+
+  /**
+	 * 2022/12/26 관리자/고객센터/공지사항/보기 게시물 불러오기
+	 * @author 심규영
+	 * @param n
+	 * @return
+	 */
+	public CsNoticeVO selectNoticeWithNoticeNo(String n) {
+		return dao.selectNoticeWithNoticeNo(n);
 	}
 	
 	// upload
 	
+	/**
+	 * 2022/12/26 관리자/고객센터/공지사항/글수정
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int updateCsNotice(CsNoticeVO vo) {
+		return dao.updateCsNotice(vo);
+	}
+	
 	// delete
+	
+	/**
+	 * 2022/12/26 공지사항 삭제 기능 개별, 전체 통합
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public int deleteCsFaqNoWithNoticeNo(String[] arrays) {
+		return dao.deleteCsFaqNoWithNoticeNo(arrays);
+	}
 	
 	// service
 	/**
@@ -149,6 +189,25 @@ public enum CsNoticeService {
 	 */
 	public List<CsNoticeVO> selectNoticeListWithCate(int limitStart, String t) {
 		return dao.selectNoticeListWithCate(limitStart, t);
+	}
+	
+	/**
+	 * 2022/12/26 관리자/고객센터/공지사항/글쓰기 - vo에 데이터 넣기
+	 * @author 심규영
+	 * @param req
+	 * @return
+	 */
+	public CsNoticeVO insertCsNoticeVO(HttpServletRequest req) {
+		CsNoticeVO vo = new CsNoticeVO();
+		
+		if(req.getParameter("n") != null) vo.setNoticeNo(req.getParameter("n"));
+		
+		vo.setNoticeCate(req.getParameter("c"));
+		vo.setNoticeTitle(req.getParameter("title"));
+		vo.setNoticeContent(req.getParameter("content"));
+		vo.setNoticeRegip(req.getRemoteAddr());
+		
+		return vo;
 	}
 	
 }

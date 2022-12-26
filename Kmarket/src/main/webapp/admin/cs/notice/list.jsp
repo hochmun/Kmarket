@@ -47,7 +47,7 @@
 	                            <td>${ vo.noticeHit }</td>
 	                            <td>${ vo.noticeRdate }</td>
 	                            <td>
-	                                <a href="#">[삭제]</a>
+	                                <a href="./delete.do?n=${ vo.noticeNo }&t=1" class="deleteSingle" onclick="deleteNotice()">[삭제]</a>
 	                                <a href="./modify.do?p=${ currentPage }&t=${ vo.noticeCate }&n=${ vo.noticeNo }">[수정]</a>
 	                            </td>
 	                        </tr>
@@ -56,7 +56,7 @@
                     </table>
 
 					<div class="btn2ro">
-                     <a href="#" class="w-btn w-btn-indigo">선택삭제</a>
+                     <a href="#" class="w-btn w-btn-indigo deleteAll">선택삭제</a>
                      <a href="./write.do" class="w-btn w-btn-green">작성하기</a>                     
 					</div>
 

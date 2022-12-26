@@ -1,10 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<jsp:include page="../_header.jsp"/>
 <script src="${pageContext.request.contextPath}/cs/js/cs.js"></script>
-<jsp:include page="./_header.jsp"/>
 <script>
 	const sessUserUid = "${ sessUser.uid }"; // 유저 uid 정보 입력
 </script>
+<section id="cs">
+	<div class="qna">
         <nav>
             <div>
                 <p>홈<span>></span>문의하기</p>
@@ -76,4 +78,4 @@
         </section>
     </div>
 </section>
-<jsp:include page="./_footer.jsp"/>
+<jsp:include page="../_footer.jsp"/>

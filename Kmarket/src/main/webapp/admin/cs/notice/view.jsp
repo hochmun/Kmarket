@@ -1,5 +1,30 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="../../_header.jsp"/>
+<script>
+$(()=>{
+	$('.btnNoticeDelete').click(function(e){
+		e.preventDefault();
+		const deleteOk = confirm('삭제 하시겠습니까?');
+		if(deleteOk == false) return false;
+		else $.ajax({
+			url:'/Kmarket/admin/cs/notice/delete.do',
+			type: 'get',
+			data: {"n":${param.n},"t":2},
+			dataType: 'json',
+			success: (data)=>{
+				if(data.result > 0) {
+					alert('게시물 삭제에 성공 했습니다.');
+					location.href = '/Kmarket/admin/cs/notice/list.do';
+				} else {
+					alert('게시물 삭제에 실패 했습니다.');
+					return false;
+				}
+			}
+		});
+	});
+});
+</script>
     <section id="admin-product-list">
                 <nav>
                     <h3>공지사항 보기</h3>
@@ -12,34 +37,31 @@
                    
                     <table>
                         <tr>
-                            <td><strong>유형</strong></td>
+                            <td>유형</td>
                             <td>
-                                고객서비스
+                            	<c:if test="${ vo.noticeCate eq 10 }">고객서비스</c:if>
+                            	<c:if test="${ vo.noticeCate eq 11 }">안전거래</c:if>
+                            	<c:if test="${ vo.noticeCate eq 12 }">위해상품</c:if>
+                            	<c:if test="${ vo.noticeCate eq 13 }">이벤트상품</c:if>
                             </td>
                         </tr>
                         <tr>
                             <td>제목</td>
                             <td>
-                               [안내] 해외결제 사칭 문자 주의
+                               ${ vo.noticeTitle }
                             </td>
                         </tr>
                         <tr>
                             <td>내용</td>
                             <td>
-                               <p>안녕하세요. K마켓입니다.<p/><br/>
-                               
-                               <p>K마켓 해외직구를 사칭하는 피싱 문자가 최근 다시 신고되고 있어 주의 안내드립니다.<p/><br/>
-                               
-                               아래와 같이 K마켓 해외직구 승인결제 피싱 문자 또는 발신번호 006,002 등으로<br/>
-                               시작하는 피싱 문자를 수신하신 고객님께서는 통화 또는 문자 내 기재된 번호/링크 등을<br/>
-                               클릭하지 않도록 주의하여 주시기 바랍니다.     
+                               ${ vo.noticeContent }    
                             </td>
                         </tr>
                     </table>
                     <div class="btn3ro">
-                        <a href="#" class="w-btn w-btn-indigo">삭제</a>
-                        <a href="/Kmarket/admin/cs/notice/modify.do" class="w-btn w-btn-green">수정</a>
-                        <a href="/Kmarket/admin/cs/notice/list.do"  class="w-btn w-btn-indigo">목록</a>
+                        <a href="#" class="w-btn w-btn-indigo btnNoticeDelete">삭제</a>
+                        <a href="/Kmarket/admin/cs/notice/modify.do?n=${ vo.noticeNo }" class="w-btn w-btn-green">수정</a>
+                        <a href="/Kmarket/admin/cs/notice/list.do?p=${ param.p }&t=${ param.t }"  class="w-btn w-btn-indigo">목록</a>
                     </div>
        
                 </section>                
@@ -49,6 +71,6 @@
                 </p>
        
             </section>
-    </div>
 </section>
+</main>
 <jsp:include page="../../_footer.jsp"/>

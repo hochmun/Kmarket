@@ -90,14 +90,6 @@ $(document).ready(function() {
 		});
 	});
 	
-	// 개별 삭제 버튼 클릭시
-	$('#deleteSingle').click((e)=>{
-		e.preventDefault();
-		const deleteOk = confirm('삭제 하시겠습니까?');
-		if(deleteOk == false) return false;
-		else $(this).unbind('click').click();
-	});
-	
 	// 선택 삭제 버튼 클릭시
 	$('.deleteAll').click((e)=>{
 		// 이벤트 취소
@@ -144,3 +136,8 @@ $(document).ready(function() {
 		});
 	});
 });
+
+function deleteNotice() {
+	const deleteOk = confirm('삭제 하시겠습니까?');
+	if(deleteOk == false) return false;
+}

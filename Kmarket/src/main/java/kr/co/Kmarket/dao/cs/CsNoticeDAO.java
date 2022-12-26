@@ -5,11 +5,38 @@ import java.util.List;
 
 import kr.co.Kmarket.db.CsSql;
 import kr.co.Kmarket.db.DBCP;
+import kr.co.Kmarket.db.Sql;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsNoticeVO;
 
 public class CsNoticeDAO extends DBCP {
 	// create
+	
+	/**
+	 * 2022/12/26 관리자/고객센터/공지사항/글쓰기
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int insertCsNotice(CsNoticeVO vo) {
+		int result = 0;
+		
+		try {
+			logger.info("CsNoticeDAO insertCsNotice...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.INSERT_NOTICE);
+			psmt.setInt(1, vo.getNoticeCate());
+			psmt.setString(2, vo.getNoticeTitle());
+			psmt.setString(3, vo.getNoticeContent());
+			psmt.setString(4, vo.getNoticeRegip());
+			result = psmt.executeUpdate();
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+	}
 	
 	// read
 	/**
@@ -37,6 +64,35 @@ public class CsNoticeDAO extends DBCP {
 			}
 			close();
 		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
+	}
+
+	/**
+	 * 2022/12/26 - 관리자/고객센터/공지사항/보기 - 게시물 불러오기
+	 * @author 심규영
+	 * @param n
+	 * @return
+	 */
+	public CsNoticeVO selectNoticeWithNoticeNo(String n) {
+		CsNoticeVO vo = new CsNoticeVO();
+		try {
+			logger.info("CsNoticeDAO selectNoticeWithNoticeNo...");
+			conn =getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_NOTICE_WITH_NOTICENO);
+			psmt.setString(1, n);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setNoticeNo(rs.getInt(1));
+				vo.setNoticeCate(rs.getInt(2));
+				vo.setNoticeTitle(rs.getString(3));
+				vo.setNoticeContent(rs.getString(4));
+				vo.setNoticeRdate(rs.getString(5));
+				vo.setNoticeRegip(rs.getString(6));
+			}
+			close();
+		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 		return vo;
@@ -209,5 +265,63 @@ public class CsNoticeDAO extends DBCP {
 	
 	// upload
 	
+	/**
+	 * 2022/12/26 관리자/고객센터/공지사항/글수정
+	 * @author 심규영
+	 * @param vo
+	 * @return
+	 */
+	public int updateCsNotice(CsNoticeVO vo) {
+		int result = 0;
+		
+		try {
+			logger.info("CsNoticeDAO updateCsNotice..");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.UPDATE_CS_NOTICE);
+			psmt.setInt(1, vo.getNoticeCate());
+			psmt.setString(2, vo.getNoticeTitle());
+			psmt.setString(3, vo.getNoticeContent());
+			psmt.setString(4, vo.getNoticeRegip());
+			psmt.setInt(5, vo.getNoticeNo());
+			result = psmt.executeUpdate();
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+	}
+	
 	// delete
+	
+	/**
+	 * 2022/12/26 공지사항 삭제 기능 개별, 전체 통합
+	 * @author 심규영
+	 * @param arrays
+	 * @return
+	 */
+	public int deleteCsFaqNoWithNoticeNo(String[] arrays) {
+		int result = 0;
+		
+		try {
+			logger.info("CsNoticeDAO deleteCsFaqNoWithNoticeNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.DELETE_CS_NOTICE_WITH_NOTICENO);
+			
+			for (String n : arrays) {
+				psmt.setString(1, n);
+				psmt.addBatch();
+				psmt.clearParameters();
+			}
+			
+			result = psmt.executeBatch().length;
+			
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+		return result;
+	}
+	
 }

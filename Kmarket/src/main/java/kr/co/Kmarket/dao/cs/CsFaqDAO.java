@@ -237,12 +237,15 @@ public class CsFaqDAO extends DBCP {
 		try {
 			logger.info("CsFaqDAO deleteCsFaqNoWithFaqNo...");
 			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.DELETE_CS_FAQ_WITH_FAQNO);
 			
 			for (String faqNo : arrays) {
-				psmt = conn.prepareStatement(CsSql.DELETE_CS_FAQ_WITH_FAQNO);
 				psmt.setString(1, faqNo);
-				result += psmt.executeUpdate();
+				psmt.addBatch();
+				psmt.clearParameters();
 			}
+			
+			result = psmt.executeBatch()[0];
 			
 			close();
 		}catch (Exception e) {
