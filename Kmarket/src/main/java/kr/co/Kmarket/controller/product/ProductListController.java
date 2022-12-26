@@ -24,6 +24,7 @@ public class ProductListController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		JsonObject json = new JsonObject();
+		String sort = req.getParameter("sort");
 		String cate1 = req.getParameter("cate1");
 		String cate2 = req.getParameter("cate2");
 		
@@ -36,17 +37,18 @@ public class ProductListController extends HttpServlet{
 		if(cate2 == null) cate2 = "";
 		
 		/*페이지 처리*/
-		int limitStart = service.boardPaging(req, pg, json, cate1, cate2);
+		int limitStart = service.boardPaging(req, pg, cate1, cate2, sort);
 		
 		/*prodCate 가져오기*/
 		Cate1VO cvo = service.selectProdCates(cate1, cate2);
 		/*product list 가져오기*/
-		List<ProductVO> pvos = service.selectProducts(cate1, cate2, limitStart);
+		List<ProductVO> pvos = service.selectProducts(cate1, cate2, limitStart, sort);
 		
 		req.setAttribute("cvo", cvo); // selectProducts
 		req.setAttribute("pg", pg); 
+		req.setAttribute("sort", sort); 
 		req.setAttribute("pvos", pvos);
-		req.setAttribute("pvos", service.selectProducts(cate1, cate2, limitStart));
+		req.setAttribute("pvos", service.selectProducts(cate1, cate2, limitStart, sort));
 		
 		req.setAttribute("limitStart", limitStart);
 

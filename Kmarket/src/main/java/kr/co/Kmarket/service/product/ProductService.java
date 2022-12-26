@@ -112,8 +112,8 @@ public enum ProductService {
 	 * @author 김재준
 	 * 
 	 */
-	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart){
-		List<ProductVO> pvos = dao.selectProducts(cate1, cate2, limitStart);
+	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart, String sort){
+		List<ProductVO> pvos = dao.selectProducts(cate1, cate2, limitStart, sort);
 		return pvos;
 	}
 	public ProductVO selectProduct(String prodNo) {
@@ -214,7 +214,7 @@ public enum ProductService {
 		 * 2022/12/15 게시물 페이징
 		 * @author 김재준
 		 */
-	public int boardPaging(HttpServletRequest req, String pg, JsonObject json, String cate1, String cate2) {
+	public int boardPaging(HttpServletRequest req, String pg, String cate1, String cate2, String sort) {
 		int currentPage = 1; // 현재 페이지
 		int total = selectCountProducts(cate1, cate2); // 총 게시물 갯수
 		int lastPageNum = 0; // 마지막 페이지 번호
@@ -237,12 +237,12 @@ public enum ProductService {
 		// 페이지 시작 번호 계산
 		int pageStartNum = total - limitStart;
 		
-		json.addProperty("lastPageNum", lastPageNum);
-		json.addProperty("currentPage", currentPage);
-		json.addProperty("pageGroupCurrent", pageGroupCurrent);
-		json.addProperty("pageGroupStart", pageGroupStart);
-		json.addProperty("pageGroupEnd", pageGroupEnd);
-		json.addProperty("pageStartNum", pageStartNum);
+		req.setAttribute("lastPageNum", lastPageNum);
+		req.setAttribute("currentPage", currentPage);
+		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
+		req.setAttribute("pageGroupStart", pageGroupStart);
+		req.setAttribute("pageGroupEnd", pageGroupEnd);
+		req.setAttribute("pageStartNum", pageStartNum);
 		
 		return limitStart;
 	}
