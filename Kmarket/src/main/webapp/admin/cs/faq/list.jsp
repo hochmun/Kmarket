@@ -53,7 +53,7 @@
 						<td>${ vo.faqHit }</td>
 						<td>${ vo.faqRdate }</td>
 						<td>
-							<a href="./delete.do?faqNo=${ vo.faqNo }" id="deleteSingle">[삭제]</a>
+							<a href="./delete.do?faqNo=${ vo.faqNo }" onclick="deleteNotice()">[삭제]</a>
 							<a href="./modify.do?faqNo=${ vo.faqNo }">[수정]</a>
 						</td>
 					</tr>

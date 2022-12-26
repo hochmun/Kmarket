@@ -133,7 +133,7 @@
     width: 18px;
     height: 18px;
     content: "";
-    background: url("../images/cs_sprites.png") no-repeat;
+    background: url("../img/cs_sprites.png") no-repeat;
     background-position: -230px -276px;
     background-size: 750px auto;
     vertical-align: top;
@@ -178,7 +178,7 @@
     height: 90px;
     box-sizing: border-box;
     text-align: center;
-    background-image: url("../images/cs_sprites.png");
+    background-image: url("../img/cs_sprites.png");
     background-repeat: no-repeat;
     background-size: 750px auto;
   }
@@ -186,6 +186,7 @@
     position: relative;
     top: 100px;
     font-size: 14px;
+    white-space: nowrap;
   }
   
   #cs > .main > .faq > ol > li:nth-child(1) > a {
@@ -895,12 +896,12 @@
   }
   #cs > .qna > .list > article > .page > .prev {
     font-size: 0;
-    background-image: url('../images/cs_sprites.png');
+    background-image: url('../img/cs_sprites.png');
     background-position: -706px -652px;
   }
   #cs > .qna > .list > article > .page > .next {
     font-size: 0;
-    background-image: url('../images/cs_sprites.png');
+    background-image: url('../img/cs_sprites.png');
     background-position: -628px -652px;
   }
   #cs > .qna > .list > article > .page > .num {}

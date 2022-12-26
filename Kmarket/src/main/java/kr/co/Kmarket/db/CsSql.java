@@ -75,9 +75,20 @@ public class CsSql {
 	
 	/** notice */ 
 	
+	/** 2022/12/26 심규영 관리자/고객센터/공지사항/글쓰기 */
+	public static final String INSERT_NOTICE = 
+			"INSERT INTO `km_cs_notice` SET "
+			+ "`noticeCate`=?, "
+			+ "`noticeTitle`=?, "
+			+ "`noticeContent`=?, "
+			+ "`noticeRdate`=NOW(), "
+			+ "`noticeRegip`=? ";
+	
 	// notice 작성글 가져오기
 	public static final String SELECT_NOTICE_ARTICLE = "SELECT * FROM `km_cs_notice` ORDER BY `noticeNo` DESC LIMIT 10";
-												
+	
+	/** 2022/12/26 심규영 공지사항 게시물 불러오기 */
+	public static final String SELECT_NOTICE_WITH_NOTICENO = "SELECT * FROM `km_cs_notice` WHERE `noticeNo` = ?";
 	
 	// notice 카테고리 작성글 list 가져오기 
 	public static final String SELECT_NOTICE_ARTICLES = "SELECT a.*, c.cate2Name FROM `km_cs_notice` AS a "
@@ -105,6 +116,18 @@ public class CsSql {
 			+ "`noticeHit` "
 			+ "FROM `km_cs_notice` WHERE `noticeCate` LIKE ? "
 			+ "ORDER BY `noticeNo` DESC LIMIT ?, 10";
+	
+	public static final String UPDATE_CS_NOTICE = 
+			"UPDATE `km_cs_notice` SET "
+			+ "`noticeCate`=?, "
+			+ "`noticeTitle`=?, "
+			+ "`noticeContent`=?, "
+			+ "`noticeRegip`=?, "
+			+ "`noticeRdate`=NOW() "
+			+ "WHERE `noticeNo`=?";
+	
+	public static final String DELETE_CS_NOTICE_WITH_NOTICENO = 
+			"DELETE FROM `km_cs_notice` WHERE `noticeNo`=?";
 	
 	/** qna */ 
 	
