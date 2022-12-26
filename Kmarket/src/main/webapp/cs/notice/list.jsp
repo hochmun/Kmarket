@@ -23,10 +23,12 @@
             </aside>
             <article>
                 <nav>
-                    <c:forEach var="vos" items="${vos}" >
-                		<c:if test="${vos.noticeNo eq noticeCate}">
-                			<h1>${vos.cate1Name}</h1>
-                		</c:if>
+                    <c:forEach var="vo" items="${vos}" >
+                   	 	<h1>${vo.noticeCate}</h1>
+                		   <c:if test="${ vo.noticeCate eq '10'}"><td>고객서비스</td></c:if>
+                           <c:if test="${ vo.noticeCate eq '11'}"><td>안전거래</td></c:if>
+                           <c:if test="${ vo.noticeCate eq '12'}"><td>위해상품</td></c:if>
+                           <c:if test="${ vo.noticeCate eq '13'}"><td>이벤트상품</td></c:if>
                 	</c:forEach>
                 </nav>
 
