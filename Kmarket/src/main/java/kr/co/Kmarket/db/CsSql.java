@@ -181,7 +181,10 @@ public class CsSql {
 	public static final String SELECT_CS_QNA_LIST_LIMIT5 = 
 			"SELECT "
 			+ "`qnaTitle`, "
-			+ "`qnaRdate`"
+			+ "`qnaRdate`, "
+			+ "`qnaNo`, "
+			+ "`qnaCate1`, "
+			+ "`uid` "
 			+ " FROM `km_cs_qna` ORDER BY `qnaRdate` DESC LIMIT 5";
 	
 	/* ADMIN QNA  */
