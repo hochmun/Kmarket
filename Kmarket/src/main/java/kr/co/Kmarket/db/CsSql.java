@@ -112,6 +112,7 @@ public class CsSql {
 	public static final String SELECT_COUNT_TOTAL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `qnaCate1` = ?";
 	
 	public static final String SELECT_COUNT_TOTAL_ALL = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna`";
+	public static final String SELECT_COUNT_TOTAL_CATE1_AND_CATE2 = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE qnaCate1 LIKE ? AND qnaCate2 LIKE ?";
 	
 	public static final String SELECT_COUNT_TOTAL_ADMIN = "SELECT COUNT(`qnaNo`) FROM `km_cs_qna` WHERE `qnaCate1` = ? AND `qnaCate2` = ?";
 	
@@ -169,6 +170,7 @@ public class CsSql {
 														+ "ON a.qnaCate1 = b.cate1 "
 														+ "JOIN `km_cs_cate2` AS c "
 														+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
+														+ "Where a.qnaCate1 LIKE ? AND a.qnaCate2 LIKE ? "
 														+ "ORDER BY `qnaNo` DESC LIMIT ?, 10";
 	
 	// admin qna 해당 카테고리 작성글 list 번호순 가져오기 
@@ -177,7 +179,7 @@ public class CsSql {
 															+ "ON a.qnaCate1 = b.cate1 "
 															+ "JOIN `km_cs_cate2` AS c "
 															+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
-															+ "WHERE b.cate1 = ? AND c.cate2 = ? "
+															+ "WHERE b.cate1 LIKE ? AND c.cate2 LIKE ? "
 															+ "ORDER BY `qnaNo` DESC LIMIT ?, 10";
 	
 	public static final String SELECT_ADMIN_QNA_ARTICLE_NO = "SELECT a.*, b.cate1Name, c.cate2Name FROM `km_cs_qna` AS a "

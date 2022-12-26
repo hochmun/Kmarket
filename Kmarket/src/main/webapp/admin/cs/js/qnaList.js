@@ -33,11 +33,11 @@ $(document).ready(function() {
 		const cate2 = $('select[name=cate2]').val();
 		
 		const table = document.getElementById('listTable');
-		const div = document.getElementsByClassName('paging');
+		const div = document.getElementsByClassName('paging')[0];
 		
 		$.post('/Kmarket/admin/cs/qna/list.do?cate1='+cate1+'&cate2='+cate2,(data)=>{
 			$('#listTable tr:gt(0)').remove();
-			for(const vo of data) {
+			for(const vo of data.vos) {
 				const tr = document.createElement('tr');
 				
 				const td1 = document.createElement('td');
@@ -86,15 +86,45 @@ $(document).ready(function() {
 				
 				
 			}
-			$('.paging span:gt(0)').remove();
-			for(const pg of data){
-				const span = document.createElement('span');
-				span.setAttribute('class', 'num');
-				const a = document.createElement('a');
-				a.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?pg='+pg);
-				a.setAttribute('class', 'w-btn-outline w-btn-blue-outline '+currentPage == pg ? on : off);
-				span.appendChild(a);
-				div.appendChild(span);
+			
+			
+			
+			$('.paging span').remove();
+			
+			
+			// 페이징 추가
+			if(data.pageGroupStart > 1) {
+				const span1 = document.createElement('span');
+				span1.setAttribute('class', 'prev');
+				const a10 = document.createElement('a');
+				a10.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?p='+(data.pageGroupStart-1)+'&cate1='+cate1+'&cate2='+cate2);
+				a10.textContent = ' 이전';
+				span1.appendChild(a10);
+				div.appendChild(span1);
+			}
+			
+			const span2 = document.createElement('span');
+			span2.setAttribute('class', 'num');
+			console.log("pageGroupEnd"+data.pageGroupEnd);
+			console.log("pageGroupStart"+data.pageGroupStart);
+			
+			for(let i = data.pageGroupStart; i <= data.pageGroupEnd; i++) {
+				const a11 = document.createElement('a');
+				a11.setAttribute('href', '/Kmarket/admin/cs/qna/list.do?p='+i+'&cate1='+cate1+'&cate2='+cate2);
+				if(data.currentPage == i) a11.setAttribute('class', 'on');
+				a11.textContent = i;
+				span2.appendChild(a11);
+			}
+			div.appendChild(span2);
+			
+			if(data.pageGroupEnd < data.lastPageNum) {
+				const span3 = document.createElement('span');
+				span3.setAttribute('class', 'next');
+				const a12 = document.createElement('a');
+				a12.setAttribute('href', '/Kmarket/admin/cs/qna/list/do?p='+(data.pageGroupEnd+1)+'&cate1='+cate1+'&cate2='+cate2);
+				a12.textContent = '다음 ';
+				span3.appendChild(a12);
+				div.appendChild(span3);
 			}
 		});
 	});

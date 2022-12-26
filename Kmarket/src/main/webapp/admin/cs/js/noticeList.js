@@ -87,7 +87,7 @@ $(()=>{
 				
 				const span2 = document.createElement('span');
 				span2.setAttribute('class', 'num');
-				for(let i = data.pageGroupStart; i < data.pageGroupEnd; i++) {
+				for(let i = data.pageGroupStart; i <= data.pageGroupEnd; i++) {
 					const a11 = document.createElement('a');
 					a11.setAttribute('href', '/Kmarket/admin/cs/notice/list.do?p='+i+'&t='+t);
 					if(data.currentPage == i) a11.setAttribute('class', 'on');
