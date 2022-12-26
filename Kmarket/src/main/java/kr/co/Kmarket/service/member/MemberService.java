@@ -104,6 +104,7 @@ public enum MemberService {
 		return dao.selectCountUid(uid);
 	}
 	
+	
 	// upload
 	
 	/**

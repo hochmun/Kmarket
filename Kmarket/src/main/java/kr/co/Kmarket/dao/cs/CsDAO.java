@@ -9,6 +9,7 @@ import javax.swing.text.html.CSS;
 import kr.co.Kmarket.db.CsSql;
 import kr.co.Kmarket.db.DBCP;
 import kr.co.Kmarket.vo.AdminVO;
+import kr.co.Kmarket.vo.MemberVO;
 import kr.co.Kmarket.vo.cs.CsCate1VO;
 import kr.co.Kmarket.vo.cs.CsCate2VO;
 import kr.co.Kmarket.vo.cs.CsQnaVO;
@@ -258,5 +259,26 @@ public class CsDAO extends DBCP{
 		}
 		return vo;
 	}
+	
+	public List<MemberVO> selectTopManager() {
+		List<MemberVO> tvo = new ArrayList<>();
+		
+		try {
+			logger.info("CsDAO selectTopManager...");
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(CsSql.SELECT_CS_TOPMANAGER);
+			while(rs.next()) {
+				MemberVO vo = new MemberVO();
+				vo.setCeo(rs.getString("memberCeo"));
+			}
+			close();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return tvo;
+	}
 	// delete
+	
+	
 }

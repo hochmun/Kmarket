@@ -99,6 +99,11 @@ public class CsSql {
 												+ "WHERE b.cate1 LIKE ? "
 												+ "ORDER BY `noticeNo` DESC LIMIT ?, 10";	
 	
+	// noticeNo로 게시물 정보 가져오기 
+	public static final String SELECT_CS_NOTICE_WITH_NOTICE_NO = "SELECT * FROM `km_cs_notice` "
+																+ "WHERE `noticeNo`=? ";
+											
+	
 	/** admin/index 공지사항 최근 작성 날짜 기준으로 5개 가져오기  */
 	public static final String SELECT_CS_NOTICE_LIST_LIMIT5 = 
 			"SELECT * FROM `km_cs_notice` ORDER BY `noticeRdate` DESC LIMIT 5";
@@ -211,6 +216,9 @@ public class CsSql {
 															+ "JOIN `km_cs_cate2` AS c "
 															+ "ON b.cate1 = c.cate1 AND a.qnaCate2 = c.cate2 "
 															+ "WHERE `qnaNo` = ?";
+	
+	// admin 이름 가져오기
+	public static final String SELECT_CS_TOPMANAGER = "SELECT * FROM `km_member` WHERE `ceo` = ?";
 	
 	// admin qna 답변
 	public static final String UPDATE_QNA_ADMIN_CONTENT = "UPDATE `km_cs_qna` SET "
