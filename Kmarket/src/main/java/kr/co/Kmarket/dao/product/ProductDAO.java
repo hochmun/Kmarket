@@ -51,6 +51,7 @@ public class ProductDAO extends DBCP {
 			psmt.setString(19, vo.getBizType());
 			psmt.setString(20, vo.getOrigin());
 			psmt.setString(21, vo.getIp());
+			psmt.setString(22, vo.getUid());
 			result = psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
@@ -286,48 +287,34 @@ public class ProductDAO extends DBCP {
 	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart, String sort) {
 		List<ProductVO> pvos = new ArrayList<>();
 		
+		logger.debug("sort : "+sort);
+		
 		String cate1t = "%"+cate1+"%";
 		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("selectProducts...");
 			conn = getConnection();
 			psmt = null;
-			if(sort == null) {
+			
+			if(sort == null || sort == "") {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("sold")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("low")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("high")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("hstar")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("review")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}else if(sort.equals("latest")) {
 				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LATEST);
-				psmt.setString(1, cate1t);
-				psmt.setString(2, cate2t);
-				psmt.setInt(3, limitStart);
 			}
+			
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {

@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.eclipse.jdt.internal.compiler.ast.ThisReference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.JsonObject;
 
 import kr.co.Kmarket.service.product.ProductService;
@@ -20,6 +24,7 @@ public class ProductListController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	private ProductService service = ProductService.INSTANCE;
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,6 +37,8 @@ public class ProductListController extends HttpServlet{
 		if(pg == null || pg.trim().equals("")){
 		pg = "1";
 		}
+		
+		logger.debug("pg : "+pg);
 
 		if(cate1 == null) cate1 = "";
 		if(cate2 == null) cate2 = "";
