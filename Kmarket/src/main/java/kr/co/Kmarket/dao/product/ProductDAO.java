@@ -283,7 +283,7 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart) {
+	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart, String sort) {
 		List<ProductVO> pvos = new ArrayList<>();
 		
 		String cate1t = "%"+cate1+"%";
@@ -291,10 +291,43 @@ public class ProductDAO extends DBCP {
 		try {
 			logger.info("selectProducts...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
-			psmt.setString(1, cate1t);
-			psmt.setString(2, cate2t);
-			psmt.setInt(3, limitStart);
+			psmt = null;
+			if(sort == null) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("sold")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("low")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("high")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("hstar")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("review")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("latest")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LATEST);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
