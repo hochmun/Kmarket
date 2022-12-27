@@ -102,6 +102,8 @@
                             <li><a href="#">배송관리</a></li>
                         </ol>
                     </li>
+                    <c:choose>
+                     <c:when test="${sessUser.type eq 5}">
                     <li>
                         <a href="#"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>게시판관리</a>
                         <ol>
@@ -110,5 +112,7 @@
                             <li><a href="${pageContext.request.contextPath}/admin/cs/qna/list.do">문의하기</a></li>
                         </ol>
                     </li>
+                   </c:when>
+                  </c:choose>
                 </ul>
             </aside>
