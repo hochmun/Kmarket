@@ -33,7 +33,7 @@
                 <table>
                    <c:forEach var="vo" items="${vos}">
                     <tr>
-                        <td><a href="/Kmarket/cs/notice/view.do?cate1=&no=${vo.noticeNo}">[${vo.noticeCate}] ${vo.noticeTitle}</a></td>
+                        <td><a href="/Kmarket/cs/notice/view.do?c=${ vo.noticeCate }&no=${vo.noticeNo}">[${vo.noticeCate}] ${vo.noticeTitle}</a></td>
                         <td>${vo.noticeRdate}</td>
                     </tr>
                 </c:forEach>

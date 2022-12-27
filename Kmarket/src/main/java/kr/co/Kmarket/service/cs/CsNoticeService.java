@@ -51,6 +51,16 @@ public enum CsNoticeService {
 	}
 	
 	/**
+	 * 2022/12/26 notice 게시물 번호로 게시물 정보 불러오기
+	 * @author 라성준
+	 * @param noticeNo
+	 * @return
+	 */
+	public CsNoticeVO selectCsNoticeWithNoticeNo(String noticeNo) {
+		return dao.selectCsNoticeWithNoticeNo(noticeNo);
+   }
+
+  /**
 	 * 2022/12/26 관리자/고객센터/공지사항/보기 게시물 불러오기
 	 * @author 심규영
 	 * @param n

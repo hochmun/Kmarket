@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="./_header.jsp"/>
-<script src="./js/product.js"></script>
     <section class="list">
         <!-- 제목, 페이지 네비게이션 -->
         <nav>
@@ -12,12 +11,12 @@
 
         <!-- 정렬 메뉴 -->
         <ul class="sort" id="items">
-            <li><a href="#" id="sold" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">판매많은순</a></li>
-            <li><a href="#" id="low" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">낮은가격순</a></li>
-            <li><a href="#" id="high" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">높은가격순</a></li>
-            <li><a href="#" id="hstar" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">평점높은순</a></li>
-            <li><a href="#" id="review" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">후기많은순</a></li>
-            <li><a href="#" id="latest" prodcate1="${cvo.cate1}" prodcate2="${cvo.cate2}">최근등록순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=sold" class="${sort eq 'sold' ? 'on' : 'off'}">판매많은순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=low" class="${sort eq 'low' ? 'on' : 'off'}">낮은가격순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=high" class="${sort eq 'high' ? 'on' : 'off'}">높은가격순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=hstar" class="${sort eq 'hstar' ? 'on' : 'off'}">평점높은순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=review" class="${sort eq 'review' ? 'on' : 'off'}">후기많은순</a></li>
+            <li><a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=latest" class="${sort eq 'latest' ? 'on' : 'off'}">최근등록순</a></li>
         </ul>
         <!-- 상품목록 -->      
         <table border="0" class="productList">
@@ -103,7 +102,7 @@
 
             <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
             <span class="num">
-                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
+                <a href="/Kmarket/product/list.do?cate1=${cvo.cate1}&cate2=${cvo.cate2}&pg=${pg}&sort=${sort}" class="${currentPage eq pg ? 'on' : 'off'}">${pg}</a>
             </span>
             </c:forEach>
             <c:if test="${pageGroupEnd lt lastPageNum}">

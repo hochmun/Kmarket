@@ -239,6 +239,29 @@ public class CsNoticeDAO extends DBCP {
 		}
 		return vos;
 	}
+
+	public CsNoticeVO selectCsNoticeWithNoticeNo(String noticeNo) {
+		CsNoticeVO vo = new CsNoticeVO();
+		
+		try {
+			logger.info("CsNoticeDAO selectCsNoticeWithNoticeNo...");
+			conn = getConnection();
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_NOTICE_WITH_NOTICE_NO);
+			psmt.setString(1, noticeNo);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setNoticeNo(rs.getInt("noticeNo"));
+				vo.setNoticeCate(rs.getInt("noticeCate"));
+				vo.setNoticeTitle(rs.getString("noticeTitle"));
+				vo.setNoticeContent(rs.getString("noticeContent"));
+				vo.setNoticeRegip(rs.getString("noticeRegip"));
+			}
+			close();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return vo;
+	}
 	
 	// upload
 	

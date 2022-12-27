@@ -253,14 +253,14 @@ public class ProductDAO extends DBCP {
 	 * Cate2VO 데이터 => Cate1VO 추가  
 	 * @return 
 	 */
-	public Cate1VO selectProdCates(String prodCate1, String prodCate2) {
+	public Cate1VO selectProdCates(String cate1, String cate2) {
 		Cate1VO cvo = null;
 		try {
 			logger.info("selectProdCates...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PROD_CATE);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1);
+			psmt.setString(2, cate2);
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -283,15 +283,51 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> selectProducts(String prodCate1, String prodCate2, int limitStart) {
+	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart, String sort) {
 		List<ProductVO> pvos = new ArrayList<>();
+		
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("selectProducts...");
 			conn = getConnection();
-			psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
-			psmt.setInt(3, limitStart);
+			psmt = null;
+			if(sort == null) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCTS);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("sold")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("low")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("high")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("hstar")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("review")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}else if(sort.equals("latest")) {
+				psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LATEST);
+				psmt.setString(1, cate1t);
+				psmt.setString(2, cate2t);
+				psmt.setInt(3, limitStart);
+			}
 			rs = psmt.executeQuery();
 			
 			while(rs.next()) {
@@ -477,14 +513,16 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return
 	 */
-	public int selectCountProducts(String prodCate1, String prodCate2) {
+	public int selectCountProducts(String cate1, String cate2) {
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		int total = 0;
 		try {
 			logger.info("selectCountProducts...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_COUNT_PRODUCTS);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
 			rs = psmt.executeQuery();
 			if(rs.next()) {
 				total = rs.getInt(1);
@@ -501,57 +539,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductSold(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductSold(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("SelectProductSold...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_SOLD);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return prods;
+		return vos;
 	}
 	
 	/**
@@ -559,57 +600,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductLow(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductLow(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("SelectProductLow...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LOW);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return prods;
+		return vos;
 	}
 	
 	/**
@@ -617,57 +661,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductHigh(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductHigh(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("SelectProductHigh...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HIGH);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return prods;
+		return vos;
 	}
 	
 	/**
@@ -675,57 +722,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductHstar(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductHstar(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("SelectProductHstar...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_HSTAR);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return prods;
+		return vos;
 	}
 	
 	/**
@@ -733,57 +783,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductReview(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductReview(String cate1, String cate2, int limitStart){
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
+		List<ProductVO> vos = new ArrayList<>();
 		try {
 			logger.info("SelectProductReview...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_REVIEW);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
 			}
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		return prods;
+		return vos;
 	}	
 	
 	/**
@@ -791,57 +844,60 @@ public class ProductDAO extends DBCP {
 	 * @author 김재준
 	 * @return 
 	 */
-	public List<ProductVO> SelectProductLatest(String prodCate1, String prodCate2){
-		List<ProductVO> prods = new ArrayList<>();
+	public List<ProductVO> SelectProductLatest(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = new ArrayList<>();
+		String cate1t = "%"+cate1+"%";
+		String cate2t = "%"+cate2+"%";
 		try {
 			logger.info("SelectProductLatest...");
 			conn = getConnection();
 			psmt = conn.prepareStatement(Sql.SELECT_PRODUCT_LIST_LATEST);
-			psmt.setString(1, prodCate1);
-			psmt.setString(2, prodCate2);
+			psmt.setString(1, cate1t);
+			psmt.setString(2, cate2t);
+			psmt.setInt(3, limitStart);
 			rs = psmt.executeQuery();
 			while(rs.next()) {
-				ProductVO pv = new ProductVO();
-				pv.setProdNo(rs.getInt(1));
-				pv.setProdCate1(rs.getString(2));
-				pv.setProdCate2(rs.getString(3));
-				pv.setProdName(rs.getString(4));
-				pv.setDescript(rs.getString(5));
-				pv.setCompany(rs.getString(6));
-				pv.setSeller(rs.getString(7));
-				pv.setPrice(rs.getString(8));
-				pv.setDiscount(rs.getString(9));
-				pv.setPoint(rs.getString(10));
-				pv.setStock(rs.getString(11));
-				pv.setSold(rs.getInt(12));
-				pv.setDelivery(rs.getString(13));
-				pv.setHit(rs.getInt(14));
-				pv.setScore(rs.getInt(15));
-				pv.setReview(rs.getInt(16));
-				pv.setThumb1(rs.getString(17));
-				pv.setThumb2(rs.getString(18));
-				pv.setThumb3(rs.getString(19));
-				pv.setDetail(rs.getString(20));
-				pv.setStatus(rs.getString(21));
-				pv.setDuty(rs.getString(22));
-				pv.setReceipt(rs.getString(23));
-				pv.setBizType(rs.getString(24));
-				pv.setOrigin(rs.getString(25));
-				pv.setIp(rs.getString(26));
-				pv.setRdate(rs.getString(27));
-				pv.setEtc1(rs.getInt(28));
-				pv.setEtc2(rs.getInt(29));
-				pv.setEtc3(rs.getString(30));
-				pv.setUid(rs.getString(31));
-				pv.setEtc5(rs.getString(32));
+				ProductVO vo = new ProductVO();
+				vo.setProdNo(rs.getInt(1));
+				vo.setProdCate1(rs.getString(2));
+				vo.setProdCate2(rs.getString(3));
+				vo.setProdName(rs.getString(4));
+				vo.setDescript(rs.getString(5));
+				vo.setCompany(rs.getString(6));
+				vo.setSeller(rs.getString(7));
+				vo.setPrice(rs.getString(8));
+				vo.setDiscount(rs.getString(9));
+				vo.setPoint(rs.getString(10));
+				vo.setStock(rs.getString(11));
+				vo.setSold(rs.getInt(12));
+				vo.setDelivery(rs.getString(13));
+				vo.setHit(rs.getInt(14));
+				vo.setScore(rs.getInt(15));
+				vo.setReview(rs.getInt(16));
+				vo.setThumb1(rs.getString(17));
+				vo.setThumb2(rs.getString(18));
+				vo.setThumb3(rs.getString(19));
+				vo.setDetail(rs.getString(20));
+				vo.setStatus(rs.getString(21));
+				vo.setDuty(rs.getString(22));
+				vo.setReceipt(rs.getString(23));
+				vo.setBizType(rs.getString(24));
+				vo.setOrigin(rs.getString(25));
+				vo.setIp(rs.getString(26));
+				vo.setRdate(rs.getString(27));
+				vo.setEtc1(rs.getInt(28));
+				vo.setEtc2(rs.getInt(29));
+				vo.setEtc3(rs.getString(30));
+				vo.setUid(rs.getString(31));
+				vo.setEtc5(rs.getString(32));
 				
-				prods.add(pv);
+				vos.add(vo);
         }
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-    return prods;
+    return vos;
 	}
 	
 	

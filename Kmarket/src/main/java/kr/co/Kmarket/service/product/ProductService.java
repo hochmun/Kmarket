@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.gson.JsonObject;
+
 import kr.co.Kmarket.dao.product.ProductDAO;
 import kr.co.Kmarket.vo.Cate1VO;
 import kr.co.Kmarket.vo.Cate2VO;
@@ -110,8 +112,8 @@ public enum ProductService {
 	 * @author 김재준
 	 * 
 	 */
-	public List<ProductVO> selectProducts(String prodCate1, String prodCate2, int limitStart){
-		List<ProductVO> pvos = dao.selectProducts(prodCate1, prodCate2, limitStart);
+	public List<ProductVO> selectProducts(String cate1, String cate2, int limitStart, String sort){
+		List<ProductVO> pvos = dao.selectProducts(cate1, cate2, limitStart, sort);
 		return pvos;
 	}
 	public ProductVO selectProduct(String prodNo) {
@@ -125,8 +127,8 @@ public enum ProductService {
 	 * @param prodCate2
 	 * @return
 	 */
-	public Cate1VO selectProdCates(String prodCate1, String prodCate2) {
-		return dao.selectProdCates(prodCate1, prodCate2);
+	public Cate1VO selectProdCates(String cate1, String cate2) {
+		return dao.selectProdCates(cate1, cate2);
 	}
 	
 	/**
@@ -134,46 +136,46 @@ public enum ProductService {
 	 * 
 	 * 판매량 높은순
 	 */
-	public List<ProductVO> SelectProductSold(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductSold(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductSold(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductSold(cate1, cate2, limitStart);
+		return vos;
 	}
 	// 낮은가격
-	public List<ProductVO> SelectProductLow(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductLow(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductLow(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductLow(cate1, cate2, limitStart);
+		return vos;
 	}
 	/**
 	 * 높은가격
 	 */
-	public List<ProductVO> SelectProductHigh(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductHigh(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductHigh(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductHigh(cate1, cate2, limitStart);
+		return vos;
 	}
 	/**
 	 * 별점순
 	 */
-	public List<ProductVO> SelectProductHstar(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductHstar(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductHstar(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductHstar(cate1, cate2, limitStart);
+		return vos;
 	}
 	/**
 	 *  리뷰순
 	 * @param pv
 	 * @return
 	 */
-	public List<ProductVO> SelectProductReview(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductReview(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductReview(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductReview(cate1, cate2, limitStart);
+		return vos;
 	}
 	/**
 	 *  최근순
 	 * @param pv
 	 * @return
 	 */
-	public List<ProductVO> SelectProductLatest(String prodCate1, String prodCate2){
-		List<ProductVO> prods = dao.SelectProductLatest(prodCate1, prodCate2);
-		return prods;
+	public List<ProductVO> SelectProductLatest(String cate1, String cate2, int limitStart){
+		List<ProductVO> vos = dao.SelectProductLatest(cate1, cate2, limitStart);
+		return vos;
 	}
 	
 	
@@ -181,8 +183,8 @@ public enum ProductService {
 	 * 카테고리별 총 게시물 갯수
 	 * @return
 	 */
-	public int selectCountProducts(String prodCate1, String prodCate2) {
-		return dao.selectCountProducts(prodCate1, prodCate2);
+	public int selectCountProducts(String cate1, String cate2) {
+		return dao.selectCountProducts(cate1, cate2);
 	}
 	
 	// upload
@@ -212,11 +214,9 @@ public enum ProductService {
 		 * 2022/12/15 게시물 페이징
 		 * @author 김재준
 		 */
-	public int boardPaging(HttpServletRequest req, String prodCate1, String prodCate2) {
-		String pg = req.getParameter("pg");
-		
+	public int boardPaging(HttpServletRequest req, String pg, String cate1, String cate2, String sort) {
 		int currentPage = 1; // 현재 페이지
-		int total = selectCountProducts(prodCate1, prodCate2); // 총 게시물 갯수
+		int total = selectCountProducts(cate1, cate2); // 총 게시물 갯수
 		int lastPageNum = 0; // 마지막 페이지 번호
 		
 		// 페이지 마지막 번호 계산
