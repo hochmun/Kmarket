@@ -66,7 +66,7 @@ public class OrderController extends HttpServlet {
 			sess.setAttribute("sessUser", mvo);
 			
 			// 들어오는 값이 없을 경우
-			if(sess.getAttribute("cartNo") != null || sess.getAttribute("prodNo") != null){
+			if(sess.getAttribute("cartNo") == null && sess.getAttribute("prodNo") == null){
 				
 				// session안에 값이 없을때 => 잘못된 접근
 				sess.setAttribute("success", "501");

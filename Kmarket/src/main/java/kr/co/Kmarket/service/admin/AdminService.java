@@ -46,7 +46,10 @@ public enum AdminService {
 		
 		// 셀러 이름을 회사 로그인한 판매자의 회사 이름에서 가져옴
 		MemberVO vo2 = (MemberVO) req.getSession().getAttribute("sessUser");
-		if(vo2.getCompany() != null) vo.setSeller(vo2.getCompany());
+		if(vo2.getCompany() != null) {
+			vo.setSeller(vo2.getCompany());
+			vo.setUid(vo2.getUid());
+		}
 		
 		vo.setProdName(req.getParameter("prodName"));
 		vo.setProdCate1(req.getParameter("category1"));
@@ -65,6 +68,8 @@ public enum AdminService {
 		vo.setReceipt(req.getParameter("receipt"));
 		vo.setBizType(req.getParameter("bizType"));
 		vo.setOrigin(req.getParameter("origin"));
+		
+		
 		
 		//vo.setThumb1(thumb1);
 		//vo.setThumb2(thumb2);

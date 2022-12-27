@@ -89,6 +89,7 @@ public class Sql {
 			+ "`bizType`=?, "
 			+ "`origin`=?, "
 			+ "`ip`=?, "
+			+ "`uid`=?, "
 			+ "`rdate`=NOW()";
 	
 	/** 상품 불러오기*/
@@ -200,7 +201,7 @@ public class Sql {
 	/** 상품목록 최근등록순*/
 	public static final String SELECT_PRODUCT_LIST_LATEST = "SELECT * FROM `km_product` "
 															+ "WHERE prodCate1 LIKE ? AND prodCate2 LIKE ? "
-															+ "ORDER BY `prodNo` asc limit ?, 10";
+															+ "ORDER BY `prodNo` DESC limit ?, 10";
 	
 	/** 제목, 상품설명 키워드 검색*/
 	public static final String SELECT_COUNT_PRODUCTS = "SELECT COUNT(`prodNo`) FROM `km_product` "
