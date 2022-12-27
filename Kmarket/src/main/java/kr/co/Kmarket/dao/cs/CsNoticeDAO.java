@@ -283,6 +283,7 @@ public class CsNoticeDAO extends DBCP {
 		try {
 			logger.info("CsNoticeDAO deleteCsFaqNoWithNoticeNo...");
 			conn = getConnection();
+			
 			psmt = conn.prepareStatement(CsSql.DELETE_CS_NOTICE_WITH_NOTICENO);
 			
 			for (String n : arrays) {
