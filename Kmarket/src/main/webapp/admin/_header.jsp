@@ -37,19 +37,23 @@
             <div>
                 <a href="${pageContext.request.contextPath}/admin/index.do" class="logo"><img src="${pageContext.request.contextPath}/admin/img/admin_logo.png" alt="admin_logo"></a>
                 <p>
-                    <span>${sessUser.uid}님 반갑습니다</span>
-                    <a href="${pageContext.request.contextPath}/index.do">HOME |</a>
-                    <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃 |</a>
-                    <a href="/Kmarket/cs/index.do">고객센터</a>
-                    <c:choose>
-                		<c:when test="${sessUser.type eq 2}">
-                    		<span>${sessUser.company}님 반갑습니다</span>
+                   <c:choose>
+               			<c:when test="${sessUser.type eq 2}">
+               			<span>${sessUser.uid}님 반갑습니다</span>
+		                    <a href="${pageContext.request.contextPath}/index.do">HOME |</a>
+		                    <a href="${pageContext.request.contextPath}/member/logout.do">로그아웃 |</a>
+		                    <a href="/Kmarket/cs/index.do">고객센터</a>
+               			</c:when>
+                        <c:when test="${sessUser.type eq 5}">
+                        <span>${sessUser.company}님 반갑습니다</span>
                     		<a href="${pageContext.request.contextPath}/index.do">HOME |</a>
-                    	</c:when>
-                    	<c:when test="${sessUser.type eq 5}">
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃 |</a>
                     		<a href="/Kmarket/cs/index.do">고객센터</a>
-                    	</c:when>
+                        </c:when>
+                    	<c:otherwise>
+                    		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃 |</a>
+                    		<a href="/Kmarket/cs/index.do">고객센터</a>
+                    	</c:otherwise>
                     </c:choose>
                 </p>
             </div>
