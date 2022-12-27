@@ -13,7 +13,7 @@
                         <h2>자주묻는 질문</h2>
                         <ul>
                             <c:forEach var="vo2" items="${ vos2 }">
-	                      		<li class="${ vo2.cate1 eq csCate1 ? 'on' : 'off' }"><a href="${pageContext.request.contextPath}/cs/faq/list.do?csCate1=${ vo2.cate1 }">${ vo2.cate1Name }</a></li>
+	                      		<li class="${ vo2.cate1 eq param.csCate1 ? 'on' : 'off' }"><a href="${pageContext.request.contextPath}/cs/faq/list.do?csCate1=${ vo2.cate1 }">${ vo2.cate1Name }</a></li>
 	                      	</c:forEach>
                         </ul>
                     </aside>
@@ -36,7 +36,7 @@
 		                        감사합니다.<br /> 
 		                    </p>
 		                </div>
-		                <a href="/Kmarket/cs/faq/list.do?csCate1=${ csCate1 }" class="btnList">목록보기</a>
+		                <a href="/Kmarket/cs/faq/list.do?csCate1=${ param.csCate1 }" class="btnList">목록보기</a>
 		            </article>
 		        </section>
 		    </div>

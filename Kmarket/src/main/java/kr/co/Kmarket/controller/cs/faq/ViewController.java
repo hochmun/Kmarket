@@ -23,10 +23,6 @@ public class ViewController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 넘어오는 csCate1정보 확인 => 없을 경우 기본 10으로 설정
-		String csCate1 = req.getParameter("csCate1");
-		if(csCate1 == "" || csCate1 == null) csCate1 = "10";
-		
 		// 카테고리1 정보 가져오기
 		List<CsCate1VO> vos2 = service2.selectCsCate1();
 		
@@ -39,7 +35,6 @@ public class ViewController extends HttpServlet {
 		// 저장
 		req.setAttribute("vo", vo);
 		req.setAttribute("vos2", vos2);
-		req.setAttribute("csCate1", csCate1);
 		
 		req.getRequestDispatcher("/cs/faq/view.jsp").forward(req, resp);
 	}
