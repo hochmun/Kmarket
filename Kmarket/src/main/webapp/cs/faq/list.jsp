@@ -46,7 +46,7 @@
 	                    		<c:if test="${ vo.faqCate2 eq vo3.cate2 }">
 	                    		
 	                    			<c:set var="count" value="${ count + 1 }" ></c:set>
-	                    			<li class="${ count gt 3 ? 'hide' : '' }"><a href="/Kmarket/cs/faq/view.do?faqNo=${ vo.faqNo }"><span>Q.</span>${ vo.faqTitle }</a></li>
+	                    			<li class="${ count gt 3 ? 'hide' : '' }"><a href="/Kmarket/cs/faq/view.do?faqNo=${ vo.faqNo }&csCate1=${ vo.faqCate1 }"><span>Q.</span>${ vo.faqTitle }</a></li>
 	                    			
 	                    		</c:if>
 	                    		

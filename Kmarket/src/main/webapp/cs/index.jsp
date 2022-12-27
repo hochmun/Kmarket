@@ -22,7 +22,7 @@
         </section>
 
         <section class="faq">
-            <h1>자주 묻는 질문<a href="/Kmarket/cs/faq/list.do">전체보기</a></h1>
+            <h1>자주 묻는 질문</h1>
             <ol>
                 <li>
                     <a href="/Kmarket/cs/faq/list.do?csCate1=10"><span>회원</span></a>
@@ -49,7 +49,7 @@
         </section>
 
         <section class="qna">
-            <h1>문의하기<a href="/Kmarket/cs/qna/list.do?cate1=10">전체보기</a></h1>
+            <h1>문의하기<a href="/Kmarket/cs/qna/list.do?cate1=10">상세보기</a></h1>
             <ul>
             	
 	            <c:forEach var="vo2" items="${ vos2 }">
