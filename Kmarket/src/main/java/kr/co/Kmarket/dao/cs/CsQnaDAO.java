@@ -300,6 +300,9 @@ public class CsQnaDAO extends DBCP{
 				CsQnaVO vo = new CsQnaVO();
 				vo.setQnaTitle(rs.getString("qnaTitle"));
 				vo.setQnaRdate(rs.getString("qnaRdate").substring(2, 16));
+				vo.setQnaNo(rs.getInt("qnaNo"));
+				vo.setQnaCate1(rs.getInt("qnaCate1"));
+				vo.setUid(rs.getString("uid"));
 				vos.add(vo);
 			}
 			close();

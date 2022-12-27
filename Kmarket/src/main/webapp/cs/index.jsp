@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="./_header.jsp"/>
 <section id="cs">
     <div class="main">
@@ -8,26 +10,14 @@
         <section class="notice">
             <h1>공지사항<a href="/Kmarket/cs/notice/list.do">전체보기</a></h1>
             <ul>
-                <li>
-                    <a href="/Kmarket/cs/notice/view.do" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                    <span class="date">22.10.31</span>
-                </li>
-                <li>
-                    <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                    <span class="date">22.10.31</span>
-                </li>
-                <li>
-                    <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                    <span class="date">22.10.31</span>
-                </li>
-                <li>
-                    <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                    <span class="date">22.10.31</span>
-                </li>
-                <li>
-                    <a href="#" class="title">[안내] 해외결제 사칭 문자 주의</a>
-                    <span class="date">22.10.31</span>
-                </li>
+            	
+            	<c:forEach var="vo1" items="${ vos1 }">
+            		<li>
+	                    <a href="/Kmarket/cs/notice/view.do?c=${ vo1.noticeCate }&no=${ vo1.noticeNo }" class="title">${ vo1.noticeTitle }</a>
+	                    <span class="date">${ fn:substring(vo1.noticeRdate, 0, 8) }</span>
+	                </li>
+            	</c:forEach>
+            	
             </ul>
         </section>
 
@@ -61,41 +51,17 @@
         <section class="qna">
             <h1>문의하기<a href="/Kmarket/cs/qna/list.do?cate1=10">전체보기</a></h1>
             <ul>
-                <li>
-                    <a href="/Kmarket/cs/qna/view.do" class="title">[회원] 개인회원과 법인회원에 차이가 있나요?</a>
-                    <p>
-                        <span class="uid">chh***</span>
-                        <span class="date">22.10.31</span>
-                    </p>
-                </li>
-                <li>
-                    <a href="#" class="title">[쿠폰/이벤트] 스마일포인트는 어디에 사용하나요?</a>
-                    <p>
-                        <span class="uid">chh***</span>
-                        <span class="date">22.10.31</span>
-                    </p>
-                </li>
-                <li>
-                    <a href="#" class="title">[주문/결제] 신용카드 결제 중 오류가 난 경우 어떻게 하나요?</a>
-                    <p>
-                        <span class="uid">chh***</span>
-                        <span class="date">22.10.31</span>
-                    </p>
-                </li>
-                <li>
-                    <a href="#" class="title">[배송] 주문한 상품은 언제 배송되나요?</a>
-                    <p>
-                        <span class="uid">chh***</span>
-                        <span class="date">22.10.31</span>
-                    </p>
-                </li>
-                <li>
-                    <a href="#" class="title">[취소/반품/교환] 주문을 취소하고 싶어요.</a>
-                    <p>
-                        <span class="uid">chh***</span>
-                        <span class="date">22.10.31</span>
-                    </p>
-                </li>
+            	
+	            <c:forEach var="vo2" items="${ vos2 }">
+            		<li>
+	                    <a href="/Kmarket/cs/qna/view.do?no=${ vo2.qnaNo }&cate1=${ vo2.qnaCate1 }" class="title">${ vo2.qnaTitle }</a>
+	                    <p>
+	                        <span class="uid">${ fn:substring(vo2.uid, 0, 4) }<c:forEach begin="5" end="${ fn:length(vo2.uid) }" step="1">*</c:forEach></span>
+	                        <span class="date">${ fn:substring(vo2.qnaRdate, 0, 8) }</span>
+	                    </p>
+	                </li>
+            	</c:forEach>
+            	
             </ul>
         </section>
 
