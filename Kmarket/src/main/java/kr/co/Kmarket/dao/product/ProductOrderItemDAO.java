@@ -22,9 +22,9 @@ public class ProductOrderItemDAO extends DBCP {
 			logger.info("ProductOrderItemDAO insertOrderItems...");
 			conn = getConnection();
 			
+			psmt = conn.prepareStatement(Sql.INSERT_PRODUCT_ORDER_ITEM);
+			
 			for(ProductCartVO vo : vos) {
-				psmt = conn.prepareStatement(Sql.INSERT_PRODUCT_ORDER_ITEM);
-				
 				psmt.setString(1, ordNo);
 				psmt.setInt(2, vo.getProdNo());
 				psmt.setInt(3, vo.getCount());
@@ -34,8 +34,11 @@ public class ProductOrderItemDAO extends DBCP {
 				psmt.setInt(7, vo.getDelivery());
 				psmt.setInt(8, vo.getTotal());
 				
-				psmt.executeUpdate();
+				psmt.addBatch();
+				psmt.clearParameters();
 			}
+			
+			psmt.executeBatch();
 			
 			close();
 		} catch (Exception e) {

@@ -271,11 +271,15 @@ public class CsQnaDAO extends DBCP{
 		try {
 			logger.info("deleteQnaArticle...");
 			conn = getConnection();
+			
+			psmt = conn.prepareStatement(CsSql.DELETE_QNA_ARTICLE);
+			
 			for(String qnaNo : arrays) {
-				psmt = conn.prepareStatement(CsSql.DELETE_QNA_ARTICLE);
 				psmt.setString(1, qnaNo);
 				result += psmt.executeUpdate();
+				psmt.clearParameters();
 			}
+			
 			close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

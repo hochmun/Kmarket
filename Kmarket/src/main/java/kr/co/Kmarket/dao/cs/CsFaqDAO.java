@@ -52,8 +52,9 @@ public class CsFaqDAO extends DBCP {
 			logger.info("CsFaqDAO selectCsFaqListWithCsCate1...");
 			conn = getConnection();
 			
+			psmt = conn.prepareStatement(CsSql.SELECT_CS_FAQ_LIST_WITH_CS_CATE1);
+			
 			for(CsCate2VO vo3 : vos3) {
-				psmt = conn.prepareStatement(CsSql.SELECT_CS_FAQ_LIST_WITH_CS_CATE1);
 				psmt.setInt(1, vo3.getCate1());
 				psmt.setInt(2, vo3.getCate2());
 				rs = psmt.executeQuery();
@@ -68,6 +69,7 @@ public class CsFaqDAO extends DBCP {
 					
 					vos.add(vo);
 				}
+				psmt.clearParameters();
 			}
 			
 			close();

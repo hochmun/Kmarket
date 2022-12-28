@@ -84,7 +84,6 @@
                         <li><a href="#hit">히트상품</a></li>
                         <li><a href="#recommend">추천상품</a></li>
                         <li><a href="#new">최신상품</a></li>
-                        <li><a href="#">인기상품</a></li>
                         <li><a href="#discount">할인상품</a></li>
                     </ul>
                     <ul>
