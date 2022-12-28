@@ -14,6 +14,7 @@
             <div class="top">
                 <div>
                     <p>
+                    <a href="${pageContext.request.contextPath}/index.do">홈으로</a>
                     <c:choose>
                			<c:when test="${ sessUser.uid eq null }">
                     		<a href="${pageContext.request.contextPath}/member/login.do">로그인</a>
