@@ -42,13 +42,14 @@ public enum LoadingService {
 	}
 	
 	/**
-	 * 2022/12/12 - success-500 회원정보 type 오류
+	 * 2022/12/12 - success-500 정보 오류
 	 * @author 심규영
 	 * @param out
 	 * @throws IOException
 	 */
 	public void typeError(Writer out) throws IOException {
-		out.write("<script>alert('회원정보 오류입니다 관리자에게 문의 하십시오.');location.href='/Kmarket/member/login.do';</script>");
+		out.write("<script>alert('회원정보 오류입니다 관리자에게 문의 하십시오.');"
+				+ "location.href='/Kmarket/member/login.do';</script>");
 	}
 	
 	/**

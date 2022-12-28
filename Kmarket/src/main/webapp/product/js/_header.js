@@ -1,4 +1,4 @@
-// 맨처 처음 페이지가 로드 될때 실행 되는 함수
+// 처음 페이지가 로드 될때 실행 되는 함수
 window.addEventListener('load', ()=>{
 	$.get('/Kmarket/product/getside.do', function(data){
 		for(let cate1 of data) {
@@ -49,7 +49,10 @@ function overCate1(cate1, newLiTag) {
 			let newLiTag2 = document.createElement('li');
 			let newATag2 = document.createElement('a');
 			
-			newATag2.setAttribute('href', '/Kmarket/product/list.do?cate1='+cate2.cate1+'&cate2='+cate2.cate2);
+			newATag2.setAttribute('href', 
+			'/Kmarket/product/list.do?cate1='+cate2.cate1
+			+'&cate2='+cate2.cate2);
+			
 			newATag2.innerHTML += cate2.c2Name;
 			
 			newLiTag2.appendChild(newATag2);

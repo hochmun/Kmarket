@@ -55,24 +55,27 @@
                 </table>
 
                 <div class="page">
-                <c:if test="${pageGroupStart gt 1}">
-		                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pageGroupStart - 1}" class="prev"><&nbsp;이전</a>
+	                <c:if test="${pageGroupStart gt 1}">
+			                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pageGroupStart - 1}" class="prev"><&nbsp;이전</a>
+			            </c:if>
+			
+			            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
+			                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}" class="num">${pg}</a>
+			            </c:forEach>
+			            <c:if test="${pageGroupEnd lt lastPageNum}">
+			                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
 		            </c:if>
-		
-		            <c:forEach var="pg" begin="${pageGroupStart}" end="${pageGroupEnd}" step="1">
-		                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pg}" class="${currentPage eq pg ? 'on' : 'off'}" class="num">${pg}</a>
-		            </c:forEach>
-		            <c:if test="${pageGroupEnd lt lastPageNum}">
-		                <a href="/Kmarket/cs/qna/list.do?cate1=${cate1}&pg=${pageGroupEnd + 1}" class="next">다음&nbsp;></a>
-	            </c:if>
                 </div>
                 <c:choose>
-				<c:when test="${total eq 0}">
-                <a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWriteEmp">문의하기</a>
-				</c:when>
-				<c:otherwise>
-				<a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWrite">문의하기</a>
-				</c:otherwise>
+                	<c:when test="${ sessUser eq null }">
+                		<a></a>
+					</c:when>
+					<c:when test="${ sessUser.uid ne null && total eq 0}">
+	                	<a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWriteEmp">문의하기</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/Kmarket/cs/qna/write.do?cate1=${cate1}" class="btnWrite">문의하기</a>
+					</c:otherwise>
 				</c:choose>
             </article>
         </section>

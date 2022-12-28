@@ -631,7 +631,7 @@ text-decoration: none;
 }
 #product > .cart > form > table tbody {}
 #product > .cart > form > table tr {border-bottom: 1px solid #d3d3d3;}
-#product > .cart > form > table .empty {display: none;}
+#product > .cart > form > table .empty {/*display: none;*/}
 #product > .cart > form > table .empty td {
     padding: 50px 0 !important;
     text-align: center;

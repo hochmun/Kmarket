@@ -11,7 +11,6 @@
 				$('input[name=agree3]').is(':checked')) {
 				
 				// agree4 체크 값 받아오기
-				//console.log('agree4 checked'+$('input[name=agree4]').is(':checked'));
 				const agree4 = $('input[name=agree4]').is(':checked');
 				
 				// url에서 type 값 받아오기
