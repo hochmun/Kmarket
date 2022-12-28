@@ -44,7 +44,7 @@ public class LoadingPageController extends HttpServlet {
 			// 고객센터
 			
 			// error
-			if(success.equals("500")) service.typeError(out); // 타입정보 오류
+			if(success.equals("500")) service.typeError(out); // 정보값 오류
 			if(success.equals("501")) service.connectingError(out); // 비정상적인 접근
 			
 			// 관리자

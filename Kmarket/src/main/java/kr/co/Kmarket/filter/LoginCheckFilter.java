@@ -21,12 +21,15 @@ import kr.co.Kmarket.vo.MemberVO;
 
 public class LoginCheckFilter implements Filter {
 	
+	private String unLogin;
 	private String uriList;
 	private String adminOnly;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		// 비회원 유저 접근 제한
+		unLogin = "/Kmarket/cs/qna/write.do";
 		// 일반 유저, 비회원 유저 접근 제한
 		uriList = "/Kmarket/admin/";
 		// 일반, 비회원, 판매자 유저 접근 제한
@@ -65,6 +68,15 @@ public class LoginCheckFilter implements Filter {
 			// 일반회원일 경우 접근 제한
 			if(sessUser.getType() == 1) {
 				resp.sendRedirect("/Kmarket/index.do");
+				return;
+			}
+		}
+		
+		// 문의글 작성에 비회원이 접속 했을 경우 접속 제한
+		if(uri.contains(unLogin)) {
+			if(sessUser == null) {
+				sess.setAttribute("success", "501");
+				resp.sendRedirect("/Kmarket/loadingPage.do");
 				return;
 			}
 		}
