@@ -24,8 +24,8 @@
          <tr>
              <td><a href="/Kmarket/product/view.do?prodNo=${product.prodNo}" class="thumb"><img src="/thumb/${ product.prodCate1 }/${ product.prodCate2 }/${ product.thumb1 }" alt="상품이미지"></a></td>
              <td>
-                 <h3 class="name">${product.prodName}</h3>
-                 <a href="#" class="desc">${product.descript}</a>
+                 <a href="/Kmarket/product/view.do?prodNo=${product.prodNo}"><h3 class="name">${product.prodName}</h3></a>
+                 <a href="/Kmarket/product/view.do?prodNo=${product.prodNo}" class="desc">${product.descript}</a>
              </td>
              <td>
                  <ul>
