@@ -37,6 +37,10 @@
                 }
             });
         });
+        
+        function goTop(){
+        	$('html').scrollTop(0);
+        }
     </script>
 </head>
 <body>

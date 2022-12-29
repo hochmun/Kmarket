@@ -125,11 +125,11 @@
 	            <table>
 	                <tr>
 	                    <td>주문자</td>
-	                    <td><input type="text" name="orderer"/></td>
+	                    <td><input type="text" name="orderer" maxlength="20"/></td>
 	                </tr>
 	                <tr>
 	                    <td>휴대폰</td>
-	                    <td><input type="text" name="hp" onchange="isHpCheck(this.value)"/>
+	                    <td><input type="text" name="hp" onchange="isHpCheck(this.value)" maxlength="13"/>
 	                        <span>- 포함 입력</span>&nbsp;&nbsp;<span class="msgHp"></span>
 	                    </td>
 	                </tr>
@@ -149,7 +149,7 @@
 	                <tr>
 	                    <td>상세주소</td>
 	                    <td>
-	                        <input type="text" name="addr2" id="addr2"/>
+	                        <input type="text" name="addr2" id="addr2" maxlength="255"/>
 	                    </td>
 	                </tr>
 	            </table>
