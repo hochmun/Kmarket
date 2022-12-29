@@ -89,7 +89,7 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/cs/notice/list.do">공지사항</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/faq/list.do">자주묻는질문</a></li>
-                        <li><a href="${pageContext.request.contextPath}/cs/qna/list.do">문의하기</a></li>
+                        <li><a href="${pageContext.request.contextPath}/cs/qna/list.do?cate1=10">문의하기</a></li>
                         <li><a href="${pageContext.request.contextPath}/cs/index.do">고객센터</a></li>
                     </ul>
                 </div>
