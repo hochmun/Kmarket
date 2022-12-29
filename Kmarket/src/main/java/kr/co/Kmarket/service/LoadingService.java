@@ -78,7 +78,7 @@ public enum LoadingService {
 	 */
 	public void insertProduct(Writer out) throws IOException {
 		out.write("<script>alert('상품이 등록 되었습니다.');"
-				+ "location.href='/Kmarket/admin/index.do';</script>");
+				+ "location.href = document.referrer';</script>");
 	}
 	
 	/**
