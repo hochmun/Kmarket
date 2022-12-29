@@ -263,6 +263,11 @@ public enum AdminService {
 		// 페이지 불러오기
 		List<ProductVO> vos = dao.selectProductPageList(limitStart, queryMid,vo);
 		
+		// 검색어 강조 기능
+		if(search != null && searchType != null) {
+			searchAccent(search, vos, searchType);
+		}
+		
 		req.setAttribute("lastPageNum", lastPageNum);
 		req.setAttribute("currentPage", currentPage);
 		req.setAttribute("pageGroupCurrent", pageGroupCurrent);
@@ -272,6 +277,30 @@ public enum AdminService {
 		req.setAttribute("vos", vos);
 	 }
 	 
+	 /**
+	  * 2022/12/29 검색어 강조 기능
+	  * @author 심규영
+	  * @param search - 검색어
+	  * @param vos - 검색된 리스트
+	  * @param searchType - 검색 하는 타입
+	  */
+	 public void searchAccent(String search, List<ProductVO> vos, String searchType) {
+		 for (int i = 0; i < vos.size(); i++) {
+			ProductVO pvo = vos.get(i);
+			if(searchType.equals("prodName")) pvo.setProdName(pvo.getProdName().replace(search, "<em style='background-color : yellow;'>"+search+"</em>"));
+			if(searchType.equals("company")) pvo.setCompany(pvo.getCompany().replace(search, "<em style='background-color : yellow;'>"+search+"</em>"));
+			if(searchType.equals("seller")) pvo.setSeller(pvo.getSeller().replace(search, "<em style='background-color : yellow;'>"+search+"</em>"));
+			vos.set(i, pvo);
+		}
+	 }
+	 
+	 /**
+	  * 동적 중간 쿼리 작성 기능</br>
+	  * 마스터피스(%)를 통한 전체 검색
+	  * @param search => 검색어
+	  * @param searchType => 검색위치
+	  * @return String 완성된 중간 쿼리문
+	  */
 	 public String createSql(String search, String searchType) {
 		 String queryMid = "";
 		 
