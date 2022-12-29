@@ -32,7 +32,7 @@
                         <tr>
                             <td>제목</td>
                             <td>
-                                <input type="text" name="title" class="w-btn-outline w-btn-indigo-outline"  placeholder="제목을 입력하세요.">
+                                <input type="text" name="title" class="w-btn-outline w-btn-indigo-outline" maxlength="255" placeholder="제목을 입력하세요.">
                             </td>
                         </tr>
                         <tr>

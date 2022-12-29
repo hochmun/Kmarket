@@ -24,7 +24,7 @@
                 </p>
             </div>
         </footer>
-        <button type="button" id="top">상단이동</button>
+        <button type="button" id="top" onclick="goTop()">상단이동</button>
     </div>
 </body>
 </html>

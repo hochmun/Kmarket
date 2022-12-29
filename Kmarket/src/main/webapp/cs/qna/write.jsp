@@ -102,7 +102,7 @@
                         <tr>
                             <td>문의제목</td>
                             <td>
-                                <input type="text" name="title" placeholder="제목을 입력하세요." required>
+                                <input type="text" name="title" placeholder="제목을 입력하세요." maxlength="255" required>
                             </td>
                         </tr>
                         <tr>

@@ -15,17 +15,17 @@
                     <tr>
                         <th><span class="essential">*</span>아이디</th>
                         <td><input type="text" name="km_uid" placeholder="아이디를 입력" required
-                            ><span class="msgId">영문, 숫자로 4~12자까지 설정해 주세요.</span></td>
+                            maxlength="20"><span class="msgId">영문, 숫자로 6~20자까지 설정해 주세요.</span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>비밀번호</th>
                         <td><input type="password" name="km_pass" placeholder="비밀번호를 입력" required
-                            ><span class="msgPass">영문, 숫자, 특수문자를 조합하여 8~12자까지 설정해 주세요.</span></td>
+                            maxlength="255"><span class="msgPass">영문, 숫자, 특수문자를 조합하여 9이상 설정해 주세요.</span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>비밀번호확인</th>
                         <td><input type="password" name="km_pass2" placeholder="비밀번호를 확인" required
-                            ><span class="msgPass">비밀번호 재입력</span></td>
+                            maxlength="255"><span class="msgPass">비밀번호 재입력</span></td>
                     </tr>
                 </table>
             </section>
@@ -34,7 +34,7 @@
                     <caption>기본 정보입력</caption>
                     <tr>
                         <th><span class="essential">*</span>이름</th>
-                        <td><input type="text" name="km_name" placeholder="이름을 입력" required>
+                        <td><input type="text" name="km_name" placeholder="이름을 입력" required maxlength="20">
                         <span class="msgName"></span></td>
                     </tr>
                     <tr>
@@ -47,7 +47,7 @@
                     <tr>
                         <th><span class="essential">*</span>EMAIL</th>
                         <td><input type="email" name="km_email" placeholder="이메일 입력"
-                            required><span class="msgEmail"></span></td>
+                            required maxlength="100"><span class="msgEmail"></span></td>
                     </tr>
                     <tr>
                         <th><span class="essential">*</span>휴대폰</th>
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                                 <input type="text" name="km_addr2" id="addr2" size="50"
-                                placeholder="상세주소를 입력하세요.">
+                                placeholder="상세주소를 입력하세요." maxlength="255">
                             </div>
                         </td>
                     </tr>
