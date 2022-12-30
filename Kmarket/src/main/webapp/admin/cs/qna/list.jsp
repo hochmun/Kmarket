@@ -2,6 +2,13 @@
 <%@ taglib prefix ="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="../../_header.jsp"/>
 <script src="${pageContext.request.contextPath}/admin/cs/js/qnaList.js"></script>
+<script>
+const cate2Ori = "${ param.cate2 }";
+window.addEventListener('load',()=>{
+	const cate1Ori = '${ param.cate1 }';
+	$('select[name=cate1]').val(cate1Ori).trigger('change');
+});
+</script>
     <section id="admin-product-list">
                 <nav>
                     <h3>문의하기 목록</h3>
@@ -16,7 +23,7 @@
                             <option value="" >1차 선택</option>
                             
                             <c:forEach var="vo2" items="${ vos2 }">
-                            <option value="${ vo2.cate1 }" >${ vo2.cate1Name }</option>
+                            <option value="${ vo2.cate1 }">${ vo2.cate1Name }</option>
                             </c:forEach>
                             
                         </select>
@@ -45,7 +52,7 @@
                             <td>${vo.qnaNo}</td>
                             <td>${vo.cate1Name}</td>
                             <td>${vo.cate2Name}</td>
-                            <td><a href="${pageContext.request.contextPath}/admin/cs/qna/reply.do?qnaNo=${vo.qnaNo}">${vo.qnaTitle}</a></td>
+                            <td><a href="${pageContext.request.contextPath}/admin/cs/qna/reply.do?qnaNo=${vo.qnaNo}&cate1=${ param.cate1 }&cate2=${param.cate2}&pg=${param.pg}">${vo.qnaTitle}</a></td>
                             <td>${vo.uid}</td>
                             <td>${vo.qnaRdate}</td>
                             

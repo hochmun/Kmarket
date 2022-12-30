@@ -22,7 +22,11 @@ $(document).ready(function() {
 			$('select[name=cate2]').append("<option value=''>2차 분류 선택</option>");
 			for(const vo of data) {
 				// 카테고리2값 입력
-				$('select[name=cate2]').append("<option value='"+vo.cate2+"'>"+vo.cate2Name+"</option>");
+				let selectedCheck = '';
+				if(vo.cate2 == cate2Ori) selectedCheck = 'selected';
+				else selectedCheck = ''; 
+				$('select[name=cate2]')
+				.append("<option value='"+vo.cate2+"' "+selectedCheck+">"+vo.cate2Name+"</option>");
 			}
 		});
 	});

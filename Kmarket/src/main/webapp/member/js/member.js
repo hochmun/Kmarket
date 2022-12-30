@@ -81,7 +81,7 @@ $(function(){
 		
 		if(name.match(reName)) {
 			isNameOk = true;
-			$('.msgName').text('사용 가능한 이름입니다.');
+			$('.msgName').css('color','green').text('사용 가능한 이름입니다.');
 		} else {
 			isNameOk = false;
 			$('.msgName').css('color','red').text('유효한 이름이 아닙니다.');
