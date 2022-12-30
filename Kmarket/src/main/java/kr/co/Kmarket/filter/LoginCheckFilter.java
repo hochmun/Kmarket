@@ -72,9 +72,9 @@ public class LoginCheckFilter implements Filter {
 			}
 		}
 		
-		// 문의글 작성에 비회원이 접속 했을 경우 접속 제한
+		// 문의글 작성에 비회원 또는 관리자가 접속 했을 경우 접속 제한
 		if(uri.contains(unLogin)) {
-			if(sessUser == null) {
+			if(sessUser == null || sessUser.getType() == 5) {
 				sess.setAttribute("success", "501");
 				resp.sendRedirect("/Kmarket/loadingPage.do");
 				return;

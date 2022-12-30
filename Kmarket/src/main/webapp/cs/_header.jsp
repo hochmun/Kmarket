@@ -24,14 +24,16 @@
                     		<a href="${pageContext.request.contextPath}/admin/index.do">관리자</a>
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
+                    		<a href="${pageContext.request.contextPath}/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                        	>&nbsp;장바구니</a>
                     	</c:when>
                     	<c:otherwise>
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
+                    		<a href="${pageContext.request.contextPath}/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
+                        	>&nbsp;장바구니</a>
                     	</c:otherwise>
                     </c:choose>
-                        <a href="${pageContext.request.contextPath}/product/cart.do"><i class="fa fa-shopping-cart" aria-hidden="true"></i
-                        >&nbsp;장바구니</a>
                     </p>
                 </div>
             </div>
