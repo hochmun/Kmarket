@@ -15,10 +15,26 @@
     <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
     <script>
+    	let slidingOk = true;
+    
         $(()=>{
-            $(".slider > ul").bxSlider({
-                easing: "linear"
-            });
+        	var $slider = $('.slider > ul').bxSlider({
+        		easing: "linear",
+        		// 슬라이드 전환 직적 실행
+        		onSlideBefore: function($slideElement, oldIndex, currentIndex) {
+        			if(slidingOk == true) {
+        				slidingOk = false;
+        				return true;
+        			} else {
+        				return false;
+        			}
+        			
+        		},
+        		// 슬라이더 전환 후 실행
+        		onSlideAfter: function($slideElement, oldIndex, currentIndex) {
+        			slidingOk = true;
+        		}
+        	});
         });
 
         $(function(){
@@ -57,16 +73,20 @@
                     		<a href="${pageContext.request.contextPath}/admin/index.do">관리자</a>
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
+                    		<a href="${pageContext.request.contextPath}/product/cart.do">
+		                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+		                        &nbsp;장바구니
+		                    </a>
                     	</c:when>
                     	<c:otherwise>
                     		<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
                     		<a href="#">마이페이지</a>
+		                    		<a href="${pageContext.request.contextPath}/product/cart.do">
+		                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+		                        &nbsp;장바구니
+		                    </a>
                     	</c:otherwise>
                     </c:choose>
-                    <a href="${pageContext.request.contextPath}/product/cart.do">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        &nbsp;장바구니
-                    </a>
                 </div>
             </div>
             <div class="logo">

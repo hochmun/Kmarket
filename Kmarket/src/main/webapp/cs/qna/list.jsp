@@ -67,7 +67,7 @@
 		            </c:if>
                 </div>
                 <c:choose>
-                	<c:when test="${ sessUser eq null }">
+                	<c:when test="${ sessUser eq null || sessUser.type eq 5 }">
                 		<a></a>
 					</c:when>
 					<c:when test="${ sessUser.uid ne null && total eq 0}">
