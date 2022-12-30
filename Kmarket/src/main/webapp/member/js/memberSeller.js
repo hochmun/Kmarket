@@ -98,7 +98,7 @@ $(function(){
 		
 		if(company.match(reCompany)) {
 			isCompanyOk = true;
-			$('.msgCompany').text('사용 가능한 회사명입니다.');
+			$('.msgCompany').css('color','green').text('사용 가능한 회사명입니다.');
 		} else {
 			isCompanyOk = false;
 			$('.msgCompany').css('color','red').text('유효한 회사명이 아닙니다.');

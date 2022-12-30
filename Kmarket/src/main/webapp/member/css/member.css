@@ -354,7 +354,7 @@
     margin: 0 auto;
     box-sizing: border-box;
 }
-#member > .registerSeller > nav {border-bottom: 2px solid#0e6ad3;}
+#member > .registerSeller > nav {border-bottom: 2px solid #0e6ad3;}
 #member > .registerSeller > nav > h1 {
     font-size: 24px;
     margin-bottom: 6px;
